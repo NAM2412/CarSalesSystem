@@ -4,6 +4,14 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              StartupUri="General/SignIn.xaml">
     <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        
         <!--Menu Title-->
         <Style x:Key="menuTitle" TargetType="TextBlock">
             <Setter Property="Foreground" Value="#ffffff"></Setter>
@@ -61,12 +69,21 @@
             <Setter Property="FontSize" Value="16"/>
             <Setter Property="FontFamily" Value="Nexa Bold"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
-            
+
             <Setter Property="Foreground" Value="{Binding Path=Foreground, 
                                           RelativeSource={RelativeSource FindAncestor,
                                           AncestorType={x:Type Button}}}">
 
             </Setter>
         </Style>
+        <!--TextBox border style-->
+        <Style TargetType="{x:Type TextBox}">
+            <Style.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="5" />
+                </Style>
+            </Style.Resources>
+        </Style>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

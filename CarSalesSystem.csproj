@@ -176,6 +176,9 @@
     <None Include="packages\MaterialDesignColors.2.0.9\MaterialDesignColors.2.0.9.nupkg" />
     <None Include="packages\MaterialDesignThemes.4.6.1\.signature.p7s" />
     <None Include="packages\MaterialDesignThemes.4.6.1\build\MaterialDesignThemes.targets" />
+    <Resource Include="Resources\Fonts\Nexa Bold.otf" />
+    <Resource Include="Resources\Fonts\Nexa Light.otf" />
+    <Resource Include="Resources\Fonts\Nexa Regular.otf" />
     <Resource Include="packages\MaterialDesignThemes.4.6.1\build\Resources\Roboto\Roboto-Black.ttf" />
     <Resource Include="packages\MaterialDesignThemes.4.6.1\build\Resources\Roboto\Roboto-BlackItalic.ttf" />
     <Resource Include="packages\MaterialDesignThemes.4.6.1\build\Resources\Roboto\Roboto-Bold.ttf" />
@@ -240,6 +243,7 @@
     <Content Include="packages\Icons8.UI.0.2.0\lib\net40\Icons8.UI.dll" />
     <Content Include="packages\MahApps.Metro.IconPacks.Material.4.11.0\lib\net45\MahApps.Metro.IconPacks.Core.dll" />
     <Content Include="packages\MahApps.Metro.IconPacks.Material.4.11.0\lib\net45\MahApps.Metro.IconPacks.Core.pdb" />
+    <Resource Include="Resources\Images\Icons\sedan.png" />
     <Resource Include="packages\MahApps.Metro.IconPacks.Material.4.11.0\lib\net45\MahApps.Metro.IconPacks.Core.xml" />
     <Content Include="packages\MahApps.Metro.IconPacks.Material.4.11.0\lib\net45\MahApps.Metro.IconPacks.Material.dll" />
     <Content Include="packages\MahApps.Metro.IconPacks.Material.4.11.0\lib\net45\MahApps.Metro.IconPacks.Material.pdb" />
