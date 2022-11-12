@@ -80,8 +80,11 @@
         <Style TargetType="{x:Type TextBox}">
             <Style.Resources>
                 <Style TargetType="{x:Type Border}">
-                    <Setter Property="CornerRadius" Value="5" />
+                    <Setter Property="CornerRadius" Value="10" />
                 </Style>
+                    <Style TargetType="{x:Type UserControl}">
+                        <Setter Property="FontSize" Value="40"></Setter>
+                    </Style>
             </Style.Resources>
         </Style>
         </ResourceDictionary>

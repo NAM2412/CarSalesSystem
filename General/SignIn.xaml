@@ -9,23 +9,87 @@
         WindowStartupLocation="CenterScreen"
         AllowsTransparency="True"
         Background="Transparent"
-        Title="SignIn" Height="780" Width="1280">
+        Title="SignIn" Height="760" Width="1280">
     <Border CornerRadius="20" Background="#FFFFFF">
         <Grid>
-            <GridSplitter HorizontalAlignment="Left" Height="694" Margin="635,0,0,0" VerticalAlignment="Top" Width="5"/>
-            <Image Name="CarImage" Margin="0,0,656,0" Source="/Resources/Images/Cars/Products/MenuCar.png" Stretch="Fill" />
 
+            <Image Name="CarImage"
+                   Margin="0,0,656,0"
+                   Source="/Resources/Images/Cars/Products/MenuCar.png" Stretch="Fill" />
+            <Grid Height="93px" Margin="100,620,800,47">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"></RowDefinition>
+                    <RowDefinition Height="1*"></RowDefinition>
+                    <RowDefinition Height="1*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Label Margin="0,0,86,0"
+                       HorizontalAlignment="Center"
+                       FontSize="20px"
+                       FontWeight="Medium"
+                       FontFamily="Nexa ☞"
+                       Foreground="#C2C2C2">Don't have an account?</Label>
+                <Button x:Name="SignUpBtn"
+                        Margin="255,0,0,0"
+                        HorizontalAlignment="Center"
+                        Width="Auto"
+                        Background="Transparent"
+                        BorderThickness="0"
+                        >
+                    <Label Padding="0,0,0,0"
+                           Width="100"
+                           HorizontalAlignment="Left"
+                           Foreground="White"
+                           FontFamily="Nexa ☞"
+                           FontWeight="Bold"
+                           FontSize="20px">Sign Up</Label>
+                </Button>
+                <Label Grid.Row="1" 
+                       FontFamily="Nexa ☞"
+                       FontSize="20px"
+                       Foreground="#C2C2C2"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"
+                       >or</Label>
+                <Button Grid.Row="2" 
+                        x:Name="GoogleBtn"
+                        Margin="150,0,190,0"
+                        Width="30"
+                        Height="30"
+                        VerticalAlignment="Top"
+                        HorizontalAlignment="Left"
+                        BorderThickness="0">
+                    <Button.Background>
+                        <ImageBrush 
+                            ImageSource="/Resources/Images/Icons/google.png"
+                            Stretch="Fill"></ImageBrush>
+                    </Button.Background>
+                </Button>
+                <Button 
+                    x:Name="FacebookBtn"
+                    Grid.Row="2"
+                    Margin="195,0,100,0"
+                    Width="30"
+                    Height="30"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    BorderThickness="0">
+                    <Button.Background>
+                        <ImageBrush
+                        ImageSource="/Resources/Images/Icons/facebook.png" ></ImageBrush>
+                    </Button.Background>
+                </Button>
+            </Grid >
             <Grid HorizontalAlignment="Left" Width="645" Margin="635,0,0,0">
                 <Image Name="Logo" Margin="260,10,260,616" VerticalAlignment="Top" Width="125" Height="120" Source="/Resources/Images/Icons/sedan.png" Stretch="Fill"/>
-                <Label HorizontalAlignment="Center" Margin="0,125,0,567" Height="68" FontSize="40" FontWeight="Bold" Foreground="#FFFB6161" FontFamily="Mitr">SG AUTO</Label>
-                <Label Margin="45,212,119,442" Width="350" Height="106" FontSize="40px" FontWeight="Normal" FontFamily="KoorkinW04-Bold" Foreground="#FFFB7857">
-                    <TextBlock>
+                <Label HorizontalAlignment="Center" Margin="0,110,0,567" Height="68" FontSize="50" FontWeight="Heavy" Foreground="#FFFB6161" FontFamily="Oswald SemiBold">SG AUTO</Label>
+                <Label Margin="55,212,80,442" Width="400" Height="120" FontSize="40px" FontWeight="Normal" Foreground="#FFFB7857">
+                    <TextBlock Width="360" Height="120" LineHeight="50" FontFamily="Raleway Medium">
                     Choose your speed
                 <LineBreak/>
                 Ride your style
                     </TextBlock>
                 </Label>
-                <Grid Height="192px" Margin="80,347,135,241">
+                <Grid Height="192px" Margin="80,337,100,231">
                     <Grid.Resources >
                         <Style TargetType="Border" >
                             <Setter Property="Padding" Value="12,21,12,21" />
@@ -35,18 +99,18 @@
                         <RowDefinition Height="1*"></RowDefinition>
                         <RowDefinition Height="1*"></RowDefinition>
                     </Grid.RowDefinitions>
-                    <TextBox Name="usernameTextBox" Width="360" Height="65" BorderThickness="2"  VerticalContentAlignment="Center"></TextBox>
-                    <TextBox Grid.Row="1" Name="passwordTextBox" Width="360" Height="65" BorderThickness="2" VerticalContentAlignment="Center"></TextBox>
+                    <TextBox Name="usernameTextBox" Width="400" Height="65" BorderThickness="2"  VerticalContentAlignment="Center" FontSize="30"></TextBox>
+                    <TextBox Grid.Row="1" Name="passwordTextBox" Width="400" Height="65" BorderThickness="2" VerticalContentAlignment="Center" FontSize="30"></TextBox>
                 </Grid>
-                <Grid Height="30" Margin="120,540,297,210">
+                <Grid Height="30" Margin="120,530,297,200">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="1*"></ColumnDefinition>
                         <ColumnDefinition Width="8*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <CheckBox HorizontalAlignment="Left" VerticalAlignment="Bottom" BorderThickness="2" Width="24" Height="24"></CheckBox>
+                    <CheckBox HorizontalAlignment="Left" VerticalAlignment="Center" BorderThickness="2" Width="24" Height="24"></CheckBox>
                     <Label HorizontalAlignment="Left" Grid.Column="1" FontWeight="Normal" FontSize="20px" FontFamily="Nexa ☞">Remember me</Label>
                 </Grid>
-                <Button Margin="126,617,159,59" Width="360">
+                <Button Margin="110,617,120,59" Width="400" Height="68">
                     <Button.Resources>
                         <Style TargetType="Border">
                             <Setter Property="CornerRadius" Value="20"/>
@@ -62,7 +126,7 @@
                             </Style.Triggers>
                         </Style>
                     </Button.Style>
-                    <Label FontSize="40px" FontWeight="DemiBold">Sign in</Label>
+                    <Label FontSize="20px" FontFamily="Nexa ☞" FontWeight="DemiBold">Sign in</Label>
                 </Button>
 
             </Grid>

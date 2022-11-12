@@ -159,6 +159,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Resource Include="Resources\Images\Icons\facebook.png" />
+    <Resource Include="Resources\Images\Icons\google.png" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -176,9 +178,41 @@
     <None Include="packages\MaterialDesignColors.2.0.9\MaterialDesignColors.2.0.9.nupkg" />
     <None Include="packages\MaterialDesignThemes.4.6.1\.signature.p7s" />
     <None Include="packages\MaterialDesignThemes.4.6.1\build\MaterialDesignThemes.targets" />
-    <Resource Include="Resources\Fonts\Nexa Bold.otf" />
-    <Resource Include="Resources\Fonts\Nexa Light.otf" />
-    <Resource Include="Resources\Fonts\Nexa Regular.otf" />
+    <Content Include="Resources\Fonts\Nexa Bold.otf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Fonts\Nexa Light.otf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Fonts\Nexa Regular.otf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Resource Include="Resources\Fonts\Oswald-Bold.ttf" />
+    <Resource Include="Resources\Fonts\Oswald-ExtraLight.ttf" />
+    <Resource Include="Resources\Fonts\Oswald-Light.ttf" />
+    <Resource Include="Resources\Fonts\Oswald-Medium.ttf" />
+    <Resource Include="Resources\Fonts\Oswald-Regular.ttf" />
+    <Resource Include="Resources\Fonts\Oswald-SemiBold.ttf" />
+    <Resource Include="Resources\Fonts\Raleway-Black.ttf" />
+    <Resource Include="Resources\Fonts\Raleway-BlackItalic.ttf" />
+    <Resource Include="Resources\Fonts\Raleway-Bold.ttf" />
+    <Resource Include="Resources\Fonts\Raleway-BoldItalic.ttf" />
+    <Resource Include="Resources\Fonts\Raleway-ExtraBold.ttf" />
+    <Resource Include="Resources\Fonts\Raleway-ExtraBoldItalic.ttf" />
+    <Resource Include="Resources\Fonts\Raleway-ExtraLight.ttf" />
+    <Resource Include="Resources\Fonts\Raleway-ExtraLightItalic.ttf" />
+    <Resource Include="Resources\Fonts\Raleway-Italic-VariableFont_wght.ttf" />
+    <Resource Include="Resources\Fonts\Raleway-Italic.ttf" />
+    <Resource Include="Resources\Fonts\Raleway-Light.ttf" />
+    <Resource Include="Resources\Fonts\Raleway-LightItalic.ttf" />
+    <Resource Include="Resources\Fonts\Raleway-Medium.ttf" />
+    <Resource Include="Resources\Fonts\Raleway-MediumItalic.ttf" />
+    <Resource Include="Resources\Fonts\Raleway-Regular.ttf" />
+    <Resource Include="Resources\Fonts\Raleway-SemiBold.ttf" />
+    <Resource Include="Resources\Fonts\Raleway-SemiBoldItalic.ttf" />
+    <Resource Include="Resources\Fonts\Raleway-Thin.ttf" />
+    <Resource Include="Resources\Fonts\Raleway-ThinItalic.ttf" />
+    <Resource Include="Resources\Fonts\Raleway-VariableFont_wght.ttf" />
     <Resource Include="packages\MaterialDesignThemes.4.6.1\build\Resources\Roboto\Roboto-Black.ttf" />
     <Resource Include="packages\MaterialDesignThemes.4.6.1\build\Resources\Roboto\Roboto-BlackItalic.ttf" />
     <Resource Include="packages\MaterialDesignThemes.4.6.1\build\Resources\Roboto\Roboto-Bold.ttf" />
@@ -202,13 +236,27 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <Resource Include="Resources\Fonts\Koorkin W04 Bold.ttf" />
-    <Resource Include="Resources\Fonts\Mitr-Bold.ttf" />
-    <Resource Include="Resources\Fonts\Mitr-ExtraLight.ttf" />
-    <Resource Include="Resources\Fonts\Mitr-Light.ttf" />
-    <Resource Include="Resources\Fonts\Mitr-Medium.ttf" />
-    <Resource Include="Resources\Fonts\Mitr-Regular.ttf" />
-    <Resource Include="Resources\Fonts\Mitr-SemiBold.ttf" />
+    <Content Include="Resources\Fonts\Koorkin W04 Bold.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Fonts\Mitr-Bold.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Fonts\Mitr-ExtraLight.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Fonts\Mitr-Light.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Fonts\Mitr-Medium.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Fonts\Mitr-Regular.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Fonts\Mitr-SemiBold.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
