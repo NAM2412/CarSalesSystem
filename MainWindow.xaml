@@ -9,7 +9,7 @@
         WindowStyle="None"
         WindowStartupLocation="CenterScreen"
         Background="Transparent">
-    <Border CornerRadius="25" Padding="20" Background="#f7f6f4" MouseDown="BorderMouseDown" MouseLeftButtonDown="BorderMouseLeftButtonDown">
+    <Border CornerRadius="25" Padding="20" Background="#FFFFFF" MouseDown="BorderMouseDown" MouseLeftButtonDown="BorderMouseLeftButtonDown">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="220"></ColumnDefinition>

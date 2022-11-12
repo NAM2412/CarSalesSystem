@@ -5,32 +5,42 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CarSalesSystem.General"
         mc:Ignorable="d"
-        Title="SignIn" Height="760" Width="1280">
-    
-    <Grid>
-        <GridSplitter HorizontalAlignment="Left" Height="694" Margin="635,0,0,0" VerticalAlignment="Top" Width="5"/>
-        <Image Name="CarImage" Margin="0,0,656,0" Source="/Resources/Images/Cars/Products/MenuCar.png" Stretch="Fill" />
-        <Grid HorizontalAlignment="Left" Width="645" Margin="635,0,0,0">
-            <Image Name="Logo" Margin="260,24,260,500" Width="125" Height="120"></Image>
-            <Label HorizontalAlignment="Center" Margin="0,125,0,467" FontSize="40" FontWeight="Bold" Foreground="#FFFB6161" FontFamily="Mitr">SG AUTO</Label>
-            <Label Margin="45,212,119,330" FontSize="40px" FontWeight="Normal" FontFamily="KoorkinW04-Bold" Foreground="#FFFB7857">
-                <TextBlock>
+        Title="SignIn" Height="780" Width="1280">
+    <Border CornerRadius="25">
+        <Grid>
+            <GridSplitter HorizontalAlignment="Left" Height="694" Margin="635,0,0,0" VerticalAlignment="Top" Width="5"/>
+            <Image Name="CarImage" Margin="0,0,656,0" Source="/Resources/Images/Cars/Products/MenuCar.png" Stretch="Fill" />
+            <Grid HorizontalAlignment="Left" Width="645" Margin="635,0,0,0">
+                <Image Name="Logo" Margin="260,10,260,616" VerticalAlignment="Top" Width="125" Height="120"></Image>
+                <Label HorizontalAlignment="Center" Margin="0,125,0,567" Height="68" FontSize="40" FontWeight="Bold" Foreground="#FFFB6161" FontFamily="Mitr">SG AUTO</Label>
+                <Label Margin="45,212,119,442" Width="350" Height="106" FontSize="40px" FontWeight="Normal" FontFamily="KoorkinW04-Bold" Foreground="#FFFB7857">
+                    <TextBlock>
                     Choose your speed
                 <LineBreak/>
                 Ride your style
-                </TextBlock>
+                    </TextBlock>
                 </Label>
-            <Grid Height="192px" Margin="33,337,28,115"/>
-            
-                <Button Margin="35,617,67,60" Width="360" Height="68" Background="#FB6161">
-                <Button.Resources>
-                    <Style TargetType="Border">
-                        <Setter Property="CornerRadius" Value="20"/>
-                    </Style>
-                </Button.Resources>
-                <TextBox FontSize="40px" Background="#FB6161">Sign in</TextBox>
+                <Grid Height="192px" Width="402px" Margin="33,337,28,231">
+                    <Grid.Resources >
+                        <Style TargetType="Border" >
+                            <Setter Property="Padding" Value="12,21,12,21" />
+                        </Style>
+                    </Grid.Resources>
+                    <TextBox Name="usernameTextBox" TextChanged="OnTextBoxTextChanged" Width="360" Height="65">123</TextBox>
+                    <TextBox Name="passwordTextBox" TextChanged="OnTextBoxTextChanged" Width="360" Height="65"></TextBox>
+                </Grid>
+
+                <Button Margin="126,617,159,59" Width="360" Background="#FB6161">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="20"/>
+                        </Style>
+                    </Button.Resources>
+                    <Label FontSize="40px" Background="#FB6161">Sign in</Label>
                 </Button>
-           
+
+            </Grid>
         </Grid>
-    </Grid>
+    </Border>
+
 </Window>
