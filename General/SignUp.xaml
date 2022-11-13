@@ -27,7 +27,7 @@
                    Height="68" 
                    FontSize="50" 
                    FontWeight="Heavy" 
-                   Foreground="#FFFB6161" 
+                   Foreground="#FF004D68" 
                    FontFamily="Oswald SemiBold">SG AUTO</Label>
             <TextBox Grid.Row="1"
                      Name="emailTextBox" 
@@ -38,7 +38,8 @@
                      BorderThickness="2" 
                      VerticalContentAlignment="Center"
                      FontSize="30"
-                     Foreground="Gray"></TextBox>
+                     Foreground="Gray"                             FontFamily="Nexa ☞"
+                     Text="email"></TextBox>
             <Border CornerRadius="10" Grid.Row="2">
                 <Button Name="QuitButton" 
                     Width="89px"
@@ -49,6 +50,7 @@
                     <Label FontFamily="Nexa ☞"
                            FontSize="17"
                            FontWeight="Bold"
+                           Foreground="White"
                            >Quit</Label>
                 </Button>
                 
@@ -59,10 +61,11 @@
                     Height="36px"
                     Margin="334,0,42,0"
                     BorderThickness="0"
-                    Background="#D4D81A">
+                    Background="#FF004D68">
                     <Label FontFamily="Nexa ☞"
                            FontSize="17"
-                           FontWeight="Bold">Next</Label>
+                           FontWeight="Bold"
+                           Foreground="White">Next</Label>
                 </Button>
             </Border>
             

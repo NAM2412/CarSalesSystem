@@ -81,8 +81,8 @@
             </Grid >
             <Grid HorizontalAlignment="Left" Width="645" Margin="635,0,0,0">
                 <Image Name="Logo" Margin="260,10,260,616" VerticalAlignment="Top" Width="125" Height="120" Source="/Resources/Images/Icons/sedan.png" Stretch="Fill"/>
-                <Label HorizontalAlignment="Center" Margin="0,110,0,567" Height="68" FontSize="50" FontWeight="Heavy" Foreground="#FFFB6161" FontFamily="Oswald SemiBold">SG AUTO</Label>
-                <Label Margin="55,212,80,442" Width="400" Height="120" FontSize="40px" FontWeight="Normal" Foreground="#FFFB7857">
+                <Label HorizontalAlignment="Center" Margin="0,110,0,567" Height="68" FontSize="50" FontWeight="Heavy" Foreground="#FF004D68" FontFamily="Oswald SemiBold">SG AUTO</Label>
+                <Label Margin="55,212,80,442" Width="400" Height="120" FontSize="40px" FontWeight="Normal" Foreground="#3ba1c5">
                     <TextBlock Width="360" Height="120" LineHeight="50" FontFamily="Raleway Medium">
                     Choose your speed
                 <LineBreak/>
@@ -99,18 +99,27 @@
                         <RowDefinition Height="1*"></RowDefinition>
                         <RowDefinition Height="1*"></RowDefinition>
                     </Grid.RowDefinitions>
-                    <AdornerDecorator>
-                        <TextBox Name="usernameTextBox"
-                                 Width="400" Height="65"
-                                 BorderThickness="2"  
-                                 VerticalContentAlignment="Center"
-                                 FontSize="30" Foreground="Gray"
-                                 >
+                    <TextBox x:Name="usernameTextBox"
+                             Width="400" Height="65"
+                             BorderThickness="2"  
+                             VerticalContentAlignment="Center"
+                             FontSize="30"
+                             Foreground="Gray" 
+                             FontFamily="Nexa ☞"
+                             Text="username">
+                    </TextBox>
 
-                        </TextBox>
-
-                    </AdornerDecorator>
-                    <TextBox Grid.Row="1" Name="passwordTextBox" Width="400" Height="65" BorderThickness="2" VerticalContentAlignment="Center" FontSize="30" Foreground="Gray"></TextBox>
+                    
+                    <TextBox Grid.Row="1"
+                             Name="passwordTextBox"
+                             Width="400"
+                             Height="65"
+                             BorderThickness="2"
+                             VerticalContentAlignment="Center"
+                             FontSize="30"
+                             Foreground="Gray"
+                             FontFamily="Nexa ☞"
+                             Text="password"></TextBox>
                 </Grid>
                 <Grid Height="30" Margin="120,530,297,200">
                     <Grid.ColumnDefinitions>
@@ -124,14 +133,9 @@
                     <Button Margin="110,617,120,59"
                         Width="400"
                         Height="68"
-                        BorderThickness="0">
-                        <Button.Background>
-                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                                
-                                <GradientStop Color="#1A6985" Offset="0.25"></GradientStop>
-                                <GradientStop Color="#A8D5E5" Offset="0.75"></GradientStop>
-                            </LinearGradientBrush>
-                        </Button.Background>
+                        BorderThickness="0"
+                        Background="#FF004D68">
+                        
                         <Label FontSize="20px"
                            FontFamily="Nexa ☞"
                            FontWeight="DemiBold"
