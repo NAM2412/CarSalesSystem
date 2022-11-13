@@ -21,8 +21,8 @@
             <Border Grid.RowSpan="3" CornerRadius="25">
                 <Border.Background>
                     <LinearGradientBrush>
-                        <GradientStop Color="#fb7154" Offset="0"></GradientStop>
-                        <GradientStop Color="#fb6161" Offset="0.8"></GradientStop>
+                        <GradientStop Color="#A8D5E5" Offset="0"></GradientStop>
+                        <GradientStop Color="#1A6985" Offset="0.8"></GradientStop>
                     </LinearGradientBrush>
                 </Border.Background>
 
@@ -33,7 +33,7 @@
                             <Border Background="#ffffff" Width="35" Height="35" CornerRadius="50"></Border>
                             <Border Width="35" Height="35" BorderBrush="#ffffff" BorderThickness="3" CornerRadius="25">
                                 <!--Icon-->
-                                <materialDesign:PackIcon Kind="CarSports" Width="24" Height="24" Foreground="#fb7154" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                <materialDesign:PackIcon Kind="CarSports" Width="24" Height="24" Foreground="#2596be" VerticalAlignment="Center" HorizontalAlignment="Center"
                                                        Margin="2 0 0 4">
                                 </materialDesign:PackIcon>
                             </Border>

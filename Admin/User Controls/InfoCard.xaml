@@ -35,7 +35,8 @@
             </fa:IconImage>
 
             <StackPanel Margin="35 0 0 20" VerticalAlignment="Bottom">
-                <TextBlock Text="Hello" Foreground="#e9e9e9"></TextBlock>
+                <TextBlock Text="Content" Foreground="#FFFFFF" FontSize="20" FontFamily="Nexa Demo" FontWeight="Light"></TextBlock>
+                <TextBlock Text="Hello" Foreground="#FFFFFF" FontSize="24" FontFamily="Montserrat" FontWeight="Bold"></TextBlock>
             </StackPanel>
         </Grid>
     </Border>
