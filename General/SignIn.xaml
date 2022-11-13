@@ -106,20 +106,33 @@
                              FontSize="30"
                              Foreground="Gray" 
                              FontFamily="Nexa ☞"
-                             Text="username">
-                    </TextBox>
+                             Text="username"
+                             GotFocus="usernameTextBox_GotFocus"
+                             LostFocus="usernameTextBox_LostFocus"
+                             >
+                        </TextBox>
 
-                    
-                    <TextBox Grid.Row="1"
+
+                   
+                        <PasswordBox Grid.Row="1"
                              Name="passwordTextBox"
                              Width="400"
                              Height="65"
-                             BorderThickness="2"
+                             BorderThickness="1"
                              VerticalContentAlignment="Center"
                              FontSize="30"
                              Foreground="Gray"
                              FontFamily="Nexa ☞"
-                             Text="password"></TextBox>
+                             PasswordChar="*"
+                             >
+                        <PasswordBox.Resources>
+                            <Style TargetType="{x:Type Border}">
+                                <Setter Property="CornerRadius" Value="10"/>
+                            </Style>
+                        </PasswordBox.Resources>
+                    </PasswordBox>
+
+                    
                 </Grid>
                 <Grid Height="30" Margin="120,530,297,200">
                     <Grid.ColumnDefinitions>

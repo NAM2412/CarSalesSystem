@@ -23,5 +23,17 @@ namespace CarSalesSystem.General
         {
             InitializeComponent();
         }
+
+        private void emailTextBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (emailTextBox.Text.Equals("email"))
+                emailTextBox.Text = "";
+        }
+
+        private void emailTextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (emailTextBox.Text.Equals(""))
+                emailTextBox.Text = "email";
+        }
     }
 }

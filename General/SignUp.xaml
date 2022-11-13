@@ -39,7 +39,9 @@
                      VerticalContentAlignment="Center"
                      FontSize="30"
                      Foreground="Gray"                             FontFamily="Nexa ☞"
-                     Text="email"></TextBox>
+                     Text="email"
+                     GotFocus="emailTextBox_GotFocus"
+                     LostFocus="emailTextBox_LostFocus"></TextBox>
             <Border CornerRadius="10" Grid.Row="2">
                 <Button Name="QuitButton" 
                     Width="89px"
