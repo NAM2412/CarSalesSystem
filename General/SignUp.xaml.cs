@@ -10,28 +10,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace CarSalesSystem.General
 {
     /// <summary>
-    /// Interaction logic for SignIn.xaml
+    /// Interaction logic for Window1.xaml
     /// </summary>
-    public partial class SignIn : Window
+    public partial class SignUp: Window
     {
-        public SignIn()
+        public SignUp()
         {
             InitializeComponent();
         }
-
-        private void SignUpBtn_Click(object sender, RoutedEventArgs e)
-        {
-            SignUp signUp= new SignUp();
-            signUp.ShowDialog();
-            
-        }
-
-       
     }
 }
