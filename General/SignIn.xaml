@@ -120,24 +120,25 @@
                     <CheckBox HorizontalAlignment="Left" VerticalAlignment="Center" BorderThickness="2" Width="24" Height="24"></CheckBox>
                     <Label HorizontalAlignment="Left" Grid.Column="1" FontWeight="Normal" FontSize="20px" FontFamily="Nexa ☞">Remember me</Label>
                 </Grid>
-                <Button Margin="110,617,120,59" Width="400" Height="68">
-                    <Button.Resources>
-                        <Style TargetType="Border">
-                            <Setter Property="CornerRadius" Value="20"/>
-                        </Style>
-                    </Button.Resources>
-                    <Button.Style>
-                        <Style TargetType="Button" >
-                            <Setter Property="Background" Value="#FB6161"></Setter>
-                            <Style.Triggers>
-                                <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Background" Value="#bee6fd" />
-                                </Trigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Button.Style>
-                    <Label FontSize="20px" FontFamily="Nexa ☞" FontWeight="DemiBold">Sign in</Label>
-                </Button>
+                <Border CornerRadius="20" BorderThickness="0">
+                    <Button Margin="110,617,120,59"
+                        Width="400"
+                        Height="68"
+                        BorderThickness="0">
+                        <Button.Background>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                
+                                <GradientStop Color="#1A6985" Offset="0.25"></GradientStop>
+                                <GradientStop Color="#A8D5E5" Offset="0.75"></GradientStop>
+                            </LinearGradientBrush>
+                        </Button.Background>
+                        <Label FontSize="20px"
+                           FontFamily="Nexa ☞"
+                           FontWeight="DemiBold"
+                           Foreground="White">Sign in</Label>
+                    </Button>
+                </Border>
+                
 
             </Grid>
         </Grid>

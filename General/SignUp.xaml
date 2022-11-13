@@ -40,20 +40,29 @@
                      FontSize="30"
                      Foreground="Gray"></TextBox>
             <Border CornerRadius="10" Grid.Row="2">
-                <Button Width="89px"
+                <Button Name="QuitButton" 
+                    Width="89px"
                     Height="36px"
                     Margin="224,0,152,0"
                     BorderThickness="0"
-                    Background="#FB6161"></Button>
+                    Background="#FB6161">
+                    <Label FontFamily="Nexa ☞"
+                           FontSize="17"
+                           FontWeight="Bold"
+                           >Quit</Label>
+                </Button>
                 
             </Border>
             <Border CornerRadius="10" Grid.Row="2">
-                <Button Width="89px"
+                <Button x:Name="NextButton" 
+                    Width="89px"
                     Height="36px"
                     Margin="334,0,42,0"
                     BorderThickness="0"
                     Background="#D4D81A">
-                    <Label>Next</Label>
+                    <Label FontFamily="Nexa ☞"
+                           FontSize="17"
+                           FontWeight="Bold">Next</Label>
                 </Button>
             </Border>
             
