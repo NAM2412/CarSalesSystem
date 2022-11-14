@@ -50,7 +50,8 @@
                         Margin="224,0,152,0"
                         BorderThickness="0"
                         Background="#FB6161"
-                        Style="{DynamicResource RoundedButtonStyle}">
+                        Style="{DynamicResource RoundedButtonStyle}"
+                        Click="QuitButton_Click">
                         <Label FontFamily="Nexa ☞"
                                FontSize="17"
                                FontWeight="Bold"

@@ -17,13 +17,18 @@ namespace CarSalesSystem.General
     /// <summary>
     /// Interaction logic for Window1.xaml
     /// </summary>
-    public partial class SignUp: Window
+    public partial class SignUp : Window
     {
         public SignUp()
         {
             InitializeComponent();
         }
-
+        void CloseWindow(Type type)
+        {
+            var window = App.Current.Windows.OfType<Window>().FirstOrDefault(w => w.GetType() == type);
+            if (window != null)
+                window.Close();
+        }
         private void emailTextBox_GotFocus(object sender, RoutedEventArgs e)
         {
             if (emailTextBox.Text.Equals("email"))
@@ -34,6 +39,14 @@ namespace CarSalesSystem.General
         {
             if (emailTextBox.Text.Equals(""))
                 emailTextBox.Text = "email";
+        }
+
+        private void QuitButton_Click(object sender, RoutedEventArgs e)
+        {
+            SignIn signIn = new SignIn();
+            signIn.Show();
+            CloseWindow(typeof(SignUp));
+
         }
     }
 }

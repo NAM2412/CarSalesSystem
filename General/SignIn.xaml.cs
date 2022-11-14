@@ -24,11 +24,17 @@ namespace CarSalesSystem.General
         {
             InitializeComponent();
         }
-
+        void CloseWindow(Type type)
+        {
+            var window = App.Current.Windows.OfType<Window>().FirstOrDefault(w => w.GetType() == type);
+            if (window != null)
+                window.Close();
+        }
         private void SignUpBtn_Click(object sender, RoutedEventArgs e)
         {
             SignUp signUp= new SignUp();
-            signUp.ShowDialog();
+            signUp.Show();
+            CloseWindow(typeof(SignIn));
             
         }
 
