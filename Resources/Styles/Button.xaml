@@ -8,6 +8,7 @@
         <Setter Property="BorderBrush" Value="Transparent"></Setter>
         <Setter Property="FontFamily" Value="Nexa Demo"></Setter>
         <Setter Property="FontWeight" Value="Bold"></Setter>
+
     </Style>
 
     <Style x:Key="SecondPrimaryButton" TargetType="{x:Type ButtonBase}">

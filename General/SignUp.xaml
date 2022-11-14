@@ -19,16 +19,17 @@
             <Image Name="Logo" 
                    HorizontalAlignment="Center" 
                    Margin="0,25,0,98"
-                   Width="125" 
-                   Source="/Resources/Images/Icons/sedan.png" 
+                   Width="200"
+                   Height="80"
+                   Source="/Resources/Images/Icons/Signup_Logo.png" 
                    Stretch="Fill"/>
             <Label HorizontalAlignment="Center"
                    Margin="0,120,0,0"
                    Height="68" 
-                   FontSize="50" 
-                   FontWeight="Heavy" 
+                   FontSize="40" 
+                   FontWeight="Regular" 
                    Foreground="#FF004D68" 
-                   FontFamily="Oswald SemiBold">SG AUTO</Label>
+                   FontFamily="Porsche">SG AUTO</Label>
             <TextBox Grid.Row="1"
                      Name="emailTextBox" 
                      HorizontalAlignment="Center"
@@ -39,37 +40,36 @@
                      VerticalContentAlignment="Center"
                      FontSize="30"
                      Foreground="Gray"                             FontFamily="Nexa ☞"
-                     Text="email"
+                     Text="Email"
                      GotFocus="emailTextBox_GotFocus"
                      LostFocus="emailTextBox_LostFocus"></TextBox>
-            <Border CornerRadius="10" Grid.Row="2">
-                <Button Name="QuitButton" 
-                    Width="89px"
-                    Height="36px"
-                    Margin="224,0,152,0"
-                    BorderThickness="0"
-                    Background="#FB6161">
-                    <Label FontFamily="Nexa ☞"
-                           FontSize="17"
-                           FontWeight="Bold"
-                           Foreground="White"
-                           >Quit</Label>
+                <Button Name="QuitButton"
+                        Grid.Row="2"
+                        Width="89px"
+                        Height="36px"
+                        Margin="224,0,152,0"
+                        BorderThickness="0"
+                        Background="#FB6161"
+                        Style="{DynamicResource RoundedButtonStyle}">
+                        <Label FontFamily="Nexa ☞"
+                               FontSize="17"
+                               FontWeight="Bold"
+                               Foreground="White"
+                               >Quit</Label>
                 </Button>
-                
-            </Border>
-            <Border CornerRadius="10" Grid.Row="2">
-                <Button x:Name="NextButton" 
-                    Width="89px"
-                    Height="36px"
-                    Margin="334,0,42,0"
-                    BorderThickness="0"
-                    Background="#FF004D68">
-                    <Label FontFamily="Nexa ☞"
-                           FontSize="17"
-                           FontWeight="Bold"
-                           Foreground="White">Next</Label>
+                <Button x:Name="NextButton"
+                        Grid.Row="2"
+                        Width="89px"
+                        Height="36px"
+                        Margin="334,0,42,0"
+                        BorderThickness="0"
+                        Background="#FF004D68"
+                        Style="{DynamicResource RoundedButtonStyle}">
+                        <Label FontFamily="Nexa ☞"
+                               FontSize="17"
+                               FontWeight="Bold"
+                               Foreground="White">Next</Label>
                 </Button>
-            </Border>
             
         </Grid>
     </Border>

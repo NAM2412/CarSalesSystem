@@ -10,12 +10,19 @@
         AllowsTransparency="True"
         Background="Transparent"
         Title="SignIn" Height="760" Width="1280">
-    <Border CornerRadius="20" Background="#FFFFFF">
+    <Border CornerRadius="20">
         <Grid>
 
             <Image Name="CarImage"
-                   Margin="0,0,656,0"
+                   Margin="0,0,0,0"
                    Source="/Resources/Images/Cars/Products/MenuCar.png" Stretch="Fill" />
+            <Label HorizontalAlignment="Left" Margin="20,50,0,300" Width="400" Height="120" FontSize="35px" Foreground="White">
+                <TextBlock Width="360" Height="120" LineHeight="50" FontFamily="Raleway Light">
+                    Choose your speed
+                <LineBreak/>
+                Ride your style
+                </TextBlock>
+            </Label>
             <Grid Height="93px" Margin="100,620,800,47">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="1*"></RowDefinition>
@@ -80,16 +87,17 @@
                 </Button>
             </Grid >
             <Grid HorizontalAlignment="Left" Width="645" Margin="635,0,0,0">
-                <Image Name="Logo" Margin="260,10,260,616" VerticalAlignment="Top" Width="125" Height="120" Source="/Resources/Images/Icons/sedan.png" Stretch="Fill"/>
-                <Label HorizontalAlignment="Center" Margin="0,110,0,567" Height="68" FontSize="50" FontWeight="Heavy" Foreground="#FF004D68" FontFamily="Oswald SemiBold">SG AUTO</Label>
-                <Label Margin="55,212,80,442" Width="400" Height="120" FontSize="40px" FontWeight="Normal" Foreground="#3ba1c5">
-                    <TextBlock Width="360" Height="120" LineHeight="50" FontFamily="Raleway Medium">
-                    Choose your speed
-                <LineBreak/>
-                Ride your style
-                    </TextBlock>
-                </Label>
-                <Grid Height="192px" Margin="80,337,100,231">
+                <Image Name="Logo" Margin="150,100,0,500" VerticalAlignment="Top" Width="360" Height="120" Source="/Resources/Images/Icons/Logo.png" Stretch="Fill">
+                </Image>
+                <Label Margin="190,230,0,450"
+                       Height="70"
+                       Width="360" 
+                       FontSize="40"
+                       FontWeight="Regular"
+                       Foreground="White"
+                       FontFamily="Porsche">SG AUTO</Label>
+                
+                <Grid Height="192px" Margin="210,337,10,231">
                     <Grid.Resources >
                         <Style TargetType="Border" >
                             <Setter Property="Padding" Value="12,21,12,21" />
@@ -101,62 +109,66 @@
                     </Grid.RowDefinitions>
                     <TextBox x:Name="usernameTextBox"
                              Width="400" Height="65"
-                             BorderThickness="2"  
                              VerticalContentAlignment="Center"
-                             FontSize="30"
-                             Foreground="Gray" 
+                             FontSize="20"
+                             Foreground="White" 
+                             Background="Transparent"
+                             BorderBrush="White"
+                             BorderThickness="1"
                              FontFamily="Nexa ☞"
-                             Text="username"
+                             Text="Username"
                              GotFocus="usernameTextBox_GotFocus"
                              LostFocus="usernameTextBox_LostFocus"
                              >
-                        </TextBox>
-
-
-                   
-                        <PasswordBox Grid.Row="1"
+                    </TextBox>
+                    <PasswordBox Grid.Row="1"
                              Name="passwordTextBox"
                              Width="400"
                              Height="65"
-                             BorderThickness="1"
                              VerticalContentAlignment="Center"
                              FontSize="30"
-                             Foreground="Gray"
+                             Foreground="White"
+                             BorderThickness="1"
+                             BorderBrush="White"
                              FontFamily="Nexa ☞"
-                             PasswordChar="*"
-                             >
-                        <PasswordBox.Resources>
-                            <Style TargetType="{x:Type Border}">
-                                <Setter Property="CornerRadius" Value="10"/>
-                            </Style>
-                        </PasswordBox.Resources>
+                             PasswordChar="*">
                     </PasswordBox>
-
-                    
                 </Grid>
-                <Grid Height="30" Margin="120,530,297,200">
+                <Grid Height="30" Margin="220,530,200,200">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="1*"></ColumnDefinition>
                         <ColumnDefinition Width="8*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <CheckBox HorizontalAlignment="Left" VerticalAlignment="Center" BorderThickness="2" Width="24" Height="24"></CheckBox>
-                    <Label HorizontalAlignment="Left" Grid.Column="1" FontWeight="Normal" FontSize="20px" FontFamily="Nexa ☞">Remember me</Label>
+                    <CheckBox HorizontalAlignment="Left"
+                              VerticalAlignment="Center"
+                              BorderThickness="5"
+                              Width="24"
+                              Height="24"
+                              Content="Custom CheckBox [IsChecked = False]">
+                        <CheckBox.Resources>
+                            <!--Unchecked state-->
+                            <SolidColorBrush x:Key="MaterialDesignCheckBoxOff" Color="White"/>
+                            <!--Checked state-->
+                            <SolidColorBrush x:Key="PrimaryHueMidBrush" Color="White"/>
+                        </CheckBox.Resources>
+                    </CheckBox>
+                    <Label HorizontalAlignment="Left"
+                           Grid.Column="1"
+                           FontWeight="Normal"
+                           FontSize="20px"
+                           FontFamily="Nexa ☞"
+                           Foreground="White">Remember me</Label>
                 </Grid>
-                <Border CornerRadius="20" BorderThickness="0">
-                    <Button Margin="110,617,120,59"
-                        Width="400"
-                        Height="68"
+                <Button Style="{DynamicResource RoundedButtonStyle}" Margin="200,617,10,59"
+                        Width="200"
+                        Height="50"
                         BorderThickness="0"
-                        Background="#FF004D68">
-                        
-                        <Label FontSize="20px"
+                        Background="#197cab">
+                    <Label FontSize="20px"
                            FontFamily="Nexa ☞"
                            FontWeight="DemiBold"
                            Foreground="White">Sign in</Label>
-                    </Button>
-                </Border>
-                
-
+                </Button>
             </Grid>
         </Grid>
     </Border>

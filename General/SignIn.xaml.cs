@@ -34,14 +34,14 @@ namespace CarSalesSystem.General
 
         private void usernameTextBox_GotFocus(object sender, RoutedEventArgs e)
         {
-            if (usernameTextBox.Text.Equals("username"))
+            if (usernameTextBox.Text.Equals("Username"))
                 usernameTextBox.Text = "";
         }
 
         private void usernameTextBox_LostFocus(object sender, RoutedEventArgs e)
         {
             if (usernameTextBox.Text.Equals(""))
-                usernameTextBox.Text = "username";
+                usernameTextBox.Text = "Username";
         }
     }
 }
