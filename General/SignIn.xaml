@@ -87,7 +87,12 @@
                 </Button>
             </Grid >
             <Grid HorizontalAlignment="Left" Width="645" Margin="635,0,0,0">
-                <Image Name="Logo" Margin="150,100,0,500" VerticalAlignment="Top" Width="360" Height="120" Source="/Resources/Images/Icons/Logo.png" Stretch="Fill">
+                <Image Name="Logo"
+                       Margin="150,100,0,500"
+                       VerticalAlignment="Top"
+                       Width="360"
+                       Height="125"
+                       Source="/Resources/Images/Icons/Logo.png" Stretch="Fill">
                 </Image>
                 <Label Margin="190,230,0,450"
                        Height="70"
