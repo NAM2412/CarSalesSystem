@@ -93,6 +93,14 @@
                             <TextBlock Text="Info" Style="{StaticResource menuButtonText}"></TextBlock>
                         </StackPanel>
                     </Button>
+
+                    <!--Customer-->
+                    <Button x:Name="logoutBtn" Style="{StaticResource menuButton}" Click="logoutBtn_Click">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,0,-0.4,0" Width="190">
+                            <materialDesign:PackIcon Kind="Logout" Style="{StaticResource menuButtonIcon}"></materialDesign:PackIcon>
+                            <TextBlock Text="Log out" Style="{StaticResource menuButtonText}"></TextBlock>
+                        </StackPanel>
+                    </Button>
                 </StackPanel>
             </Border>
             <Border Grid.Column="2" Margin="20 0 0 0">

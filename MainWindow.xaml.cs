@@ -77,5 +77,10 @@ namespace CarSalesSystem
         {
             PagesNavigation.Navigate(new System.Uri("Admin/Pages/Info.xaml", UriKind.RelativeOrAbsolute));
         }
+
+        private void logoutBtn_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }

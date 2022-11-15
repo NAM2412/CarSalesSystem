@@ -3,26 +3,39 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:CarSalesSystem.Admin.Pages"
+      xmlns:materialdesign ="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:uc="clr-namespace:CarSalesSystem.Admin.User_Controls"
+      xmlns:fa ="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
       mc:Ignorable="d" 
       Title="Dashboard">
 
     <Grid>
         <Grid.RowDefinitions>
-           
             <RowDefinition Height="200"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
         <!--InfoCard-->
-        <Grid Grid.Row="0" Margin="50 20 15 40">
+        <Grid Grid.Row="0" Margin="0 0 0 0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            
-            
+            <uc:InfoCard Grid.Column="0" Title="Sales" Number="145 567" Icon="Car" Background1="#47B5FF" Background2="#256D85" EllipseBackground1="#98A8F8" EllipseBackground2="#8FE3CF"/>
+            <uc:InfoCard Grid.Column="1" Title="Orders" Number="4 073" Icon="BagShopping" Background1="#069A8E" Background2="#F7FF93" EllipseBackground1="#2FA4FF" EllipseBackground2="#F7E2E2" />
+            <uc:InfoCard Grid.Column="2" Title="Revenue" Number="30 345 202" Icon="MoneyBill" Background1="#344CB7" Background2="#d9b5ff" EllipseBackground1="#EBE645" EllipseBackground2="#6998AB" />
         </Grid>
-        
+        <Grid Grid.Row="1" Margin="0 0 15 0">
+            <StackPanel Orientation="Horizontal">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="300"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Border CornerRadius="20" Background="Blue" Width="650" Margin="0 0 0 0"></Border>
+                    <Border Grid.Column="1" CornerRadius="20" Padding="0 25" Background="Red" Margin="25 0 0 0"></Border>
+                </Grid>
+            </StackPanel>
+        </Grid>
     </Grid>
 </Page>

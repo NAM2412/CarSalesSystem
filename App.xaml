@@ -12,8 +12,10 @@
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
+                <ResourceDictionary Source="Resource/Styles/Color.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="Resource/Styles/Button.xaml"></ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
-                  
+            
            <!--Menu Title-->
         <Style x:Key="menuTitle" TargetType="TextBlock">
             <Setter Property="Foreground" Value="#ffffff"></Setter>
