@@ -26,7 +26,7 @@
             <uc:InfoCard Grid.Column="2" Title="Revenue" Number="30 345 202" Icon="MoneyBill" Background1="#344CB7" Background2="#d9b5ff" EllipseBackground1="#EBE645" EllipseBackground2="#6998AB" />
         </Grid>
         <Grid Grid.Row="1" Margin="0 0 15 0">
-            <StackPanel Orientation="Horizontal">
+            <StackPanel Orientation="Horizontal" Margin="2 0 0 0">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"></ColumnDefinition>
