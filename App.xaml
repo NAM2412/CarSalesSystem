@@ -165,6 +165,26 @@
                 </Setter.Value>
             </Setter>
         </Style>
+            
+        <!--Border-->
+            <Style x:Key="WhiteBorder" TargetType="Border">
+                <Setter Property="Background" Value="White"></Setter>
+                <Setter Property="CornerRadius" Value="15"></Setter>
+                <Setter Property="Padding" Value="20"></Setter>
+            </Style>
+         <!--Title text-->
+            <Style x:Key="titleText" TargetType="TextBlock">
+                <Setter Property="FontSize" Value="20"></Setter>
+                <Setter Property="FontWeight" Value="Bold"></Setter>
+                <Setter Property="Foreground" Value="#083353"></Setter>
+            </Style>
+
+         <!--Title text-->
+            <Style x:Key="secondaryText" TargetType="TextBlock">
+                <Setter Property="FontSize" Value="12"></Setter>
+                <Setter Property="Margin" Value="0 5"></Setter>
+                <Setter Property="Foreground" Value="#626262"></Setter>
+            </Style>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

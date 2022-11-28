@@ -13,21 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace CarSalesSystem.Admin.Pages
+namespace CarSalesSystem.Admin.User_Controls
 {
     /// <summary>
-    /// Interaction logic for Dashboard.xaml
+    /// Interaction logic for UnitChart.xaml
     /// </summary>
-    public partial class Dashboard : Page
+    public partial class UnitChart : UserControl
     {
-        public Dashboard()
+        public UnitChart()
         {
             InitializeComponent();
-        }
-
-        private void CarCard_Loaded(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }
