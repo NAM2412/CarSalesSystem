@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CarSalesSystem.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,7 @@ namespace CarSalesSystem.Customer.Pages
         public Store()
         {
             InitializeComponent();
+            ListProduct.ItemsSource = DataProvider.Ins.DB.PRODUCTs.ToList();
         }
     }
 }
