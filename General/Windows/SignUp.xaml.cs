@@ -1,0 +1,59 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Shapes;
+
+namespace CarSalesSystem.General
+{
+    /// <summary>
+    /// Interaction logic for Window1.xaml
+    /// </summary>
+    public partial class SignUp : Window
+    {
+        public SignUp()
+        {
+            InitializeComponent();
+        }
+        void CloseWindow(Type type)
+        {
+            var window = App.Current.Windows.OfType<Window>().FirstOrDefault(w => w.GetType() == type);
+            if (window != null)
+                window.Close();
+        }
+        private void emailTextBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (emailTextBox.Text.Equals("email"))
+                emailTextBox.Text = "";
+        }
+
+        private void emailTextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (emailTextBox.Text.Equals(""))
+                emailTextBox.Text = "email";
+        }
+
+        private void QuitButton_Click(object sender, RoutedEventArgs e)
+        {
+            SignIn signIn = new SignIn();
+            signIn.Show();
+            CloseWindow(typeof(SignUp));
+
+        }
+
+        private void NextButton_Click(object sender, RoutedEventArgs e)
+        {
+            WpfMessageBox wpfMessageBox = new WpfMessageBox();
+            wpfMessageBox.Show();
+
+        }
+    }
+}

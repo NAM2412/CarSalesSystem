@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ControlzEx.Standard;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,6 +8,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -15,38 +17,29 @@ using System.Windows.Shapes;
 namespace CarSalesSystem.General
 {
     /// <summary>
-    /// Interaction logic for Window1.xaml
+    /// Interaction logic for WpfMessageBox.xaml
     /// </summary>
-    public partial class SignUp : Window
+    public partial class WpfMessageBox : Window
     {
-        public SignUp()
+        public WpfMessageBox()
         {
             InitializeComponent();
+
         }
+        static WpfMessageBox _messageBox;
         void CloseWindow(Type type)
         {
             var window = App.Current.Windows.OfType<Window>().FirstOrDefault(w => w.GetType() == type);
             if (window != null)
                 window.Close();
         }
-        private void emailTextBox_GotFocus(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if (emailTextBox.Text.Equals("email"))
-                emailTextBox.Text = "";
-        }
-
-        private void emailTextBox_LostFocus(object sender, RoutedEventArgs e)
-        {
-            if (emailTextBox.Text.Equals(""))
-                emailTextBox.Text = "email";
-        }
-
-        private void QuitButton_Click(object sender, RoutedEventArgs e)
-        {
-            SignIn signIn = new SignIn();
-            signIn.Show();
-            CloseWindow(typeof(SignUp));
+            
+            CloseWindow(typeof(WpfMessageBox));
 
         }
+
+
     }
 }
