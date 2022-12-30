@@ -28,7 +28,7 @@ namespace CarSalesSystem.General
             InitializeComponent();
 
         }
-        static WpfMessageBox _messageBox;
+        
         protected MessageBoxResult _result = MessageBoxResult.No;
         private bool OTPvalidattion = false;
         void CloseWindow(Type type)

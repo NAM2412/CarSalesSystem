@@ -140,7 +140,7 @@
                 <Button Grid.Row="2"
                     Margin="369,20,5,0"
                     Background="#FB6161"
-                    Style="{DynamicResource RoundedButtonStyle}" 
+                    Style="{DynamicResource RoundedButtonStyle}" Click="Button_Click" 
                     >Resend</Button>
             </Grid>
 

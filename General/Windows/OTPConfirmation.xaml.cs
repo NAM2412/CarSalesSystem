@@ -26,8 +26,10 @@ namespace CarSalesSystem.General.Windows
         {
             return !_regex.IsMatch(text);
         }
+        private bool OTPSuccess = false;
         private int time = 180;
         private DispatcherTimer Timer;
+        private int retryTimes = 2;
 
         public OTPConfirmation()
         {
@@ -56,6 +58,29 @@ namespace CarSalesSystem.General.Windows
         private void PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             e.Handled = !IsTextAllowed(e.Text);
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            retryTimes--;
+            if(retryTimes == 0)
+            {
+                MessageBox.Show("You have requested OTP code too many times!", "Warning", MessageBoxButton.OK,MessageBoxImage.Warning);
+                Timer.Stop();
+                this.Close();
+                return;
+            }
+            time = 180;
+        }
+        private void OpenAddInformationWindow()
+        {
+            FillingInformation fillingInformationWindow = new FillingInformation();
+            if (OTPSuccess)
+            {
+                fillingInformationWindow.Show();
+                this.Close();
+                return;
+            }
         }
     }
 }
