@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Web.UI.WebControls;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -12,6 +13,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Media.Media3D;
 using System.Windows.Shapes;
 
 namespace CarSalesSystem.General
@@ -33,7 +35,7 @@ namespace CarSalesSystem.General
         }
         private void emailTextBox_GotFocus(object sender, RoutedEventArgs e)
         {
-            if (emailTextBox.Text.Equals("Email"))
+            if (emailTextBox.Text.Equals("Email") || emailTextBox.Text.Equals("Enter a valid email."))
                 emailTextBox.Text = "";
         }
 
@@ -53,22 +55,28 @@ namespace CarSalesSystem.General
 
         private void NextButton_Click(object sender, RoutedEventArgs e)
         {
-            
+            if (!Regex.IsMatch(emailTextBox.Text, @"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$"))
+            {
+                emailTextBox.Text = "Enter a valid email.";
+                emailTextBox.Select(0, emailTextBox.Text.Length);
+                
+                return;
+            }
             WpfMessageBox wpfMessageBox = new WpfMessageBox();
             wpfMessageBox.Show();
+            
 
         }
+
+        
         //Email address validation
         /*
         public bool IsValidEmailAddress(this string s)
         {
             Regex regex = new Regex(@"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$");
             return regex.IsMatch(s);
-        }
-        public void emailTextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            bool result = IsValidEmailAddress(emailTextBox.Text);
-        }
-        */
+        }*/
+        
+        
     }
 }
