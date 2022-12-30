@@ -298,6 +298,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="General\Windows\FillingInformation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="General\Windows\WpfMessageBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -348,6 +352,9 @@
     </Compile>
     <Compile Include="General\Windows\OTPConfirmation.xaml.cs">
       <DependentUpon>OTPConfirmation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="General\Windows\FillingInformation.xaml.cs">
+      <DependentUpon>FillingInformation.xaml</DependentUpon>
     </Compile>
     <Compile Include="General\Windows\WpfMessageBox.xaml.cs">
       <DependentUpon>WpfMessageBox.xaml</DependentUpon>

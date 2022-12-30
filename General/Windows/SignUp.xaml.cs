@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CarSalesSystem.General.Windows;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -55,14 +56,6 @@ namespace CarSalesSystem.General
             wpfMessageBox.Show();
 
         }
-        private void OpenOTPConfirmation(object sender, RoutedEventArgs e)
-        {
-            WpfMessageBox wpfMessageBoxwpfMessageBox = new WpfMessageBox();
-            if (wpfMessageBoxwpfMessageBox._result == MessageBoxResult.Yes)
-            {
-                wpfMessageBoxwpfMessageBox.Show();
-                CloseWindow(typeof(SignUp));
-            }
-        }
+        
     }
 }

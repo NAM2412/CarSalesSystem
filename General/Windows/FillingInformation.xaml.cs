@@ -10,46 +10,31 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace CarSalesSystem.General
+namespace CarSalesSystem.General.Windows
 {
     /// <summary>
-    /// Interaction logic for SignIn.xaml
+    /// Interaction logic for FillingInformation.xaml
     /// </summary>
-    public partial class SignIn : Window
+    public partial class FillingInformation : Window
     {
-        public SignIn()
+        public FillingInformation()
         {
             InitializeComponent();
-        }
-        void CloseWindow(Type type)
-        {
-            var window = App.Current.Windows.OfType<Window>().FirstOrDefault(w => w.GetType() == type);
-            if (window != null)
-                window.Close();
-        }
-        private void SignUpBtn_Click(object sender, RoutedEventArgs e)
-        {
-            SignUp signUp= new SignUp();
-            signUp.Show();
-            CloseWindow(typeof(SignIn));
-            
         }
 
         private void usernameTextBox_GotFocus(object sender, RoutedEventArgs e)
         {
-            if (usernameTextBox.Text.Equals("Username"))
+            if (usernameTextBox.Text.Equals(" Enter username"))
                 usernameTextBox.Text = "";
         }
 
         private void usernameTextBox_LostFocus(object sender, RoutedEventArgs e)
         {
             if (usernameTextBox.Text.Equals(""))
-                usernameTextBox.Text = "Username";
+                usernameTextBox.Text = " Enter username";
         }
-
         private void passwordTextBox_GotFocus(object sender, RoutedEventArgs e)
         {
             phPass.Visibility = Visibility.Hidden;
@@ -57,8 +42,24 @@ namespace CarSalesSystem.General
 
         private void passwordTextBox_LostFocus(object sender, RoutedEventArgs e)
         {
-            if(string.IsNullOrEmpty(passwordTextBox.Password))
-                phPass.Visibility = Visibility.Visible; 
+            if (string.IsNullOrEmpty(passwordTextBox.Password))
+                phPass.Visibility = Visibility.Visible;
+        }
+
+        private void SignUpBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void confirmTextBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            confirmPhPass.Visibility = Visibility.Hidden;
+        }
+
+        private void confirmTextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(confirmTextBox.Password))
+                phPass.Visibility = Visibility.Visible;
         }
     }
 }

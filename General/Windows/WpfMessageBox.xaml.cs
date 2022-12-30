@@ -1,4 +1,5 @@
-﻿using ControlzEx.Standard;
+﻿using CarSalesSystem.General.Windows;
+using ControlzEx.Standard;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,7 +28,8 @@ namespace CarSalesSystem.General
 
         }
         static WpfMessageBox _messageBox;
-        public MessageBoxResult _result = MessageBoxResult.No;
+        protected MessageBoxResult _result = MessageBoxResult.No;
+        private bool OTPvalidattion = false;
         void CloseWindow(Type type)
         {
             var window = App.Current.Windows.OfType<Window>().FirstOrDefault(w => w.GetType() == type);
@@ -40,10 +42,22 @@ namespace CarSalesSystem.General
                 _result = MessageBoxResult.Yes;
             else if (sender == btnNo)
                 _result = MessageBoxResult.No;
+            OTPConfirmation confirmation = new OTPConfirmation();
+            if(_result == MessageBoxResult.Yes)
+            {
+                confirmation.Show();
+                CloseWindow(typeof(SignUp));
+            }
             CloseWindow(typeof(WpfMessageBox));
 
         }
+        private void SigningUpNewAccount()
+        {
+            if(OTPvalidattion)
+            {
 
+            }
+        }
 
     }
 }
