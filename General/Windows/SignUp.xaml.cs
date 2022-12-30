@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -52,10 +53,22 @@ namespace CarSalesSystem.General
 
         private void NextButton_Click(object sender, RoutedEventArgs e)
         {
+            
             WpfMessageBox wpfMessageBox = new WpfMessageBox();
             wpfMessageBox.Show();
 
         }
-        
+        //Email address validation
+        /*
+        public bool IsValidEmailAddress(this string s)
+        {
+            Regex regex = new Regex(@"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$");
+            return regex.IsMatch(s);
+        }
+        public void emailTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            bool result = IsValidEmailAddress(emailTextBox.Text);
+        }
+        */
     }
 }

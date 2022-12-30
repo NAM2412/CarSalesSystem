@@ -42,7 +42,8 @@
                      Foreground="Gray"                             FontFamily="Nexa ☞"
                      Text="Email"
                      GotFocus="emailTextBox_GotFocus"
-                     LostFocus="emailTextBox_LostFocus"></TextBox>
+                     LostFocus="emailTextBox_LostFocus"
+                     ></TextBox>
                 <Button Name="QuitButton"
                         Grid.Row="2"
                         Width="89px"

@@ -180,7 +180,7 @@
                         Width="200"
                         Height="50"
                         BorderThickness="0"
-                        Background="#197cab">
+                        Background="#197cab" Click="Button_Click">
                     <Label FontSize="20px"
                            FontFamily="Nexa ☞"
                            FontWeight="DemiBold"
