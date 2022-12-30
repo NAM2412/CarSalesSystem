@@ -31,14 +31,14 @@ namespace CarSalesSystem.General
         }
         private void emailTextBox_GotFocus(object sender, RoutedEventArgs e)
         {
-            if (emailTextBox.Text.Equals("email"))
+            if (emailTextBox.Text.Equals("Email"))
                 emailTextBox.Text = "";
         }
 
         private void emailTextBox_LostFocus(object sender, RoutedEventArgs e)
         {
             if (emailTextBox.Text.Equals(""))
-                emailTextBox.Text = "email";
+                emailTextBox.Text = "Email";
         }
 
         private void QuitButton_Click(object sender, RoutedEventArgs e)
@@ -54,6 +54,15 @@ namespace CarSalesSystem.General
             WpfMessageBox wpfMessageBox = new WpfMessageBox();
             wpfMessageBox.Show();
 
+        }
+        private void OpenOTPConfirmation(object sender, RoutedEventArgs e)
+        {
+            WpfMessageBox wpfMessageBoxwpfMessageBox = new WpfMessageBox();
+            if (wpfMessageBoxwpfMessageBox._result == MessageBoxResult.Yes)
+            {
+                wpfMessageBoxwpfMessageBox.Show();
+                CloseWindow(typeof(SignUp));
+            }
         }
     }
 }

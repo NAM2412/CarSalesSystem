@@ -27,6 +27,7 @@ namespace CarSalesSystem.General
 
         }
         static WpfMessageBox _messageBox;
+        public MessageBoxResult _result = MessageBoxResult.No;
         void CloseWindow(Type type)
         {
             var window = App.Current.Windows.OfType<Window>().FirstOrDefault(w => w.GetType() == type);
@@ -35,7 +36,10 @@ namespace CarSalesSystem.General
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            
+            if (sender == btnYes)
+                _result = MessageBoxResult.Yes;
+            else if (sender == btnNo)
+                _result = MessageBoxResult.No;
             CloseWindow(typeof(WpfMessageBox));
 
         }

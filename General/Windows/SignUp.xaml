@@ -58,7 +58,7 @@
                                Foreground="White"
                                >Quit</Label>
                 </Button>
-                <Button x:Name="NextButton"
+            <Button x:Name="NextButton"
                         Grid.Row="2"
                         Width="89px"
                         Height="36px"
@@ -66,12 +66,11 @@
                         BorderThickness="0"
                         Background="#FF004D68"
                         Style="{DynamicResource RoundedButtonStyle}" Click="NextButton_Click">
-                        <Label FontFamily="Nexa ☞"
+                <Label FontFamily="Nexa ☞"
                                FontSize="17"
                                FontWeight="Bold"
                                Foreground="White">Next</Label>
-                </Button>
-            
+            </Button>
         </Grid>
     </Border>
 

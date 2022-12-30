@@ -10,13 +10,15 @@
         MinWidth="420" MaxWidth="435"
         Background="White"
         SizeToContent="WidthAndHeight" 
-     WindowStartupLocation="CenterScreen"  
+        WindowStartupLocation="Manual"
+        Left="600" Top="500"
      ShowInTaskbar="False" ResizeMode="NoResize" 
      WindowStyle="None" Topmost="True">
     <Border
-    BorderThickness="0" CornerRadius="0"
+        BorderThickness="0"
+        CornerRadius="10"
         >
-        <Grid  >
+        <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*"/>

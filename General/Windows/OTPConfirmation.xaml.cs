@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -10,20 +11,24 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 
-namespace CarSalesSystem.General
+namespace CarSalesSystem.General.Windows
 {
     /// <summary>
-    /// Interaction logic for Page1.xaml
+    /// Interaction logic for OTPConfirmation.xaml
     /// </summary>
-    public partial class OTPConfirmation : Page
+    public partial class OTPConfirmation : Window
     {
+        private static readonly Regex _regex = new Regex("[^0-9.-]+"); //regex that matches disallowed text
+        private static bool IsTextAllowed(string text)
+        {
+            return !_regex.IsMatch(text);
+        }
         private int time = 180;
         private DispatcherTimer Timer;
-        
+
         public OTPConfirmation()
         {
             InitializeComponent();
@@ -46,6 +51,11 @@ namespace CarSalesSystem.General
             }
             else
                 Timer.Stop();
+        }
+
+        private void PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = !IsTextAllowed(e.Text);
         }
     }
 }
