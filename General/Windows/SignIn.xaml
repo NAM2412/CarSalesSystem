@@ -126,6 +126,15 @@
                              LostFocus="usernameTextBox_LostFocus"
                              >
                     </TextBox>
+                    <TextBlock Grid.Row="1"
+                               x:Name="phPass"
+                               Width="400"
+                               Text="Password"
+                             VerticalAlignment="Center"
+                             FontSize="20"
+                             Foreground="White"
+                             FontFamily="Nexa ☞"
+                             Background="Transparent"></TextBlock>
                     <PasswordBox Grid.Row="1"
                              Name="passwordTextBox"
                              Width="400"
@@ -136,7 +145,10 @@
                              BorderThickness="1"
                              BorderBrush="White"
                              FontFamily="Nexa ☞"
-                             PasswordChar="*">
+                             Background="Transparent" 
+                            Style="{DynamicResource roundcornerpassword}"
+                            GotFocus="passwordTextBox_GotFocus"
+                            LostFocus="passwordTextBox_LostFocus">
                     </PasswordBox>
                 </Grid>
                 <Grid Height="30" Margin="220,530,200,200">
@@ -168,7 +180,7 @@
                         Width="200"
                         Height="50"
                         BorderThickness="0"
-                        Background="#197cab">
+                        Background="#197cab" Click="Button_Click">
                     <Label FontSize="20px"
                            FontFamily="Nexa ☞"
                            FontWeight="DemiBold"

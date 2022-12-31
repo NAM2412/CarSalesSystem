@@ -39,10 +39,13 @@
                      BorderThickness="2" 
                      VerticalContentAlignment="Center"
                      FontSize="30"
-                     Foreground="Gray"                             FontFamily="Nexa ☞"
+                     Foreground="Gray" 
+                     FontFamily="Nexa ☞"
                      Text="Email"
                      GotFocus="emailTextBox_GotFocus"
-                     LostFocus="emailTextBox_LostFocus"></TextBox>
+                     LostFocus="emailTextBox_LostFocus"
+                     
+                     ></TextBox>
                 <Button Name="QuitButton"
                         Grid.Row="2"
                         Width="89px"
@@ -58,20 +61,19 @@
                                Foreground="White"
                                >Quit</Label>
                 </Button>
-                <Button x:Name="NextButton"
+            <Button x:Name="NextButton"
                         Grid.Row="2"
                         Width="89px"
                         Height="36px"
                         Margin="334,0,42,0"
                         BorderThickness="0"
                         Background="#FF004D68"
-                        Style="{DynamicResource RoundedButtonStyle}">
-                        <Label FontFamily="Nexa ☞"
+                        Style="{DynamicResource RoundedButtonStyle}" Click="NextButton_Click">
+                <Label FontFamily="Nexa ☞"
                                FontSize="17"
                                FontWeight="Bold"
                                Foreground="White">Next</Label>
-                </Button>
-            
+            </Button>
         </Grid>
     </Border>
 
