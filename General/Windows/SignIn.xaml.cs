@@ -97,13 +97,15 @@ namespace CarSalesSystem.General
             {
                 if (connection.State == ConnectionState.Closed)
                     connection.Open();
-                SqlCommand cmd = new SqlCommand("Select * from ACCOUNT where USERNAME='" + usernameTextBox.Text + "'  and PASS='" + passwordTextBox.Password + "'", connection);
+                SqlCommand cmd = new SqlCommand("Select COUNT(1) from ACCOUNT where USERNAME='" + usernameTextBox.Text + "'  and PASS='" + passwordTextBox.Password + "'", connection);
                 cmd.CommandType = CommandType.Text;
                 cmd.Parameters.AddWithValue("@USERNAME", usernameTextBox.Text);
                 cmd.Parameters.AddWithValue("@PASS", passwordTextBox.Password);
                 int result = Convert.ToInt32(cmd.ExecuteScalar());
                 if (result == 1)
                 {
+                    usernameValid = true;
+                    passwordValid = true;
                     customerWindow.Show();
                     this.Close();
                 }
