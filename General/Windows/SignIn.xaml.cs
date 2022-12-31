@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
+using System.Linq.Expressions;
 
 namespace CarSalesSystem.General
 {
@@ -91,22 +92,36 @@ namespace CarSalesSystem.General
             if (!passwordValid)
                 passwordTextBox.BorderBrush = Brushes.Red;
             //retrieve data and compare with data from database
-            /*
-            SqlConnection connection = new SqlConnection("Data Source=localHost;Initial Catalog=Data;");
-            connection.Open();
-            SqlCommand cmd = new SqlCommand("Select * from ACCOUNT where USERNAME='" + usernameTextBox.Text + "'  and PASSWORD='" + passwordTextBox.Password+ "'", connection);
-            cmd.CommandType = CommandType.Text;
-            SqlDataAdapter adapter = new SqlDataAdapter();
-            adapter.SelectCommand = cmd;
-            DataSet dataSet = new DataSet();
-            adapter.Fill(dataSet);
-            if (dataSet.Tables[0].Rows.Count > 0)
+            SqlConnection connection = new SqlConnection("Data Source=MSI\\SQLEXPRESS;Initial Catalog=CARSALESSYSTEM;Integrated Security=True");
+            try
             {
-                customerWindow.Show();
-                this.Close();
+                if (connection.State == ConnectionState.Closed)
+                    connection.Open();
+                SqlCommand cmd = new SqlCommand("Select * from ACCOUNT where USERNAME='" + usernameTextBox.Text + "'  and PASS='" + passwordTextBox.Password + "'", connection);
+                cmd.CommandType = CommandType.Text;
+                cmd.Parameters.AddWithValue("@USERNAME", usernameTextBox.Text);
+                cmd.Parameters.AddWithValue("@PASS", passwordTextBox.Password);
+                int result = Convert.ToInt32(cmd.ExecuteScalar());
+                if (result == 1)
+                {
+                    customerWindow.Show();
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Wrong password");
+                }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            
+
+            
+            
             connection.Close();
-            */
+            
         }
     }
 }

@@ -90,9 +90,9 @@ namespace CarSalesSystem.General.Windows
             }
             
             
-            SqlConnection connection = new SqlConnection("Data Source=localHost;Initial Catalog=Data;");
+            SqlConnection connection = new SqlConnection("Data Source=MSI\\SQLEXPRESS;Initial Catalog=CARSALESSYSTEM;Integrated Security=True;");
             connection.Open();
-            SqlCommand cmd = new SqlCommand("Insert into ACCOUNT (USERNAME,PASS,TYPE_USER) values('" + usernameTextBox.Text + "','" + passwordTextBox.Password+ "user')", connection);
+            SqlCommand cmd = new SqlCommand("Insert into ACCOUNT (USERNAME,PASS,TYPE_USER) values('" + usernameTextBox.Text + "','" + passwordTextBox.Password+ "','" + "1')", connection);
             cmd.CommandType = CommandType.Text;
             cmd.ExecuteNonQuery();
             connection.Close();
