@@ -3,6 +3,7 @@ using ControlzEx.Standard;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,6 +16,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Xaml;
 
 namespace CarSalesSystem.General
 {
@@ -23,6 +25,7 @@ namespace CarSalesSystem.General
     /// </summary>
     public partial class WpfMessageBox : Window
     {
+        public String storedEmail = "";
         public WpfMessageBox()
         {
             InitializeComponent();
@@ -46,21 +49,43 @@ namespace CarSalesSystem.General
             OTPConfirmation confirmation = new OTPConfirmation();
             if(_result == MessageBoxResult.Yes)
             {
-                confirmation.Show();
-                CloseWindow(typeof(SignUp));
                 
+                CloseWindow(typeof(WpfMessageBox));
+                //Send OTP code to email
+                Random rand = new Random(); 
+                String randomCode = (rand.Next(999999)).ToString();
+                MailMessage message = new MailMessage();
+                String to = storedEmail.ToString();
+                String from = "20520215@gm.uit.edu.vn";
+                String password = "tirlehholexszpyd";
+                String messageBody = "Your OTP code is: " + randomCode;
+                message.To.Add(new MailAddress(to));
+                message.From = new MailAddress(from);
+                message.Body= messageBody;
+                message.Subject = "Registration OTP code";
+                SmtpClient smtp = new SmtpClient("smtp.gmail.com");
+                smtp.EnableSsl = true;
+                smtp.Port = 587;
+                smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+                smtp.Credentials = new NetworkCredential(from,password);
+                CustomMessageBox customMessageBox = new CustomMessageBox();
+
+                try
+                {
+                    smtp.Send(message);
+                    customMessageBox.Show("Success", "Code sent successfully", CustomMessageBox.MessageBoxType.Information);
+                    confirmation.Show();
+                    CloseWindow(typeof(SignUp));
+                }
+                catch(Exception ex)
+                {
+                    customMessageBox.Show("Error", "Cannot send OTP code to email", CustomMessageBox.MessageBoxType.Error);
+                }
                 
             }
-            CloseWindow(typeof(WpfMessageBox));
 
         }
-        private void SigningUpNewAccount()
-        {
-            if(OTPvalidattion)
-            {
-
-            }
-        }
+       
 
     }
 }

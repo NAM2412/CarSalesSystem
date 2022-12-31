@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mail;
+using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -71,6 +73,34 @@ namespace CarSalesSystem.General.Windows
                 return;
             }
             time = 180;
+            Random rand = new Random();
+            String randomCode = (rand.Next(999999)).ToString();
+            MailMessage message = new MailMessage();
+            WpfMessageBox wpfMessageBox= new WpfMessageBox();
+            String to = wpfMessageBox.storedEmail.ToString();
+            String from = "20520215@gm.uit.edu.vn";
+            String password = "tirlehholexszpyd";
+            String messageBody = "Your OTP code is: " + randomCode;
+            message.To.Add(new MailAddress(to));
+            message.From = new MailAddress(from);
+            message.Body = messageBody;
+            message.Subject = "Registration OTP code";
+            SmtpClient smtp = new SmtpClient("smtp.gmail.com");
+            smtp.EnableSsl = true;
+            smtp.Port = 587;
+            smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+            smtp.Credentials = new NetworkCredential(from, password);
+            CustomMessageBox customMessageBox = new CustomMessageBox();
+
+            try
+            {
+                smtp.Send(message);
+                customMessageBox.Show("Success", "Code sent successfully", CustomMessageBox.MessageBoxType.Information);
+            }
+            catch (Exception ex)
+            {
+                customMessageBox.Show("Error", "Cannot send OTP code to email", CustomMessageBox.MessageBoxType.Error);
+            }
         }
         private void OpenAddInformationWindow()
         {
