@@ -303,6 +303,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="General\Windows\CustomMessageBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="General\Windows\WpfMessageBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -356,6 +360,9 @@
     </Compile>
     <Compile Include="General\Windows\FillingInformation.xaml.cs">
       <DependentUpon>FillingInformation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="General\Windows\CustomMessageBox.xaml.cs">
+      <DependentUpon>CustomMessageBox.xaml</DependentUpon>
     </Compile>
     <Compile Include="General\Windows\WpfMessageBox.xaml.cs">
       <DependentUpon>WpfMessageBox.xaml</DependentUpon>
@@ -441,6 +448,10 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Resource Include="Resources\Images\Icons\error.png" />
+    <Resource Include="Resources\Images\Icons\information.png" />
+    <Resource Include="Resources\Images\Icons\question.png" />
+    <Resource Include="Resources\Images\Icons\warning.png" />
     <Resource Include="Resources\Images\Icons\Signup_Logo.png" />
     <Resource Include="Resources\Fonts\Porsche Regular.ttf" />
     <Resource Include="Resources\Fonts\Optima Roman.otf" />

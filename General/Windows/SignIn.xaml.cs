@@ -16,6 +16,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 using System.Linq.Expressions;
+using CarSalesSystem.General.Windows;
 
 namespace CarSalesSystem.General
 {
@@ -46,7 +47,7 @@ namespace CarSalesSystem.General
 
         private void usernameTextBox_GotFocus(object sender, RoutedEventArgs e)
         {
-            if (usernameTextBox.Text.Equals("Username"))
+            if (usernameTextBox.Text.Equals(" Username"))
                 usernameTextBox.Text = "";
             if (usernameTextBox.BorderBrush == Brushes.Red)
                 usernameTextBox.BorderBrush = Brushes.White;
@@ -55,7 +56,7 @@ namespace CarSalesSystem.General
         private void usernameTextBox_LostFocus(object sender, RoutedEventArgs e)
         {
             if (usernameTextBox.Text.Equals(""))
-                usernameTextBox.Text = "Username";
+                usernameTextBox.Text = " Username";
         }
 
         private void passwordTextBox_GotFocus(object sender, RoutedEventArgs e)
@@ -75,6 +76,7 @@ namespace CarSalesSystem.General
         {
             MainWindow adminWindow = new MainWindow();
             CustomerWindow customerWindow = new CustomerWindow();
+            CustomMessageBox customMessageBox = new CustomMessageBox();
             if (usernameTextBox.Text.Equals("admin12312") && passwordTextBox.Password.Equals("123456"))
             {
                 adminWindow.Show();
@@ -111,12 +113,13 @@ namespace CarSalesSystem.General
                 }
                 else
                 {
-                    MessageBox.Show("Wrong password");
+                    
+                    customMessageBox.Show("Notification", "Invalid username or wrong password", CustomMessageBox.MessageBoxType.Information);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                customMessageBox.Show("Warning",ex.Message, CustomMessageBox.MessageBoxType.Warning);
             }
             
 

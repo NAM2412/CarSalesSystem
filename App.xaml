@@ -191,6 +191,7 @@
                     </Setter.Value>
                 </Setter>
             </Style>
+            
             <!--Border-->
             <Style x:Key="WhiteBorder" TargetType="Border">
                 <Setter Property="Background" Value="White"></Setter>

@@ -64,27 +64,28 @@ namespace CarSalesSystem.General.Windows
         }
         private void SignUpBtn_Click(object sender, RoutedEventArgs e)
         {
+            CustomMessageBox customMessageBox = new CustomMessageBox();
             if (usernameTextBox.Text.Equals(" Enter username"))
             {
-                MessageBox.Show("Please enter a username!", "Warning", MessageBoxButton.OK, MessageBoxImage.Error);
+                customMessageBox.Show("Warning","Please enter a username!", CustomMessageBox.MessageBoxType.Warning);
                 usernameTextBox.Focus();
                 return;
             }
             if (passwordTextBox.Password.Length == 0)
             {
-                MessageBox.Show("Please enter a password!", "Warning", MessageBoxButton.OK, MessageBoxImage.Error);
+                customMessageBox.Show("Warning", "Please enter your password!", CustomMessageBox.MessageBoxType.Warning);
                 passwordTextBox.Focus();
                 return;
             }
             if (confirmTextBox.Password.Length == 0)
             {
-                MessageBox.Show("Please confirm your password!", "Warning", MessageBoxButton.OK, MessageBoxImage.Error);
+                customMessageBox.Show("Warning", "Please re-enter your password!", CustomMessageBox.MessageBoxType.Warning);
                 passwordTextBox.Focus();
                 return;
             }
             if (passwordTextBox.Password != confirmTextBox.Password)
             {
-                MessageBox.Show("Your confirmed password does not match", "Warning", MessageBoxButton.OK, MessageBoxImage.Error);
+                customMessageBox.Show("Warning", "Your confirmed password does not match", CustomMessageBox.MessageBoxType.Warning);
                 passwordTextBox.Focus();
                 return;
             }
