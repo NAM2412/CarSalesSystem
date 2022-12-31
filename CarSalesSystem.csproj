@@ -307,6 +307,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="General\Windows\SuccessfulMessage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="General\Windows\WpfMessageBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -363,6 +367,9 @@
     </Compile>
     <Compile Include="General\Windows\CustomMessageBox.xaml.cs">
       <DependentUpon>CustomMessageBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="General\Windows\SuccessfulMessage.xaml.cs">
+      <DependentUpon>SuccessfulMessage.xaml</DependentUpon>
     </Compile>
     <Compile Include="General\Windows\WpfMessageBox.xaml.cs">
       <DependentUpon>WpfMessageBox.xaml</DependentUpon>
@@ -448,6 +455,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Resource Include="Resources\Images\Icons\success.png" />
     <Resource Include="Resources\Images\Icons\error.png" />
     <Resource Include="Resources\Images\Icons\information.png" />
     <Resource Include="Resources\Images\Icons\question.png" />

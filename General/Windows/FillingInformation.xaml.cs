@@ -92,12 +92,22 @@ namespace CarSalesSystem.General.Windows
             
             
             SqlConnection connection = new SqlConnection("Data Source=MSI\\SQLEXPRESS;Initial Catalog=CARSALESSYSTEM;Integrated Security=True;");
-            connection.Open();
-            SqlCommand cmd = new SqlCommand("Insert into ACCOUNT (USERNAME,PASS,TYPE_USER) values('" + usernameTextBox.Text + "','" + passwordTextBox.Password+ "','" + "1')", connection);
-            cmd.CommandType = CommandType.Text;
-            cmd.ExecuteNonQuery();
+            try
+            {
+                connection.Open();
+                SqlCommand cmd = new SqlCommand("Insert into ACCOUNT (USERNAME,PASS,TYPE_USER) values('" + usernameTextBox.Text + "','" + passwordTextBox.Password + "','" + "1')", connection);
+                cmd.CommandType = CommandType.Text;
+                cmd.ExecuteNonQuery();
+            }
+            catch(Exception exception)
+            {
+                customMessageBox.Show("Error", "This username is taken already, please choose another one.", CustomMessageBox.MessageBoxType.Error);
+                return;
+            }
             connection.Close();
-            return;
+            SuccessfulMessage message= new SuccessfulMessage();
+            message.Show();
+            this.Close();
             
         }
     }
