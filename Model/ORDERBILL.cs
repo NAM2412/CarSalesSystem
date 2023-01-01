@@ -12,18 +12,17 @@ namespace CarSalesSystem.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class SELLBILL
+    public partial class ORDERBILL
     {
-        public string SB_ID { get; set; }
-        public Nullable<System.DateTime> SB_DATEB { get; set; }
+        public string OB_ID { get; set; }
+        public Nullable<System.DateTime> OB_DATEB { get; set; }
         public string CUSTOMER_ID { get; set; }
         public string PRO_ID { get; set; }
-        public string EMPLOYEE_ID { get; set; }
+        public Nullable<int> QUANTITY { get; set; }
         public string RANK_ID { get; set; }
         public Nullable<decimal> TOTAL_PRICE { get; set; }
     
         public virtual CUSTOMER CUSTOMER { get; set; }
-        public virtual EMPLOYEE EMPLOYEE { get; set; }
         public virtual PRODUCT PRODUCT { get; set; }
         public virtual RANK_MONEY RANK_MONEY { get; set; }
     }
