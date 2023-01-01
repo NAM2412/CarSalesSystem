@@ -24,7 +24,7 @@ namespace CarSalesSystem.Customer.Pages
         public Store()
         {
             InitializeComponent();
-            //ListProduct.ItemsSource = DataProvider.Ins.DB.PRODUCTs.ToList();
+            ListProduct.ItemsSource = DataProvider.Ins.DB.PRODUCTs.ToList();
         }
     }
 }

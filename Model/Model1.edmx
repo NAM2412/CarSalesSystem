@@ -1,0 +1,716 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="CARSALESSYSTEMModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ACCOUNT">
+          <Key>
+            <PropertyRef Name="USERNAME" />
+          </Key>
+          <Property Name="USERNAME" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="PASS" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="TYPE_USER" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CUSTOMER">
+          <Key>
+            <PropertyRef Name="CUS_ID" />
+          </Key>
+          <Property Name="CUS_ID" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="CUS_NAME" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="CUS_ACCOUNT" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="CUS_DATE_OF_BIRTH" Type="date" />
+          <Property Name="GENDER" Type="nvarchar" MaxLength="10" />
+          <Property Name="PHONE" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="CUS_ADDRESS" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="REGIST_DATE" Type="date" />
+          <Property Name="REVENUE" Type="money" />
+          <Property Name="PRODUCT_NUMBER" Type="int" />
+          <Property Name="IMG" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="EMPLOYEE">
+          <Key>
+            <PropertyRef Name="EMP_ID" />
+          </Key>
+          <Property Name="EMP_ID" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="EMP_NAME" Type="nvarchar" MaxLength="100" />
+          <Property Name="EMP_ACCOUNT" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="EMP_DATE_OF_BIRTH" Type="date" />
+          <Property Name="GENDER" Type="nvarchar" MaxLength="10" />
+          <Property Name="PHONE" Type="varchar" MaxLength="20" />
+          <Property Name="EMP_ADDRESS" Type="nvarchar" MaxLength="50" />
+          <Property Name="DATE_OF_WORD" Type="date" />
+          <Property Name="SALARY" Type="money" />
+          <Property Name="IMG" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="MAINTENANCEBILL">
+          <Key>
+            <PropertyRef Name="MB_ID" />
+          </Key>
+          <Property Name="MB_ID" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="MB_DATE" Type="datetime" />
+          <Property Name="CUSTOMER_ID" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="PRO_ID" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="EMPLOYEE_ID" Type="varchar" MaxLength="4" />
+          <Property Name="TOTALFEE" Type="money" />
+        </EntityType>
+        <EntityType Name="PRODUCER">
+          <Key>
+            <PropertyRef Name="PRODUCER_ID" />
+          </Key>
+          <Property Name="PRODUCER_ID" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="PRODUCER_NAME" Type="varchar" MaxLength="40" />
+        </EntityType>
+        <EntityType Name="PRODUCT">
+          <Key>
+            <PropertyRef Name="PRO_ID" />
+          </Key>
+          <Property Name="PRO_ID" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="PRO_NAME" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="STORAGE_NUMBER" Type="int" />
+          <Property Name="SELL_NUMBER" Type="int" />
+          <Property Name="HISTORICAL_COST" Type="money" />
+          <Property Name="PRICE" Type="money" Nullable="false" />
+          <Property Name="DESCRIPTIONS" Type="nvarchar" MaxLength="400" />
+          <Property Name="TYPEPRO_ID" Type="varchar" MaxLength="4" />
+          <Property Name="PRODUCER_ID" Type="varchar" MaxLength="4" />
+          <Property Name="IMG" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="SELLBILL">
+          <Key>
+            <PropertyRef Name="SB_ID" />
+          </Key>
+          <Property Name="SB_ID" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="SB_DATEB" Type="datetime" />
+          <Property Name="CUSTOMER_ID" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="PRO_ID" Type="varchar" MaxLength="4" />
+          <Property Name="EMPLOYEE_ID" Type="varchar" MaxLength="4" />
+          <Property Name="TOTAL_PRICE" Type="money" />
+        </EntityType>
+        <EntityType Name="TYPEPRODUCT">
+          <Key>
+            <PropertyRef Name="TYPEPRODUCT_ID" />
+          </Key>
+          <Property Name="TYPEPRODUCT_ID" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="TYPEPRODUCT_NAME" Type="nvarchar" MaxLength="100" />
+          <Property Name="PRODUCER_ID" Type="varchar" MaxLength="4" />
+        </EntityType>
+        <Association Name="FK_MAKHBT">
+          <End Role="CUSTOMER" Type="Self.CUSTOMER" Multiplicity="1" />
+          <End Role="MAINTENANCEBILL" Type="Self.MAINTENANCEBILL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CUSTOMER">
+              <PropertyRef Name="CUS_ID" />
+            </Principal>
+            <Dependent Role="MAINTENANCEBILL">
+              <PropertyRef Name="CUSTOMER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MAKHMH">
+          <End Role="CUSTOMER" Type="Self.CUSTOMER" Multiplicity="1" />
+          <End Role="SELLBILL" Type="Self.SELLBILL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CUSTOMER">
+              <PropertyRef Name="CUS_ID" />
+            </Principal>
+            <Dependent Role="SELLBILL">
+              <PropertyRef Name="CUSTOMER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MALOAISP_MALOAI">
+          <End Role="TYPEPRODUCT" Type="Self.TYPEPRODUCT" Multiplicity="0..1" />
+          <End Role="PRODUCT" Type="Self.PRODUCT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TYPEPRODUCT">
+              <PropertyRef Name="TYPEPRODUCT_ID" />
+            </Principal>
+            <Dependent Role="PRODUCT">
+              <PropertyRef Name="TYPEPRO_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MANSX">
+          <End Role="PRODUCER" Type="Self.PRODUCER" Multiplicity="0..1" />
+          <End Role="TYPEPRODUCT" Type="Self.TYPEPRODUCT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCER">
+              <PropertyRef Name="PRODUCER_ID" />
+            </Principal>
+            <Dependent Role="TYPEPRODUCT">
+              <PropertyRef Name="PRODUCER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MANSXSP_MANSX">
+          <End Role="PRODUCER" Type="Self.PRODUCER" Multiplicity="0..1" />
+          <End Role="PRODUCT" Type="Self.PRODUCT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCER">
+              <PropertyRef Name="PRODUCER_ID" />
+            </Principal>
+            <Dependent Role="PRODUCT">
+              <PropertyRef Name="PRODUCER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MANVBT">
+          <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="0..1" />
+          <End Role="MAINTENANCEBILL" Type="Self.MAINTENANCEBILL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMPLOYEE">
+              <PropertyRef Name="EMP_ID" />
+            </Principal>
+            <Dependent Role="MAINTENANCEBILL">
+              <PropertyRef Name="EMPLOYEE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MANVMH">
+          <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="0..1" />
+          <End Role="SELLBILL" Type="Self.SELLBILL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMPLOYEE">
+              <PropertyRef Name="EMP_ID" />
+            </Principal>
+            <Dependent Role="SELLBILL">
+              <PropertyRef Name="EMPLOYEE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MASPBT">
+          <End Role="PRODUCT" Type="Self.PRODUCT" Multiplicity="1" />
+          <End Role="MAINTENANCEBILL" Type="Self.MAINTENANCEBILL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCT">
+              <PropertyRef Name="PRO_ID" />
+            </Principal>
+            <Dependent Role="MAINTENANCEBILL">
+              <PropertyRef Name="PRO_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MASPMH">
+          <End Role="PRODUCT" Type="Self.PRODUCT" Multiplicity="0..1" />
+          <End Role="SELLBILL" Type="Self.SELLBILL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCT">
+              <PropertyRef Name="PRO_ID" />
+            </Principal>
+            <Dependent Role="SELLBILL">
+              <PropertyRef Name="PRO_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TAIKHOANKH_TAIKHOAN">
+          <End Role="ACCOUNT" Type="Self.ACCOUNT" Multiplicity="1" />
+          <End Role="CUSTOMER" Type="Self.CUSTOMER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ACCOUNT">
+              <PropertyRef Name="USERNAME" />
+            </Principal>
+            <Dependent Role="CUSTOMER">
+              <PropertyRef Name="CUS_ACCOUNT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TAIKHOANNV_TAIKHOAN">
+          <End Role="ACCOUNT" Type="Self.ACCOUNT" Multiplicity="1" />
+          <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ACCOUNT">
+              <PropertyRef Name="USERNAME" />
+            </Principal>
+            <Dependent Role="EMPLOYEE">
+              <PropertyRef Name="EMP_ACCOUNT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CARSALESSYSTEMModelStoreContainer">
+          <EntitySet Name="ACCOUNT" EntityType="Self.ACCOUNT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CUSTOMER" EntityType="Self.CUSTOMER" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EMPLOYEE" EntityType="Self.EMPLOYEE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MAINTENANCEBILL" EntityType="Self.MAINTENANCEBILL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PRODUCER" EntityType="Self.PRODUCER" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PRODUCT" EntityType="Self.PRODUCT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SELLBILL" EntityType="Self.SELLBILL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TYPEPRODUCT" EntityType="Self.TYPEPRODUCT" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_MAKHBT" Association="Self.FK_MAKHBT">
+            <End Role="CUSTOMER" EntitySet="CUSTOMER" />
+            <End Role="MAINTENANCEBILL" EntitySet="MAINTENANCEBILL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MAKHMH" Association="Self.FK_MAKHMH">
+            <End Role="CUSTOMER" EntitySet="CUSTOMER" />
+            <End Role="SELLBILL" EntitySet="SELLBILL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MALOAISP_MALOAI" Association="Self.FK_MALOAISP_MALOAI">
+            <End Role="TYPEPRODUCT" EntitySet="TYPEPRODUCT" />
+            <End Role="PRODUCT" EntitySet="PRODUCT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MANSX" Association="Self.FK_MANSX">
+            <End Role="PRODUCER" EntitySet="PRODUCER" />
+            <End Role="TYPEPRODUCT" EntitySet="TYPEPRODUCT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MANSXSP_MANSX" Association="Self.FK_MANSXSP_MANSX">
+            <End Role="PRODUCER" EntitySet="PRODUCER" />
+            <End Role="PRODUCT" EntitySet="PRODUCT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MANVBT" Association="Self.FK_MANVBT">
+            <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+            <End Role="MAINTENANCEBILL" EntitySet="MAINTENANCEBILL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MANVMH" Association="Self.FK_MANVMH">
+            <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+            <End Role="SELLBILL" EntitySet="SELLBILL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MASPBT" Association="Self.FK_MASPBT">
+            <End Role="PRODUCT" EntitySet="PRODUCT" />
+            <End Role="MAINTENANCEBILL" EntitySet="MAINTENANCEBILL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MASPMH" Association="Self.FK_MASPMH">
+            <End Role="PRODUCT" EntitySet="PRODUCT" />
+            <End Role="SELLBILL" EntitySet="SELLBILL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TAIKHOANKH_TAIKHOAN" Association="Self.FK_TAIKHOANKH_TAIKHOAN">
+            <End Role="ACCOUNT" EntitySet="ACCOUNT" />
+            <End Role="CUSTOMER" EntitySet="CUSTOMER" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TAIKHOANNV_TAIKHOAN" Association="Self.FK_TAIKHOANNV_TAIKHOAN">
+            <End Role="ACCOUNT" EntitySet="ACCOUNT" />
+            <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CARSALESSYSTEMModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="CARSALESSYSTEMEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ACCOUNTs" EntityType="CARSALESSYSTEMModel.ACCOUNT" />
+          <EntitySet Name="CUSTOMERs" EntityType="CARSALESSYSTEMModel.CUSTOMER" />
+          <EntitySet Name="EMPLOYEEs" EntityType="CARSALESSYSTEMModel.EMPLOYEE" />
+          <EntitySet Name="MAINTENANCEBILLs" EntityType="CARSALESSYSTEMModel.MAINTENANCEBILL" />
+          <EntitySet Name="PRODUCERs" EntityType="CARSALESSYSTEMModel.PRODUCER" />
+          <EntitySet Name="PRODUCTs" EntityType="CARSALESSYSTEMModel.PRODUCT" />
+          <EntitySet Name="SELLBILLs" EntityType="CARSALESSYSTEMModel.SELLBILL" />
+          <EntitySet Name="TYPEPRODUCTs" EntityType="CARSALESSYSTEMModel.TYPEPRODUCT" />
+          <AssociationSet Name="FK_TAIKHOANKH_TAIKHOAN" Association="CARSALESSYSTEMModel.FK_TAIKHOANKH_TAIKHOAN">
+            <End Role="ACCOUNT" EntitySet="ACCOUNTs" />
+            <End Role="CUSTOMER" EntitySet="CUSTOMERs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TAIKHOANNV_TAIKHOAN" Association="CARSALESSYSTEMModel.FK_TAIKHOANNV_TAIKHOAN">
+            <End Role="ACCOUNT" EntitySet="ACCOUNTs" />
+            <End Role="EMPLOYEE" EntitySet="EMPLOYEEs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MAKHBT" Association="CARSALESSYSTEMModel.FK_MAKHBT">
+            <End Role="CUSTOMER" EntitySet="CUSTOMERs" />
+            <End Role="MAINTENANCEBILL" EntitySet="MAINTENANCEBILLs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MAKHMH" Association="CARSALESSYSTEMModel.FK_MAKHMH">
+            <End Role="CUSTOMER" EntitySet="CUSTOMERs" />
+            <End Role="SELLBILL" EntitySet="SELLBILLs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MANVBT" Association="CARSALESSYSTEMModel.FK_MANVBT">
+            <End Role="EMPLOYEE" EntitySet="EMPLOYEEs" />
+            <End Role="MAINTENANCEBILL" EntitySet="MAINTENANCEBILLs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MANVMH" Association="CARSALESSYSTEMModel.FK_MANVMH">
+            <End Role="EMPLOYEE" EntitySet="EMPLOYEEs" />
+            <End Role="SELLBILL" EntitySet="SELLBILLs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MASPBT" Association="CARSALESSYSTEMModel.FK_MASPBT">
+            <End Role="PRODUCT" EntitySet="PRODUCTs" />
+            <End Role="MAINTENANCEBILL" EntitySet="MAINTENANCEBILLs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MANSX" Association="CARSALESSYSTEMModel.FK_MANSX">
+            <End Role="PRODUCER" EntitySet="PRODUCERs" />
+            <End Role="TYPEPRODUCT" EntitySet="TYPEPRODUCTs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MANSXSP_MANSX" Association="CARSALESSYSTEMModel.FK_MANSXSP_MANSX">
+            <End Role="PRODUCER" EntitySet="PRODUCERs" />
+            <End Role="PRODUCT" EntitySet="PRODUCTs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MALOAISP_MALOAI" Association="CARSALESSYSTEMModel.FK_MALOAISP_MALOAI">
+            <End Role="TYPEPRODUCT" EntitySet="TYPEPRODUCTs" />
+            <End Role="PRODUCT" EntitySet="PRODUCTs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MASPMH" Association="CARSALESSYSTEMModel.FK_MASPMH">
+            <End Role="PRODUCT" EntitySet="PRODUCTs" />
+            <End Role="SELLBILL" EntitySet="SELLBILLs" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="ACCOUNT">
+          <Key>
+            <PropertyRef Name="USERNAME" />
+          </Key>
+          <Property Name="USERNAME" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="PASS" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="TYPE_USER" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CUSTOMERs" Relationship="CARSALESSYSTEMModel.FK_TAIKHOANKH_TAIKHOAN" FromRole="ACCOUNT" ToRole="CUSTOMER" />
+          <NavigationProperty Name="EMPLOYEEs" Relationship="CARSALESSYSTEMModel.FK_TAIKHOANNV_TAIKHOAN" FromRole="ACCOUNT" ToRole="EMPLOYEE" />
+        </EntityType>
+        <EntityType Name="CUSTOMER">
+          <Key>
+            <PropertyRef Name="CUS_ID" />
+          </Key>
+          <Property Name="CUS_ID" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="CUS_NAME" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CUS_ACCOUNT" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CUS_DATE_OF_BIRTH" Type="DateTime" Precision="0" />
+          <Property Name="GENDER" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="PHONE" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CUS_ADDRESS" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="REGIST_DATE" Type="DateTime" Precision="0" />
+          <Property Name="REVENUE" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="PRODUCT_NUMBER" Type="Int32" />
+          <Property Name="IMG" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="ACCOUNT" Relationship="CARSALESSYSTEMModel.FK_TAIKHOANKH_TAIKHOAN" FromRole="CUSTOMER" ToRole="ACCOUNT" />
+          <NavigationProperty Name="MAINTENANCEBILLs" Relationship="CARSALESSYSTEMModel.FK_MAKHBT" FromRole="CUSTOMER" ToRole="MAINTENANCEBILL" />
+          <NavigationProperty Name="SELLBILLs" Relationship="CARSALESSYSTEMModel.FK_MAKHMH" FromRole="CUSTOMER" ToRole="SELLBILL" />
+        </EntityType>
+        <EntityType Name="EMPLOYEE">
+          <Key>
+            <PropertyRef Name="EMP_ID" />
+          </Key>
+          <Property Name="EMP_ID" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="EMP_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="EMP_ACCOUNT" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="EMP_DATE_OF_BIRTH" Type="DateTime" Precision="0" />
+          <Property Name="GENDER" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="PHONE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="EMP_ADDRESS" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DATE_OF_WORD" Type="DateTime" Precision="0" />
+          <Property Name="SALARY" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="IMG" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="ACCOUNT" Relationship="CARSALESSYSTEMModel.FK_TAIKHOANNV_TAIKHOAN" FromRole="EMPLOYEE" ToRole="ACCOUNT" />
+          <NavigationProperty Name="MAINTENANCEBILLs" Relationship="CARSALESSYSTEMModel.FK_MANVBT" FromRole="EMPLOYEE" ToRole="MAINTENANCEBILL" />
+          <NavigationProperty Name="SELLBILLs" Relationship="CARSALESSYSTEMModel.FK_MANVMH" FromRole="EMPLOYEE" ToRole="SELLBILL" />
+        </EntityType>
+        <EntityType Name="MAINTENANCEBILL">
+          <Key>
+            <PropertyRef Name="MB_ID" />
+          </Key>
+          <Property Name="MB_ID" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="MB_DATE" Type="DateTime" Precision="3" />
+          <Property Name="CUSTOMER_ID" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="PRO_ID" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="EMPLOYEE_ID" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="TOTALFEE" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="CUSTOMER" Relationship="CARSALESSYSTEMModel.FK_MAKHBT" FromRole="MAINTENANCEBILL" ToRole="CUSTOMER" />
+          <NavigationProperty Name="EMPLOYEE" Relationship="CARSALESSYSTEMModel.FK_MANVBT" FromRole="MAINTENANCEBILL" ToRole="EMPLOYEE" />
+          <NavigationProperty Name="PRODUCT" Relationship="CARSALESSYSTEMModel.FK_MASPBT" FromRole="MAINTENANCEBILL" ToRole="PRODUCT" />
+        </EntityType>
+        <EntityType Name="PRODUCER">
+          <Key>
+            <PropertyRef Name="PRODUCER_ID" />
+          </Key>
+          <Property Name="PRODUCER_ID" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="PRODUCER_NAME" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TYPEPRODUCTs" Relationship="CARSALESSYSTEMModel.FK_MANSX" FromRole="PRODUCER" ToRole="TYPEPRODUCT" />
+          <NavigationProperty Name="PRODUCTs" Relationship="CARSALESSYSTEMModel.FK_MANSXSP_MANSX" FromRole="PRODUCER" ToRole="PRODUCT" />
+        </EntityType>
+        <EntityType Name="PRODUCT">
+          <Key>
+            <PropertyRef Name="PRO_ID" />
+          </Key>
+          <Property Name="PRO_ID" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="PRO_NAME" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="STORAGE_NUMBER" Type="Int32" />
+          <Property Name="SELL_NUMBER" Type="Int32" />
+          <Property Name="HISTORICAL_COST" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="PRICE" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="DESCRIPTIONS" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
+          <Property Name="TYPEPRO_ID" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="PRODUCER_ID" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="IMG" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="MAINTENANCEBILLs" Relationship="CARSALESSYSTEMModel.FK_MASPBT" FromRole="PRODUCT" ToRole="MAINTENANCEBILL" />
+          <NavigationProperty Name="PRODUCER" Relationship="CARSALESSYSTEMModel.FK_MANSXSP_MANSX" FromRole="PRODUCT" ToRole="PRODUCER" />
+          <NavigationProperty Name="TYPEPRODUCT" Relationship="CARSALESSYSTEMModel.FK_MALOAISP_MALOAI" FromRole="PRODUCT" ToRole="TYPEPRODUCT" />
+          <NavigationProperty Name="SELLBILLs" Relationship="CARSALESSYSTEMModel.FK_MASPMH" FromRole="PRODUCT" ToRole="SELLBILL" />
+        </EntityType>
+        <EntityType Name="SELLBILL">
+          <Key>
+            <PropertyRef Name="SB_ID" />
+          </Key>
+          <Property Name="SB_ID" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="SB_DATEB" Type="DateTime" Precision="3" />
+          <Property Name="CUSTOMER_ID" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="PRO_ID" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="EMPLOYEE_ID" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="TOTAL_PRICE" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="CUSTOMER" Relationship="CARSALESSYSTEMModel.FK_MAKHMH" FromRole="SELLBILL" ToRole="CUSTOMER" />
+          <NavigationProperty Name="EMPLOYEE" Relationship="CARSALESSYSTEMModel.FK_MANVMH" FromRole="SELLBILL" ToRole="EMPLOYEE" />
+          <NavigationProperty Name="PRODUCT" Relationship="CARSALESSYSTEMModel.FK_MASPMH" FromRole="SELLBILL" ToRole="PRODUCT" />
+        </EntityType>
+        <EntityType Name="TYPEPRODUCT">
+          <Key>
+            <PropertyRef Name="TYPEPRODUCT_ID" />
+          </Key>
+          <Property Name="TYPEPRODUCT_ID" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="TYPEPRODUCT_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PRODUCER_ID" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="PRODUCER" Relationship="CARSALESSYSTEMModel.FK_MANSX" FromRole="TYPEPRODUCT" ToRole="PRODUCER" />
+          <NavigationProperty Name="PRODUCTs" Relationship="CARSALESSYSTEMModel.FK_MALOAISP_MALOAI" FromRole="TYPEPRODUCT" ToRole="PRODUCT" />
+        </EntityType>
+        <Association Name="FK_TAIKHOANKH_TAIKHOAN">
+          <End Type="CARSALESSYSTEMModel.ACCOUNT" Role="ACCOUNT" Multiplicity="1" />
+          <End Type="CARSALESSYSTEMModel.CUSTOMER" Role="CUSTOMER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ACCOUNT">
+              <PropertyRef Name="USERNAME" />
+            </Principal>
+            <Dependent Role="CUSTOMER">
+              <PropertyRef Name="CUS_ACCOUNT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TAIKHOANNV_TAIKHOAN">
+          <End Type="CARSALESSYSTEMModel.ACCOUNT" Role="ACCOUNT" Multiplicity="1" />
+          <End Type="CARSALESSYSTEMModel.EMPLOYEE" Role="EMPLOYEE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ACCOUNT">
+              <PropertyRef Name="USERNAME" />
+            </Principal>
+            <Dependent Role="EMPLOYEE">
+              <PropertyRef Name="EMP_ACCOUNT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MAKHBT">
+          <End Type="CARSALESSYSTEMModel.CUSTOMER" Role="CUSTOMER" Multiplicity="1" />
+          <End Type="CARSALESSYSTEMModel.MAINTENANCEBILL" Role="MAINTENANCEBILL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CUSTOMER">
+              <PropertyRef Name="CUS_ID" />
+            </Principal>
+            <Dependent Role="MAINTENANCEBILL">
+              <PropertyRef Name="CUSTOMER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MAKHMH">
+          <End Type="CARSALESSYSTEMModel.CUSTOMER" Role="CUSTOMER" Multiplicity="1" />
+          <End Type="CARSALESSYSTEMModel.SELLBILL" Role="SELLBILL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CUSTOMER">
+              <PropertyRef Name="CUS_ID" />
+            </Principal>
+            <Dependent Role="SELLBILL">
+              <PropertyRef Name="CUSTOMER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MANVBT">
+          <End Type="CARSALESSYSTEMModel.EMPLOYEE" Role="EMPLOYEE" Multiplicity="0..1" />
+          <End Type="CARSALESSYSTEMModel.MAINTENANCEBILL" Role="MAINTENANCEBILL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMPLOYEE">
+              <PropertyRef Name="EMP_ID" />
+            </Principal>
+            <Dependent Role="MAINTENANCEBILL">
+              <PropertyRef Name="EMPLOYEE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MANVMH">
+          <End Type="CARSALESSYSTEMModel.EMPLOYEE" Role="EMPLOYEE" Multiplicity="0..1" />
+          <End Type="CARSALESSYSTEMModel.SELLBILL" Role="SELLBILL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMPLOYEE">
+              <PropertyRef Name="EMP_ID" />
+            </Principal>
+            <Dependent Role="SELLBILL">
+              <PropertyRef Name="EMPLOYEE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MASPBT">
+          <End Type="CARSALESSYSTEMModel.PRODUCT" Role="PRODUCT" Multiplicity="1" />
+          <End Type="CARSALESSYSTEMModel.MAINTENANCEBILL" Role="MAINTENANCEBILL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCT">
+              <PropertyRef Name="PRO_ID" />
+            </Principal>
+            <Dependent Role="MAINTENANCEBILL">
+              <PropertyRef Name="PRO_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MANSX">
+          <End Type="CARSALESSYSTEMModel.PRODUCER" Role="PRODUCER" Multiplicity="0..1" />
+          <End Type="CARSALESSYSTEMModel.TYPEPRODUCT" Role="TYPEPRODUCT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCER">
+              <PropertyRef Name="PRODUCER_ID" />
+            </Principal>
+            <Dependent Role="TYPEPRODUCT">
+              <PropertyRef Name="PRODUCER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MANSXSP_MANSX">
+          <End Type="CARSALESSYSTEMModel.PRODUCER" Role="PRODUCER" Multiplicity="0..1" />
+          <End Type="CARSALESSYSTEMModel.PRODUCT" Role="PRODUCT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCER">
+              <PropertyRef Name="PRODUCER_ID" />
+            </Principal>
+            <Dependent Role="PRODUCT">
+              <PropertyRef Name="PRODUCER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MALOAISP_MALOAI">
+          <End Type="CARSALESSYSTEMModel.TYPEPRODUCT" Role="TYPEPRODUCT" Multiplicity="0..1" />
+          <End Type="CARSALESSYSTEMModel.PRODUCT" Role="PRODUCT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TYPEPRODUCT">
+              <PropertyRef Name="TYPEPRODUCT_ID" />
+            </Principal>
+            <Dependent Role="PRODUCT">
+              <PropertyRef Name="TYPEPRO_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MASPMH">
+          <End Type="CARSALESSYSTEMModel.PRODUCT" Role="PRODUCT" Multiplicity="0..1" />
+          <End Type="CARSALESSYSTEMModel.SELLBILL" Role="SELLBILL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCT">
+              <PropertyRef Name="PRO_ID" />
+            </Principal>
+            <Dependent Role="SELLBILL">
+              <PropertyRef Name="PRO_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CARSALESSYSTEMModelStoreContainer" CdmEntityContainer="CARSALESSYSTEMEntities">
+          <EntitySetMapping Name="ACCOUNTs">
+            <EntityTypeMapping TypeName="CARSALESSYSTEMModel.ACCOUNT">
+              <MappingFragment StoreEntitySet="ACCOUNT">
+                <ScalarProperty Name="TYPE_USER" ColumnName="TYPE_USER" />
+                <ScalarProperty Name="PASS" ColumnName="PASS" />
+                <ScalarProperty Name="USERNAME" ColumnName="USERNAME" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CUSTOMERs">
+            <EntityTypeMapping TypeName="CARSALESSYSTEMModel.CUSTOMER">
+              <MappingFragment StoreEntitySet="CUSTOMER">
+                <ScalarProperty Name="IMG" ColumnName="IMG" />
+                <ScalarProperty Name="PRODUCT_NUMBER" ColumnName="PRODUCT_NUMBER" />
+                <ScalarProperty Name="REVENUE" ColumnName="REVENUE" />
+                <ScalarProperty Name="REGIST_DATE" ColumnName="REGIST_DATE" />
+                <ScalarProperty Name="CUS_ADDRESS" ColumnName="CUS_ADDRESS" />
+                <ScalarProperty Name="PHONE" ColumnName="PHONE" />
+                <ScalarProperty Name="GENDER" ColumnName="GENDER" />
+                <ScalarProperty Name="CUS_DATE_OF_BIRTH" ColumnName="CUS_DATE_OF_BIRTH" />
+                <ScalarProperty Name="CUS_ACCOUNT" ColumnName="CUS_ACCOUNT" />
+                <ScalarProperty Name="CUS_NAME" ColumnName="CUS_NAME" />
+                <ScalarProperty Name="CUS_ID" ColumnName="CUS_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EMPLOYEEs">
+            <EntityTypeMapping TypeName="CARSALESSYSTEMModel.EMPLOYEE">
+              <MappingFragment StoreEntitySet="EMPLOYEE">
+                <ScalarProperty Name="IMG" ColumnName="IMG" />
+                <ScalarProperty Name="SALARY" ColumnName="SALARY" />
+                <ScalarProperty Name="DATE_OF_WORD" ColumnName="DATE_OF_WORD" />
+                <ScalarProperty Name="EMP_ADDRESS" ColumnName="EMP_ADDRESS" />
+                <ScalarProperty Name="PHONE" ColumnName="PHONE" />
+                <ScalarProperty Name="GENDER" ColumnName="GENDER" />
+                <ScalarProperty Name="EMP_DATE_OF_BIRTH" ColumnName="EMP_DATE_OF_BIRTH" />
+                <ScalarProperty Name="EMP_ACCOUNT" ColumnName="EMP_ACCOUNT" />
+                <ScalarProperty Name="EMP_NAME" ColumnName="EMP_NAME" />
+                <ScalarProperty Name="EMP_ID" ColumnName="EMP_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MAINTENANCEBILLs">
+            <EntityTypeMapping TypeName="CARSALESSYSTEMModel.MAINTENANCEBILL">
+              <MappingFragment StoreEntitySet="MAINTENANCEBILL">
+                <ScalarProperty Name="TOTALFEE" ColumnName="TOTALFEE" />
+                <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
+                <ScalarProperty Name="PRO_ID" ColumnName="PRO_ID" />
+                <ScalarProperty Name="CUSTOMER_ID" ColumnName="CUSTOMER_ID" />
+                <ScalarProperty Name="MB_DATE" ColumnName="MB_DATE" />
+                <ScalarProperty Name="MB_ID" ColumnName="MB_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PRODUCERs">
+            <EntityTypeMapping TypeName="CARSALESSYSTEMModel.PRODUCER">
+              <MappingFragment StoreEntitySet="PRODUCER">
+                <ScalarProperty Name="PRODUCER_NAME" ColumnName="PRODUCER_NAME" />
+                <ScalarProperty Name="PRODUCER_ID" ColumnName="PRODUCER_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PRODUCTs">
+            <EntityTypeMapping TypeName="CARSALESSYSTEMModel.PRODUCT">
+              <MappingFragment StoreEntitySet="PRODUCT">
+                <ScalarProperty Name="IMG" ColumnName="IMG" />
+                <ScalarProperty Name="PRODUCER_ID" ColumnName="PRODUCER_ID" />
+                <ScalarProperty Name="TYPEPRO_ID" ColumnName="TYPEPRO_ID" />
+                <ScalarProperty Name="DESCRIPTIONS" ColumnName="DESCRIPTIONS" />
+                <ScalarProperty Name="PRICE" ColumnName="PRICE" />
+                <ScalarProperty Name="HISTORICAL_COST" ColumnName="HISTORICAL_COST" />
+                <ScalarProperty Name="SELL_NUMBER" ColumnName="SELL_NUMBER" />
+                <ScalarProperty Name="STORAGE_NUMBER" ColumnName="STORAGE_NUMBER" />
+                <ScalarProperty Name="PRO_NAME" ColumnName="PRO_NAME" />
+                <ScalarProperty Name="PRO_ID" ColumnName="PRO_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SELLBILLs">
+            <EntityTypeMapping TypeName="CARSALESSYSTEMModel.SELLBILL">
+              <MappingFragment StoreEntitySet="SELLBILL">
+                <ScalarProperty Name="TOTAL_PRICE" ColumnName="TOTAL_PRICE" />
+                <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
+                <ScalarProperty Name="PRO_ID" ColumnName="PRO_ID" />
+                <ScalarProperty Name="CUSTOMER_ID" ColumnName="CUSTOMER_ID" />
+                <ScalarProperty Name="SB_DATEB" ColumnName="SB_DATEB" />
+                <ScalarProperty Name="SB_ID" ColumnName="SB_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TYPEPRODUCTs">
+            <EntityTypeMapping TypeName="CARSALESSYSTEMModel.TYPEPRODUCT">
+              <MappingFragment StoreEntitySet="TYPEPRODUCT">
+                <ScalarProperty Name="PRODUCER_ID" ColumnName="PRODUCER_ID" />
+                <ScalarProperty Name="TYPEPRODUCT_NAME" ColumnName="TYPEPRODUCT_NAME" />
+                <ScalarProperty Name="TYPEPRODUCT_ID" ColumnName="TYPEPRODUCT_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

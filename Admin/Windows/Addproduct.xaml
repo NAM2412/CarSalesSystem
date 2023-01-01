@@ -126,7 +126,7 @@
                         Width="600" >
                         <StackPanel Orientation="Horizontal">
                             <Label
-                            Content="Engine Layout" 
+                            Content="Gender" 
                             HorizontalAlignment="Left"
                             FontSize="18" 
                             FontWeight="SemiBold" 
@@ -161,7 +161,7 @@
                         Width="600" >
                         <StackPanel Orientation="Horizontal">
                             <Label
-                                Content="Displacement" 
+                                Content="Position" 
                                 HorizontalAlignment="Left"
                                 FontSize="18" 
                                 FontWeight="SemiBold" 
@@ -192,7 +192,7 @@
                         Width="600" >
                         <StackPanel Orientation="Horizontal">
                             <Label
-                    Content="Max speed" 
+                    Content="Address" 
                     HorizontalAlignment="Left"
                     FontSize="18" 
                     FontWeight="SemiBold" 
@@ -220,7 +220,7 @@
                         Width="600" >
                         <StackPanel Orientation="Horizontal">
                             <Label
-                    Content="Max power" 
+                    Content="Date Of Birth" 
                     HorizontalAlignment="Left"
                     FontSize="18" 
                     FontWeight="SemiBold" 
@@ -242,7 +242,7 @@
                         Width="600" >
                         <StackPanel Orientation="Horizontal">
                             <Label
-                    Content="Acceleration" 
+                    Content="Starting Date" 
                     HorizontalAlignment="Left"
                     FontSize="18" 
                     FontWeight="SemiBold" 
@@ -265,7 +265,7 @@
                         Width="600" >
                         <StackPanel Orientation="Horizontal">
                             <Label
-                    Content="Traction" 
+                    Content="Telephone" 
                     HorizontalAlignment="Left"
                     FontSize="18" 
                     FontWeight="SemiBold" 
@@ -288,35 +288,7 @@
                         </StackPanel>
                     </Grid>
                     <Grid 
-                        Grid.Row="7"
-                        VerticalAlignment="Top"  
-                        Width="600" >
-                        <StackPanel Orientation="Horizontal">
-                            <Label
-                    Content="Price" 
-                    HorizontalAlignment="Left"
-                    FontSize="18" 
-                    FontWeight="SemiBold" 
-                    Foreground="Black"
-                    Height="32" 
-                        Width="140"
-                    Margin="0,0,20,0"
-                    VerticalAlignment="Bottom"/>
-                            <TextBox
-                                    Width="400"
-                                    Height="50"
-                                    FontSize="14" 
-                                    materialDesign:HintAssist.Hint=""
-                                    IsReadOnly="True" 
-                                    HorizontalContentAlignment="Left"
-                                    VerticalContentAlignment="Bottom" 
-                                    FontWeight="SemiBold" >
-                            </TextBox>
-
-                        </StackPanel>
-                    </Grid>
-                    <Grid 
-                    Grid.Row="8"
+                    Grid.Row="7"
                     Height="40" 
                     HorizontalAlignment="Right">
                         <StackPanel Orientation="Horizontal">

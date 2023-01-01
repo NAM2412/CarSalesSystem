@@ -19,12 +19,10 @@ namespace CarSalesSystem.Model
         public string CUSTOMER_ID { get; set; }
         public string PRO_ID { get; set; }
         public string EMPLOYEE_ID { get; set; }
-        public string RANK_ID { get; set; }
         public Nullable<decimal> TOTAL_PRICE { get; set; }
     
         public virtual CUSTOMER CUSTOMER { get; set; }
         public virtual EMPLOYEE EMPLOYEE { get; set; }
         public virtual PRODUCT PRODUCT { get; set; }
-        public virtual RANK_MONEY RANK_MONEY { get; set; }
     }
 }

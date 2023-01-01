@@ -17,7 +17,6 @@ namespace CarSalesSystem.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public EMPLOYEE()
         {
-            this.IMPORTRECEIPTs = new HashSet<IMPORTRECEIPT>();
             this.MAINTENANCEBILLs = new HashSet<MAINTENANCEBILL>();
             this.SELLBILLs = new HashSet<SELLBILL>();
         }
@@ -29,14 +28,11 @@ namespace CarSalesSystem.Model
         public string GENDER { get; set; }
         public string PHONE { get; set; }
         public string EMP_ADDRESS { get; set; }
-        public Nullable<System.DateTime> DATE_OF_WORK { get; set; }
+        public Nullable<System.DateTime> DATE_OF_WORD { get; set; }
         public Nullable<decimal> SALARY { get; set; }
         public byte[] IMG { get; set; }
-        public string EMP_TYPE { get; set; }
     
         public virtual ACCOUNT ACCOUNT { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<IMPORTRECEIPT> IMPORTRECEIPTs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MAINTENANCEBILL> MAINTENANCEBILLs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
