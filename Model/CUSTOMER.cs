@@ -19,7 +19,6 @@ namespace CarSalesSystem.Model
         {
             this.MAINTENANCEBILLs = new HashSet<MAINTENANCEBILL>();
             this.SELLBILLs = new HashSet<SELLBILL>();
-            this.ORDERBILLs = new HashSet<ORDERBILL>();
         }
     
         public string CUS_ID { get; set; }
@@ -33,15 +32,11 @@ namespace CarSalesSystem.Model
         public Nullable<decimal> REVENUE { get; set; }
         public Nullable<int> PRODUCT_NUMBER { get; set; }
         public byte[] IMG { get; set; }
-        public string RANK_ID { get; set; }
     
         public virtual ACCOUNT ACCOUNT { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MAINTENANCEBILL> MAINTENANCEBILLs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SELLBILL> SELLBILLs { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ORDERBILL> ORDERBILLs { get; set; }
-        public virtual RANK_MONEY RANK_MONEY { get; set; }
     }
 }

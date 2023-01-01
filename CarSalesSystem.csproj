@@ -263,10 +263,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Admin\User Controls\ControlBar.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Admin\User Controls\InfoCard.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -274,18 +270,6 @@
     <Page Include="Admin\User Controls\UnitChart.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Admin\Windows\Addemp.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Admin\Windows\Addproduct.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Admin\Windows\Updateemp.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="CustomerWindow.xaml">
       <SubType>Designer</SubType>
@@ -356,23 +340,11 @@
     <Compile Include="Admin\User Controls\CarCard.xaml.cs">
       <DependentUpon>CarCard.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Admin\User Controls\ControlBar.xaml.cs">
-      <DependentUpon>ControlBar.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Admin\User Controls\InfoCard.xaml.cs">
       <DependentUpon>InfoCard.xaml</DependentUpon>
     </Compile>
     <Compile Include="Admin\User Controls\UnitChart.xaml.cs">
       <DependentUpon>UnitChart.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Admin\Windows\Addemp.xaml.cs">
-      <DependentUpon>Addemp.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Admin\Windows\Addproduct.xaml.cs">
-      <DependentUpon>Addproduct.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Admin\Windows\Updateemp.xaml.cs">
-      <DependentUpon>Updateemp.xaml</DependentUpon>
     </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
@@ -387,7 +359,6 @@
     <Compile Include="Customer\Pages\Store.xaml.cs">
       <DependentUpon>Store.xaml</DependentUpon>
     </Compile>
-<<<<<<< Updated upstream
     <Compile Include="General\Windows\OTPConfirmation.xaml.cs">
       <DependentUpon>OTPConfirmation.xaml</DependentUpon>
     </Compile>
@@ -402,31 +373,20 @@
     </Compile>
     <Compile Include="General\Windows\WpfMessageBox.xaml.cs">
       <DependentUpon>WpfMessageBox.xaml</DependentUpon>
-=======
-    <Compile Include="CustomerWindow.xaml.cs">
-      <DependentUpon>CustomerWindow.xaml</DependentUpon>
->>>>>>> Stashed changes
     </Compile>
     <Compile Include="Model\ACCOUNT.cs">
-      <DependentUpon>CARSALESSYSTEM.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\CARSALESSYSTEM.Context.cs">
+    <Compile Include="Model\CARSALESSYSTEMDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>CARSALESSYSTEM.Context.tt</DependentUpon>
+      <DependentUpon>CARSALESSYSTEMDataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Model\CARSALESSYSTEM.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CARSALESSYSTEM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\CARSALESSYSTEM.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CARSALESSYSTEM.edmx</DependentUpon>
+    <Compile Include="CustomerWindow.xaml.cs">
+      <DependentUpon>CustomerWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\CUSTOMER.cs">
-      <DependentUpon>CARSALESSYSTEM.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\DataProvider.cs" />
     <Compile Include="General\Windows\SignIn.xaml.cs">
@@ -450,37 +410,37 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\EMPLOYEE.cs">
-      <DependentUpon>CARSALESSYSTEM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\IMPORTRECEIPT.cs">
-      <DependentUpon>CARSALESSYSTEM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\IMPORTRECEIPTINFO.cs">
-      <DependentUpon>CARSALESSYSTEM.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\MAINTENANCEBILL.cs">
-      <DependentUpon>CARSALESSYSTEM.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\ORDERBILL.cs">
-      <DependentUpon>CARSALESSYSTEM.tt</DependentUpon>
+    <Compile Include="Model\Model1.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Model1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Model1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
     <Compile Include="Model\PRODUCER.cs">
-      <DependentUpon>CARSALESSYSTEM.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\PRODUCT.cs">
-      <DependentUpon>CARSALESSYSTEM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\RANK_MONEY.cs">
-      <DependentUpon>CARSALESSYSTEM.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\SELLBILL.cs">
-      <DependentUpon>CARSALESSYSTEM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\sysdiagram.cs">
-      <DependentUpon>CARSALESSYSTEM.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\TYPEPRODUCT.cs">
-      <DependentUpon>CARSALESSYSTEM.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -511,12 +471,23 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="Model\CARSALESSYSTEM.edmx">
+    <None Include="Model\CARSALESSYSTEMDataSet.xsc">
+      <DependentUpon>CARSALESSYSTEMDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Model\CARSALESSYSTEMDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>CARSALESSYSTEMDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Model\CARSALESSYSTEMDataSet.xss">
+      <DependentUpon>CARSALESSYSTEMDataSet.xsd</DependentUpon>
+    </None>
+    <EntityDeploy Include="Model\Model1.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>CARSALESSYSTEM.Designer.cs</LastGenOutput>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Model\CARSALESSYSTEM.edmx.diagram">
-      <DependentUpon>CARSALESSYSTEM.edmx</DependentUpon>
+    <None Include="Model\Model1.edmx.diagram">
+      <DependentUpon>Model1.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="packages\FontAwesome.Sharp.6.1.1\.signature.p7s" />
@@ -531,15 +502,15 @@
     <None Include="packages\MaterialDesignColors.2.0.9\MaterialDesignColors.2.0.9.nupkg" />
     <None Include="packages\MaterialDesignThemes.4.6.1\.signature.p7s" />
     <None Include="packages\MaterialDesignThemes.4.6.1\build\MaterialDesignThemes.targets" />
-    <Content Include="Model\CARSALESSYSTEM.Context.tt">
+    <Content Include="Model\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>CARSALESSYSTEM.edmx</DependentUpon>
-      <LastGenOutput>CARSALESSYSTEM.Context.cs</LastGenOutput>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Model\CARSALESSYSTEM.tt">
+    <Content Include="Model\Model1.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>CARSALESSYSTEM.edmx</DependentUpon>
-      <LastGenOutput>CARSALESSYSTEM.cs</LastGenOutput>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
     <Content Include="Resources\Fonts\Nexa Bold.otf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -625,6 +596,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Admin\Windows\" />
     <Folder Include="Customer\Windows\" />
     <Folder Include="Employee\Pages\" />
     <Folder Include="Employee\Windows\" />
