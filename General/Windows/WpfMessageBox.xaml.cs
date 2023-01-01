@@ -84,7 +84,10 @@ namespace CarSalesSystem.General
                 }
                 
             }
-
+            else
+            {
+                this.Close();
+            }
         }
        
 

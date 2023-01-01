@@ -31,9 +31,11 @@ namespace CarSalesSystem.General.Windows
         }
         private int time = 180;
         private DispatcherTimer Timer;
-        private int retryTimes = 2;
+        private int retryTimes = 3;
         public string storedCode;
-       
+        private CustomMessageBox customMessageBox = new CustomMessageBox();
+
+
         public OTPConfirmation()
         {
             InitializeComponent();
@@ -68,7 +70,9 @@ namespace CarSalesSystem.General.Windows
             retryTimes--;
             if(retryTimes == 0)
             {
-                MessageBox.Show("You have requested OTP code too many times!", "Warning", MessageBoxButton.OK,MessageBoxImage.Warning);
+                //MessageBox.Show("You have requested OTP code too many times!", "Warning", MessageBoxButton.OK,MessageBoxImage.Warning);
+                customMessageBox.Show("Warning", "You have requested OTP code too many times!", CustomMessageBox.MessageBoxType.Warning);
+
                 Timer.Stop();
                 this.Close();
                 return;
@@ -80,7 +84,7 @@ namespace CarSalesSystem.General.Windows
 
         private void ConnectButton_TextChanged(object sender, TextChangedEventArgs e)
         {
-            CustomMessageBox customMessageBox = new CustomMessageBox();
+
             string typedCode = CodeDigit1.Text + CodeDigit2.Text + CodeDigit3.Text + CodeDigit4.Text + CodeDigit5.Text + ConnectButton.Text;
             if(!typedCode.Equals(storedCode))
             {
