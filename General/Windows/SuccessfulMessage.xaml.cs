@@ -1,5 +1,4 @@
-﻿using CarSalesSystem.Model;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,21 +10,25 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace CarSalesSystem.Customer.Pages
+namespace CarSalesSystem.General.Windows
 {
     /// <summary>
-    /// Interaction logic for Store.xaml
+    /// Interaction logic for SuccessfulMessage.xaml
     /// </summary>
-    public partial class Store : Page
+    public partial class SuccessfulMessage : Window
     {
-        
-        public Store()
+        public SuccessfulMessage()
         {
             InitializeComponent();
-            //ListProduct.ItemsSource = DataProvider.Ins.DB.PRODUCTs.ToList();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            SignIn signIn= new SignIn();
+            signIn.Show();
+            this.Close();
         }
     }
 }

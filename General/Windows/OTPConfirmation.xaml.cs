@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mail;
+using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -13,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using System.Reflection;
 
 namespace CarSalesSystem.General.Windows
 {
@@ -26,11 +29,11 @@ namespace CarSalesSystem.General.Windows
         {
             return !_regex.IsMatch(text);
         }
-        private bool OTPSuccess = false;
         private int time = 180;
         private DispatcherTimer Timer;
         private int retryTimes = 2;
-
+        public string storedCode;
+       
         public OTPConfirmation()
         {
             InitializeComponent();
@@ -71,16 +74,22 @@ namespace CarSalesSystem.General.Windows
                 return;
             }
             time = 180;
+            WpfMessageBox wpfMessageBox = new WpfMessageBox();
+            wpfMessageBox.Show();
         }
-        private void OpenAddInformationWindow()
+
+        private void ConnectButton_TextChanged(object sender, TextChangedEventArgs e)
         {
-            FillingInformation fillingInformationWindow = new FillingInformation();
-            if (OTPSuccess)
+            CustomMessageBox customMessageBox = new CustomMessageBox();
+            string typedCode = CodeDigit1.Text + CodeDigit2.Text + CodeDigit3.Text + CodeDigit4.Text + CodeDigit5.Text + ConnectButton.Text;
+            if(!typedCode.Equals(storedCode))
             {
-                fillingInformationWindow.Show();
-                this.Close();
+                MessageBox.Show( "Invalid OTP code, please try again.", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
+            FillingInformation fillingInformation = new FillingInformation();
+            fillingInformation.Show();
+            this.Close();
         }
     }
 }

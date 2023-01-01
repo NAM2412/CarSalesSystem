@@ -46,7 +46,10 @@
                        TextAlignment="Center"
                        ></TextBlock>
                 <Grid Grid.Row="0"
-                  Margin="40,30,40,0">
+                      Margin="40,30,40,0" 
+                      Style="{DynamicResource LayoutRoot}"
+                      
+                      >
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="1*" />
                         <ColumnDefinition Width="1*" />
@@ -55,7 +58,8 @@
                         <ColumnDefinition Width="1*" />
                         <ColumnDefinition Width="1*" />
                     </Grid.ColumnDefinitions>
-                    <TextBox Grid.Column="0"
+                    <TextBox x:Name="CodeDigit1" 
+                        Grid.Column="0"
                          Width="55"
                          Height="55"
                         FontFamily="Mitr"
@@ -65,50 +69,58 @@
                              TextAlignment="Center"
                              PreviewTextInput="PreviewTextInput"></TextBox>
                     <TextBox Grid.Column="1"
-                         Width="55"
-                         Height="55"
+                             x:Name="CodeDigit2"
+                            Width="55"
+                            Height="55"
+                             IsHitTestVisible="False"
                              PreviewTextInput="PreviewTextInput"
                              FontFamily="Mitr"
                              FontWeight="Normal"
                              TextAlignment="Center"
                              FontSize="40"
                              MaxLength="1"></TextBox>
-                    <TextBox Grid.Column="2"
-                         Width="55"
-                         Height="55"
+                    <TextBox Grid.Column="2" 
+                             x:Name="CodeDigit3"
+                             IsHitTestVisible="False"
+                            Width="55"
+                            Height="55"
                              PreviewTextInput="PreviewTextInput"
                              FontFamily="Mitr"
                              FontSize="40"
                              FontWeight="Normal"
                              TextAlignment="Center"
                              MaxLength="1"></TextBox>
-                    <TextBox Grid.Column="3"
+                    <TextBox Grid.Column="3" x:Name="CodeDigit4"
                          Width="55"
                          Height="55"
+                             IsHitTestVisible="False"
                              PreviewTextInput="PreviewTextInput"
                              FontFamily="Mitr"
                              FontSize="40"
                              FontWeight="Normal"
                              TextAlignment="Center"
                              MaxLength="1"></TextBox>
-                    <TextBox Grid.Column="4"
+                    <TextBox Grid.Column="4" x:Name="CodeDigit5"
                          Width="55"
                          Height="55"
+                             IsHitTestVisible="False"
                              PreviewTextInput="PreviewTextInput"
                              FontFamily="Mitr"
                              FontSize="40"
                              FontWeight="Normal"
                              TextAlignment="Center"
                              MaxLength="1"></TextBox>
-                    <TextBox Grid.Column="5"
+                    <TextBox Grid.Column="5" x:Name="ConnectButton"
                          Width="55"
                          Height="55"
                         FontFamily="Mitr"
+                             IsHitTestVisible="False"
                              PreviewTextInput="PreviewTextInput"
                              FontSize="40"
                              FontWeight="Normal"
                              TextAlignment="Center"
-                             MaxLength="1"></TextBox>
+                             MaxLength="1"
+                             TextChanged="ConnectButton_TextChanged"></TextBox>
                 </Grid>
                 <TextBlock Grid.Row="1"
                        Margin="40,0,40,50"
@@ -122,7 +134,7 @@
                 <TextBlock Grid.Row="1"
                        Margin="40,50,40,0"
                        TextWrapping="Wrap"
-                       Text="To ensure the safety of confirmation process, do not share your OTP with others."
+                       Text="To ensure the safety of confirmation process, Do not share your OTP with others."
                        FontFamily="Nexa ☞"
                        FontWeight="Bold"
                        FontSize="17"

@@ -191,6 +191,72 @@
                     </Setter.Value>
                 </Setter>
             </Style>
+            <!--MessageBox Button-->
+            <Style TargetType="Button" 
+                x:Key="MessageBoxButtonStyle">
+                <Setter Property="Background" 
+                    Value="Transparent" />
+                <Setter Property="TextBlock.TextAlignment" 
+                    Value="Center" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Border  Name="Border" CornerRadius="10"  
+                    BorderBrush="White" BorderThickness="5" 
+                    Background="{TemplateBinding Background}">
+                                <ContentPresenter x:Name="contentPresenter" 
+                        ContentTemplate="{TemplateBinding ContentTemplate}" 
+                        Content="{TemplateBinding Content}" 
+                        HorizontalAlignment="{TemplateBinding HorizontalAlignment}" 
+                        Margin="{TemplateBinding Padding}" 
+                        VerticalAlignment="{TemplateBinding VerticalAlignment}" />
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <!--Digit Code Trigger-->
+            <Style x:Key="LayoutRoot" TargetType="Grid">
+                <Style.Triggers>
+                    <!--these are the triggers that make the code cursor jump from box 1 to box 2 to box 3.-->
+                    <DataTrigger Binding="{Binding ElementName=CodeDigit1, Path=Text.Length}" Value="1">
+                        <Setter Property="FocusManager.FocusedElement" Value="{Binding ElementName=CodeDigit2}"/>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding ElementName=CodeDigit2, Path=Text.Length}" Value="1">
+                        <Setter Property="FocusManager.FocusedElement" Value="{Binding ElementName=CodeDigit3}"/>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding ElementName=CodeDigit3, Path=Text.Length}" Value="1">
+                        <Setter Property="FocusManager.FocusedElement" Value="{Binding ElementName=CodeDigit4}"/>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding ElementName=CodeDigit4, Path=Text.Length}" Value="1">
+                        <Setter Property="FocusManager.FocusedElement" Value="{Binding ElementName=CodeDigit5}"/>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding ElementName=CodeDigit5, Path=Text.Length}" Value="1">
+                        <Setter Property="FocusManager.FocusedElement" Value="{Binding ElementName=ConnectButton}"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+            <!--Delete Digit Code Trigger-->
+            <Style x:Key="DeleteBackward" TargetType="Grid">
+                <Style.Triggers>
+                    <!--these are the triggers that make the code cursor jump from box 1 to box 2 to box 3.-->
+                    <DataTrigger Binding="{Binding ElementName=ConnectButton, Path=Text.Length}" Value="0">
+                        <Setter Property="FocusManager.FocusedElement" Value="{Binding ElementName=CodeDigit5}"/>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding ElementName=CodeDigit5, Path=Text.Length}" Value="0">
+                        <Setter Property="FocusManager.FocusedElement" Value="{Binding ElementName=CodeDigit4}"/>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding ElementName=CodeDigit4, Path=Text.Length}" Value="0">
+                        <Setter Property="FocusManager.FocusedElement" Value="{Binding ElementName=CodeDigit3}"/>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding ElementName=CodeDigit3, Path=Text.Length}" Value="0">
+                        <Setter Property="FocusManager.FocusedElement" Value="{Binding ElementName=CodeDigit2}"/>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding ElementName=CodeDigit2, Path=Text.Length}" Value="0">
+                        <Setter Property="FocusManager.FocusedElement" Value="{Binding ElementName=CodeDigit1}"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
             <!--Border-->
             <Style x:Key="WhiteBorder" TargetType="Border">
                 <Setter Property="Background" Value="White"></Setter>

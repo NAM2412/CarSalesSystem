@@ -23,6 +23,7 @@ namespace CarSalesSystem.General
     /// </summary>
     public partial class SignUp : Window
     {
+        
         public SignUp()
         {
             InitializeComponent();
@@ -50,6 +51,7 @@ namespace CarSalesSystem.General
             SignIn signIn = new SignIn();
             signIn.Show();
             CloseWindow(typeof(SignUp));
+            
 
         }
 
@@ -64,6 +66,7 @@ namespace CarSalesSystem.General
             }
             WpfMessageBox wpfMessageBox = new WpfMessageBox();
             wpfMessageBox.Show();
+            wpfMessageBox.storedEmail= emailTextBox.Text;
             
 
         }

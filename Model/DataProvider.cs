@@ -24,10 +24,6 @@ namespace CarSalesSystem.Model
             }
         }
 
-        public CARSALESSYSTEMEntities DB { get; set; }
-        private DataProvider()
-        {
-            DB = new CARSALESSYSTEMEntities();
-        }
+       
     }
 }

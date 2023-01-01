@@ -16,6 +16,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 using System.Linq.Expressions;
+using CarSalesSystem.General.Windows;
 
 namespace CarSalesSystem.General
 {
@@ -26,6 +27,7 @@ namespace CarSalesSystem.General
     {
         private bool usernameValid = false;
         private bool passwordValid = false;
+        private int type_user = 1;
         public SignIn()
         {
             InitializeComponent();
@@ -46,7 +48,7 @@ namespace CarSalesSystem.General
 
         private void usernameTextBox_GotFocus(object sender, RoutedEventArgs e)
         {
-            if (usernameTextBox.Text.Equals("Username"))
+            if (usernameTextBox.Text.Equals(" Username"))
                 usernameTextBox.Text = "";
             if (usernameTextBox.BorderBrush == Brushes.Red)
                 usernameTextBox.BorderBrush = Brushes.White;
@@ -55,7 +57,7 @@ namespace CarSalesSystem.General
         private void usernameTextBox_LostFocus(object sender, RoutedEventArgs e)
         {
             if (usernameTextBox.Text.Equals(""))
-                usernameTextBox.Text = "Username";
+                usernameTextBox.Text = " Username";
         }
 
         private void passwordTextBox_GotFocus(object sender, RoutedEventArgs e)
@@ -75,6 +77,7 @@ namespace CarSalesSystem.General
         {
             MainWindow adminWindow = new MainWindow();
             CustomerWindow customerWindow = new CustomerWindow();
+            CustomMessageBox customMessageBox = new CustomMessageBox();
             if (usernameTextBox.Text.Equals("admin12312") && passwordTextBox.Password.Equals("123456"))
             {
                 adminWindow.Show();
@@ -92,29 +95,33 @@ namespace CarSalesSystem.General
             if (!passwordValid)
                 passwordTextBox.BorderBrush = Brushes.Red;
             //retrieve data and compare with data from database
-            SqlConnection connection = new SqlConnection("Data Source=MSI\\SQLEXPRESS;Initial Catalog=CARSALESSYSTEM;Integrated Security=True");
+            SqlConnection connection = new SqlConnection("Data Source=MSI\\SQLEXPRESS;Initial Catalog=CARSALESSYSTEM;Integrated Security=True;MultipleActiveResultSets=true");
             try
             {
                 if (connection.State == ConnectionState.Closed)
                     connection.Open();
-                SqlCommand cmd = new SqlCommand("Select * from ACCOUNT where USERNAME='" + usernameTextBox.Text + "'  and PASS='" + passwordTextBox.Password + "'", connection);
+                SqlCommand cmd = new SqlCommand("Select COUNT(1) from ACCOUNT where USERNAME='" + usernameTextBox.Text + "'  and PASS='" + passwordTextBox.Password + "'", connection);
                 cmd.CommandType = CommandType.Text;
                 cmd.Parameters.AddWithValue("@USERNAME", usernameTextBox.Text);
                 cmd.Parameters.AddWithValue("@PASS", passwordTextBox.Password);
                 int result = Convert.ToInt32(cmd.ExecuteScalar());
-                if (result == 1)
-                {
-                    customerWindow.Show();
-                    this.Close();
-                }
-                else
-                {
-                    MessageBox.Show("Wrong password");
-                }
+                 if (result == 1)
+                 {
+                     usernameValid = true;
+                     passwordValid = true;
+                     customerWindow.Show();
+                     this.Close();
+                 }
+                 else
+                 {
+
+                     customMessageBox.Show("Notification", "Invalid username or wrong password", CustomMessageBox.MessageBoxType.Information);
+                 }
+               
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                customMessageBox.Show("Warning",ex.Message, CustomMessageBox.MessageBoxType.Warning);
             }
             
 

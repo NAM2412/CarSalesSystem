@@ -1,5 +1,4 @@
-﻿using CarSalesSystem.Model;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,18 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace CarSalesSystem.Customer.Pages
+namespace CarSalesSystem.Admin.User_Controls
 {
     /// <summary>
-    /// Interaction logic for Store.xaml
+    /// Interaction logic for ControlBar.xaml
     /// </summary>
-    public partial class Store : Page
+    public partial class ControlBar : UserControl
     {
-        
-        public Store()
+        public ControlBar()
         {
             InitializeComponent();
-            //ListProduct.ItemsSource = DataProvider.Ins.DB.PRODUCTs.ToList();
         }
     }
 }
