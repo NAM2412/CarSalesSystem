@@ -191,7 +191,30 @@
                     </Setter.Value>
                 </Setter>
             </Style>
-            
+            <!--MessageBox Button-->
+            <Style TargetType="Button" 
+                x:Key="MessageBoxButtonStyle">
+                <Setter Property="Background" 
+                    Value="Transparent" />
+                <Setter Property="TextBlock.TextAlignment" 
+                    Value="Center" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Border  Name="Border" CornerRadius="10"  
+                    BorderBrush="White" BorderThickness="5" 
+                    Background="{TemplateBinding Background}">
+                                <ContentPresenter x:Name="contentPresenter" 
+                        ContentTemplate="{TemplateBinding ContentTemplate}" 
+                        Content="{TemplateBinding Content}" 
+                        HorizontalAlignment="{TemplateBinding HorizontalAlignment}" 
+                        Margin="{TemplateBinding Padding}" 
+                        VerticalAlignment="{TemplateBinding VerticalAlignment}" />
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
             <!--Digit Code Trigger-->
             <Style x:Key="LayoutRoot" TargetType="Grid">
                 <Style.Triggers>

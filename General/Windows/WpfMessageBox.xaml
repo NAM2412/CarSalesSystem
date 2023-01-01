@@ -48,17 +48,8 @@
                 <StackPanel Orientation="Horizontal"  
                 HorizontalAlignment="Right" >
 
-                    <Button Name="btnNo" Content="No"  
-                    Margin="3,5" MinWidth="60" Height="30" 
-                    Click="Button_Click" Foreground="White" 
-                    FontSize="14" 
-                              Style="{DynamicResource RoundedButtonStyle}"   
-                              Background="#FB6161" VerticalAlignment="Center" 
-                              HorizontalAlignment="Stretch"  
-                              VerticalContentAlignment="Center" 
-                              HorizontalContentAlignment="Center" />
                     <Button Name="btnYes" Margin="3,5" 
-                    Content="Yes" MinWidth="60" 
+                    Content="Yes" MinWidth="70" 
                     Height="30" Click="Button_Click"
                                 Style="{DynamicResource RoundedButtonStyle}" 
                                 Foreground="White" 
@@ -67,6 +58,15 @@
                                 HorizontalAlignment="Stretch" 
                                 VerticalContentAlignment="Center" 
                                 HorizontalContentAlignment="Center"/>
+                    <Button Name="btnNo" Content="No"  
+                    Margin="3,5" MinWidth="70" Height="30" 
+                    Click="Button_Click" Foreground="White" 
+                    FontSize="14" 
+                              Style="{DynamicResource RoundedButtonStyle}"   
+                              Background="#FB6161" VerticalAlignment="Center" 
+                              HorizontalAlignment="Stretch"  
+                              VerticalContentAlignment="Center" 
+                              HorizontalContentAlignment="Center" />
                 </StackPanel>
             </Grid>
         </Grid>
