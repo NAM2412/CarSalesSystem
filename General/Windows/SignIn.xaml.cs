@@ -27,6 +27,7 @@ namespace CarSalesSystem.General
     {
         private bool usernameValid = false;
         private bool passwordValid = false;
+        private int type_user = 1;
         public SignIn()
         {
             InitializeComponent();
@@ -94,7 +95,7 @@ namespace CarSalesSystem.General
             if (!passwordValid)
                 passwordTextBox.BorderBrush = Brushes.Red;
             //retrieve data and compare with data from database
-            SqlConnection connection = new SqlConnection("Data Source=MSI\\SQLEXPRESS;Initial Catalog=CARSALESSYSTEM;Integrated Security=True");
+            SqlConnection connection = new SqlConnection("Data Source=MSI\\SQLEXPRESS;Initial Catalog=CARSALESSYSTEM;Integrated Security=True;MultipleActiveResultSets=true");
             try
             {
                 if (connection.State == ConnectionState.Closed)
@@ -104,18 +105,19 @@ namespace CarSalesSystem.General
                 cmd.Parameters.AddWithValue("@USERNAME", usernameTextBox.Text);
                 cmd.Parameters.AddWithValue("@PASS", passwordTextBox.Password);
                 int result = Convert.ToInt32(cmd.ExecuteScalar());
-                if (result == 1)
-                {
-                    usernameValid = true;
-                    passwordValid = true;
-                    customerWindow.Show();
-                    this.Close();
-                }
-                else
-                {
-                    
-                    customMessageBox.Show("Notification", "Invalid username or wrong password", CustomMessageBox.MessageBoxType.Information);
-                }
+                 if (result == 1)
+                 {
+                     usernameValid = true;
+                     passwordValid = true;
+                     customerWindow.Show();
+                     this.Close();
+                 }
+                 else
+                 {
+
+                     customMessageBox.Show("Notification", "Invalid username or wrong password", CustomMessageBox.MessageBoxType.Information);
+                 }
+               
             }
             catch (Exception ex)
             {

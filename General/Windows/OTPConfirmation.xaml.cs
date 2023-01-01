@@ -15,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using System.Reflection;
 
 namespace CarSalesSystem.General.Windows
 {
@@ -28,11 +29,11 @@ namespace CarSalesSystem.General.Windows
         {
             return !_regex.IsMatch(text);
         }
-        private bool OTPSuccess = false;
         private int time = 180;
         private DispatcherTimer Timer;
         private int retryTimes = 2;
-
+        public string storedCode;
+       
         public OTPConfirmation()
         {
             InitializeComponent();
@@ -73,44 +74,22 @@ namespace CarSalesSystem.General.Windows
                 return;
             }
             time = 180;
-            Random rand = new Random();
-            String randomCode = (rand.Next(999999)).ToString();
-            MailMessage message = new MailMessage();
-            WpfMessageBox wpfMessageBox= new WpfMessageBox();
-            String to = wpfMessageBox.storedEmail.ToString();
-            String from = "20520215@gm.uit.edu.vn";
-            String password = "tirlehholexszpyd";
-            String messageBody = "Your OTP code is: " + randomCode;
-            message.To.Add(new MailAddress(to));
-            message.From = new MailAddress(from);
-            message.Body = messageBody;
-            message.Subject = "Registration OTP code";
-            SmtpClient smtp = new SmtpClient("smtp.gmail.com");
-            smtp.EnableSsl = true;
-            smtp.Port = 587;
-            smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
-            smtp.Credentials = new NetworkCredential(from, password);
-            CustomMessageBox customMessageBox = new CustomMessageBox();
-
-            try
-            {
-                smtp.Send(message);
-                customMessageBox.Show("Success", "Code sent successfully", CustomMessageBox.MessageBoxType.Information);
-            }
-            catch (Exception ex)
-            {
-                customMessageBox.Show("Error", "Cannot send OTP code to email", CustomMessageBox.MessageBoxType.Error);
-            }
+            WpfMessageBox wpfMessageBox = new WpfMessageBox();
+            wpfMessageBox.Show();
         }
-        private void OpenAddInformationWindow()
+
+        private void ConnectButton_TextChanged(object sender, TextChangedEventArgs e)
         {
-            FillingInformation fillingInformationWindow = new FillingInformation();
-            if (OTPSuccess)
+            CustomMessageBox customMessageBox = new CustomMessageBox();
+            string typedCode = CodeDigit1.Text + CodeDigit2.Text + CodeDigit3.Text + CodeDigit4.Text + CodeDigit5.Text + ConnectButton.Text;
+            if(!typedCode.Equals(storedCode))
             {
-                fillingInformationWindow.Show();
-                this.Close();
+                MessageBox.Show( "Invalid OTP code, please try again.", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
+            FillingInformation fillingInformation = new FillingInformation();
+            fillingInformation.Show();
+            this.Close();
         }
     }
 }

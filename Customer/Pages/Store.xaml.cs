@@ -21,10 +21,11 @@ namespace CarSalesSystem.Customer.Pages
     /// </summary>
     public partial class Store : Page
     {
+        
         public Store()
         {
             InitializeComponent();
-            ListProduct.ItemsSource = DataProvider.Ins.DB.PRODUCTs.ToList();
+            //ListProduct.ItemsSource = DataProvider.Ins.DB.PRODUCTs.ToList();
         }
     }
 }

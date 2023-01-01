@@ -31,7 +31,7 @@
                     EndPoint="0,1" Opacity="0.8">
                         <GradientStop Color="#70A4B9" 
                         Offset="0.0"/>
-                        <GradientStop Color="#CDDFE9" 
+                        <GradientStop Color="#70A4B9" 
                         Offset="1.0"/>
                     </LinearGradientBrush>
                 </Rectangle.Fill>

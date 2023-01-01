@@ -74,6 +74,7 @@ namespace CarSalesSystem.General
                 {
                     smtp.Send(message);
                     customMessageBox.Show("Success", "Code sent successfully", CustomMessageBox.MessageBoxType.Information);
+                    confirmation.storedCode= randomCode;
                     confirmation.Show();
                     CloseWindow(typeof(SignUp));
                 }

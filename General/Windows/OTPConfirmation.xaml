@@ -119,7 +119,8 @@
                              FontSize="40"
                              FontWeight="Normal"
                              TextAlignment="Center"
-                             MaxLength="1"></TextBox>
+                             MaxLength="1"
+                             TextChanged="ConnectButton_TextChanged"></TextBox>
                 </Grid>
                 <TextBlock Grid.Row="1"
                        Margin="40,0,40,50"
