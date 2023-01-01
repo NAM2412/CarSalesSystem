@@ -12,33 +12,25 @@ namespace CarSalesSystem.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class EMPLOYEE
+    public partial class RANK_MONEY
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public EMPLOYEE()
+        public RANK_MONEY()
         {
-            this.IMPORTRECEIPTs = new HashSet<IMPORTRECEIPT>();
-            this.MAINTENANCEBILLs = new HashSet<MAINTENANCEBILL>();
+            this.CUSTOMERs = new HashSet<CUSTOMER>();
+            this.ORDERBILLs = new HashSet<ORDERBILL>();
             this.SELLBILLs = new HashSet<SELLBILL>();
         }
     
-        public string EMP_ID { get; set; }
-        public string EMP_NAME { get; set; }
-        public string EMP_ACCOUNT { get; set; }
-        public Nullable<System.DateTime> EMP_DATE_OF_BIRTH { get; set; }
-        public string GENDER { get; set; }
-        public string PHONE { get; set; }
-        public string EMP_ADDRESS { get; set; }
-        public Nullable<System.DateTime> DATE_OF_WORK { get; set; }
-        public Nullable<decimal> SALARY { get; set; }
-        public byte[] IMG { get; set; }
-        public string EMP_TYPE { get; set; }
+        public string RANK_ID { get; set; }
+        public Nullable<int> RANK_TYPE { get; set; }
+        public Nullable<decimal> CASH_LIMIT { get; set; }
+        public Nullable<int> DISCOUNT { get; set; }
     
-        public virtual ACCOUNT ACCOUNT { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<IMPORTRECEIPT> IMPORTRECEIPTs { get; set; }
+        public virtual ICollection<CUSTOMER> CUSTOMERs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<MAINTENANCEBILL> MAINTENANCEBILLs { get; set; }
+        public virtual ICollection<ORDERBILL> ORDERBILLs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SELLBILL> SELLBILLs { get; set; }
     }

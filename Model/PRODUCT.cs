@@ -18,6 +18,8 @@ namespace CarSalesSystem.Model
         public PRODUCT()
         {
             this.MAINTENANCEBILLs = new HashSet<MAINTENANCEBILL>();
+            this.ORDERBILLs = new HashSet<ORDERBILL>();
+            this.IMPORTRECEIPTINFOes = new HashSet<IMPORTRECEIPTINFO>();
             this.SELLBILLs = new HashSet<SELLBILL>();
         }
     
@@ -25,16 +27,28 @@ namespace CarSalesSystem.Model
         public string PRO_NAME { get; set; }
         public Nullable<int> STORAGE_NUMBER { get; set; }
         public Nullable<int> SELL_NUMBER { get; set; }
-        public Nullable<decimal> HISTORICAL_COST { get; set; }
+        public string IRECEIPT_ID { get; set; }
         public decimal PRICE { get; set; }
         public string DESCRIPTIONS { get; set; }
         public string TYPEPRO_ID { get; set; }
         public string PRODUCER_ID { get; set; }
         public byte[] IMG { get; set; }
+        public Nullable<int> PRO_YEAR { get; set; }
+        public string ENGINELAYOUT { get; set; }
+        public Nullable<int> DISPLACEMENT { get; set; }
+        public Nullable<int> MAXSPEED { get; set; }
+        public Nullable<int> MAXPOWER { get; set; }
+        public string ACCELERATION { get; set; }
+        public string TRACTION { get; set; }
     
+        public virtual IMPORTRECEIPT IMPORTRECEIPT { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MAINTENANCEBILL> MAINTENANCEBILLs { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ORDERBILL> ORDERBILLs { get; set; }
         public virtual PRODUCER PRODUCER { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<IMPORTRECEIPTINFO> IMPORTRECEIPTINFOes { get; set; }
         public virtual TYPEPRODUCT TYPEPRODUCT { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SELLBILL> SELLBILLs { get; set; }
