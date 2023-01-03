@@ -107,7 +107,6 @@ warning 6002: The table/view 'CARSALESSYSTEM.dbo.IMPORTRECEIPTINFO' does not hav
           <Property Name="SELL_NUMBER" Type="int" />
           <Property Name="IRECEIPT_ID" Type="varchar" MaxLength="4" />
           <Property Name="PRICE" Type="money" Nullable="false" />
-          <Property Name="DESCRIPTIONS" Type="nvarchar" MaxLength="400" />
           <Property Name="TYPEPRO_ID" Type="varchar" MaxLength="4" />
           <Property Name="PRODUCER_ID" Type="varchar" MaxLength="4" />
           <Property Name="IMG" Type="varbinary(max)" />
@@ -136,19 +135,9 @@ warning 6002: The table/view 'CARSALESSYSTEM.dbo.IMPORTRECEIPTINFO' does not hav
           <Property Name="SB_DATEB" Type="datetime" />
           <Property Name="CUSTOMER_ID" Type="varchar" MaxLength="4" Nullable="false" />
           <Property Name="PRO_ID" Type="varchar" MaxLength="4" />
-          <Property Name="EMPLOYEE_ID" Type="varchar" MaxLength="4" />
+          <Property Name="EMPLOYEE_ID" Type="varchar" MaxLength="4" Nullable="false" />
           <Property Name="RANK_ID" Type="varchar" MaxLength="4" />
           <Property Name="TOTAL_PRICE" Type="money" />
-        </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="principal_id" Type="int" Nullable="false" />
-          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="version" Type="int" />
-          <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="TYPEPRODUCT">
           <Key>
@@ -279,7 +268,7 @@ warning 6002: The table/view 'CARSALESSYSTEM.dbo.IMPORTRECEIPTINFO' does not hav
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_MANVMH">
-          <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="0..1" />
+          <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="1" />
           <End Role="SELLBILL" Type="Self.SELLBILL" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="EMPLOYEE">
@@ -409,7 +398,6 @@ warning 6002: The table/view 'CARSALESSYSTEM.dbo.IMPORTRECEIPTINFO' does not hav
           <EntitySet Name="PRODUCT" EntityType="Self.PRODUCT" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RANK_MONEY" EntityType="Self.RANK_MONEY" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SELLBILL" EntityType="Self.SELLBILL" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TYPEPRODUCT" EntityType="Self.TYPEPRODUCT" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="IMPORTRECEIPTINFO" EntityType="Self.IMPORTRECEIPTINFO" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -617,7 +605,6 @@ warning 6002: The table/view 'CARSALESSYSTEM.dbo.IMPORTRECEIPTINFO' does not hav
           <Property Name="SELL_NUMBER" Type="Int32" />
           <Property Name="IRECEIPT_ID" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
           <Property Name="PRICE" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
-          <Property Name="DESCRIPTIONS" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
           <Property Name="TYPEPRO_ID" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
           <Property Name="PRODUCER_ID" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
           <Property Name="IMG" Type="Binary" MaxLength="Max" FixedLength="false" />
@@ -656,23 +643,13 @@ warning 6002: The table/view 'CARSALESSYSTEM.dbo.IMPORTRECEIPTINFO' does not hav
           <Property Name="SB_DATEB" Type="DateTime" Precision="3" />
           <Property Name="CUSTOMER_ID" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="PRO_ID" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
-          <Property Name="EMPLOYEE_ID" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="EMPLOYEE_ID" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="RANK_ID" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
           <Property Name="TOTAL_PRICE" Type="Decimal" Precision="19" Scale="4" />
           <NavigationProperty Name="CUSTOMER" Relationship="Self.FK_MAKHMH" FromRole="SELLBILL" ToRole="CUSTOMER" />
           <NavigationProperty Name="EMPLOYEE" Relationship="Self.FK_MANVMH" FromRole="SELLBILL" ToRole="EMPLOYEE" />
           <NavigationProperty Name="PRODUCT" Relationship="Self.FK_MASPMH" FromRole="SELLBILL" ToRole="PRODUCT" />
           <NavigationProperty Name="RANK_MONEY" Relationship="Self.FK_MARANKMH" FromRole="SELLBILL" ToRole="RANK_MONEY" />
-        </EntityType>
-        <EntityType Name="sysdiagram">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="TYPEPRODUCT">
           <Key>
@@ -793,7 +770,7 @@ warning 6002: The table/view 'CARSALESSYSTEM.dbo.IMPORTRECEIPTINFO' does not hav
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_MANVMH">
-          <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="0..1" />
+          <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="1" />
           <End Role="SELLBILL" Type="Self.SELLBILL" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="EMPLOYEE">
@@ -936,7 +913,7 @@ warning 6002: The table/view 'CARSALESSYSTEM.dbo.IMPORTRECEIPTINFO' does not hav
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="CARSALESSYSTEMEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="CARSALESSYSTEMEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="ACCOUNTs" EntityType="Self.ACCOUNT" />
           <EntitySet Name="CUSTOMERs" EntityType="Self.CUSTOMER" />
           <EntitySet Name="EMPLOYEEs" EntityType="Self.EMPLOYEE" />
@@ -947,7 +924,6 @@ warning 6002: The table/view 'CARSALESSYSTEM.dbo.IMPORTRECEIPTINFO' does not hav
           <EntitySet Name="PRODUCTs" EntityType="Self.PRODUCT" />
           <EntitySet Name="RANK_MONEY" EntityType="Self.RANK_MONEY" />
           <EntitySet Name="SELLBILLs" EntityType="Self.SELLBILL" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
           <EntitySet Name="TYPEPRODUCTs" EntityType="Self.TYPEPRODUCT" />
           <EntitySet Name="IMPORTRECEIPTINFOes" EntityType="Self.IMPORTRECEIPTINFO" />
           <AssociationSet Name="FK_TAIKHOANKH_TAIKHOAN" Association="Self.FK_TAIKHOANKH_TAIKHOAN">
@@ -1036,7 +1012,7 @@ warning 6002: The table/view 'CARSALESSYSTEM.dbo.IMPORTRECEIPTINFO' does not hav
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="CARSALESSYSTEMModelStoreContainer" CdmEntityContainer="CARSALESSYSTEMEntities">
+        <EntityContainerMapping StorageEntityContainer="CARSALESSYSTEMModelStoreContainer" CdmEntityContainer="CARSALESSYSTEMEntities1">
           <EntitySetMapping Name="ACCOUNTs">
             <EntityTypeMapping TypeName="CARSALESSYSTEMModel.ACCOUNT">
               <MappingFragment StoreEntitySet="ACCOUNT">
@@ -1133,7 +1109,6 @@ warning 6002: The table/view 'CARSALESSYSTEM.dbo.IMPORTRECEIPTINFO' does not hav
                 <ScalarProperty Name="SELL_NUMBER" ColumnName="SELL_NUMBER" />
                 <ScalarProperty Name="IRECEIPT_ID" ColumnName="IRECEIPT_ID" />
                 <ScalarProperty Name="PRICE" ColumnName="PRICE" />
-                <ScalarProperty Name="DESCRIPTIONS" ColumnName="DESCRIPTIONS" />
                 <ScalarProperty Name="TYPEPRO_ID" ColumnName="TYPEPRO_ID" />
                 <ScalarProperty Name="PRODUCER_ID" ColumnName="PRODUCER_ID" />
                 <ScalarProperty Name="IMG" ColumnName="IMG" />
@@ -1167,17 +1142,6 @@ warning 6002: The table/view 'CARSALESSYSTEM.dbo.IMPORTRECEIPTINFO' does not hav
                 <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
                 <ScalarProperty Name="RANK_ID" ColumnName="RANK_ID" />
                 <ScalarProperty Name="TOTAL_PRICE" ColumnName="TOTAL_PRICE" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="CARSALESSYSTEMModel.sysdiagram">
-              <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="definition" ColumnName="definition" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

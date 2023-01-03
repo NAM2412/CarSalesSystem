@@ -23,7 +23,11 @@ namespace CarSalesSystem.Model
                 _ins = value;
             }
         }
+        public CARSALESSYSTEMEntities1 DB { get; set; }
+        private DataProvider()
+        {
+            DB = new CARSALESSYSTEMEntities1();
+        }
 
-       
     }
 }
