@@ -4,20 +4,19 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="b71d7c818b4b48c08e180d0cca8997cc" Name="Diagram1" ZoomLevel="29">
-        <EntityTypeShape EntityType="CARSALESSYSTEMModel.ACCOUNT" Width="1.5" PointX="0.75" PointY="9" IsExpanded="true" />
-        <EntityTypeShape EntityType="CARSALESSYSTEMModel.CUSTOMER" Width="1.5" PointX="3" PointY="7.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="CARSALESSYSTEMModel.EMPLOYEE" Width="1.5" PointX="3" PointY="13.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="CARSALESSYSTEMModel.IMPORTRECEIPT" Width="1.5" PointX="5.25" PointY="13.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="CARSALESSYSTEMModel.MAINTENANCEBILL" Width="1.5" PointX="9.75" PointY="11.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="CARSALESSYSTEMModel.ORDERBILL" Width="1.5" PointX="12.75" PointY="11.375" IsExpanded="true" />
+      <Diagram DiagramId="409b2998471f4391a9d3d0530959a4eb" Name="Diagram1">
+        <EntityTypeShape EntityType="CARSALESSYSTEMModel.ACCOUNT" Width="1.5" PointX="0.75" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CARSALESSYSTEMModel.CUSTOMER" Width="1.5" PointX="3" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CARSALESSYSTEMModel.EMPLOYEE" Width="1.5" PointX="3" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="CARSALESSYSTEMModel.IMPORTRECEIPT" Width="1.5" PointX="5.25" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CARSALESSYSTEMModel.MAINTENANCEBILL" Width="1.5" PointX="9.75" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CARSALESSYSTEMModel.ORDERBILL" Width="1.5" PointX="12.75" PointY="11.25" IsExpanded="true" />
         <EntityTypeShape EntityType="CARSALESSYSTEMModel.PRODUCER" Width="1.5" PointX="5.25" PointY="10.75" IsExpanded="true" />
         <EntityTypeShape EntityType="CARSALESSYSTEMModel.PRODUCT" Width="1.5" PointX="7.5" PointY="12.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="CARSALESSYSTEMModel.RANK_MONEY" Width="1.5" PointX="0.75" PointY="5.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="CARSALESSYSTEMModel.SELLBILL" Width="1.5" PointX="9.75" PointY="15.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="CARSALESSYSTEMModel.sysdiagram" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="CARSALESSYSTEMModel.TYPEPRODUCT" Width="1.5" PointX="5.25" PointY="17.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="CARSALESSYSTEMModel.IMPORTRECEIPTINFO" Width="1.5" PointX="12.75" PointY="16" IsExpanded="true" />
+        <EntityTypeShape EntityType="CARSALESSYSTEMModel.RANK_MONEY" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CARSALESSYSTEMModel.SELLBILL" Width="1.5" PointX="9.75" PointY="15.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CARSALESSYSTEMModel.TYPEPRODUCT" Width="1.5" PointX="5.25" PointY="17.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CARSALESSYSTEMModel.IMPORTRECEIPTINFO" Width="1.5" PointX="12.75" PointY="15.875" IsExpanded="true" />
         <AssociationConnector Association="CARSALESSYSTEMModel.FK_TAIKHOANKH_TAIKHOAN" ManuallyRouted="false" />
         <AssociationConnector Association="CARSALESSYSTEMModel.FK_TAIKHOANNV_TAIKHOAN" ManuallyRouted="false" />
         <AssociationConnector Association="CARSALESSYSTEMModel.FK_MAKHBT" ManuallyRouted="false" />

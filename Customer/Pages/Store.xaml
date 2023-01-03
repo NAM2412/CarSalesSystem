@@ -51,7 +51,7 @@
                                 Background="Transparent" 
                                 Foreground="{x:Null}"
                                 HorizontalAlignment="Left" VerticalAlignment="Top"
-                          Margin="10">
+                          Margin="10" SelectionChanged="ListProduct_SelectionChanged" >
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <Border x:Name="border" CornerRadius="5"

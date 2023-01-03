@@ -1,4 +1,5 @@
-﻿using CarSalesSystem.Model;
+﻿using CarSalesSystem.Customer.Windows;
+using CarSalesSystem.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,7 +26,14 @@ namespace CarSalesSystem.Customer.Pages
         public Store()
         {
             InitializeComponent();
-            //ListProduct.ItemsSource = DataProvider.Ins.DB.PRODUCTs.ToList();
+            ListProduct.ItemsSource = DataProvider.Ins.DB.PRODUCTs.ToList();
+        }
+
+        private void ListProduct_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            PRODUCT prd = ListProduct.SelectedItem as PRODUCT;
+            DetailCar detailCar = new DetailCar(prd);
+            detailCar.Show();
         }
     }
 }
