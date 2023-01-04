@@ -15,7 +15,7 @@
      ShowInTaskbar="False" ResizeMode="NoResize" 
      WindowStyle="None" Topmost="True">
     <Border
-        BorderThickness="1"
+        BorderThickness="0"
         BorderBrush="LightGray"
         CornerRadius="10"
         Background="White"

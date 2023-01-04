@@ -15,6 +15,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Media.Media3D;
 using System.Windows.Shapes;
+using ToastNotifications;
+using ToastNotifications.Lifetime;
+using ToastNotifications.Messages;
+using ToastNotifications.Position;
 
 namespace CarSalesSystem.General
 {
@@ -23,11 +27,24 @@ namespace CarSalesSystem.General
     /// </summary>
     public partial class SignUp : Window
     {
-        
         public SignUp()
         {
             InitializeComponent();
         }
+        Notifier notifier = new Notifier(cfg =>
+        {
+            cfg.PositionProvider = new WindowPositionProvider(
+                parentWindow: Application.Current.MainWindow,
+                corner: Corner.TopRight,
+                offsetX: 10,
+                offsetY: 10);
+
+            cfg.LifetimeSupervisor = new TimeAndCountBasedLifetimeSupervisor(
+                notificationLifetime: TimeSpan.FromSeconds(3),
+                maximumNotificationCount: MaximumNotificationCount.FromCount(5));
+
+            cfg.Dispatcher = Application.Current.Dispatcher;
+        });
         void CloseWindow(Type type)
         {
             var window = App.Current.Windows.OfType<Window>().FirstOrDefault(w => w.GetType() == type);
@@ -65,11 +82,13 @@ namespace CarSalesSystem.General
                 return;
             }
             WpfMessageBox wpfMessageBox = new WpfMessageBox();
+            OTPConfirmation confirmation= new OTPConfirmation();
+            confirmation.email = emailTextBox.Text;
             wpfMessageBox.Show();
-            wpfMessageBox.storedEmail= emailTextBox.Text;
-            
+            wpfMessageBox.storedEmail = emailTextBox.Text;
 
         }
+        
  
     }
 }
