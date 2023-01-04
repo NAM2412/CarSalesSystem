@@ -31,6 +31,7 @@ namespace CarSalesSystem.General
         {
             InitializeComponent();
         }
+        public string email = "";
         Notifier notifier = new Notifier(cfg =>
         {
             cfg.PositionProvider = new WindowPositionProvider(
@@ -53,6 +54,11 @@ namespace CarSalesSystem.General
         }
         private void emailTextBox_GotFocus(object sender, RoutedEventArgs e)
         {
+            if (string.IsNullOrEmpty(email))
+            {
+                emailTextBox.Text = email;
+                return;
+            }
             if (emailTextBox.Text.Equals("Email") || emailTextBox.Text.Equals("Enter a valid email."))
                 emailTextBox.Text = "";
         }
@@ -81,12 +87,10 @@ namespace CarSalesSystem.General
                 
                 return;
             }
+            email = emailTextBox.Text.ToString();
             WpfMessageBox wpfMessageBox = new WpfMessageBox();
-            OTPConfirmation confirmation= new OTPConfirmation();
-            confirmation.email = emailTextBox.Text;
             wpfMessageBox.Show();
             wpfMessageBox.storedEmail = emailTextBox.Text;
-
         }
         
  

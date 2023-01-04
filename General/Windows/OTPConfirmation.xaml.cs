@@ -37,7 +37,6 @@ namespace CarSalesSystem.General.Windows
         private DispatcherTimer Timer;
         private int retryTimes = 3;
         public string storedCode;
-        public string email="";
         //Notification box
         Notifier notifier = new Notifier(cfg =>
         {
@@ -95,33 +94,9 @@ namespace CarSalesSystem.General.Windows
             time = 180;
 
             //Send OTP code to email
-            Random rand = new Random();
-            String randomCode = (rand.Next(999999)).ToString();
-            MailMessage message = new MailMessage();
-            String to = email.ToString();
-            String from = "20520215@gm.uit.edu.vn";
-            String password = "tirlehholexszpyd";
-            String messageBody = "Your OTP code is: " + randomCode;
-            message.To.Add(new MailAddress(to));
-            message.From = new MailAddress(from);
-            message.Body = messageBody;
-            message.Subject = "Registration OTP code";
-            SmtpClient smtp = new SmtpClient("smtp.gmail.com");
-            smtp.EnableSsl = true;
-            smtp.Port = 587;
-            smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
-            smtp.Credentials = new NetworkCredential(from, password);
-            try
-            {
-                smtp.Send(message);
-                //noti
-                notifier.ShowSuccess("Code successfully sent to email.");
-
-            }
-            catch (Exception ex)
-            {
-                notifier.ShowError("Cannot send OTP code to email");
-            }
+            SignUp signUp= new SignUp();
+            signUp.Show();
+            this.Hide();
         }
 
         private void ConnectButton_TextChanged(object sender, TextChangedEventArgs e)
