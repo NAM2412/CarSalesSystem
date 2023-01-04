@@ -13,10 +13,10 @@ namespace CarSalesSystem.Model
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class CARSALESSYSTEMEntities1 : DbContext
+    public partial class CARSALESSYSTEMEntities : DbContext
     {
-        public CARSALESSYSTEMEntities1()
-            : base("name=CARSALESSYSTEMEntities1")
+        public CARSALESSYSTEMEntities()
+            : base("name=CARSALESSYSTEMEntities")
         {
         }
     
