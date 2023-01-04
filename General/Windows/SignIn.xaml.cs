@@ -77,7 +77,7 @@ namespace CarSalesSystem.General
         {
             MainWindow adminWindow = new MainWindow();
             CustomerWindow customerWindow = new CustomerWindow();
-            CustomMessageBox customMessageBox = new CustomMessageBox();
+            Notification notification = new Notification();
             if (usernameTextBox.Text.Equals("admin12312") && passwordTextBox.Password.Equals("123456"))
             {
                 adminWindow.Show();
@@ -114,14 +114,13 @@ namespace CarSalesSystem.General
                  }
                  else
                  {
-
-                     customMessageBox.Show("Notification", "Invalid username or wrong password", CustomMessageBox.MessageBoxType.Information);
+                    //noti
                  }
                
             }
             catch (Exception ex)
             {
-                customMessageBox.Show("Warning",ex.Message, CustomMessageBox.MessageBoxType.Warning);
+                //noti
             }
             
 

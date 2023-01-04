@@ -33,7 +33,7 @@ namespace CarSalesSystem.General.Windows
         private DispatcherTimer Timer;
         private int retryTimes = 3;
         public string storedCode;
-        private CustomMessageBox customMessageBox = new CustomMessageBox();
+        private Notification notification= new Notification();
 
 
         public OTPConfirmation()
@@ -71,7 +71,6 @@ namespace CarSalesSystem.General.Windows
             if(retryTimes == 0)
             {
                 //MessageBox.Show("You have requested OTP code too many times!", "Warning", MessageBoxButton.OK,MessageBoxImage.Warning);
-                customMessageBox.Show("Warning", "You have requested OTP code too many times!", CustomMessageBox.MessageBoxType.Warning);
 
                 Timer.Stop();
                 this.Close();

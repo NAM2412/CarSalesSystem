@@ -68,19 +68,18 @@ namespace CarSalesSystem.General
                 smtp.Port = 587;
                 smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
                 smtp.Credentials = new NetworkCredential(from,password);
-                CustomMessageBox customMessageBox = new CustomMessageBox();
-
+                Notification notification= new Notification();
                 try
                 {
                     smtp.Send(message);
-                    customMessageBox.Show("Success", "Code sent successfully", CustomMessageBox.MessageBoxType.Information);
+                    //noti
                     confirmation.storedCode= randomCode;
                     confirmation.Show();
                     CloseWindow(typeof(SignUp));
                 }
                 catch(Exception ex)
                 {
-                    customMessageBox.Show("Error", "Cannot send OTP code to email", CustomMessageBox.MessageBoxType.Error);
+                    //noti("Error", "Cannot send OTP code to email", Notification.MessageBoxType.Error);
                 }
                 
             }
