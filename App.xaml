@@ -84,21 +84,15 @@
             <Style.Resources>
                 <Style TargetType="{x:Type Border}">
                     <Setter Property="CornerRadius" Value="10" />
-                </Style>
+                        <Setter Property="Padding" Value="10 0 0 0"/>
+                    </Style>
                     <Style TargetType="{x:Type UserControl}">
                         <Setter Property="FontSize" Value="40"></Setter>
                     </Style>
             </Style.Resources>
         </Style>
-        <Style x:Key="FocusVisual">
-            <Setter>
-                <Setter.Value>
-                    <ControlTemplate>
-                        <Rectangle Margin="2" StrokeDashArray="1 2" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" SnapsToDevicePixels="true" StrokeThickness="1"/>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
+            
+       
             <!--Rounded button style-->
             <Style x:Key="RoundedButtonStyle" TargetType="{x:Type Button}">
             <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>

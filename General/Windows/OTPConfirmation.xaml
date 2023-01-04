@@ -59,11 +59,11 @@
                         <ColumnDefinition Width="1*" />
                     </Grid.ColumnDefinitions>
                     <TextBox x:Name="CodeDigit1" 
-                        Grid.Column="0"
-                         Width="55"
-                         Height="55"
-                        FontFamily="Mitr"
-                             FontSize="40"
+                             Grid.Column="0"
+                             Width="55"
+                             Height="55"
+                             FontFamily="Mitr"
+                             FontSize="30"
                              MaxLength="1"
                              FontWeight="Normal"
                              TextAlignment="Center"
@@ -76,7 +76,7 @@
                              FontFamily="Mitr"
                              FontWeight="Normal"
                              TextAlignment="Center"
-                             FontSize="40"
+                             FontSize="30"
                              MaxLength="1"></TextBox>
                     <TextBox Grid.Column="2" 
                              x:Name="CodeDigit3"
@@ -84,7 +84,7 @@
                             Height="55"
                              PreviewTextInput="PreviewTextInput"
                              FontFamily="Mitr"
-                             FontSize="40"
+                             FontSize="30"
                              FontWeight="Normal"
                              TextAlignment="Center"
                              MaxLength="1"></TextBox>
@@ -93,7 +93,7 @@
                          Height="55"
                              PreviewTextInput="PreviewTextInput"
                              FontFamily="Mitr"
-                             FontSize="40"
+                             FontSize="30"
                              FontWeight="Normal"
                              TextAlignment="Center"
                              MaxLength="1"></TextBox>
@@ -102,7 +102,7 @@
                          Height="55"
                              PreviewTextInput="PreviewTextInput"
                              FontFamily="Mitr"
-                             FontSize="40"
+                             FontSize="30"
                              FontWeight="Normal"
                              TextAlignment="Center"
                              MaxLength="1"></TextBox>
@@ -112,7 +112,7 @@
                         FontFamily="Mitr"
                              IsHitTestVisible="False"
                              PreviewTextInput="PreviewTextInput"
-                             FontSize="40"
+                             FontSize="30"
                              FontWeight="Normal"
                              TextAlignment="Center"
                              MaxLength="1"
@@ -137,7 +137,7 @@
                        Foreground="#626262"
                        VerticalAlignment="Center"></TextBlock>
                 <Label Grid.Row="2"
-                   Margin="247,0,0,50"
+                       Margin="235,0,10,50"
                    VerticalAlignment="Center"
                    Foreground="#626262"
                    Content="Haven’t received any OTP?"
@@ -146,7 +146,7 @@
                    FontWeight="Medium"
                    ></Label>
                 <Button Grid.Row="2"
-                    Margin="369,20,5,0"
+                    Margin="350,20,15,0"
                     Background="#FB6161"
                     Style="{DynamicResource RoundedButtonStyle}" Click="Button_Click" 
                     >Resend</Button>

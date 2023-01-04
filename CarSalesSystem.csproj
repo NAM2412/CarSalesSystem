@@ -263,6 +263,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Admin\User Controls\ControlBar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Admin\User Controls\InfoCard.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -303,7 +307,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="General\Windows\CustomMessageBox.xaml">
+    <Page Include="General\Windows\Notification.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -340,6 +344,9 @@
     <Compile Include="Admin\User Controls\CarCard.xaml.cs">
       <DependentUpon>CarCard.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Admin\User Controls\ControlBar.xaml.cs">
+      <DependentUpon>ControlBar.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Admin\User Controls\InfoCard.xaml.cs">
       <DependentUpon>InfoCard.xaml</DependentUpon>
     </Compile>
@@ -365,8 +372,8 @@
     <Compile Include="General\Windows\FillingInformation.xaml.cs">
       <DependentUpon>FillingInformation.xaml</DependentUpon>
     </Compile>
-    <Compile Include="General\Windows\CustomMessageBox.xaml.cs">
-      <DependentUpon>CustomMessageBox.xaml</DependentUpon>
+    <Compile Include="General\Windows\Notification.xaml.cs">
+      <DependentUpon>Notification.xaml</DependentUpon>
     </Compile>
     <Compile Include="General\Windows\SuccessfulMessage.xaml.cs">
       <DependentUpon>SuccessfulMessage.xaml</DependentUpon>

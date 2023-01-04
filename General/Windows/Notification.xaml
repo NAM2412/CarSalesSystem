@@ -1,0 +1,56 @@
+﻿<Window x:Class="CarSalesSystem.General.Windows.Notification"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CarSalesSystem.General.Windows"
+        mc:Ignorable="d"
+        Title="CustomMessageBox" 
+        MinHeight="160" 
+        MinWidth="420" MaxHeight="750" MaxWidth="750"
+        Background="Transparent"
+        AllowsTransparency="True"
+        SizeToContent="WidthAndHeight" 
+        WindowStartupLocation="CenterScreen"  
+        ShowInTaskbar="False" ResizeMode="NoResize"
+        WindowStyle="None" Topmost="True">
+    <Border CornerRadius="20"
+            Background="White"
+            BorderThickness="0">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+           
+            <Grid Grid.Row="0" Grid.ColumnSpan="2" 
+            MinHeight="40" >
+                <TextBlock Margin="15,1,15,1" Name="MessageTitle"  
+                FontWeight="Bold" TextTrimming="CharacterEllipsis" 
+                LineHeight="22" FontSize="16" 
+                VerticalAlignment="Center"/>
+            </Grid>
+            <Image Name="img" Margin="10" Grid.Row="1" 
+            Grid.Column="0" Width="50" 
+            Height="50"  Stretch="Fill" />
+            <TextBlock Margin="10,5,10,5"   
+                        VerticalAlignment="Center" 
+                        TextWrapping="Wrap"
+                       Name="txtMsg" 
+                        Grid.Row="1" 
+                        Grid.Column="1"
+                        FontSize="18" 
+                        LineHeight="20"
+                        FontFamily="Mitr"/>
+            <Grid Grid.Row="2" Grid.ColumnSpan="2"  
+            Grid.Column="0" >
+    
+            </Grid>
+        </Grid>
+    </Border>
+</Window>

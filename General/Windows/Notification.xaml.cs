@@ -17,27 +17,21 @@ using System.Windows.Shapes;
 namespace CarSalesSystem.General.Windows
 {
     /// <summary>
-    /// Interaction logic for CustomMessageBox.xaml
+    /// Interaction logic for Notification.xaml
     /// </summary>
-    public partial class CustomMessageBox : Window
+    public partial class Notification : Window
     {
-        public CustomMessageBox()
+        public Notification()
         {
             InitializeComponent();
         }
-         CustomMessageBox _messageBox;
+        Notification _messageBox;
          MessageBoxResult _result = MessageBoxResult.No;
         public  MessageBoxResult Show
         (string caption, string msg, MessageBoxType type)
         {
             switch (type)
             {
-                case MessageBoxType.ConfirmationWithYesNo:
-                    return Show(caption, msg, MessageBoxButton.YesNo,
-                    MessageBoxImage.Question);
-                case MessageBoxType.ConfirmationWithYesNoCancel:
-                    return Show(caption, msg, MessageBoxButton.YesNoCancel,
-                    MessageBoxImage.Question);
                 case MessageBoxType.Information:
                     return Show(caption, msg, MessageBoxButton.OK,
                     MessageBoxImage.Information);
@@ -76,40 +70,11 @@ namespace CarSalesSystem.General.Windows
         (string caption, string text,
         MessageBoxButton button, MessageBoxImage image)
         {
-            _messageBox = new CustomMessageBox
+            _messageBox = new Notification
             { txtMsg = { Text = text }, MessageTitle = { Text = caption } };
-            SetVisibilityOfButtons(button);
             SetImageOfMessageBox(image);
             _messageBox.ShowDialog();
             return _result;
-        }
-        private void SetVisibilityOfButtons(MessageBoxButton button)
-        {
-            switch (button)
-            {
-                case MessageBoxButton.OK:
-                    _messageBox.btnCancel.Visibility = Visibility.Collapsed;
-                    _messageBox.btnNo.Visibility = Visibility.Collapsed;
-                    _messageBox.btnYes.Visibility = Visibility.Collapsed;
-                    _messageBox.btnOk.Focus();
-                    break;
-                case MessageBoxButton.OKCancel:
-                    _messageBox.btnNo.Visibility = Visibility.Collapsed;
-                    _messageBox.btnYes.Visibility = Visibility.Collapsed;
-                    _messageBox.btnCancel.Focus();
-                    break;
-                case MessageBoxButton.YesNo:
-                    _messageBox.btnOk.Visibility = Visibility.Collapsed;
-                    _messageBox.btnCancel.Visibility = Visibility.Collapsed;
-                    _messageBox.btnNo.Focus();
-                    break;
-                case MessageBoxButton.YesNoCancel:
-                    _messageBox.btnOk.Visibility = Visibility.Collapsed;
-                    _messageBox.btnCancel.Focus();
-                    break;
-                default:
-                    break;
-            }
         }
         private  void SetImageOfMessageBox(MessageBoxImage image)
         {
@@ -132,21 +97,6 @@ namespace CarSalesSystem.General.Windows
                     break;
             }
         }
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            if (sender == btnOk)
-                _result = MessageBoxResult.OK;
-            else if (sender == btnYes)
-                _result = MessageBoxResult.Yes;
-            else if (sender == btnNo)
-                _result = MessageBoxResult.No;
-            else if (sender == btnCancel)
-                _result = MessageBoxResult.Cancel;
-            else
-                _result = MessageBoxResult.None;
-            this.Close();
-            _messageBox = null;
-        }
         private void SetImage(string imageName)
         {
             string uri = string.Format("/Resources/Images/Icons/{0}", imageName);
@@ -155,8 +105,6 @@ namespace CarSalesSystem.General.Windows
         }
         public enum MessageBoxType
         {
-            ConfirmationWithYesNo = 0,
-            ConfirmationWithYesNoCancel,
             Information,
             Error,
             Warning
