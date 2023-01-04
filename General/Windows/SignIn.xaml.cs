@@ -17,6 +17,10 @@ using System.Windows.Shapes;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 using System.Linq.Expressions;
 using CarSalesSystem.General.Windows;
+using ToastNotifications;
+using ToastNotifications.Messages;
+using ToastNotifications.Lifetime;
+using ToastNotifications.Position;
 
 namespace CarSalesSystem.General
 {
@@ -28,6 +32,21 @@ namespace CarSalesSystem.General
         private bool usernameValid = false;
         private bool passwordValid = false;
         private int type_user = 1;
+
+        Notifier notifier = new Notifier(cfg =>
+        {
+            cfg.PositionProvider = new WindowPositionProvider(
+                parentWindow: Application.Current.MainWindow,
+                corner: Corner.TopRight,
+                offsetX: 10,
+                offsetY: 10);
+
+            cfg.LifetimeSupervisor = new TimeAndCountBasedLifetimeSupervisor(
+                notificationLifetime: TimeSpan.FromSeconds(3),
+                maximumNotificationCount: MaximumNotificationCount.FromCount(5));
+
+            cfg.Dispatcher = Application.Current.Dispatcher;
+        });
         public SignIn()
         {
             InitializeComponent();
@@ -77,7 +96,6 @@ namespace CarSalesSystem.General
         {
             MainWindow adminWindow = new MainWindow();
             CustomerWindow customerWindow = new CustomerWindow();
-            Notification notification = new Notification();
             if (usernameTextBox.Text.Equals("admin12312") && passwordTextBox.Password.Equals("123456"))
             {
                 adminWindow.Show();
@@ -115,12 +133,14 @@ namespace CarSalesSystem.General
                  else
                  {
                     //noti
+                    notifier.ShowError("Invalid username or wrong password, please check again.");
+
                  }
                
             }
             catch (Exception ex)
             {
-                //noti
+                notifier.ShowError(ex.Message);
             }
             
 

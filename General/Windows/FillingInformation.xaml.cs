@@ -64,7 +64,6 @@ namespace CarSalesSystem.General.Windows
         }
         private void SignUpBtn_Click(object sender, RoutedEventArgs e)
         {
-            Notification notification = new Notification();
             if (usernameTextBox.Text.Equals(" Enter username"))
             {
                 //noti
@@ -109,6 +108,11 @@ namespace CarSalesSystem.General.Windows
             message.Show();
             this.Close();
             
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

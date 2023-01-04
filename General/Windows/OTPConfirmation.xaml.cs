@@ -16,6 +16,10 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 using System.Reflection;
+using ToastNotifications;
+using ToastNotifications.Lifetime;
+using ToastNotifications.Position;
+using ToastNotifications.Messages;
 
 namespace CarSalesSystem.General.Windows
 {
@@ -33,9 +37,22 @@ namespace CarSalesSystem.General.Windows
         private DispatcherTimer Timer;
         private int retryTimes = 3;
         public string storedCode;
-        private Notification notification= new Notification();
+        public string email="";
+        //Notification box
+        Notifier notifier = new Notifier(cfg =>
+        {
+            cfg.PositionProvider = new WindowPositionProvider(
+                parentWindow: Application.Current.MainWindow,
+                corner: Corner.TopRight,
+                offsetX: 10,
+                offsetY: 10);
 
+            cfg.LifetimeSupervisor = new TimeAndCountBasedLifetimeSupervisor(
+                notificationLifetime: TimeSpan.FromSeconds(3),
+                maximumNotificationCount: MaximumNotificationCount.FromCount(5));
 
+            cfg.Dispatcher = Application.Current.Dispatcher;
+        });
         public OTPConfirmation()
         {
             InitializeComponent();
@@ -70,15 +87,41 @@ namespace CarSalesSystem.General.Windows
             retryTimes--;
             if(retryTimes == 0)
             {
-                //MessageBox.Show("You have requested OTP code too many times!", "Warning", MessageBoxButton.OK,MessageBoxImage.Warning);
-
+                notifier.ShowWarning("You have requested OTP code too many times!");
                 Timer.Stop();
                 this.Close();
                 return;
             }
             time = 180;
-            WpfMessageBox wpfMessageBox = new WpfMessageBox();
-            wpfMessageBox.Show();
+
+            //Send OTP code to email
+            Random rand = new Random();
+            String randomCode = (rand.Next(999999)).ToString();
+            MailMessage message = new MailMessage();
+            String to = email.ToString();
+            String from = "20520215@gm.uit.edu.vn";
+            String password = "tirlehholexszpyd";
+            String messageBody = "Your OTP code is: " + randomCode;
+            message.To.Add(new MailAddress(to));
+            message.From = new MailAddress(from);
+            message.Body = messageBody;
+            message.Subject = "Registration OTP code";
+            SmtpClient smtp = new SmtpClient("smtp.gmail.com");
+            smtp.EnableSsl = true;
+            smtp.Port = 587;
+            smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+            smtp.Credentials = new NetworkCredential(from, password);
+            try
+            {
+                smtp.Send(message);
+                //noti
+                notifier.ShowSuccess("Code successfully sent to email.");
+
+            }
+            catch (Exception ex)
+            {
+                notifier.ShowError("Cannot send OTP code to email");
+            }
         }
 
         private void ConnectButton_TextChanged(object sender, TextChangedEventArgs e)
@@ -87,12 +130,17 @@ namespace CarSalesSystem.General.Windows
             string typedCode = CodeDigit1.Text + CodeDigit2.Text + CodeDigit3.Text + CodeDigit4.Text + CodeDigit5.Text + ConnectButton.Text;
             if(!typedCode.Equals(storedCode))
             {
-                MessageBox.Show( "Invalid OTP code, please try again.", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                notifier.ShowWarning("Invalid OTP code, please try again.");
                 return;
             }
             FillingInformation fillingInformation = new FillingInformation();
             fillingInformation.Show();
             this.Close();
+        }
+        
+        public void showMessage()
+        {
+            notifier.ShowSuccess("Code successfully sent to email.");
         }
     }
 }
