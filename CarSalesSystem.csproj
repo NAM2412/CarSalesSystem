@@ -291,6 +291,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Customer\Windows\OrderBill.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="General\Windows\SignIn.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -365,6 +369,9 @@
     </Compile>
     <Compile Include="Customer\Windows\DetailCar.xaml.cs">
       <DependentUpon>DetailCar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Customer\Windows\OrderBill.xaml.cs">
+      <DependentUpon>OrderBill.xaml</DependentUpon>
     </Compile>
     <Compile Include="General\Windows\OTPConfirmation.xaml.cs">
       <DependentUpon>OTPConfirmation.xaml</DependentUpon>
@@ -469,6 +476,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Resource Include="Resources\Images\Icons\Plus.png" />
     <Resource Include="Resources\Images\Icons\success.png" />
     <Resource Include="Resources\Images\Icons\error.png" />
     <Resource Include="Resources\Images\Icons\information.png" />
