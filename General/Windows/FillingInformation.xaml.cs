@@ -64,28 +64,27 @@ namespace CarSalesSystem.General.Windows
         }
         private void SignUpBtn_Click(object sender, RoutedEventArgs e)
         {
-            CustomMessageBox customMessageBox = new CustomMessageBox();
             if (usernameTextBox.Text.Equals(" Enter username"))
             {
-                customMessageBox.Show("Warning","Please enter a username!", CustomMessageBox.MessageBoxType.Warning);
+                //noti
                 usernameTextBox.Focus();
                 return;
             }
             if (passwordTextBox.Password.Length == 0)
             {
-                customMessageBox.Show("Warning", "Please enter your password!", CustomMessageBox.MessageBoxType.Warning);
+                //noti
                 passwordTextBox.Focus();
                 return;
             }
             if (confirmTextBox.Password.Length == 0)
             {
-                customMessageBox.Show("Warning", "Please re-enter your password!", CustomMessageBox.MessageBoxType.Warning);
-                passwordTextBox.Focus();
+                //noti
+                confirmTextBox.Focus();
                 return;
             }
             if (passwordTextBox.Password != confirmTextBox.Password)
             {
-                customMessageBox.Show("Warning", "Your confirmed password does not match", CustomMessageBox.MessageBoxType.Warning);
+                //noti
                 passwordTextBox.Focus();
                 return;
             }
@@ -101,7 +100,7 @@ namespace CarSalesSystem.General.Windows
             }
             catch(Exception exception)
             {
-                customMessageBox.Show("Error", "This username is taken already, please choose another one.", CustomMessageBox.MessageBoxType.Error);
+                //noti
                 return;
             }
             connection.Close();
@@ -109,6 +108,11 @@ namespace CarSalesSystem.General.Windows
             message.Show();
             this.Close();
             
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

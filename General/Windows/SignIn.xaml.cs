@@ -17,6 +17,10 @@ using System.Windows.Shapes;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 using System.Linq.Expressions;
 using CarSalesSystem.General.Windows;
+using ToastNotifications;
+using ToastNotifications.Messages;
+using ToastNotifications.Lifetime;
+using ToastNotifications.Position;
 
 namespace CarSalesSystem.General
 {
@@ -28,6 +32,21 @@ namespace CarSalesSystem.General
         private bool usernameValid = false;
         private bool passwordValid = false;
         private int type_user = 1;
+
+        Notifier notifier = new Notifier(cfg =>
+        {
+            cfg.PositionProvider = new WindowPositionProvider(
+                parentWindow: Application.Current.MainWindow,
+                corner: Corner.TopRight,
+                offsetX: 10,
+                offsetY: 10);
+
+            cfg.LifetimeSupervisor = new TimeAndCountBasedLifetimeSupervisor(
+                notificationLifetime: TimeSpan.FromSeconds(3),
+                maximumNotificationCount: MaximumNotificationCount.FromCount(5));
+
+            cfg.Dispatcher = Application.Current.Dispatcher;
+        });
         public SignIn()
         {
             InitializeComponent();
@@ -48,7 +67,7 @@ namespace CarSalesSystem.General
 
         private void usernameTextBox_GotFocus(object sender, RoutedEventArgs e)
         {
-            if (usernameTextBox.Text.Equals(" Username"))
+            if (usernameTextBox.Text.Equals("Username"))
                 usernameTextBox.Text = "";
             if (usernameTextBox.BorderBrush == Brushes.Red)
                 usernameTextBox.BorderBrush = Brushes.White;
@@ -57,7 +76,7 @@ namespace CarSalesSystem.General
         private void usernameTextBox_LostFocus(object sender, RoutedEventArgs e)
         {
             if (usernameTextBox.Text.Equals(""))
-                usernameTextBox.Text = " Username";
+                usernameTextBox.Text = "Username";
         }
 
         private void passwordTextBox_GotFocus(object sender, RoutedEventArgs e)
@@ -77,7 +96,6 @@ namespace CarSalesSystem.General
         {
             MainWindow adminWindow = new MainWindow();
             CustomerWindow customerWindow = new CustomerWindow();
-            CustomMessageBox customMessageBox = new CustomMessageBox();
             if (usernameTextBox.Text.Equals("admin12312") && passwordTextBox.Password.Equals("123456"))
             {
                 adminWindow.Show();
@@ -104,24 +122,35 @@ namespace CarSalesSystem.General
                 cmd.CommandType = CommandType.Text;
                 cmd.Parameters.AddWithValue("@USERNAME", usernameTextBox.Text);
                 cmd.Parameters.AddWithValue("@PASS", passwordTextBox.Password);
+                
+                SqlCommand activeWindow = new SqlCommand("Select TYPE_USER from ACCOUNT where USERNAME='" + usernameTextBox.Text + "'", connection);
+                activeWindow.CommandType = CommandType.Text;
+                int type = Convert.ToInt32(activeWindow.ExecuteScalar());
+                activeWindow.Parameters.AddWithValue("@USERNAME", usernameTextBox.Text);
+                activeWindow.Parameters.AddWithValue("@PASS", passwordTextBox.Password);
+
                 int result = Convert.ToInt32(cmd.ExecuteScalar());
-                 if (result == 1)
+                if (result == 1)
                  {
-                     usernameValid = true;
-                     passwordValid = true;
-                     customerWindow.Show();
-                     this.Close();
+                    usernameValid = true;
+                    passwordValid = true;
+                    if(type == 1)               
+                        customerWindow.Show();
+                    else
+                        adminWindow.Show();
+                    this.Close();
                  }
                  else
                  {
+                    //noti
+                    notifier.ShowError("Invalid username or wrong password, please check again.");
 
-                     customMessageBox.Show("Notification", "Invalid username or wrong password", CustomMessageBox.MessageBoxType.Information);
                  }
                
             }
             catch (Exception ex)
             {
-                customMessageBox.Show("Warning",ex.Message, CustomMessageBox.MessageBoxType.Warning);
+                notifier.ShowError(ex.Message);
             }
             
 

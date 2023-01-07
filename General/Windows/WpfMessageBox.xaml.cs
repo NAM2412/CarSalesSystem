@@ -17,6 +17,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Xaml;
+using ToastNotifications;
+using ToastNotifications.Lifetime;
+using ToastNotifications.Messages;
+using ToastNotifications.Position;
 
 namespace CarSalesSystem.General
 {
@@ -31,7 +35,26 @@ namespace CarSalesSystem.General
             InitializeComponent();
 
         }
-        
+        Notifier notifier = new Notifier(cfg =>
+        {
+            cfg.PositionProvider = new WindowPositionProvider(
+                parentWindow: System.Windows.Application.Current.MainWindow,
+                corner: Corner.TopRight,
+                offsetX: 10,
+                offsetY: 10);
+
+            cfg.LifetimeSupervisor = new TimeAndCountBasedLifetimeSupervisor(
+                notificationLifetime: TimeSpan.FromSeconds(3),
+                maximumNotificationCount: MaximumNotificationCount.FromCount(5));
+
+            cfg.Dispatcher = System.Windows.Application.Current.Dispatcher;
+        });
+        void HideWindow(Type type)
+        {
+            var window = App.Current.Windows.OfType<Window>().FirstOrDefault(w => w.GetType() == type);
+            if (window != null)
+                window.Hide();
+        }
         protected MessageBoxResult _result = MessageBoxResult.No;
         private bool OTPvalidattion = false;
         void CloseWindow(Type type)
@@ -68,23 +91,25 @@ namespace CarSalesSystem.General
                 smtp.Port = 587;
                 smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
                 smtp.Credentials = new NetworkCredential(from,password);
-                CustomMessageBox customMessageBox = new CustomMessageBox();
-
                 try
                 {
                     smtp.Send(message);
-                    customMessageBox.Show("Success", "Code sent successfully", CustomMessageBox.MessageBoxType.Information);
+                    //noti
                     confirmation.storedCode= randomCode;
                     confirmation.Show();
-                    CloseWindow(typeof(SignUp));
+                    confirmation.showMessage();
+                    HideWindow(typeof(SignUp));
                 }
                 catch(Exception ex)
                 {
-                    customMessageBox.Show("Error", "Cannot send OTP code to email", CustomMessageBox.MessageBoxType.Error);
+                    notifier.ShowError("Cannot send OTP code to email");
                 }
                 
             }
-
+            else
+            {
+                this.Close();
+            }
         }
        
 

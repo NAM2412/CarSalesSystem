@@ -121,7 +121,7 @@
                              BorderBrush="White"
                              BorderThickness="1"
                              FontFamily="Nexa ☞"
-                             Text=" Username"
+                             Text="Username"
                              GotFocus="usernameTextBox_GotFocus"
                              LostFocus="usernameTextBox_LostFocus"
                              >
@@ -129,7 +129,8 @@
                     <TextBlock Grid.Row="1"
                                x:Name="phPass"
                                Width="400"
-                               Text="  Password"
+                               Text="Password"
+                               Padding="10 0 0 0"
                              VerticalAlignment="Center"
                              FontSize="20"
                              Foreground="White"
