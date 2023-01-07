@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +24,32 @@ namespace CarSalesSystem.Admin.Pages
         public Info()
         {
             InitializeComponent();
+        }
+        private void informationButton_Click(object sender, RoutedEventArgs e)
+        {
+            using (SqlConnection connection =
+            new SqlConnection("Data Source=MSI\\SQLEXPRESS;Initial Catalog=CARSALESSYSTEM;Integrated Security=True"))
+            {
+                connection.Open();
+                using (SqlCommand cmd =
+                    new SqlCommand("UPDATE EMPLOYEE SET firstname=@firstname, lastname=@lastname" +
+                        " WHERE Id=@Id", connection))
+                {
+                    /*
+                    cmd.Parameters.AddWithValue("@", user.UserId);
+                    cmd.Parameters.AddWithValue("@firstname", user.FirstName);
+                    cmd.Parameters.AddWithValue("@lastname", user.LastName);
+                    */
+                    //add whatever parameters you required to update here
+                    int rows = cmd.ExecuteNonQuery();
+                    connection.Close();
+                }
+            }
+        }
+
+        private void passwordUpdateTextBox_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
