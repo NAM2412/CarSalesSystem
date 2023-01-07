@@ -32,11 +32,16 @@ namespace CarSalesSystem.Admin.Pages
             {
                 connection.Open();
                 using (SqlCommand cmd =
-                    new SqlCommand("UPDATE EMPLOYEE SET firstname=@firstname, lastname=@lastname" +
-                        " WHERE Id=@Id", connection))
+                    new SqlCommand("UPDATE EMPLOYEE SET EMP_NAME='" + nameTextBox.Text +
+                    "', GENDER='" + genderBox.Text +
+                    "', EMP_ADDRESS='"+ addressTextBox.Text +
+                    "', EMP_DATE_OF_BIRTH='" + birthdayTextBox.DisplayDate +
+                    "', PHONE='" + phoneTextBox.Text +
+
+                    " WHERE EMP_ID=@ID", connection))
                 {
                     /*
-                    cmd.Parameters.AddWithValue("@", user.UserId);
+                    cmd.Parameters.AddWithValue("EMP_NAME", user.UserId);
                     cmd.Parameters.AddWithValue("@firstname", user.FirstName);
                     cmd.Parameters.AddWithValue("@lastname", user.LastName);
                     */
@@ -47,7 +52,8 @@ namespace CarSalesSystem.Admin.Pages
             }
         }
 
-        private void passwordUpdateTextBox_Click(object sender, RoutedEventArgs e)
+
+        private void passwordButton_Click(object sender, RoutedEventArgs e)
         {
 
         }

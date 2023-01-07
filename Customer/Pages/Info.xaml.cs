@@ -24,5 +24,15 @@ namespace CarSalesSystem.Customer.Pages
         {
             InitializeComponent();
         }
+
+        private void informationButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void passwordButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
