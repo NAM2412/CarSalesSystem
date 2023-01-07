@@ -67,7 +67,7 @@ namespace CarSalesSystem.General
 
         private void usernameTextBox_GotFocus(object sender, RoutedEventArgs e)
         {
-            if (usernameTextBox.Text.Equals(" Username"))
+            if (usernameTextBox.Text.Equals("Username"))
                 usernameTextBox.Text = "";
             if (usernameTextBox.BorderBrush == Brushes.Red)
                 usernameTextBox.BorderBrush = Brushes.White;
@@ -76,7 +76,7 @@ namespace CarSalesSystem.General
         private void usernameTextBox_LostFocus(object sender, RoutedEventArgs e)
         {
             if (usernameTextBox.Text.Equals(""))
-                usernameTextBox.Text = " Username";
+                usernameTextBox.Text = "Username";
         }
 
         private void passwordTextBox_GotFocus(object sender, RoutedEventArgs e)
@@ -122,13 +122,23 @@ namespace CarSalesSystem.General
                 cmd.CommandType = CommandType.Text;
                 cmd.Parameters.AddWithValue("@USERNAME", usernameTextBox.Text);
                 cmd.Parameters.AddWithValue("@PASS", passwordTextBox.Password);
+                
+                SqlCommand activeWindow = new SqlCommand("Select TYPE_USER from ACCOUNT where USERNAME='" + usernameTextBox.Text + "'", connection);
+                activeWindow.CommandType = CommandType.Text;
+                int type = Convert.ToInt32(activeWindow.ExecuteScalar());
+                activeWindow.Parameters.AddWithValue("@USERNAME", usernameTextBox.Text);
+                activeWindow.Parameters.AddWithValue("@PASS", passwordTextBox.Password);
+
                 int result = Convert.ToInt32(cmd.ExecuteScalar());
-                 if (result == 1)
+                if (result == 1)
                  {
-                     usernameValid = true;
-                     passwordValid = true;
-                     customerWindow.Show();
-                     this.Close();
+                    usernameValid = true;
+                    passwordValid = true;
+                    if(type == 1)               
+                        customerWindow.Show();
+                    else
+                        adminWindow.Show();
+                    this.Close();
                  }
                  else
                  {

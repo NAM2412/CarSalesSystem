@@ -913,7 +913,7 @@ warning 6002: The table/view 'CARSALESSYSTEM.dbo.IMPORTRECEIPTINFO' does not hav
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="CARSALESSYSTEMEntities1" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="CARSALESSYSTEMEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="ACCOUNTs" EntityType="Self.ACCOUNT" />
           <EntitySet Name="CUSTOMERs" EntityType="Self.CUSTOMER" />
           <EntitySet Name="EMPLOYEEs" EntityType="Self.EMPLOYEE" />
@@ -1012,7 +1012,7 @@ warning 6002: The table/view 'CARSALESSYSTEM.dbo.IMPORTRECEIPTINFO' does not hav
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="CARSALESSYSTEMModelStoreContainer" CdmEntityContainer="CARSALESSYSTEMEntities1">
+        <EntityContainerMapping StorageEntityContainer="CARSALESSYSTEMModelStoreContainer" CdmEntityContainer="CARSALESSYSTEMEntities">
           <EntitySetMapping Name="ACCOUNTs">
             <EntityTypeMapping TypeName="CARSALESSYSTEMModel.ACCOUNT">
               <MappingFragment StoreEntitySet="ACCOUNT">
