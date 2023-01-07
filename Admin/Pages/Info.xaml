@@ -38,6 +38,7 @@
                            FontFamily="Mitr Medium"/>
                 <TextBox Grid.Row="0"
                              Grid.Column="1"
+                         x:Name="nameTextBox"
                              Margin="20 30 50 290"
                              BorderThickness="0 0 0 2"
                              BorderBrush="Gray"
@@ -53,6 +54,7 @@
                            Content="Sex:"
                            FontFamily="Mitr Medium"/>
                 <ComboBox Grid.Row="0"
+                          x:Name="genderBox"
                               Grid.Column="1"
                               Margin="20 90 380 235"
                               Padding="5 0 0 0"
@@ -73,6 +75,7 @@
                            Content="Address:"
                            FontFamily="Mitr Medium"/>
                 <TextBox Grid.Row="0"
+                         x:Name="addressTextBox"
                              Grid.Column="1"
                              Margin="20 145 50 175"
                              BorderThickness="0 0 0 2"
@@ -89,6 +92,7 @@
                            Content="Date of birth:"
                            FontFamily="Mitr Medium"/>
                 <DatePicker Grid.Column="1"
+                            x:Name="birthdayTextBox"
                                 Grid.Row="0"
                                 Margin="20 200 350 120"
                                 FontSize="18"
@@ -99,10 +103,11 @@
                            Grid.Column="0"
                            Margin="10 270 0 50"
                            FontSize="16"
-                           Content="Telephone number:"
+                           Content="Phone number:"
                            FontFamily="Mitr Medium"/>
                 <TextBox Grid.Row="0"
-                             Grid.Column="1"
+                         Grid.Column="1"
+                         x:Name="phoneTextBox"
                              Margin="20 270 50 50"
                              BorderThickness="0 0 0 2"
                              BorderBrush="Gray"
@@ -127,10 +132,12 @@
 
                 <Button Grid.Row="1"
                             Grid.Column="1"
+                        x:Name="informationButton"
                             Style="{DynamicResource RoundedButtonStyle}"
                             Background="#134B5F"
                             VerticalAlignment="Top"
-                            Margin="350 0 30 0">
+                            Margin="350 0 30 0"
+                            Click="informationButton_Click">
                     <Label Content="UPDATE"
                                Foreground="White" FontFamily="Nexa ☞"
                                ></Label>
@@ -165,6 +172,7 @@
                        ></Label>
                 <PasswordBox Grid.Row="0"
                              Grid.Column="1"
+                             x:Name="oldPassBox"
                              BorderBrush="Gray"
                              BorderThickness="0 0 0 2"
                              PasswordChar="●"
@@ -184,6 +192,7 @@
                        ></Label>
                 <PasswordBox Grid.Row="1"
                              Grid.Column="1"
+                             x:Name="newPassBox"
                              BorderBrush="Gray"
                              Foreground="#134B5F"
                              BorderThickness="0 0 0 2"
@@ -203,6 +212,7 @@
                        ></Label>
                 <PasswordBox Grid.Row="2"
                              Grid.Column="1"
+                             x:Name="verifyPassBox"
                              BorderBrush="Gray"
                              Foreground="#134B5F"
                              BorderThickness="0 0 0 2"
@@ -213,10 +223,11 @@
                              ></PasswordBox>
                 <Button Grid.Row="3"
                         Grid.Column="1"
+                        x:Name="passwordButton"
                         Style="{DynamicResource RoundedButtonStyle}"
                         Background="#134B5F"
                         VerticalAlignment="Center"
-                        Margin="350 0 30 0">
+                        Margin="350 0 30 0" Click="passwordButton_Click">
                     <Label Content="UPDATE"
                                Foreground="White" FontFamily="Nexa ☞"
                                ></Label>
