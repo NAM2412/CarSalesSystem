@@ -102,12 +102,6 @@ namespace CarSalesSystem.General
                 this.Close();
                 return;
             }
-            if (usernameValid && passwordValid)
-            {
-                customerWindow.Show();
-                this.Close();
-                return;
-            }
             if (!usernameValid)
                 usernameTextBox.BorderBrush = Brushes.Red;
             if (!passwordValid)
@@ -153,11 +147,20 @@ namespace CarSalesSystem.General
                 notifier.ShowError(ex.Message);
             }
             
-
-            
-            
             connection.Close();
             
+        }
+
+        private void rememberCheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            /*
+            if (rememberCheckBox.Checked)
+            {
+                Properties.Settings.Default.userName = textBoxUserName.Text;
+                Properties.Settings.Default.passUser = textBoxUserPass.Text;
+                Properties.Settings.Default.Save();
+            }
+            */
         }
     }
 }

@@ -159,10 +159,13 @@
                     </Grid.ColumnDefinitions>
                     <CheckBox HorizontalAlignment="Left"
                               VerticalAlignment="Center"
+                              x:Name="rememberCheckBox"
                               BorderThickness="5"
                               Width="24"
                               Height="24"
-                              Content="Custom CheckBox [IsChecked = False]">
+                              Content="Custom CheckBox [IsChecked = False]"
+                              Checked="rememberCheckBox_Checked"
+                              >
                         <CheckBox.Resources>
                             <!--Unchecked state-->
                             <SolidColorBrush x:Key="MaterialDesignCheckBoxOff" Color="White"/>
