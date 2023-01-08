@@ -107,14 +107,14 @@
                 <TextBox Grid.Row="0"
                          Grid.Column="1"
                          x:Name="phoneTextBox"
-                             Margin="20 270 50 50"
-                             BorderThickness="0 0 0 2"
-                             BorderBrush="Gray"
-                             Foreground="Gray"
-                             FontSize="18"
-                             FontFamily="Mitr Light"
-                             Style="{DynamicResource MaterialDesignTextBox}"
-                             ></TextBox>
+                         Margin="20 270 50 50"
+                         BorderThickness="0 0 0 2"
+                         BorderBrush="Gray"
+                         Foreground="Gray"
+                         FontSize="18"
+                         FontFamily="Mitr Light"
+                         Style="{DynamicResource MaterialDesignTextBox}"
+                         PreviewTextInput="phoneTextBox_PreviewTextInput"></TextBox>
 
 
                 <Button Grid.Row="1"
@@ -209,7 +209,96 @@
                 CornerRadius="10"
                 BorderBrush="Gray"
                 BorderThickness="2"
-                Margin="13 490 0 20"></Border>
+                Margin="13 490 0 20">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="1*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="2*" />
+                </Grid.ColumnDefinitions>
+                <!--#region First column-->
+                <Label Grid.Row="0"
+                       Grid.Column="0"
+                       Content="Total amount spent:"
+                       FontSize="16"
+                       FontFamily="Mitr"
+                       FontWeight="Medium"
+                       Padding="16 0 0 0"
+                       VerticalAlignment="Center"></Label>
+                <Label Grid.Row="1"
+                       Grid.Column="0"
+                       Content="Need to upgrade:"
+                       FontSize="16"
+                       FontFamily="Mitr"
+                       FontWeight="Medium"
+                       Padding="16 0 0 0"
+                       VerticalAlignment="Center"></Label>
+                <Label Grid.Row="2"
+                       Grid.Column="0"
+                       Content="Rank:"
+                       FontSize="16"
+                       FontFamily="Mitr"
+                       FontWeight="Medium"
+                       Padding="16 0 0 0"
+                       VerticalAlignment="Center"></Label>
+                <Label Grid.Row="3"
+                       Grid.Column="0"
+                       Content="Discount:"
+                       FontSize="16"
+                       FontFamily="Mitr"
+                       FontWeight="Medium"
+                       Padding="16 0 0 0"
+                       VerticalAlignment="Center"></Label>
+                <!--#endregion-->
+                <!--#region Second column-->
+                <Label Grid.Column="1"
+                       Grid.Row="0"
+                       FontSize="16"
+                       FontFamily="Mitr"
+                       FontWeight="Medium"
+                       BorderThickness="0 0 0 2"
+                       BorderBrush="Gray"
+                       Margin="0 0 50 0"
+                       VerticalAlignment="Center"
+                       ></Label>
+                <Label Grid.Column="1"
+                       Grid.Row="1"
+                       FontSize="16"
+                       FontFamily="Mitr"
+                       FontWeight="Medium"
+                       BorderThickness="0 0 0 2"
+                       BorderBrush="Gray"
+                       Margin="0 0 50 0"
+                       VerticalAlignment="Center"
+                       ></Label>
+                <Label Grid.Column="1"
+                       Grid.Row="2"
+                       FontSize="16"
+                       FontFamily="Mitr"
+                       FontWeight="Medium"
+                       BorderThickness="0 0 0 2"
+                       BorderBrush="Gray"
+                       Margin="0 0 50 0"
+                       VerticalAlignment="Center"
+                       ></Label>
+                <Label Grid.Column="1"
+                       Grid.Row="3"
+                       FontSize="16"
+                       FontFamily="Mitr"
+                       FontWeight="Medium"
+                       BorderThickness="0 0 0 2"
+                       BorderBrush="Gray"
+                       Margin="0 0 50 0"
+                       VerticalAlignment="Center"
+                       ></Label>
+                <!--#endregion-->
+            </Grid>
+        </Border>
         <!--#endregion-->
         <!--#region Password section-->
         <Border Grid.Column="1"
