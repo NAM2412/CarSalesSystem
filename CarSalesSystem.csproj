@@ -241,6 +241,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Viewmodel\BaseViewModel.cs" />
+    <Compile Include="Viewmodel\CustomerViewModel.cs" />
     <Page Include="Admin\Pages\Customer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -273,6 +275,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Admin\User Controls\CustomerControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Admin\User Controls\InfoCard.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -286,6 +292,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Admin\Windows\Addproduct.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Admin\Windows\EditCustomer.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -341,6 +351,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="MainResource.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -369,6 +383,9 @@
     <Compile Include="Admin\User Controls\ControlBar.xaml.cs">
       <DependentUpon>ControlBar.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Admin\User Controls\CustomerControl.xaml.cs">
+      <DependentUpon>CustomerControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Admin\User Controls\InfoCard.xaml.cs">
       <DependentUpon>InfoCard.xaml</DependentUpon>
     </Compile>
@@ -380,6 +397,9 @@
     </Compile>
     <Compile Include="Admin\Windows\Addproduct.xaml.cs">
       <DependentUpon>Addproduct.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Windows\EditCustomer.xaml.cs">
+      <DependentUpon>EditCustomer.xaml</DependentUpon>
     </Compile>
     <Compile Include="Admin\Windows\Updateemp.xaml.cs">
       <DependentUpon>Updateemp.xaml</DependentUpon>
@@ -503,7 +523,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-
     <Resource Include="Resources\Images\Icons\Plus.png" />
     <Resource Include="Resources\Images\Icons\success.png" />
     <Resource Include="Resources\Images\Icons\error.png" />
@@ -730,8 +749,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Customer\Windows\" />
-    <Folder Include="Admin\Windows\" />
     <Folder Include="Employee\Pages\" />
     <Folder Include="Employee\Windows\" />
     <Folder Include="Viewmodel\Admin\" />
