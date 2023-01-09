@@ -226,6 +226,12 @@
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
+    <Reference Include="ToastNotifications, Version=2.5.1.0, Culture=neutral, PublicKeyToken=e89d9d7314a7c797, processorArchitecture=MSIL">
+      <HintPath>packages\ToastNotifications.2.5.1\lib\net40\ToastNotifications.dll</HintPath>
+    </Reference>
+    <Reference Include="ToastNotifications.Messages, Version=2.5.1.0, Culture=neutral, PublicKeyToken=e89d9d7314a7c797, processorArchitecture=MSIL">
+      <HintPath>packages\ToastNotifications.Messages.2.5.1\lib\net40\ToastNotifications.Messages.dll</HintPath>
+    </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -303,6 +309,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Customer\Windows\DetailCar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Customer\Windows\OrderBill.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="General\Windows\SignIn.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -316,10 +330,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="General\Windows\FillingInformation.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="General\Windows\CustomMessageBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -387,14 +397,17 @@
     <Compile Include="Customer\Pages\Store.xaml.cs">
       <DependentUpon>Store.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Customer\Windows\DetailCar.xaml.cs">
+      <DependentUpon>DetailCar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Customer\Windows\OrderBill.xaml.cs">
+      <DependentUpon>OrderBill.xaml</DependentUpon>
+    </Compile>
     <Compile Include="General\Windows\OTPConfirmation.xaml.cs">
       <DependentUpon>OTPConfirmation.xaml</DependentUpon>
     </Compile>
     <Compile Include="General\Windows\FillingInformation.xaml.cs">
       <DependentUpon>FillingInformation.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="General\Windows\CustomMessageBox.xaml.cs">
-      <DependentUpon>CustomMessageBox.xaml</DependentUpon>
     </Compile>
     <Compile Include="General\Windows\SuccessfulMessage.xaml.cs">
       <DependentUpon>SuccessfulMessage.xaml</DependentUpon>
@@ -405,20 +418,11 @@
     <Compile Include="CustomerWindow.xaml.cs">
       <DependentUpon>CustomerWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Model\CARSALESSYSTEM.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CARSALESSYSTEM.Context.tt</DependentUpon>
+    <Compile Include="Model\ACCOUNT.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\CARSALESSYSTEM.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CARSALESSYSTEM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\CARSALESSYSTEM.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CARSALESSYSTEM.edmx</DependentUpon>
+    <Compile Include="Model\CUSTOMER.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\DataProvider.cs" />
     <Compile Include="General\Windows\SignIn.xaml.cs">
@@ -441,6 +445,51 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\EMPLOYEE.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\IMPORTRECEIPT.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\IMPORTRECEIPTINFO.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\MAINTENANCEBILL.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Model1.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Model1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Model1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Model\ORDERBILL.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\PRODUCER.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\PRODUCT.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\RANK_MONEY.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\SELLBILL.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\TYPEPRODUCT.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -454,11 +503,15 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+
+    <Resource Include="Resources\Images\Icons\Plus.png" />
     <Resource Include="Resources\Images\Icons\success.png" />
     <Resource Include="Resources\Images\Icons\error.png" />
     <Resource Include="Resources\Images\Icons\information.png" />
     <Resource Include="Resources\Images\Icons\question.png" />
     <Resource Include="Resources\Images\Icons\warning.png" />
+    <Resource Include="Resources\Fonts\MochiyPopOne-Regular.ttf" />
+    <Resource Include="Resources\Images\Icons\close.png" />
     <Resource Include="Resources\Images\Icons\Signup_Logo.png" />
     <Resource Include="Resources\Fonts\Porsche Regular.ttf" />
     <Resource Include="Resources\Fonts\Optima Roman.otf" />
@@ -470,36 +523,120 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="Model\CARSALESSYSTEM.edmx">
+    <EntityDeploy Include="Model\Model1.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>CARSALESSYSTEM.Designer.cs</LastGenOutput>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Model\CARSALESSYSTEM.edmx.diagram">
-      <DependentUpon>CARSALESSYSTEM.edmx</DependentUpon>
+    <None Include="Model\Model1.edmx.diagram">
+      <DependentUpon>Model1.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
+    <None Include="packages\EntityFramework.6.4.4\.signature.p7s" />
+    <None Include="packages\EntityFramework.6.4.4\buildTransitive\EntityFramework.props" />
+    <None Include="packages\EntityFramework.6.4.4\buildTransitive\EntityFramework.targets" />
+    <None Include="packages\EntityFramework.6.4.4\buildTransitive\netcoreapp3.0\EntityFramework.props" />
+    <None Include="packages\EntityFramework.6.4.4\buildTransitive\netcoreapp3.0\EntityFramework.targets" />
+    <None Include="packages\EntityFramework.6.4.4\build\EntityFramework.DefaultItems.props" />
+    <None Include="packages\EntityFramework.6.4.4\build\EntityFramework.props" />
+    <None Include="packages\EntityFramework.6.4.4\build\EntityFramework.targets" />
+    <None Include="packages\EntityFramework.6.4.4\build\netcoreapp3.0\EntityFramework.props" />
+    <None Include="packages\EntityFramework.6.4.4\build\netcoreapp3.0\EntityFramework.targets" />
+    <None Include="packages\EntityFramework.6.4.4\content\net40\App.config.install.xdt" />
+    <None Include="packages\EntityFramework.6.4.4\content\net40\App.config.transform" />
+    <None Include="packages\EntityFramework.6.4.4\content\net40\Web.config.install.xdt" />
+    <None Include="packages\EntityFramework.6.4.4\content\net40\Web.config.transform" />
+    <None Include="packages\EntityFramework.6.4.4\EntityFramework.6.4.4.nupkg" />
+    <None Include="packages\EntityFramework.6.4.4\tools\EntityFramework6.PS2.psd1" />
+    <None Include="packages\EntityFramework.6.4.4\tools\EntityFramework6.PS2.psm1" />
+    <None Include="packages\EntityFramework.6.4.4\tools\EntityFramework6.psd1" />
+    <None Include="packages\EntityFramework.6.4.4\tools\EntityFramework6.psm1" />
+    <None Include="packages\EntityFramework.6.4.4\tools\init.ps1" />
+    <None Include="packages\EntityFramework.6.4.4\tools\install.ps1" />
+    <None Include="packages\EntityFramework.6.4.4\tools\netcoreapp3.0\any\ef6.runtimeconfig.json" />
     <None Include="packages\FontAwesome.Sharp.6.1.1\.signature.p7s" />
     <None Include="packages\FontAwesome.Sharp.6.1.1\FontAwesome.Sharp.6.1.1.nupkg" />
     <None Include="packages\Icons8.UI.0.2.0\.signature.p7s" />
     <None Include="packages\Icons8.UI.0.2.0\Icons8.UI.0.2.0.nupkg" />
-    <None Include="packages\MahApps.Metro.IconPacks.Material.4.11.0\.signature.p7s" />
-    <None Include="packages\MahApps.Metro.IconPacks.Material.4.11.0\lib\uap10.0.16299\MahApps.Metro.IconPacks.Core.pri" />
-    <None Include="packages\MahApps.Metro.IconPacks.Material.4.11.0\lib\uap10.0.16299\MahApps.Metro.IconPacks.Material.pri" />
-    <None Include="packages\MahApps.Metro.IconPacks.Material.4.11.0\MahApps.Metro.IconPacks.Material.4.11.0.nupkg" />
+    <None Include="packages\LiveCharts.0.9.7\.signature.p7s" />
+    <None Include="packages\LiveCharts.0.9.7\LiveCharts.0.9.7.nupkg" />
+    <None Include="packages\LiveCharts.Wpf.0.9.7\.signature.p7s" />
+    <None Include="packages\LiveCharts.Wpf.0.9.7\LiveCharts.Wpf.0.9.7.nupkg" />
+    <None Include="packages\LiveCharts.Wpf.0.9.7\tools\install.ps1" />
     <None Include="packages\MaterialDesignColors.2.0.9\.signature.p7s" />
     <None Include="packages\MaterialDesignColors.2.0.9\MaterialDesignColors.2.0.9.nupkg" />
     <None Include="packages\MaterialDesignThemes.4.6.1\.signature.p7s" />
     <None Include="packages\MaterialDesignThemes.4.6.1\build\MaterialDesignThemes.targets" />
-    <Content Include="Model\CARSALESSYSTEM.Context.tt">
+    <Resource Include="Customer\Windows\error.png" />
+    <Resource Include="Customer\Windows\sedan.png" />
+    <Content Include="Model\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>CARSALESSYSTEM.edmx</DependentUpon>
-      <LastGenOutput>CARSALESSYSTEM.Context.cs</LastGenOutput>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Model\CARSALESSYSTEM.tt">
+    <Content Include="Model\Model1.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>CARSALESSYSTEM.edmx</DependentUpon>
-      <LastGenOutput>CARSALESSYSTEM.cs</LastGenOutput>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
+    <Content Include="packages\EntityFramework.6.4.4\build\Microsoft.Data.Entity.Build.Tasks.dll" />
+    <Resource Include="packages\EntityFramework.6.4.4\Icon.png" />
+    <Content Include="packages\EntityFramework.6.4.4\lib\net40\EntityFramework.dll" />
+    <Content Include="packages\EntityFramework.6.4.4\lib\net40\EntityFramework.SqlServer.dll" />
+    <Resource Include="packages\EntityFramework.6.4.4\lib\net40\EntityFramework.SqlServer.xml" />
+    <Resource Include="packages\EntityFramework.6.4.4\lib\net40\EntityFramework.xml" />
+    <Content Include="packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll" />
+    <Content Include="packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll" />
+    <Resource Include="packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.xml" />
+    <Resource Include="packages\EntityFramework.6.4.4\lib\net45\EntityFramework.xml" />
+    <Content Include="packages\EntityFramework.6.4.4\lib\netstandard2.1\EntityFramework.dll" />
+    <Content Include="packages\EntityFramework.6.4.4\lib\netstandard2.1\EntityFramework.SqlServer.dll" />
+    <Resource Include="packages\EntityFramework.6.4.4\lib\netstandard2.1\EntityFramework.SqlServer.xml" />
+    <Resource Include="packages\EntityFramework.6.4.4\lib\netstandard2.1\EntityFramework.xml" />
+    <Resource Include="packages\EntityFramework.6.4.4\tools\about_EntityFramework6.help.txt" />
+    <Content Include="packages\EntityFramework.6.4.4\tools\net40\any\ef6.exe" />
+    <Content Include="packages\EntityFramework.6.4.4\tools\net40\any\ef6.pdb" />
+    <Content Include="packages\EntityFramework.6.4.4\tools\net40\win-x86\ef6.exe" />
+    <Content Include="packages\EntityFramework.6.4.4\tools\net40\win-x86\ef6.pdb" />
+    <Content Include="packages\EntityFramework.6.4.4\tools\net45\any\ef6.exe" />
+    <Content Include="packages\EntityFramework.6.4.4\tools\net45\any\ef6.pdb" />
+    <Content Include="packages\EntityFramework.6.4.4\tools\net45\win-x86\ef6.exe" />
+    <Content Include="packages\EntityFramework.6.4.4\tools\net45\win-x86\ef6.pdb" />
+    <Content Include="packages\EntityFramework.6.4.4\tools\netcoreapp3.0\any\ef6.dll" />
+    <Content Include="packages\EntityFramework.6.4.4\tools\netcoreapp3.0\any\ef6.pdb" />
+    <Content Include="packages\LiveCharts.0.9.7\lib\net40\LiveCharts.dll" />
+    <Content Include="packages\LiveCharts.0.9.7\lib\net40\LiveCharts.pdb" />
+    <Resource Include="packages\LiveCharts.0.9.7\lib\net40\LiveCharts.xml" />
+    <Content Include="packages\LiveCharts.0.9.7\lib\net45\LiveCharts.dll" />
+    <Content Include="packages\LiveCharts.0.9.7\lib\net45\LiveCharts.pdb" />
+    <Resource Include="packages\LiveCharts.0.9.7\lib\net45\LiveCharts.xml" />
+    <Content Include="packages\LiveCharts.0.9.7\lib\portable-net45+win8+wp8\LiveCharts.dll" />
+    <Content Include="packages\LiveCharts.0.9.7\lib\portable-net45+win8+wp8\LiveCharts.pdb" />
+    <Resource Include="packages\LiveCharts.0.9.7\lib\portable-net45+win8+wp8\LiveCharts.XML" />
+    <Resource Include="packages\LiveCharts.0.9.7\readme.txt" />
+    <Content Include="packages\LiveCharts.Wpf.0.9.7\lib\net40\LiveCharts.Wpf.dll" />
+    <Content Include="packages\LiveCharts.Wpf.0.9.7\lib\net40\LiveCharts.Wpf.pdb" />
+    <Resource Include="packages\LiveCharts.Wpf.0.9.7\lib\net40\LiveCharts.Wpf.XML" />
+    <Content Include="packages\LiveCharts.Wpf.0.9.7\lib\net45\LiveCharts.Wpf.dll" />
+    <Content Include="packages\LiveCharts.Wpf.0.9.7\lib\net45\LiveCharts.Wpf.pdb" />
+    <Resource Include="packages\LiveCharts.Wpf.0.9.7\lib\net45\LiveCharts.Wpf.XML" />
+    <Resource Include="packages\MaterialDesignThemes.MahApps.0.2.5\images\MaterialDesignThemes.MahApps.Icon.png" />
+    <Content Include="packages\MaterialDesignThemes.MahApps.0.2.5\lib\net462\MaterialDesignThemes.MahApps.dll" />
+    <Content Include="packages\MaterialDesignThemes.MahApps.0.2.5\lib\net462\MaterialDesignThemes.MahApps.pdb" />
+    <Content Include="packages\MaterialDesignThemes.MahApps.0.2.5\lib\net6.0\MaterialDesignThemes.MahApps.dll" />
+    <Content Include="packages\MaterialDesignThemes.MahApps.0.2.5\lib\net6.0\MaterialDesignThemes.MahApps.pdb" />
+    <Content Include="packages\MaterialDesignThemes.MahApps.0.2.5\lib\netcoreapp3.1\MaterialDesignThemes.MahApps.dll" />
+    <Content Include="packages\MaterialDesignThemes.MahApps.0.2.5\lib\netcoreapp3.1\MaterialDesignThemes.MahApps.pdb" />
+    <Content Include="packages\Microsoft.Xaml.Behaviors.Wpf.1.1.19\lib\net45\Design\Microsoft.Xaml.Behaviors.Design.dll" />
+    <Content Include="packages\Microsoft.Xaml.Behaviors.Wpf.1.1.19\lib\net45\Microsoft.Xaml.Behaviors.dll" />
+    <Content Include="packages\Microsoft.Xaml.Behaviors.Wpf.1.1.19\lib\net45\Microsoft.Xaml.Behaviors.pdb" />
+    <Resource Include="packages\Microsoft.Xaml.Behaviors.Wpf.1.1.19\lib\net45\Microsoft.Xaml.Behaviors.xml" />
+    <Content Include="packages\Microsoft.Xaml.Behaviors.Wpf.1.1.19\lib\netcoreapp3.0\Design\Microsoft.Xaml.Behaviors.DesignTools.dll" />
+    <Content Include="packages\Microsoft.Xaml.Behaviors.Wpf.1.1.19\lib\netcoreapp3.0\Microsoft.Xaml.Behaviors.dll" />
+    <Content Include="packages\Microsoft.Xaml.Behaviors.Wpf.1.1.19\lib\netcoreapp3.0\Microsoft.Xaml.Behaviors.pdb" />
+    <Resource Include="packages\Microsoft.Xaml.Behaviors.Wpf.1.1.19\lib\netcoreapp3.0\Microsoft.Xaml.Behaviors.xml" />
+    <Content Include="packages\ToastNotifications.2.5.1\lib\net40\ToastNotifications.dll" />
+    <Resource Include="packages\ToastNotifications.2.5.1\readme.txt" />
+    <Content Include="packages\ToastNotifications.Messages.2.5.1\lib\net40\ToastNotifications.Messages.dll" />
     <Content Include="Resources\Fonts\Nexa Bold.otf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -554,6 +691,15 @@
     <Resource Include="packages\MaterialDesignThemes.4.6.1\build\Resources\Roboto\RobotoCondensed-LightItalic.ttf" />
     <Resource Include="packages\MaterialDesignThemes.4.6.1\build\Resources\Roboto\RobotoCondensed-Regular.ttf" />
     <None Include="packages\MaterialDesignThemes.4.6.1\MaterialDesignThemes.4.6.1.nupkg" />
+    <None Include="packages\MaterialDesignThemes.MahApps.0.2.5\.signature.p7s" />
+    <None Include="packages\MaterialDesignThemes.MahApps.0.2.5\MaterialDesignThemes.MahApps.0.2.5.nupkg" />
+    <None Include="packages\Microsoft.Xaml.Behaviors.Wpf.1.1.19\.signature.p7s" />
+    <None Include="packages\Microsoft.Xaml.Behaviors.Wpf.1.1.19\Microsoft.Xaml.Behaviors.Wpf.1.1.19.nupkg" />
+    <None Include="packages\Microsoft.Xaml.Behaviors.Wpf.1.1.19\tools\Install.ps1" />
+    <None Include="packages\ToastNotifications.2.5.1\.signature.p7s" />
+    <None Include="packages\ToastNotifications.2.5.1\ToastNotifications.2.5.1.nupkg" />
+    <None Include="packages\ToastNotifications.Messages.2.5.1\.signature.p7s" />
+    <None Include="packages\ToastNotifications.Messages.2.5.1\ToastNotifications.Messages.2.5.1.nupkg" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -585,6 +731,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Customer\Windows\" />
+    <Folder Include="Admin\Windows\" />
     <Folder Include="Employee\Pages\" />
     <Folder Include="Employee\Windows\" />
     <Folder Include="Viewmodel\Admin\" />
@@ -612,51 +759,7 @@
     <Content Include="packages\FontAwesome.Sharp.6.1.1\lib\net6.0-windows7.0\FontAwesome.Sharp.dll" />
     <Content Include="packages\FontAwesome.Sharp.6.1.1\lib\netcoreapp3.1\FontAwesome.Sharp.dll" />
     <Content Include="packages\Icons8.UI.0.2.0\lib\net40\Icons8.UI.dll" />
-    <Content Include="packages\MahApps.Metro.IconPacks.Material.4.11.0\lib\net45\MahApps.Metro.IconPacks.Core.dll" />
-    <Content Include="packages\MahApps.Metro.IconPacks.Material.4.11.0\lib\net45\MahApps.Metro.IconPacks.Core.pdb" />
     <Resource Include="Resources\Images\Icons\sedan.png" />
-    <Resource Include="packages\MahApps.Metro.IconPacks.Material.4.11.0\lib\net45\MahApps.Metro.IconPacks.Core.xml" />
-    <Content Include="packages\MahApps.Metro.IconPacks.Material.4.11.0\lib\net45\MahApps.Metro.IconPacks.Material.dll" />
-    <Content Include="packages\MahApps.Metro.IconPacks.Material.4.11.0\lib\net45\MahApps.Metro.IconPacks.Material.pdb" />
-    <Resource Include="packages\MahApps.Metro.IconPacks.Material.4.11.0\lib\net45\MahApps.Metro.IconPacks.Material.xml" />
-    <Content Include="packages\MahApps.Metro.IconPacks.Material.4.11.0\lib\net46\MahApps.Metro.IconPacks.Core.dll" />
-    <Content Include="packages\MahApps.Metro.IconPacks.Material.4.11.0\lib\net46\MahApps.Metro.IconPacks.Core.pdb" />
-    <Resource Include="packages\MahApps.Metro.IconPacks.Material.4.11.0\lib\net46\MahApps.Metro.IconPacks.Core.xml" />
-    <Content Include="packages\MahApps.Metro.IconPacks.Material.4.11.0\lib\net46\MahApps.Metro.IconPacks.Material.dll" />
-    <Content Include="packages\MahApps.Metro.IconPacks.Material.4.11.0\lib\net46\MahApps.Metro.IconPacks.Material.pdb" />
-    <Resource Include="packages\MahApps.Metro.IconPacks.Material.4.11.0\lib\net46\MahApps.Metro.IconPacks.Material.xml" />
-    <Content Include="packages\MahApps.Metro.IconPacks.Material.4.11.0\lib\net47\MahApps.Metro.IconPacks.Core.dll" />
-    <Content Include="packages\MahApps.Metro.IconPacks.Material.4.11.0\lib\net47\MahApps.Metro.IconPacks.Core.pdb" />
-    <Resource Include="packages\MahApps.Metro.IconPacks.Material.4.11.0\lib\net47\MahApps.Metro.IconPacks.Core.xml" />
-    <Content Include="packages\MahApps.Metro.IconPacks.Material.4.11.0\lib\net47\MahApps.Metro.IconPacks.Material.dll" />
-    <Content Include="packages\MahApps.Metro.IconPacks.Material.4.11.0\lib\net47\MahApps.Metro.IconPacks.Material.pdb" />
-    <Resource Include="packages\MahApps.Metro.IconPacks.Material.4.11.0\lib\net47\MahApps.Metro.IconPacks.Material.xml" />
-    <Content Include="packages\MahApps.Metro.IconPacks.Material.4.11.0\lib\net5.0-windows7.0\MahApps.Metro.IconPacks.Core.dll" />
-    <Content Include="packages\MahApps.Metro.IconPacks.Material.4.11.0\lib\net5.0-windows7.0\MahApps.Metro.IconPacks.Core.pdb" />
-    <Resource Include="packages\MahApps.Metro.IconPacks.Material.4.11.0\lib\net5.0-windows7.0\MahApps.Metro.IconPacks.Core.xml" />
-    <Content Include="packages\MahApps.Metro.IconPacks.Material.4.11.0\lib\net5.0-windows7.0\MahApps.Metro.IconPacks.Material.dll" />
-    <Content Include="packages\MahApps.Metro.IconPacks.Material.4.11.0\lib\net5.0-windows7.0\MahApps.Metro.IconPacks.Material.pdb" />
-    <Resource Include="packages\MahApps.Metro.IconPacks.Material.4.11.0\lib\net5.0-windows7.0\MahApps.Metro.IconPacks.Material.xml" />
-    <Content Include="packages\MahApps.Metro.IconPacks.Material.4.11.0\lib\netcoreapp3.0\MahApps.Metro.IconPacks.Core.dll" />
-    <Content Include="packages\MahApps.Metro.IconPacks.Material.4.11.0\lib\netcoreapp3.0\MahApps.Metro.IconPacks.Core.pdb" />
-    <Resource Include="packages\MahApps.Metro.IconPacks.Material.4.11.0\lib\netcoreapp3.0\MahApps.Metro.IconPacks.Core.xml" />
-    <Content Include="packages\MahApps.Metro.IconPacks.Material.4.11.0\lib\netcoreapp3.0\MahApps.Metro.IconPacks.Material.dll" />
-    <Content Include="packages\MahApps.Metro.IconPacks.Material.4.11.0\lib\netcoreapp3.0\MahApps.Metro.IconPacks.Material.pdb" />
-    <Resource Include="packages\MahApps.Metro.IconPacks.Material.4.11.0\lib\netcoreapp3.0\MahApps.Metro.IconPacks.Material.xml" />
-    <Content Include="packages\MahApps.Metro.IconPacks.Material.4.11.0\lib\netcoreapp3.1\MahApps.Metro.IconPacks.Core.dll" />
-    <Content Include="packages\MahApps.Metro.IconPacks.Material.4.11.0\lib\netcoreapp3.1\MahApps.Metro.IconPacks.Core.pdb" />
-    <Resource Include="packages\MahApps.Metro.IconPacks.Material.4.11.0\lib\netcoreapp3.1\MahApps.Metro.IconPacks.Core.xml" />
-    <Content Include="packages\MahApps.Metro.IconPacks.Material.4.11.0\lib\netcoreapp3.1\MahApps.Metro.IconPacks.Material.dll" />
-    <Content Include="packages\MahApps.Metro.IconPacks.Material.4.11.0\lib\netcoreapp3.1\MahApps.Metro.IconPacks.Material.pdb" />
-    <Resource Include="packages\MahApps.Metro.IconPacks.Material.4.11.0\lib\netcoreapp3.1\MahApps.Metro.IconPacks.Material.xml" />
-    <Content Include="packages\MahApps.Metro.IconPacks.Material.4.11.0\lib\uap10.0.16299\MahApps.Metro.IconPacks.Core.dll" />
-    <Content Include="packages\MahApps.Metro.IconPacks.Material.4.11.0\lib\uap10.0.16299\MahApps.Metro.IconPacks.Core.pdb" />
-    <Resource Include="packages\MahApps.Metro.IconPacks.Material.4.11.0\lib\uap10.0.16299\MahApps.Metro.IconPacks.Core.xml" />
-    <Content Include="packages\MahApps.Metro.IconPacks.Material.4.11.0\lib\uap10.0.16299\MahApps.Metro.IconPacks.Material.dll" />
-    <Content Include="packages\MahApps.Metro.IconPacks.Material.4.11.0\lib\uap10.0.16299\MahApps.Metro.IconPacks.Material.pdb" />
-    <Resource Include="packages\MahApps.Metro.IconPacks.Material.4.11.0\lib\uap10.0.16299\MahApps.Metro.IconPacks.Material.xml" />
-    <Resource Include="packages\MahApps.Metro.IconPacks.Material.4.11.0\lib\uap10.0.16299\MahApps.Metro.IconPacks.Material\MahApps.Metro.IconPacks.Material.xr.xml" />
-    <Resource Include="packages\MahApps.Metro.IconPacks.Material.4.11.0\logo_small.png" />
     <Resource Include="packages\MaterialDesignColors.2.0.9\images\MaterialDesignColors.Icon.png" />
     <Content Include="packages\MaterialDesignColors.2.0.9\lib\net462\MaterialDesignColors.dll" />
     <Content Include="packages\MaterialDesignColors.2.0.9\lib\net462\MaterialDesignColors.pdb" />

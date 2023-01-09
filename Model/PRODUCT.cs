@@ -29,7 +29,6 @@ namespace CarSalesSystem.Model
         public Nullable<int> SELL_NUMBER { get; set; }
         public string IRECEIPT_ID { get; set; }
         public decimal PRICE { get; set; }
-        public string DESCRIPTIONS { get; set; }
         public string TYPEPRO_ID { get; set; }
         public string PRODUCER_ID { get; set; }
         public byte[] IMG { get; set; }
