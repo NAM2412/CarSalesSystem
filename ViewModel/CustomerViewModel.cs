@@ -40,7 +40,7 @@ namespace CarSalesSystem.ViewModel
 
         private void UpdateInfor(EditCustomer parameter)
         {
-            var customerInfo = DataProvider.Ins.db.CUSTOMERs.Find(idCustom);
+            var customerInfo = DataProvider.Ins.DB.CUSTOMERs.Find(idCustom);
             customerInfo.CUS_NAME = parameter.tbFullName.Text;
             customerInfo.CUS_ADDRESS = parameter.tbAddress.Text;
             customerInfo.PHONE = parameter.tbTelephone.Text;
@@ -48,7 +48,7 @@ namespace CarSalesSystem.ViewModel
             customerInfo.GENDER = parameter.cbGender.Text;
             customerInfo.CUS_DATE_OF_BIRTH = DateTime.Parse(parameter.dpBirth.Text);
             customerInfo.IMG=StreamFile(imagefilename);
-            DataProvider.Ins.db.SaveChanges();
+            DataProvider.Ins.DB.SaveChanges();
             
         }
         private void UploadPicture(Grid parameter)
@@ -100,7 +100,7 @@ namespace CarSalesSystem.ViewModel
         {
             EditCustomer editCustomerwindow = new EditCustomer();
             editCustomerwindow.Title = "Edit information of Customer";
-            var customerInfo = DataProvider.Ins.db.CUSTOMERs.Find(idCus);
+            var customerInfo = DataProvider.Ins.DB.CUSTOMERs.Find(idCus);
             editCustomerwindow.tbFullName.Text = customerInfo.CUS_NAME;
             editCustomerwindow.tbAddress.Text = customerInfo.CUS_ADDRESS;
             editCustomerwindow.tbTelephone.Text = customerInfo.PHONE;
@@ -123,7 +123,7 @@ namespace CarSalesSystem.ViewModel
             this.customer = parameter;
             parameter.skpCustomer.Children.Clear();
             
-            var listCustomer =DataProvider.Ins.db.CUSTOMERs.ToList();
+            var listCustomer =DataProvider.Ins.DB.CUSTOMERs.ToList();
             bool flat = false;
             int i = 1;
             foreach (var item in listCustomer)
