@@ -6,7 +6,8 @@
       xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
       xmlns:local="clr-namespace:CarSalesSystem.Admin.Pages"
       mc:Ignorable="d" 
-      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
+      xmlns:i1="http://schemas.microsoft.com/xaml/behaviors"
       Height="740"
       Width="1000"
       x:Name="pgCustomer"
@@ -20,12 +21,12 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="100"/>
         </Grid.RowDefinitions>
-        <i:Interaction.Triggers>
-            <i:EventTrigger EventName="Loaded">
-                <i:InvokeCommandAction Command="{Binding loadCustomerCommand}"
+        <i1:Interaction.Triggers>
+            <i1:EventTrigger EventName="Loaded">
+                <i1:InvokeCommandAction Command="{Binding loadCustomerCommand}"
                                        CommandParameter="{Binding ElementName=pgCustomer}"/>
-            </i:EventTrigger>
-        </i:Interaction.Triggers>
+            </i1:EventTrigger>
+        </i1:Interaction.Triggers>
         <StackPanel
                     Grid.Row="0"
                     Orientation="Horizontal"
