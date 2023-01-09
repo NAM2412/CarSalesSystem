@@ -9,7 +9,7 @@
     <Grid>
         <materialDesign:ColorZone CornerRadius="10,10,0,0" 
             Mode="PrimaryLight"
-            Background="#083353"
+            Background="#FEFDFD"
             Padding="1" Height="30">
             <DockPanel >
                 <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" >
@@ -23,24 +23,45 @@
                         </Style>
                     </StackPanel.Resources>
                     <Button
+
                            ToolTip="Thu nhỏ"
                            Style="{StaticResource MaterialDesignRaisedLightButton}"
-
                            ToolBar.OverflowMode="AsNeeded" Foreground="#FF020202" BorderBrush="Transparent" Background="Transparent" >
-                        <materialDesign:PackIcon Kind="WindowMinimize" Foreground="White"/>
+                        <Ellipse
+                                Width="20"
+                                Height="20"
+                                Fill="#ff9900"
+                                Stroke="#ff9900"
+                                StrokeThickness="1"
+                                Canvas.Left="135"
+                                Canvas.Top="100" />     
                     </Button>
 
                     <Button
                             ToolTip="Phóng to"
                             Style="{StaticResource MaterialDesignRaisedLightButton}"
                             ToolBar.OverflowMode="AsNeeded" BorderBrush="Transparent" Background="Transparent" >
-                        <materialDesign:PackIcon Kind="WindowMaximize" Foreground="White"/>
+                        <Ellipse
+                                Width="20"
+                                Height="20"
+                                Fill="#66ff33"
+                                Stroke="#66ff33"
+                                StrokeThickness="1"
+                                Canvas.Left="135"
+                                Canvas.Top="100" />
                     </Button>
                     <Button
                             ToolTip="Đóng"
                             Style="{StaticResource MaterialDesignRaisedLightButton}"
                             ToolBar.OverflowMode="AsNeeded" BorderBrush="Transparent" Background="Transparent" >
-                        <materialDesign:PackIcon Kind="WindowClose" Foreground="White"/>
+                        <Ellipse
+                                Width="20"
+                                Height="20"
+                                Fill="#ff0000"
+                                Stroke="#ff0000"
+                                StrokeThickness="1"
+                                Canvas.Left="135"
+                                Canvas.Top="100" />
                     </Button>
                 </StackPanel>
                 <StackPanel DockPanel.Dock="Left"

@@ -23,11 +23,12 @@ namespace CarSalesSystem.Model
                 _ins = value;
             }
         }
+        public CARSALESSYSTEMEntities db { get; set; }
+        private DataProvider()
+        {
 
-        //public CARSALESSYSTEMEntities DB { get; set; }
-        //private DataProvider()
-        //{
-        //    DB = new CARSALESSYSTEMEntities();
-        //}
+            db = new CARSALESSYSTEMEntities();
+        }
+
     }
 }

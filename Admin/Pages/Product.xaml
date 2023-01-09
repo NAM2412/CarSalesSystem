@@ -126,12 +126,13 @@
                     Grid.Row="1"
                     HorizontalAlignment="Left"
                     Margin="50,0,0,0" 
-                    Width="863" 
+                    Width="900" 
                     Background="#1A6985">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="89"/>
-                <ColumnDefinition Width="483"/>
-                <ColumnDefinition Width="86"/>
+                <ColumnDefinition Width="90"/>
+                <ColumnDefinition Width="450"/>
+                <ColumnDefinition Width="90"/>
+                <ColumnDefinition Width="150"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <TextBlock 
@@ -187,16 +188,15 @@
                     Grid.Row="2"
                     HorizontalAlignment="Left" 
                     Margin="50,0,0,0"
-                    Width="863" >
+                    Width="900" >
             <ScrollViewer
                          Grid.Row="2"
                         HorizontalScrollBarVisibility="Disabled" 
-                        Width="863" 
+                        Width="900" 
                         HorizontalAlignment="Left" 
                         VerticalScrollBarVisibility="Auto">
                 <StackPanel 
-                            x:Name="stkGoods" 
-                            Width="863" 
+                            Width="900" 
                             HorizontalAlignment="Left" 
                             ScrollViewer.VerticalScrollBarVisibility="Auto" 
                             ScrollViewer.HorizontalScrollBarVisibility="Disabled"/>
