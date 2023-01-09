@@ -281,6 +281,18 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Admin\Windows\Addemp.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Admin\Windows\Addproduct.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Admin\Windows\Updateemp.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="CustomerWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -362,6 +374,15 @@
     </Compile>
     <Compile Include="Admin\User Controls\UnitChart.xaml.cs">
       <DependentUpon>UnitChart.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Windows\Addemp.xaml.cs">
+      <DependentUpon>Addemp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Windows\Addproduct.xaml.cs">
+      <DependentUpon>Addproduct.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Windows\Updateemp.xaml.cs">
+      <DependentUpon>Updateemp.xaml</DependentUpon>
     </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
@@ -709,6 +730,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Customer\Windows\" />
     <Folder Include="Admin\Windows\" />
     <Folder Include="Employee\Pages\" />
     <Folder Include="Employee\Windows\" />
