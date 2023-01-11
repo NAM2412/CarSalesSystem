@@ -87,7 +87,7 @@
                             Width="75" Height="30"
                             Background="#478BA3"
                             BorderBrush="#478BA3"
-                            Foreground="White"></Button>
+                            Foreground="White" Click="btnBooking_Click"></Button>
                 </Grid>
             </Grid>
         </Grid>

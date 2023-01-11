@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CarSalesSystem.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,21 @@ namespace CarSalesSystem.Customer.Windows
     /// </summary>
     public partial class OrderBill : Window
     {
+        CUSTOMER customer;
+        PRODUCT product;
+        
         public OrderBill()
         {
             InitializeComponent();
+        }
+        public OrderBill(PRODUCT _product, CUSTOMER _customer)
+        {
+            InitializeComponent();
+            customer = _customer;
+            product = _product;
+            txtTenSP.Text = _product.PRO_NAME;
+            txtTenKH.Text = _customer.CUS_NAME;
+            txtNgayDatHang.SelectedDate = DateTime.Now;
         }
     }
 }

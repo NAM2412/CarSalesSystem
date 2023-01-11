@@ -32,7 +32,7 @@
                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                         materialDesign:HintAssist.Hint="FULL NAME"
                         materialDesign:HintAssist.HintOpacity="1"
-                        Text="{Binding CUSTOMER_ID, UpdateSourceTrigger=PropertyChanged}">
+                        Text="{Binding CUSTOMER_NAME, UpdateSourceTrigger=PropertyChanged}">
                         <TextBox.Resources>
                             <Style TargetType="{x:Type materialDesign:SmartHint}">
                                 <Setter Property="FontWeight"
@@ -61,7 +61,6 @@
                                 materialDesign:HintAssist.Hint="DAY/MONTH/YEAR"
                                 materialDesign:CalendarAssist.IsHeaderVisible="False"
                                 FontStyle="Italic"
-                                SelectedDate="{Binding OB_DATED, UpdateSourceTrigger=PropertyChanged}"
                                 IsDropDownOpen="False"
                                 Text="1/1/2001" IsEnabled="False"/>
                     <!-- XẾP HẠNG-->
@@ -89,7 +88,7 @@
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                              materialDesign:HintAssist.Hint="PRODUCT"
                              materialDesign:HintAssist.HintOpacity="1"
-                             Text="{Binding PRO_ID, UpdateSourceTrigger=PropertyChanged}"
+                             Text="{Binding PRO_NAME, UpdateSourceTrigger=PropertyChanged}"
                              IsEnabled="False">
                         <TextBox.Resources>
                             <Style TargetType="{x:Type materialDesign:SmartHint}">
