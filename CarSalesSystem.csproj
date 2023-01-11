@@ -241,6 +241,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Customer\Windows\MaintenanceBill.xaml.cs">
+      <DependentUpon>MaintenanceBill.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Viewmodel\BaseViewModel.cs" />
     <Compile Include="Viewmodel\CustomerViewModel.cs" />
     <Page Include="Admin\Pages\Customer.xaml">
@@ -320,6 +323,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Customer\Windows\DetailCar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Customer\Windows\MaintenanceBill.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
