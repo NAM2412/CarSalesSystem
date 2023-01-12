@@ -24,9 +24,10 @@ namespace CarSalesSystem.Customer.Pages
     {
         CUSTOMER customer;
     
-        public Store()
+        public Store(CUSTOMER cus)
         {
             InitializeComponent();
+            customer = cus;
             ListProduct.ItemsSource = DataProvider.Ins.DB.PRODUCTs.ToList();
             customer = DataProvider.Ins.DB.CUSTOMERs.FirstOrDefault();
         }

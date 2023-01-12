@@ -55,7 +55,6 @@
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                              materialDesign:HintAssist.Hint="PRODUCT"
                              materialDesign:HintAssist.HintOpacity="1"
-                             Text="{Binding PRO_NAME, UpdateSourceTrigger=PropertyChanged}"
                              IsEnabled="False">
                         <TextBox.Resources>
                             <Style TargetType="{x:Type materialDesign:SmartHint}">

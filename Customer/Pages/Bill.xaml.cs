@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CarSalesSystem.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,12 @@ namespace CarSalesSystem.Customer.Pages
     /// </summary>
     public partial class Bill : Page
     {
-        public Bill()
+        CUSTOMER cus;
+        public Bill(CUSTOMER _cus)
         {
             InitializeComponent();
+            cus= _cus;
+            datagridOrderBill.ItemsSource = DataProvider.Ins.DB.ORDERBILLs.Where(x=> x.CUSTOMER_ID == cus.CUS_ID).ToList();
         }
     }
 }

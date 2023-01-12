@@ -314,7 +314,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Customer\Pages\Info.xaml">
+    <Page Include="Customer\Pages\InfoCus.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -418,8 +418,8 @@
     <Compile Include="Customer\Pages\Bill.xaml.cs">
       <DependentUpon>Bill.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Customer\Pages\Info.xaml.cs">
-      <DependentUpon>Info.xaml</DependentUpon>
+    <Compile Include="Customer\Pages\InfoCus.xaml.cs">
+      <DependentUpon>InfoCus.xaml</DependentUpon>
     </Compile>
     <Compile Include="Customer\Pages\Store.xaml.cs">
       <DependentUpon>Store.xaml</DependentUpon>

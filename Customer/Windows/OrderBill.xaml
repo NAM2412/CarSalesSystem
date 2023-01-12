@@ -11,7 +11,9 @@
         FontSize="14"
         AllowsTransparency="True"
         WindowStartupLocation="CenterScreen"
-        Background="White">
+        Background="White"
+        Width="600"
+        Height="250">
     <Border BorderBrush="#1A6985" BorderThickness="0.5" CornerRadius="10">
         <Grid>
             <Grid.RowDefinitions>
@@ -32,7 +34,7 @@
                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                         materialDesign:HintAssist.Hint="FULL NAME"
                         materialDesign:HintAssist.HintOpacity="1"
-                        Text="{Binding CUSTOMER_NAME, UpdateSourceTrigger=PropertyChanged}">
+                        >
                         <TextBox.Resources>
                             <Style TargetType="{x:Type materialDesign:SmartHint}">
                                 <Setter Property="FontWeight"
@@ -70,7 +72,7 @@
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                              materialDesign:HintAssist.Hint="RANK"
                              materialDesign:HintAssist.HintOpacity="1"
-                             Text="{Binding RANK_ID, UpdateSourceTrigger=PropertyChanged}"
+                             
                              IsEnabled="False">
                         <TextBox.Resources>
                             <Style TargetType="{x:Type materialDesign:SmartHint}">
@@ -88,8 +90,8 @@
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                              materialDesign:HintAssist.Hint="PRODUCT"
                              materialDesign:HintAssist.HintOpacity="1"
-                             Text="{Binding PRO_NAME, UpdateSourceTrigger=PropertyChanged}"
-                             IsEnabled="False">
+                             IsEnabled="False"
+                             >
                         <TextBox.Resources>
                             <Style TargetType="{x:Type materialDesign:SmartHint}">
                                 <Setter Property="FontWeight"
@@ -121,7 +123,7 @@
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                              materialDesign:HintAssist.Hint="DISCOUNT"
                              materialDesign:HintAssist.HintOpacity="1"
-                             Text="{Binding DISCOUNT, UpdateSourceTrigger=PropertyChanged}"
+                             
                              IsEnabled="False">
 
                         <TextBox.Resources>

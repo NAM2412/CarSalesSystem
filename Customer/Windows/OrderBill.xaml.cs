@@ -32,8 +32,8 @@ namespace CarSalesSystem.Customer.Windows
             InitializeComponent();
             customer = _customer;
             product = _product;
-            txtTenSP.Text = _product.PRO_NAME;
-            txtTenKH.Text = _customer.CUS_NAME;
+            txtTenSP.Text = product.PRO_NAME;
+            txtTenKH.Text = customer.CUS_NAME;
             txtNgayDatHang.SelectedDate = DateTime.Now;
         }
     }
