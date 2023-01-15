@@ -131,13 +131,13 @@
                            FontFamily="Mitr Medium"/>
 
                 <Button Grid.Row="1"
-                            Grid.Column="1"
+                        Grid.Column="1"
                         x:Name="informationButton"
-                            Style="{DynamicResource RoundedButtonStyle}"
-                            Background="#134B5F"
-                            VerticalAlignment="Top"
-                            Margin="350 0 30 0"
-                            Click="informationButton_Click">
+                        Style="{DynamicResource RoundedButtonStyle}"
+                        Background="#134B5F"
+                        VerticalAlignment="Top"
+                        Margin="350 0 30 0"
+                        Click="informationButton_Click">
                     <Label Content="UPDATE"
                                Foreground="White" FontFamily="Nexa ☞"
                                ></Label>

@@ -13,7 +13,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-
+using ToastNotifications;
+using ToastNotifications.Lifetime;
+using ToastNotifications.Position;
 namespace CarSalesSystem
 {
     /// <summary>
@@ -27,11 +29,15 @@ namespace CarSalesSystem
         {
             InitializeComponent();
         }
+
+        
+
         public CustomerWindow(CUSTOMER cUSTOMER)
         {
             InitializeComponent();
             _customer = cUSTOMER;
         }
+
         private void StoreBtn_Click(object sender, RoutedEventArgs e)
         {
             PagesNavigation.Navigate(new Store(_customer));

@@ -51,6 +51,12 @@ namespace CarSalesSystem.General
         public SignIn()
         {
             InitializeComponent();
+            if (Properties.Settings.Default.userName != string.Empty)
+            {
+                usernameTextBox.Text = Properties.Settings.Default.userName;
+                passwordTextBox.Password= Properties.Settings.Default.passUser;
+            }
+
         }
         void CloseWindow(Type type)
         {
@@ -68,6 +74,8 @@ namespace CarSalesSystem.General
 
         private void usernameTextBox_GotFocus(object sender, RoutedEventArgs e)
         {
+            if (usernameTextBox.Text.Equals(Properties.Settings.Default.userName))
+                return;
             if (usernameTextBox.Text.Equals("Username"))
                 usernameTextBox.Text = "";
             if (usernameTextBox.BorderBrush == Brushes.Red)
@@ -103,6 +111,7 @@ namespace CarSalesSystem.General
                 this.Close();
                 return;
             }
+
             if (usernameValid && passwordValid)
             {
                 CUSTOMER cus = DataProvider.Ins.DB.CUSTOMERs.Where(x => x.CUS_ACCOUNT == usernameTextBox.Text).FirstOrDefault(); 
@@ -111,6 +120,7 @@ namespace CarSalesSystem.General
                 this.Close();
                 return;
             }
+
             if (!usernameValid)
                 usernameTextBox.BorderBrush = Brushes.Red;
             if (!passwordValid)
@@ -147,7 +157,13 @@ namespace CarSalesSystem.General
                        
                     else
                         adminWindow.Show();
-                    this.Close();
+                    if (rememberCheckBox.IsChecked == true)
+                    {
+                        Properties.Settings.Default.userName = usernameTextBox.Text;
+                        Properties.Settings.Default.passUser = passwordTextBox.Password;
+                        Properties.Settings.Default.Save();
+                    }
+                    this.Hide();
                  }
                  else
                  {
@@ -162,11 +178,24 @@ namespace CarSalesSystem.General
                 notifier.ShowError(ex.Message);
             }
             
-
-            
-            
             connection.Close();
             
+        }
+
+        private void rememberCheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+
+            
+        }
+
+        private void GoogleBtn_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void FacebookBtn_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
