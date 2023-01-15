@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace CarSalesSystem.Admin.Pages
+namespace CarSalesSystem.Admin.User_Controls
 {
     /// <summary>
-    /// Interaction logic for Product.xaml
+    /// Interaction logic for ImportControl.xaml
     /// </summary>
-    public partial class ProductPG : Page
+    public partial class ImportControl : UserControl
     {
-        public ProductPG()
+        public ImportControl()
         {
             InitializeComponent();
         }
