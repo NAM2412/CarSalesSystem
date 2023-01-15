@@ -5,17 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:CarSalesSystem.Admin.User_Controls"
              mc:Ignorable="d" 
-             DataContext="{StaticResource ControlBarVM}"
-             x:Name="ucControlBar"
-             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
-
-    <i:Interaction.Triggers>
-        <i:EventTrigger EventName="MouseLeftButtonDown">
-            <i:InvokeCommandAction Command="{Binding SelectedChangedCommand}"
-                                   CommandParameter="{Binding ElementName=ucControlBar}"/>
-        </i:EventTrigger>
-    </i:Interaction.Triggers>
     <Grid>
         <materialDesign:ColorZone CornerRadius="10,10,0,0" 
             Mode="PrimaryLight"
@@ -35,15 +25,13 @@
                     <Button
 
                            ToolTip="Thu nhỏ"
-                          Command="{Binding MinimizeWindowCommand}"
-                           CommandParameter="{Binding ElementName=ucControlBar}"
                            Style="{StaticResource MaterialDesignRaisedLightButton}"
                            ToolBar.OverflowMode="AsNeeded" Foreground="#FF020202" BorderBrush="Transparent" Background="Transparent" >
                         <Ellipse
                                 Width="20"
                                 Height="20"
-                                Fill="#FFAF68"
-                                Stroke="#FFAF68"
+                                Fill="#ff9900"
+                                Stroke="#ff9900"
                                 StrokeThickness="1"
                                 Canvas.Left="135"
                                 Canvas.Top="100" />     
@@ -51,30 +39,26 @@
 
                     <Button
                             ToolTip="Phóng to"
-                         Command="{Binding MaximizeWindowCommand}"
-                        CommandParameter="{Binding ElementName=ucControlBar}"
                             Style="{StaticResource MaterialDesignRaisedLightButton}"
                             ToolBar.OverflowMode="AsNeeded" BorderBrush="Transparent" Background="Transparent" >
                         <Ellipse
                                 Width="20"
                                 Height="20"
-                                Fill="#79D45E"
-                                Stroke="#79D45E"
+                                Fill="#66ff33"
+                                Stroke="#66ff33"
                                 StrokeThickness="1"
                                 Canvas.Left="135"
                                 Canvas.Top="100" />
                     </Button>
                     <Button
-                         Command="{Binding CloseWindowCommand}"
-                            CommandParameter="{Binding ElementName=ucControlBar}"
                             ToolTip="Đóng"
                             Style="{StaticResource MaterialDesignRaisedLightButton}"
                             ToolBar.OverflowMode="AsNeeded" BorderBrush="Transparent" Background="Transparent" >
                         <Ellipse
                                 Width="20"
                                 Height="20"
-                                Fill="#F4889A"
-                                Stroke="#F4889A"
+                                Fill="#ff0000"
+                                Stroke="#ff0000"
                                 StrokeThickness="1"
                                 Canvas.Left="135"
                                 Canvas.Top="100" />

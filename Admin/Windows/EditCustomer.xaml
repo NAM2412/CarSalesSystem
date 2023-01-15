@@ -344,8 +344,6 @@
                             <Button
                          Content="Back"
                         Height="40"
-                        Command="{Binding BackEditProductCommand}"
-                        CommandParameter="{Binding ElementName=wdEditCustomer}"
                         FontSize="14"
                         Width="100"
                         ToolTip="Back Front Screen" 
