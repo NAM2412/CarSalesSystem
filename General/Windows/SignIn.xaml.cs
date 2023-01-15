@@ -50,6 +50,12 @@ namespace CarSalesSystem.General
         public SignIn()
         {
             InitializeComponent();
+            if (Properties.Settings.Default.userName != string.Empty)
+            {
+                usernameTextBox.Text = Properties.Settings.Default.userName;
+                passwordTextBox.Password= Properties.Settings.Default.passUser;
+            }
+
         }
         void CloseWindow(Type type)
         {
@@ -67,6 +73,8 @@ namespace CarSalesSystem.General
 
         private void usernameTextBox_GotFocus(object sender, RoutedEventArgs e)
         {
+            if (usernameTextBox.Text.Equals(Properties.Settings.Default.userName))
+                return;
             if (usernameTextBox.Text.Equals("Username"))
                 usernameTextBox.Text = "";
             if (usernameTextBox.BorderBrush == Brushes.Red)
@@ -132,7 +140,13 @@ namespace CarSalesSystem.General
                         customerWindow.Show();
                     else
                         adminWindow.Show();
-                    this.Close();
+                    if (rememberCheckBox.IsChecked == true)
+                    {
+                        Properties.Settings.Default.userName = usernameTextBox.Text;
+                        Properties.Settings.Default.passUser = passwordTextBox.Password;
+                        Properties.Settings.Default.Save();
+                    }
+                    this.Hide();
                  }
                  else
                  {
@@ -153,14 +167,18 @@ namespace CarSalesSystem.General
 
         private void rememberCheckBox_Checked(object sender, RoutedEventArgs e)
         {
-            /*
-            if (rememberCheckBox.Checked)
-            {
-                Properties.Settings.Default.userName = textBoxUserName.Text;
-                Properties.Settings.Default.passUser = textBoxUserPass.Text;
-                Properties.Settings.Default.Save();
-            }
-            */
+
+            
+        }
+
+        private void GoogleBtn_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void FacebookBtn_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

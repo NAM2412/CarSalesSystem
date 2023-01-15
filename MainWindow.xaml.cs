@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CarSalesSystem.General;
+using System;
 using System.Windows;
 using System.Windows.Input;
 using ToastNotifications;
@@ -99,6 +100,8 @@ namespace CarSalesSystem
         private void logoutBtn_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+            new SignIn().ShowDialog();
+
         }
     }
 }

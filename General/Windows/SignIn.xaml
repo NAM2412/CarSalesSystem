@@ -64,7 +64,7 @@
                         Height="30"
                         VerticalAlignment="Top"
                         HorizontalAlignment="Left"
-                        BorderThickness="0">
+                        BorderThickness="0" Click="GoogleBtn_Click">
                     <Button.Background>
                         <ImageBrush 
                             ImageSource="/Resources/Images/Icons/google.png"
@@ -79,7 +79,7 @@
                     Height="30"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Center"
-                    BorderThickness="0">
+                    BorderThickness="0" Click="FacebookBtn_Click">
                     <Button.Background>
                         <ImageBrush
                         ImageSource="/Resources/Images/Icons/facebook.png" ></ImageBrush>
@@ -137,13 +137,14 @@
                              FontFamily="Nexa ☞"
                              Background="Transparent"></TextBlock>
                     <PasswordBox Grid.Row="1"
-                             Name="passwordTextBox"
+                                 Name="passwordTextBox"
                              Width="400"
                              Height="65"
                              VerticalContentAlignment="Center"
                              FontSize="30"
                              Foreground="White"
                              BorderThickness="1"
+                             Padding="10 0 0 0"
                              BorderBrush="White"
                              FontFamily="Nexa ☞"
                              Background="Transparent" 
