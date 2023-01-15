@@ -250,7 +250,7 @@
                                     VerticalContentAlignment="Bottom" 
                                     FontWeight="SemiBold" >
                             </TextBox>
-   
+
 
 
                         </StackPanel>
@@ -316,7 +316,7 @@
                                 VerticalAlignment="Bottom"/>
                         </StackPanel>
                     </Grid>
-                    
+
                     <Grid 
                         Margin="0,15,0,0"
                     Grid.Row="8"

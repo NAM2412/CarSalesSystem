@@ -241,6 +241,68 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Admin\User Controls\ImportControl.xaml.cs">
+      <DependentUpon>ImportControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\User Controls\ProductControl.xaml.cs">
+      <DependentUpon>ProductControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Windows\EditProduct.xaml.cs">
+      <DependentUpon>EditProduct.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Windows\ImportProduct.xaml.cs">
+      <DependentUpon>ImportProduct.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Model\ACCOUNT.cs">
+      <DependentUpon>CARSALESSYSTEMEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\CARSALESSYSTEMEntities.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CARSALESSYSTEMEntities.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\CARSALESSYSTEMEntities.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CARSALESSYSTEMEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\CARSALESSYSTEMEntities.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CARSALESSYSTEMEntities.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Model\CUSTOMER.cs">
+      <DependentUpon>CARSALESSYSTEMEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\EMPLOYEE.cs">
+      <DependentUpon>CARSALESSYSTEMEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\IMPORTRECEIPT.cs">
+      <DependentUpon>CARSALESSYSTEMEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\IMPORTRECEIPTINFO.cs">
+      <DependentUpon>CARSALESSYSTEMEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\MAINTENANCEBILL.cs">
+      <DependentUpon>CARSALESSYSTEMEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\ORDERBILL.cs">
+      <DependentUpon>CARSALESSYSTEMEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\PRODUCER.cs">
+      <DependentUpon>CARSALESSYSTEMEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\PRODUCT.cs">
+      <DependentUpon>CARSALESSYSTEMEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\RANK_MONEY.cs">
+      <DependentUpon>CARSALESSYSTEMEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\SELLBILL.cs">
+      <DependentUpon>CARSALESSYSTEMEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\TYPEPRODUCT.cs">
+      <DependentUpon>CARSALESSYSTEMEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Viewmodel\BaseViewModel.cs" />
     <Compile Include="Viewmodel\ControlBarViewModel.cs" />

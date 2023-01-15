@@ -10,7 +10,7 @@ using System.Windows.Input;
 
 namespace CarSalesSystem.ViewModel
 {
-    public class ControlBarViewModel:BaseViewModel
+    public class ControlBarViewModel : BaseViewModel
     {
         public ICommand CloseWindowCommand { get; set; }
         public ICommand MaximizeWindowCommand { get; set; }

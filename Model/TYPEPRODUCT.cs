@@ -22,9 +22,7 @@ namespace CarSalesSystem.Model
     
         public string TYPEPRODUCT_ID { get; set; }
         public string TYPEPRODUCT_NAME { get; set; }
-        public string PRODUCER_ID { get; set; }
     
-        public virtual PRODUCER PRODUCER { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PRODUCT> PRODUCTs { get; set; }
     }

@@ -11,7 +11,7 @@
       Height="740"
       Width="1000"
       x:Name="pgCustomer"
-     DataContext="{StaticResource customerVM}"
+      DataContext="{StaticResource customerVM}"
       Background="White"
       Title="Customer">
     <Grid>

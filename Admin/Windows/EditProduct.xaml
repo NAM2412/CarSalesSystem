@@ -5,14 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CarSalesSystem.Admin.Windows"
         mc:Ignorable="d"
-         WindowStyle="None"
-        DataContext="{StaticResource ProductVM}"
         x:Name="wdEditProduct"
         AllowsTransparency="True"
+        DataContext="{StaticResource ProductVM}"
+        WindowStyle="None"
+         xmlns:uc ="clr-namespace:CarSalesSystem.Admin.User_Controls"
         Background="Transparent"
-        xmlns:uc ="clr-namespace:CarSalesSystem.Admin.User_Controls"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        Title="EditProduct" Height="520" Width="898">
+        Height="520" Width="898"
+        Title="EditProduct" >
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -62,15 +63,6 @@
                 FocusVisualStyle="{x:Null}"
                 FontSize="16">
                     </Button>
-                    <!--<materialDesign:PackIcon 
-                x:Name="iconImage" 
-                Kind="FileImageOutline" 
-                Foreground="DarkGray"
-                Width="80" 
-                Height="80"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Center"  
-                Margin="0,0,0,0"/>-->
                 </Grid>
                 <Grid 
                     Grid.Row="1"

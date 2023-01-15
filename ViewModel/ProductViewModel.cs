@@ -54,7 +54,7 @@ namespace CarSalesSystem.ViewModel
 
             UpLoadIMGEditCommand = new RelayCommand<Grid>((parameter) => true, (parameter) => UpLoadIMGEdit(parameter));
 
-            BackImportProductCommand = new RelayCommand<ImportProduct>((parameter) => true, (parameter) => parameter.Close()) ;
+            BackImportProductCommand = new RelayCommand<ImportProduct>((parameter) => true, (parameter) => parameter.Close());
 
             ShowLoadImportProductCommand = new RelayCommand<WarehousePG>((parameter) => true, (parameter) => ShowLoadImportProduct(parameter));
             ClickImportProductCommand = new RelayCommand<ImportControl>((parameter) => true, (parameter) => ShowImportProduct(parameter));
@@ -70,15 +70,15 @@ namespace CarSalesSystem.ViewModel
         private void showImportProductWindow(string idProduct)
         {
             var productInfo = DataProvider.Ins.DB.PRODUCTs.Find(idProduct);
-            var listReceipt = DataProvider.Ins.DB.IMPORTRECEIPTs.Count()+1;
+            var listReceipt = DataProvider.Ins.DB.IMPORTRECEIPTs.Count() + 1;
             ImportProduct importProduct = new ImportProduct();
             importProduct.Title = "Import Product";
             importProduct.tbName.Text = productInfo.PRO_NAME;
             importProduct.tbYear.Text = productInfo.PRO_YEAR.ToString();
             importProduct.pdDateTime.Text = DateTime.UtcNow.Date.ToString();
-            if(listReceipt < 10)
+            if (listReceipt < 10)
             {
-                importProduct.tbIdReceipt.Text = "NH0"+ listReceipt.ToString();
+                importProduct.tbIdReceipt.Text = "NH0" + listReceipt.ToString();
             }
             else
             {
@@ -92,7 +92,7 @@ namespace CarSalesSystem.ViewModel
                 importProduct.grdSelectImage.Background = imageBrush;
             }
             importProduct.ShowDialog();
-            
+
         }
 
         private void ShowLoadImportProduct(WarehousePG parameter)
@@ -123,15 +123,15 @@ namespace CarSalesSystem.ViewModel
 
         private void AddProduct(Addproduct parameter)
         {
-            var type = DataProvider.Ins.DB.TYPEPRODUCTs.Where(x => x.TYPEPRODUCT_NAME== parameter.cbType.Text).FirstOrDefault();
-            var producer  = DataProvider.Ins.DB.PRODUCERs.Where(x => x.PRODUCER_NAME == parameter.tbProducer.Text).FirstOrDefault();
+            var type = DataProvider.Ins.DB.TYPEPRODUCTs.Where(x => x.TYPEPRODUCT_NAME == parameter.cbType.Text).FirstOrDefault();
+            var producer = DataProvider.Ins.DB.PRODUCERs.Where(x => x.PRODUCER_NAME == parameter.tbProducer.Text).FirstOrDefault();
             numberproduct++;
-            string id="";
-            if(numberproduct < 10)
+            string id = "";
+            if (numberproduct < 10)
             {
                 id += "P00" + numberproduct.ToString();
             }
-            else if(numberproduct < 100)
+            else if (numberproduct < 100)
             {
                 id += "P0" + numberproduct.ToString();
             }
@@ -140,7 +140,7 @@ namespace CarSalesSystem.ViewModel
                 id += "P" + numberproduct.ToString();
             }
             PRODUCT ProductInfo = new PRODUCT();
-            ProductInfo.PRO_ID= id;
+            ProductInfo.PRO_ID = id;
             ProductInfo.MAXPOWER = int.Parse(parameter.tbMaxPower.Text);
             ProductInfo.DISPLACEMENT = int.Parse(parameter.tbDispla.Text);
             ProductInfo.MAXSPEED = int.Parse(parameter.tbMaxSpeed.Text);
@@ -156,7 +156,7 @@ namespace CarSalesSystem.ViewModel
             ProductInfo.PRO_YEAR = int.Parse(parameter.cbYear.Text);
             if (imagefilename != null)
                 ProductInfo.IMG = Converter.Instance.StreamFile(imagefilename);
-           
+
             try
             {
                 DataProvider.Ins.DB.PRODUCTs.Add(ProductInfo);
@@ -205,17 +205,17 @@ namespace CarSalesSystem.ViewModel
         {
             var ProductInfo = DataProvider.Ins.DB.PRODUCTs.Find(idProduct);
             ProductInfo.MAXPOWER = int.Parse(parameter.tbMaxPower.Text);
-            ProductInfo.DISPLACEMENT =int.Parse( parameter.tbDispla.Text);
-            ProductInfo.MAXSPEED= int.Parse(parameter.tbMaxSpeed.Text);
-            ProductInfo.ACCELERATION= parameter.tbAcce.Text;
+            ProductInfo.DISPLACEMENT = int.Parse(parameter.tbDispla.Text);
+            ProductInfo.MAXSPEED = int.Parse(parameter.tbMaxSpeed.Text);
+            ProductInfo.ACCELERATION = parameter.tbAcce.Text;
             ProductInfo.TRACTION = parameter.tbTraction.Text;
             ProductInfo.PRICE = decimal.Parse(parameter.tbPrice.Text);
             ProductInfo.PRODUCER.PRODUCER_NAME = parameter.tbProducer.Text;
             ProductInfo.ENGINELAYOUT = parameter.tbEngine.Text;
             ProductInfo.PRO_NAME = parameter.tbName.Text;
             ProductInfo.PRO_YEAR = int.Parse(parameter.cbYear.Text);
-            if(imagefilename != null)
-            ProductInfo.IMG = Converter.Instance.StreamFile(imagefilename);
+            if (imagefilename != null)
+                ProductInfo.IMG = Converter.Instance.StreamFile(imagefilename);
             DataProvider.Ins.DB.SaveChanges();
             ShowLoadProduct(productPG);
             parameter.Close();
@@ -242,12 +242,12 @@ namespace CarSalesSystem.ViewModel
 
         private void ShowLoadProduct(ProductPG parameter)
         {
-           this.productPG = parameter;
+            this.productPG = parameter;
             parameter.skpProduct.Children.Clear();
             var listProduct = DataProvider.Ins.DB.PRODUCTs.ToList();
             bool flat = false;
             int i = 0;
-            foreach(var product in listProduct)
+            foreach (var product in listProduct)
             {
                 ProductControl productControl = new ProductControl();
                 flat = !flat;
@@ -257,7 +257,7 @@ namespace CarSalesSystem.ViewModel
                 }
                 productControl.tbName.Text = product.PRO_NAME;
                 productControl.tbNo.Text = product.PRO_ID;
-                productControl.tbType.Text = product.TYPEPRODUCT.TYPEPRODUCT_NAME;
+                productControl.tbType.Text = product.TYPEPRODUCT.TYPEPRODUCT_NAME.ToString();
                 productControl.tbYear.Text = product.PRO_YEAR.ToString();
                 parameter.skpProduct.Children.Add(productControl);
                 i++;
@@ -281,19 +281,19 @@ namespace CarSalesSystem.ViewModel
             for (int i = 1800; i <= year; i++)
                 editProduct.cbYear.Items.Add(i);
             editProduct.cbYear.Text = productInfo.PRO_YEAR.ToString();
-            editProduct.tbName.Text= productInfo.PRO_NAME;
-            editProduct.tbProducer.Text= productInfo.PRODUCER.PRODUCER_NAME;
-            editProduct.tbEngine.Text= productInfo.ENGINELAYOUT;
-            editProduct.tbDispla.Text=productInfo.DISPLACEMENT.ToString();
-            editProduct.tbMaxSpeed.Text=productInfo.MAXSPEED.ToString();
-            editProduct.tbMaxPower.Text= productInfo.MAXPOWER.ToString();
-            editProduct.tbAcce.Text=productInfo.ACCELERATION;
-            editProduct.tbTraction.Text=productInfo.TRACTION;
-            editProduct.tbPrice.Text=((int)productInfo.PRICE).ToString();
-            if(productInfo.IMG != null)
+            editProduct.tbName.Text = productInfo.PRO_NAME;
+            editProduct.tbProducer.Text = productInfo.PRODUCER.PRODUCER_NAME;
+            editProduct.tbEngine.Text = productInfo.ENGINELAYOUT;
+            editProduct.tbDispla.Text = productInfo.DISPLACEMENT.ToString();
+            editProduct.tbMaxSpeed.Text = productInfo.MAXSPEED.ToString();
+            editProduct.tbMaxPower.Text = productInfo.MAXPOWER.ToString();
+            editProduct.tbAcce.Text = productInfo.ACCELERATION;
+            editProduct.tbTraction.Text = productInfo.TRACTION;
+            editProduct.tbPrice.Text = ((int)productInfo.PRICE).ToString();
+            if (productInfo.IMG != null)
             {
                 ImageBrush imageBrush = new ImageBrush();
-                imageBrush.ImageSource= Converter.Instance.ToImage(productInfo.IMG);
+                imageBrush.ImageSource = Converter.Instance.ToImage(productInfo.IMG);
                 editProduct.grdSelectImage.Background = imageBrush;
             }
             editProduct.ShowDialog();
