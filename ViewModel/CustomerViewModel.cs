@@ -2,7 +2,6 @@
 using CarSalesSystem.Admin.User_Controls;
 using CarSalesSystem.Admin.Windows;
 using CarSalesSystem.Model;
-using CarSalesSystem.Viewmodel;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
@@ -31,14 +30,12 @@ namespace CarSalesSystem.ViewModel
         public ICommand UploadPictureCommand { get; set; }
 
         public ICommand UpdateInforCommand { get; set; }
-        public ICommand BackCommand { get; set; }
         public CustomerViewModel()
         {
             loadCustomerCommand = new RelayCommand<CustomerPG>((parameter) => true, (parameter) => LoadCustomer(parameter));
             EditCusomterCommand = new RelayCommand<CustomerControl>((parameter) => true, (parameter) => ClickEditCusomter(parameter));
             UploadPictureCommand = new RelayCommand<Grid>((parameter) => true, (parameter) => UploadPicture(parameter));
             UpdateInforCommand= new RelayCommand<EditCustomer>((parameter) => true, (parameter) => UpdateInfor(parameter));
-            BackCommand = new RelayCommand<EditCustomer>((parameter) => true, (parameter) => parameter.Close());
         }
 
         private void UpdateInfor(EditCustomer parameter)
@@ -50,9 +47,8 @@ namespace CarSalesSystem.ViewModel
             customerInfo.CUS_ADDRESS=parameter.tbAddress.Text;
             customerInfo.GENDER = parameter.cbGender.Text;
             customerInfo.CUS_DATE_OF_BIRTH = DateTime.Parse(parameter.dpBirth.Text);
-            customerInfo.IMG=Converter.Instance.StreamFile(imagefilename);
+            customerInfo.IMG=StreamFile(imagefilename);
             DataProvider.Ins.DB.SaveChanges();
-            parameter.Close();
             
         }
         private void UploadPicture(Grid parameter)
@@ -73,6 +69,23 @@ namespace CarSalesSystem.ViewModel
                 bitmap.EndInit();
                 imageBrush.ImageSource = bitmap;
                 parameter.Background = imageBrush;
+            }
+        }
+        private byte[] StreamFile(string filename)
+        {
+            byte[] bytes = System.IO.File.ReadAllBytes(filename);
+            return bytes;
+        }
+        public BitmapImage ToImage(byte[] array)
+        {
+            using (var ms = new System.IO.MemoryStream(array))
+            {
+                var image = new BitmapImage();
+                image.BeginInit();
+                image.CacheOption = BitmapCacheOption.OnLoad;
+                image.StreamSource = ms;
+                image.EndInit();
+                return image;
             }
         }
 
@@ -100,13 +113,7 @@ namespace CarSalesSystem.ViewModel
             editCustomerwindow.dpBirth.Text = customerInfo.CUS_DATE_OF_BIRTH.GetValueOrDefault().ToString();
             string s = editCustomerwindow.tbExpenditure.Text;
             s = s.Remove(s.IndexOf(' '));
-            if (customerInfo.IMG != null)
-            {
-                ImageBrush imageBrush = new ImageBrush();
-                imageBrush.ImageSource = Converter.Instance.ToImage(customerInfo.IMG);
-                editCustomerwindow.grdSelectImage.Background = imageBrush;
-            }
-
+            Console.WriteLine(s);
             editCustomerwindow.ShowDialog();
 
         }

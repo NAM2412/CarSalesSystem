@@ -11,18 +11,19 @@
              xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              d:DesignHeight="50" d:DesignWidth="900">
-    <Grid 
+    <Grid>
+        <Grid 
                     x:Name="grMain"
                     HorizontalAlignment="Center" 
                     Background="#FFFFFF" Width="900">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="90"/>
-            <ColumnDefinition Width="450"/>
-            <ColumnDefinition Width="90"/>
-            <ColumnDefinition Width="150"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <TextBlock 
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="90"/>
+                <ColumnDefinition Width="450"/>
+                <ColumnDefinition Width="90"/>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock 
                         x:Name="tbNo"
                         Grid.Column="0"
                         Padding="0,4,0,0"
@@ -35,8 +36,8 @@
                         VerticalAlignment="Center" 
                         FontSize="14" 
                         FontWeight="Light"/>
-
-        <TextBlock
+  
+            <TextBlock
                         x:Name="tbName"
                         FontFamily="Hierarchy"
                         Grid.Column="1" 
@@ -50,7 +51,7 @@
                         FontSize="14" 
                         FontWeight="Light"/>
 
-        <TextBlock 
+            <TextBlock 
                         x:Name="tbSex"
                          FontFamily="Hierarchy"
                         Grid.Column="2" 
@@ -63,7 +64,7 @@
                         VerticalAlignment="Center" 
                         FontSize="14"
                         FontWeight="Light"/>
-        <TextBlock 
+            <TextBlock 
                         x:Name="tbRank"
                          Padding="0,4,0,0"
                         FontFamily="Hierarchy"
@@ -76,8 +77,8 @@
                         VerticalAlignment="Center" 
                         FontSize="14"
                         FontWeight="Light"/>
-        <StackPanel Grid.Column="4" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
-            <Button 
+            <StackPanel Grid.Column="4" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <Button 
                          Padding="0,4,0,0"
                         FontFamily="Hierarchy"
                         Margin="0,0,20,0"
@@ -90,12 +91,12 @@
                         FontSize="18"
                         BorderThickness="0"
                         FontWeight="Bold">
-                <materialDesign:PackIcon Kind="AccountEditOutline" 
+                    <materialDesign:PackIcon Kind="AccountEditOutline" 
                                          Width="24" Height="24" 
                                          />
 
-            </Button>
-            <Button 
+                </Button>
+                <Button 
                          Padding="0,4,0,0"
                         HorizontalAlignment="Center"
                         Background="Transparent"
@@ -104,9 +105,10 @@
                         FontSize="18"
                         BorderThickness="0"
                         FontWeight="Bold">
-                <materialDesign:PackIcon Kind="DeleteForever" Height="24" Width="24" />
-            </Button>
-        </StackPanel>
-
+                    <materialDesign:PackIcon Kind="DeleteForever" Height="24" Width="24" />
+                </Button>
+            </StackPanel>
+            
+        </Grid>
     </Grid>
 </UserControl>
