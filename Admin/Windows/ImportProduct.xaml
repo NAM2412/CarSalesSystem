@@ -1,15 +1,15 @@
-﻿<Window x:Class="CarSalesSystem.Admin.Windows.Addproduct"
+﻿<Window x:Class="CarSalesSystem.Admin.Windows.ImportProduct"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CarSalesSystem.Admin.Windows"
         mc:Ignorable="d"
-        xmlns:uc ="clr-namespace:CarSalesSystem.Admin.User_Controls"
-        Title="Addproduct" 
+        x:Name="wdImportProduct"
+        Title="ImportProduct" 
          WindowStyle="None"
-        x:Name="wdAddProduct"
         DataContext="{StaticResource ProductVM}"
+        xmlns:uc ="clr-namespace:CarSalesSystem.Admin.User_Controls"
         AllowsTransparency="True"
         Background="Transparent"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
@@ -20,7 +20,7 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid>
-            <uc:ControlBar Tag="{Binding Title, ElementName=wdAddProduct}"/>
+            <uc:ControlBar Tag="{Binding Title, ElementName=wdImportProduct}"/>
         </Grid>
         <Border Grid.Row="1" Background="White"  CornerRadius="0,0,10,10">
             <Grid>
@@ -71,15 +71,14 @@
                     VerticalAlignment="Top" 
                     Width="Auto">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="40"/>
-                        <RowDefinition Height="40"/>
-                        <RowDefinition Height="40"/>
-                        <RowDefinition Height="40"/>
-                        <RowDefinition Height="40"/>
-                        <RowDefinition Height="40"/>
-                        <RowDefinition Height="40"/>
-                        <RowDefinition Height="40"/>
-                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="45"/>
+                        <RowDefinition Height="45"/>
+                        <RowDefinition Height="45"/>
+                        <RowDefinition Height="45"/>
+                        <RowDefinition Height="45"/>
+                        <RowDefinition Height="45"/>
+                        <RowDefinition Height="45"/>
+                        <RowDefinition Height="45"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <Grid 
@@ -98,17 +97,19 @@
                     VerticalAlignment="Bottom"/>
                             <TextBox
                                 x:Name="tbName"
+                                IsReadOnly="True"
                                     Width="200"
                                     Height="40"
-                                Margin="0,0,10,0"
+                                    Margin="0,0,10,0"
                                     FontSize="14" 
                                     HorizontalContentAlignment="Left"
                                     VerticalContentAlignment="Bottom" 
                                     FontWeight="SemiBold" >
                             </TextBox>
-                            <ComboBox
-                                x:Name="cbYear"
+                            <TextBox
+                                x:Name="tbYear"
                                 Height="40"
+                                IsReadOnly="True"
                                 FontSize="18"
                                 VerticalContentAlignment="Bottom"
                                 HorizontalContentAlignment="Center"
@@ -122,7 +123,7 @@
                         VerticalAlignment="Bottom"   >
                         <StackPanel Orientation="Horizontal">
                             <Label
-                            Content="Producer" 
+                            Content="DateTime" 
                             HorizontalAlignment="Left"
                             FontSize="18" 
                             FontWeight="Light" 
@@ -130,26 +131,17 @@
                             Height="32"
                             Width="142"
                             VerticalAlignment="Bottom"/>
-                            <ComboBox
-                                x:Name="tbProducer"
+                            <DatePicker
+                                x:Name="pdDateTime"
                                     Width="200"
+                                IsEnabled="False"
                                     Margin="0,0,10,0"
                                     Height="40"
                                     FontSize="14" 
                                     HorizontalContentAlignment="Left"
                                     VerticalContentAlignment="Bottom" 
                                     FontWeight="SemiBold" >
-                            </ComboBox>
-                            <ComboBox
-                                x:Name="cbType"
-                                Height="40"
-                                FontSize="18"
-                                VerticalContentAlignment="Bottom"
-                                HorizontalContentAlignment="Center"
-                                materialDesign:HintAssist.Hint="Type"
-                                Width="110"/>
-
-
+                            </DatePicker>
                         </StackPanel>
                     </Grid>
                     <Grid 
@@ -161,7 +153,7 @@
                         </Grid.ColumnDefinitions>
                         <StackPanel Orientation="Horizontal" Grid.ColumnSpan="2">
                             <Label
-                                Content="Displacement" 
+                                Content="ID Receipt" 
                                 HorizontalAlignment="Left"
                                 FontSize="18" 
                                 FontWeight="Light" 
@@ -170,27 +162,16 @@
                                   Width="142"
                                 VerticalAlignment="Bottom"/>
                             <TextBox
-                                x:Name="tbDispla"
+                                    x:Name="tbIdReceipt"
                                     Width="200"
+                                    IsReadOnly="True"
                                     Height="40"
-                                Margin="0,0,10,0"
+                                    Margin="0,0,10,0"
                                     FontSize="14" 
                                     HorizontalContentAlignment="Left"
                                     VerticalContentAlignment="Bottom" 
                                     FontWeight="SemiBold" >
                             </TextBox>
-                            <Label
-                                Content="cc" 
-                                HorizontalAlignment="Left"
-                                FontSize="18" 
-                                FontWeight="Light" 
-                                Foreground="Black"
-                                Height="32" 
-
-                                Padding="0,10,0,0"
-                                VerticalAlignment="Bottom"/>
-
-
                         </StackPanel>
                     </Grid>
                     <Grid 
@@ -198,7 +179,7 @@
                         VerticalAlignment="Bottom"   >
                         <StackPanel Orientation="Horizontal">
                             <Label
-                    Content="Max Speed" 
+                    Content="ID Employee" 
                     HorizontalAlignment="Left"
                     FontSize="18" 
                     FontWeight="Light" 
@@ -207,26 +188,16 @@
                     Width="142"
                     VerticalAlignment="Bottom"/>
                             <TextBox
-                                x:Name="tbMaxSpeed"
+                                x:Name="tbIdEmployee"
                                     Width="200"
                                 Margin="0,0,10,0"
+                                IsReadOnly="True"
                                     Height="40"
                                     FontSize="14" 
                                     HorizontalContentAlignment="Left"
                                     VerticalContentAlignment="Bottom" 
                                     FontWeight="SemiBold" >
                             </TextBox>
-                            <Label
-                                Content="km/h" 
-                                HorizontalAlignment="Left"
-                                FontSize="18" 
-                                FontWeight="Light" 
-                                Foreground="Black"
-                                Height="32" 
-                                  Width="142"
-                                Padding="0,10,0,0"
-                                VerticalAlignment="Bottom"/>
-
                         </StackPanel>
                     </Grid>
                     <Grid 
@@ -234,7 +205,7 @@
                         VerticalAlignment="Bottom"  >
                         <StackPanel Orientation="Horizontal">
                             <Label
-                    Content="Max Power" 
+                    Content="ID Product" 
                     HorizontalAlignment="Left"
                     FontSize="18" 
                     FontWeight="Light" 
@@ -243,25 +214,16 @@
                     Width="142"
                     VerticalAlignment="Bottom"/>
                             <TextBox
-                                x:Name="tbMaxPower"
+                                x:Name="tbIdProduct"
                                     Width="200"
                                     Height="40"
+                                IsReadOnly="True"
                                 Margin="0,0,10,0"
                                     FontSize="14" 
                                     HorizontalContentAlignment="Left"
                                     VerticalContentAlignment="Bottom" 
                                     FontWeight="SemiBold" >
                             </TextBox>
-                            <Label
-                    Content="HP" 
-                    HorizontalAlignment="Left"
-                    FontSize="18" 
-                    FontWeight="Light" 
-                                Padding="0,10,0,0"
-                    Foreground="Black"
-                    Height="32" 
-                    Width="142"
-                    VerticalAlignment="Bottom"/>
                         </StackPanel>
                     </Grid>
                     <Grid 
@@ -270,7 +232,7 @@
                         Width="600" >
                         <StackPanel Orientation="Horizontal">
                             <Label
-                    Content="Acceleration" 
+                    Content="Quantity" 
                     HorizontalAlignment="Left"
                     FontSize="18" 
                     FontWeight="Light" 
@@ -279,7 +241,7 @@
                         Width="140"
                     VerticalAlignment="Center"/>
                             <TextBox
-                                x:Name="tbAcce"
+                                x:Name="tbQuantity"
                                     Width="200"
                                     Height="40"
                                     FontSize="14" 
@@ -288,16 +250,7 @@
                                     VerticalContentAlignment="Bottom" 
                                     FontWeight="SemiBold" >
                             </TextBox>
-                            <Label
-                                Content="sec" 
-                                HorizontalAlignment="Left"
-                                FontSize="18" 
-                                FontWeight="Light" 
-                                Foreground="Black"
-                                Height="32" 
-                                  Width="142"
-                                Padding="0,10,0,0"
-                                VerticalAlignment="Bottom"/>
+
 
 
                         </StackPanel>
@@ -307,7 +260,7 @@
                         VerticalAlignment="Bottom"  >
                         <StackPanel Orientation="Horizontal">
                             <Label
-                    Content="Traction" 
+                    Content="Import Price" 
                     HorizontalAlignment="Left"
                     FontSize="18" 
                     FontWeight="Light"  
@@ -316,7 +269,7 @@
                         Width="140"
                     VerticalAlignment="Bottom"/>
                             <TextBox
-                                x:Name="tbTraction"
+                                x:Name="tbImportPrice"
                                     Width="200"
                                     Height="40"
                                     FontSize="14" 
@@ -333,7 +286,7 @@
                         Width="600" >
                         <StackPanel Orientation="Horizontal">
                             <Label
-                            Content="Engine Layout" 
+                            Content="Total Price" 
                            HorizontalAlignment="Left"
                     FontSize="18" 
                     FontWeight="Light"  
@@ -342,37 +295,12 @@
                        Width="140"
                     VerticalAlignment="Bottom"/>
                             <TextBox
-                                x:Name="tbEngine"
+                                x:Name="tbTotalPrice"
                                     Width="200"
                                     Height="40"
+                                IsReadOnly="True"
                                     FontSize="14" 
                                     HorizontalAlignment="Left"
-                                    VerticalContentAlignment="Bottom" 
-                                    FontWeight="SemiBold" >
-                            </TextBox>
-                        </StackPanel>
-                    </Grid>
-                    <Grid 
-                        Grid.Row="8"
-                        VerticalAlignment="Bottom" 
-                        Width="600" >
-                        <StackPanel Orientation="Horizontal">
-                            <Label
-                    Content="Price" 
-                    HorizontalAlignment="Left"
-                    FontSize="18" 
-                    FontWeight="Light"  
-                    Foreground="Black"
-                    Height="32" 
-                       Width="140"
-                    VerticalAlignment="Bottom"/>
-                            <TextBox
-                                x:Name="tbPrice"
-                                    Width="200"
-                                    Height="40"
-                                Margin="0,0,10,0"
-                                    FontSize="14" 
-                                    HorizontalContentAlignment="Left"
                                     VerticalContentAlignment="Bottom" 
                                     FontWeight="SemiBold" >
                             </TextBox>
@@ -388,9 +316,10 @@
                                 VerticalAlignment="Bottom"/>
                         </StackPanel>
                     </Grid>
+
                     <Grid 
                         Margin="0,15,0,0"
-                    Grid.Row="9"
+                    Grid.Row="8"
                     Height="40" 
                     VerticalAlignment="Bottom" 
                     HorizontalAlignment="Right">
@@ -399,8 +328,8 @@
                                 x:Name="btnBack"
                          Content="Back"
                         Height="40"
-                        Command="{Binding BackAddProductCommand}"
-                        CommandParameter="{Binding ElementName=wdAddProduct}"
+                        Command="{Binding BackImportProductCommand}"
+                        CommandParameter="{Binding ElementName=wdImportProduct}"
                         FontSize="14"
                         Width="100"
                         ToolTip="Back Front Screen" 
@@ -411,13 +340,13 @@
                         Background="#FFFFFF"/>
                             <Button
                                 x:Name="btnAdd"
-                            Command="{Binding AddProductCommand}"
-                                CommandParameter="{Binding ElementName=wdAddProduct}"
-                         Content="Add"
+                            Command="{Binding ImportProductCommand}"
+                                CommandParameter="{Binding ElementName=wdImportProduct}"
+                         Content="Import"
                         Height="40"
                         FontSize="14"
                         Width="100"
-                        ToolTip="Add the information of employee" 
+                        ToolTip="Import the quantity of product" 
                         HorizontalAlignment="Right"
                         Foreground="White"
                         BorderBrush="#134B5F"
