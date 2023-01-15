@@ -241,6 +241,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Customer\Windows\MaintenanceBill.xaml.cs">
+      <DependentUpon>MaintenanceBill.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Viewmodel\BaseViewModel.cs" />
+    <Compile Include="Viewmodel\CustomerViewModel.cs" />
     <Page Include="Admin\Pages\Customer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -273,6 +278,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Admin\User Controls\CustomerControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Admin\User Controls\InfoCard.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -280,6 +289,22 @@
     <Page Include="Admin\User Controls\UnitChart.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Admin\Windows\Addemp.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Admin\Windows\Addproduct.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Admin\Windows\EditCustomer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Admin\Windows\Updateemp.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="CustomerWindow.xaml">
       <SubType>Designer</SubType>
@@ -289,7 +314,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Customer\Pages\Info.xaml">
+    <Page Include="Customer\Pages\InfoCus.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -298,6 +323,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Customer\Windows\DetailCar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Customer\Windows\MaintenanceBill.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -333,6 +362,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="MainResource.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -361,11 +394,26 @@
     <Compile Include="Admin\User Controls\ControlBar.xaml.cs">
       <DependentUpon>ControlBar.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Admin\User Controls\CustomerControl.xaml.cs">
+      <DependentUpon>CustomerControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Admin\User Controls\InfoCard.xaml.cs">
       <DependentUpon>InfoCard.xaml</DependentUpon>
     </Compile>
     <Compile Include="Admin\User Controls\UnitChart.xaml.cs">
       <DependentUpon>UnitChart.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Windows\Addemp.xaml.cs">
+      <DependentUpon>Addemp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Windows\Addproduct.xaml.cs">
+      <DependentUpon>Addproduct.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Windows\EditCustomer.xaml.cs">
+      <DependentUpon>EditCustomer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Windows\Updateemp.xaml.cs">
+      <DependentUpon>Updateemp.xaml</DependentUpon>
     </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
@@ -374,8 +422,8 @@
     <Compile Include="Customer\Pages\Bill.xaml.cs">
       <DependentUpon>Bill.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Customer\Pages\Info.xaml.cs">
-      <DependentUpon>Info.xaml</DependentUpon>
+    <Compile Include="Customer\Pages\InfoCus.xaml.cs">
+      <DependentUpon>InfoCus.xaml</DependentUpon>
     </Compile>
     <Compile Include="Customer\Pages\Store.xaml.cs">
       <DependentUpon>Store.xaml</DependentUpon>
@@ -715,7 +763,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Admin\Windows\" />
     <Folder Include="Employee\Pages\" />
     <Folder Include="Employee\Windows\" />
     <Folder Include="Viewmodel\Admin\" />

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CarSalesSystem.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,17 +20,19 @@ namespace CarSalesSystem.Customer.Pages
     /// <summary>
     /// Interaction logic for Info.xaml
     /// </summary>
-    public partial class Info : Page
+    public partial class InfoCus : Page
     {
         private static readonly Regex _regex = new Regex("[^0-9.-]+"); //regex that matches disallowed text
+        CUSTOMER cus;
         private static bool IsTextAllowed(string text)
         {
             return !_regex.IsMatch(text);
         }
 
-        public Info()
+        public InfoCus(CUSTOMER _cus)
         {
             InitializeComponent();
+            cus = _cus;
         }
 
         private void informationButton_Click(object sender, RoutedEventArgs e)

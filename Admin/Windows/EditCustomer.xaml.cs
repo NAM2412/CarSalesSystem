@@ -10,17 +10,16 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace CarSalesSystem.Admin.Pages
+namespace CarSalesSystem.Admin.Windows
 {
     /// <summary>
-    /// Interaction logic for Customer.xaml
+    /// Interaction logic for EditCustomer.xaml
     /// </summary>
-    public partial class CustomerPG : Page
+    public partial class EditCustomer : Window
     {
-        public CustomerPG()
+        public EditCustomer()
         {
             InitializeComponent();
         }

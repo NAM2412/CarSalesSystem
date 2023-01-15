@@ -22,17 +22,20 @@ namespace CarSalesSystem.Customer.Pages
     /// </summary>
     public partial class Store : Page
     {
-        
-        public Store()
+        CUSTOMER customer;
+    
+        public Store(CUSTOMER cus)
         {
             InitializeComponent();
+            customer = cus;
             ListProduct.ItemsSource = DataProvider.Ins.DB.PRODUCTs.ToList();
+            customer = DataProvider.Ins.DB.CUSTOMERs.FirstOrDefault();
         }
 
         private void ListProduct_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             PRODUCT prd = ListProduct.SelectedItem as PRODUCT;
-            DetailCar detailCar = new DetailCar(prd);
+            DetailCar detailCar = new DetailCar(prd, customer);
             detailCar.Show();
         }
     }

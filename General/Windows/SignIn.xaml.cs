@@ -21,6 +21,7 @@ using ToastNotifications;
 using ToastNotifications.Messages;
 using ToastNotifications.Lifetime;
 using ToastNotifications.Position;
+using CarSalesSystem.Model;
 
 namespace CarSalesSystem.General
 {
@@ -103,19 +104,29 @@ namespace CarSalesSystem.General
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             MainWindow adminWindow = new MainWindow();
-            CustomerWindow customerWindow = new CustomerWindow();
+            
             if (usernameTextBox.Text.Equals("admin12312") && passwordTextBox.Password.Equals("123456"))
             {
                 adminWindow.Show();
                 this.Close();
                 return;
             }
+
+            if (usernameValid && passwordValid)
+            {
+                CUSTOMER cus = DataProvider.Ins.DB.CUSTOMERs.Where(x => x.CUS_ACCOUNT == usernameTextBox.Text).FirstOrDefault(); 
+                CustomerWindow customerWindow = new CustomerWindow(cus);
+                customerWindow.Show();
+                this.Close();
+                return;
+            }
+
             if (!usernameValid)
                 usernameTextBox.BorderBrush = Brushes.Red;
             if (!passwordValid)
                 passwordTextBox.BorderBrush = Brushes.Red;
             //retrieve data and compare with data from database
-            SqlConnection connection = new SqlConnection("Data Source=MSI\\SQLEXPRESS;Initial Catalog=CARSALESSYSTEM;Integrated Security=True;MultipleActiveResultSets=true");
+            SqlConnection connection = new SqlConnection("Data Source=DESKTOP-8RKPG08\\SQLEXPRESS;Initial Catalog=CARSALESSYSTEM;Integrated Security=True");
             try
             {
                 if (connection.State == ConnectionState.Closed)
@@ -136,8 +147,14 @@ namespace CarSalesSystem.General
                  {
                     usernameValid = true;
                     passwordValid = true;
-                    if(type == 1)               
+                    if(type == 2)
+                    {
+                        CUSTOMER cus = DataProvider.Ins.DB.CUSTOMERs.Where(x => x.CUS_ACCOUNT == usernameTextBox.Text).FirstOrDefault();
+                        CustomerWindow customerWindow = new CustomerWindow(cus);
                         customerWindow.Show();
+                    }   
+                        
+                       
                     else
                         adminWindow.Show();
                     if (rememberCheckBox.IsChecked == true)

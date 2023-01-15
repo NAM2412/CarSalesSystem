@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CarSalesSystem.Customer.Pages;
+using CarSalesSystem.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,38 +24,33 @@ namespace CarSalesSystem
     public partial class CustomerWindow : Window
     {
         bool isMaximized = false;
+        CUSTOMER _customer;
         public CustomerWindow()
         {
             InitializeComponent();
         }
-        Notifier notifier = new Notifier(cfg =>
+
+        
+
+        public CustomerWindow(CUSTOMER cUSTOMER)
         {
-            cfg.PositionProvider = new WindowPositionProvider(
-                parentWindow: Application.Current.MainWindow,
-                corner: Corner.TopRight,
-                offsetX: 10,
-                offsetY: 10);
-
-            cfg.LifetimeSupervisor = new TimeAndCountBasedLifetimeSupervisor(
-                notificationLifetime: TimeSpan.FromSeconds(3),
-                maximumNotificationCount: MaximumNotificationCount.FromCount(5));
-
-            cfg.Dispatcher = Application.Current.Dispatcher;
-        });
+            InitializeComponent();
+            _customer = cUSTOMER;
+        }
 
         private void StoreBtn_Click(object sender, RoutedEventArgs e)
         {
-            PagesNavigation.Navigate(new System.Uri("Customer/Pages/Store.xaml", UriKind.RelativeOrAbsolute));
+            PagesNavigation.Navigate(new Store(_customer));
         }
 
         private void billBtn_Click(object sender, RoutedEventArgs e)
         {
-            PagesNavigation.Navigate(new System.Uri("Customer/Pages/Bill.xaml", UriKind.RelativeOrAbsolute));
+            PagesNavigation.Navigate(new Bill(_customer));
         }
 
         private void InfoBtn_Click(object sender, RoutedEventArgs e)
         {
-            PagesNavigation.Navigate(new System.Uri("Customer/Pages/Info.xaml", UriKind.RelativeOrAbsolute));
+            PagesNavigation.Navigate(new InfoCus(_customer));
         }
 
         private void PagesNavigation_MouseDown(object sender, MouseButtonEventArgs e)
