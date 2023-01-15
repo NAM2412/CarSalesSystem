@@ -44,10 +44,11 @@ namespace CarSalesSystem.Admin.Pages
                     cmd.Parameters.AddWithValue("EMP_NAME", user.UserId);
                     cmd.Parameters.AddWithValue("@firstname", user.FirstName);
                     cmd.Parameters.AddWithValue("@lastname", user.LastName);
-                    */
+                    
                     //add whatever parameters you required to update here
                     int rows = cmd.ExecuteNonQuery();
                     connection.Close();
+                    */
                 }
             }
         }

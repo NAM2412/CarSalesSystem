@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CarSalesSystem.Customer.Pages;
+using CarSalesSystem.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,7 +13,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-
+using ToastNotifications;
+using ToastNotifications.Lifetime;
+using ToastNotifications.Position;
 namespace CarSalesSystem
 {
     /// <summary>
@@ -20,24 +24,33 @@ namespace CarSalesSystem
     public partial class CustomerWindow : Window
     {
         bool isMaximized = false;
+        CUSTOMER _customer;
         public CustomerWindow()
         {
             InitializeComponent();
         }
 
+        
+
+        public CustomerWindow(CUSTOMER cUSTOMER)
+        {
+            InitializeComponent();
+            _customer = cUSTOMER;
+        }
+
         private void StoreBtn_Click(object sender, RoutedEventArgs e)
         {
-            PagesNavigation.Navigate(new System.Uri("Customer/Pages/Store.xaml", UriKind.RelativeOrAbsolute));
+            PagesNavigation.Navigate(new Store(_customer));
         }
 
         private void billBtn_Click(object sender, RoutedEventArgs e)
         {
-            PagesNavigation.Navigate(new System.Uri("Customer/Pages/Bill.xaml", UriKind.RelativeOrAbsolute));
+            PagesNavigation.Navigate(new Bill(_customer));
         }
 
         private void InfoBtn_Click(object sender, RoutedEventArgs e)
         {
-            PagesNavigation.Navigate(new System.Uri("Customer/Pages/Info.xaml", UriKind.RelativeOrAbsolute));
+            PagesNavigation.Navigate(new InfoCus(_customer));
         }
 
         private void PagesNavigation_MouseDown(object sender, MouseButtonEventArgs e)

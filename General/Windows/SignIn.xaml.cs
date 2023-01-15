@@ -21,6 +21,7 @@ using ToastNotifications;
 using ToastNotifications.Messages;
 using ToastNotifications.Lifetime;
 using ToastNotifications.Position;
+using CarSalesSystem.Model;
 
 namespace CarSalesSystem.General
 {
@@ -50,6 +51,12 @@ namespace CarSalesSystem.General
         public SignIn()
         {
             InitializeComponent();
+            if (Properties.Settings.Default.userName != string.Empty)
+            {
+                usernameTextBox.Text = Properties.Settings.Default.userName;
+                passwordTextBox.Password= Properties.Settings.Default.passUser;
+            }
+
         }
         void CloseWindow(Type type)
         {
@@ -67,6 +74,8 @@ namespace CarSalesSystem.General
 
         private void usernameTextBox_GotFocus(object sender, RoutedEventArgs e)
         {
+            if (usernameTextBox.Text.Equals(Properties.Settings.Default.userName))
+                return;
             if (usernameTextBox.Text.Equals("Username"))
                 usernameTextBox.Text = "";
             if (usernameTextBox.BorderBrush == Brushes.Red)
@@ -95,25 +104,29 @@ namespace CarSalesSystem.General
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             MainWindow adminWindow = new MainWindow();
-            CustomerWindow customerWindow = new CustomerWindow();
+            
             if (usernameTextBox.Text.Equals("admin12312") && passwordTextBox.Password.Equals("123456"))
             {
                 adminWindow.Show();
                 this.Close();
                 return;
             }
+
             if (usernameValid && passwordValid)
             {
+                CUSTOMER cus = DataProvider.Ins.DB.CUSTOMERs.Where(x => x.CUS_ACCOUNT == usernameTextBox.Text).FirstOrDefault(); 
+                CustomerWindow customerWindow = new CustomerWindow(cus);
                 customerWindow.Show();
                 this.Close();
                 return;
             }
+
             if (!usernameValid)
                 usernameTextBox.BorderBrush = Brushes.Red;
             if (!passwordValid)
                 passwordTextBox.BorderBrush = Brushes.Red;
             //retrieve data and compare with data from database
-            SqlConnection connection = new SqlConnection("Data Source=MSI\\SQLEXPRESS;Initial Catalog=CARSALESSYSTEM;Integrated Security=True;MultipleActiveResultSets=true");
+            SqlConnection connection = new SqlConnection("Data Source=DESKTOP-8RKPG08\\SQLEXPRESS;Initial Catalog=CARSALESSYSTEM;Integrated Security=True");
             try
             {
                 if (connection.State == ConnectionState.Closed)
@@ -134,11 +147,23 @@ namespace CarSalesSystem.General
                  {
                     usernameValid = true;
                     passwordValid = true;
-                    if(type == 1)               
+                    if(type == 2)
+                    {
+                        CUSTOMER cus = DataProvider.Ins.DB.CUSTOMERs.Where(x => x.CUS_ACCOUNT == usernameTextBox.Text).FirstOrDefault();
+                        CustomerWindow customerWindow = new CustomerWindow(cus);
                         customerWindow.Show();
+                    }   
+                        
+                       
                     else
                         adminWindow.Show();
-                    this.Close();
+                    if (rememberCheckBox.IsChecked == true)
+                    {
+                        Properties.Settings.Default.userName = usernameTextBox.Text;
+                        Properties.Settings.Default.passUser = passwordTextBox.Password;
+                        Properties.Settings.Default.Save();
+                    }
+                    this.Hide();
                  }
                  else
                  {
@@ -153,11 +178,24 @@ namespace CarSalesSystem.General
                 notifier.ShowError(ex.Message);
             }
             
-
-            
-            
             connection.Close();
             
+        }
+
+        private void rememberCheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+
+            
+        }
+
+        private void GoogleBtn_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void FacebookBtn_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

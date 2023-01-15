@@ -1,5 +1,4 @@
-﻿using CarSalesSystem.Model;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,22 +10,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace CarSalesSystem.Customer.Pages
+namespace CarSalesSystem.Customer.Windows
 {
     /// <summary>
-    /// Interaction logic for Bill.xaml
+    /// Interaction logic for MaintenanceBill.xaml
     /// </summary>
-    public partial class Bill : Page
+    public partial class MaintenanceBill : Window
     {
-        CUSTOMER cus;
-        public Bill(CUSTOMER _cus)
+        public MaintenanceBill()
         {
             InitializeComponent();
-            cus= _cus;
-            datagridOrderBill.ItemsSource = DataProvider.Ins.DB.ORDERBILLs.Where(x=> x.CUSTOMER_ID == cus.CUS_ID).ToList();
         }
     }
 }

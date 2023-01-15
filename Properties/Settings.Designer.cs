@@ -33,5 +33,29 @@ namespace CarSalesSystem.Properties {
                 return ((string)(this["CARSALESSYSTEMConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string userName {
+            get {
+                return ((string)(this["userName"]));
+            }
+            set {
+                this["userName"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string passUser {
+            get {
+                return ((string)(this["passUser"]));
+            }
+            set {
+                this["passUser"] = value;
+            }
+        }
     }
 }

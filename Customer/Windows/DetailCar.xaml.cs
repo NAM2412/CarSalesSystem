@@ -24,10 +24,12 @@ namespace CarSalesSystem.Customer.Windows
     {
         decimal l;
         PRODUCT  product;
-        public DetailCar(PRODUCT car)
+        CUSTOMER khachhang;
+        public DetailCar(PRODUCT car, CUSTOMER _khachhang)
         {
             InitializeComponent();
-            product= car;
+            product = car;
+            khachhang = _khachhang;
             lbProducer.Content = car.PRODUCER.PRODUCER_NAME;
             lbProductName.Content = car.PRO_NAME;
             lbEngineLayout.Content = car.ENGINELAYOUT;
@@ -47,11 +49,20 @@ namespace CarSalesSystem.Customer.Windows
                 BitObj.EndInit();
                 imgCar.Source = BitObj;
             }
+
         }
 
         private void btnCloseDetailWD_Click(object sender, RoutedEventArgs e)
         {
             this.Hide();
+        }
+
+        private void btnBooking_Click(object sender, RoutedEventArgs e)
+        {
+
+            OrderBill orderBill = new OrderBill(product, khachhang);
+            orderBill.Show();
+            this.Close();
         }
     }
 }
