@@ -55,12 +55,9 @@
           <Property Name="DATETIME_IMPORT" Type="datetime" />
           <Property Name="TOTAL_PRICE" Type="money" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'CARSALESSYSTEM.dbo.IMPORTRECEIPTINFO' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="IMPORTRECEIPTINFO">
           <Key>
             <PropertyRef Name="IRECEIPT_ID" />
-            <PropertyRef Name="PRO_ID" />
           </Key>
           <Property Name="IRECEIPT_ID" Type="varchar" MaxLength="4" Nullable="false" />
           <Property Name="PRO_ID" Type="varchar" MaxLength="4" Nullable="false" />
@@ -160,7 +157,7 @@ warning 6002: The table/view 'CARSALESSYSTEM.dbo.IMPORTRECEIPTINFO' does not hav
         </Association>
         <Association Name="FK_MACTHDNH_HDNH">
           <End Role="IMPORTRECEIPT" Type="Self.IMPORTRECEIPT" Multiplicity="1" />
-          <End Role="IMPORTRECEIPTINFO" Type="Self.IMPORTRECEIPTINFO" Multiplicity="*" />
+          <End Role="IMPORTRECEIPTINFO" Type="Self.IMPORTRECEIPTINFO" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="IMPORTRECEIPT">
               <PropertyRef Name="IRECEIPT_ID" />
@@ -379,6 +376,7 @@ warning 6002: The table/view 'CARSALESSYSTEM.dbo.IMPORTRECEIPTINFO' does not hav
           <EntitySet Name="CUSTOMER" EntityType="Self.CUSTOMER" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EMPLOYEE" EntityType="Self.EMPLOYEE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="IMPORTRECEIPT" EntityType="Self.IMPORTRECEIPT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="IMPORTRECEIPTINFO" EntityType="Self.IMPORTRECEIPTINFO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MAINTENANCEBILL" EntityType="Self.MAINTENANCEBILL" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ORDERBILL" EntityType="Self.ORDERBILL" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PRODUCER" EntityType="Self.PRODUCER" Schema="dbo" store:Type="Tables" />
@@ -386,14 +384,6 @@ warning 6002: The table/view 'CARSALESSYSTEM.dbo.IMPORTRECEIPTINFO' does not hav
           <EntitySet Name="RANK_MONEY" EntityType="Self.RANK_MONEY" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SELLBILL" EntityType="Self.SELLBILL" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TYPEPRODUCT" EntityType="Self.TYPEPRODUCT" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="IMPORTRECEIPTINFO" EntityType="Self.IMPORTRECEIPTINFO" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [IMPORTRECEIPTINFO].[IRECEIPT_ID] AS [IRECEIPT_ID], 
-    [IMPORTRECEIPTINFO].[PRO_ID] AS [PRO_ID], 
-    [IMPORTRECEIPTINFO].[QUANTITY] AS [QUANTITY], 
-    [IMPORTRECEIPTINFO].[IMPORT_PRICE] AS [IMPORT_PRICE]
-    FROM [dbo].[IMPORTRECEIPTINFO] AS [IMPORTRECEIPTINFO]</DefiningQuery>
-          </EntitySet>
           <AssociationSet Name="FK_HDNH_PRODUCT" Association="Self.FK_HDNH_PRODUCT">
             <End Role="IMPORTRECEIPT" EntitySet="IMPORTRECEIPT" />
             <End Role="PRODUCT" EntitySet="PRODUCT" />
@@ -538,7 +528,18 @@ warning 6002: The table/view 'CARSALESSYSTEM.dbo.IMPORTRECEIPTINFO' does not hav
           <Property Name="TOTAL_PRICE" Type="Decimal" Precision="19" Scale="4" />
           <NavigationProperty Name="EMPLOYEE" Relationship="Self.FK_MAHDNH_NV" FromRole="IMPORTRECEIPT" ToRole="EMPLOYEE" />
           <NavigationProperty Name="PRODUCTs" Relationship="Self.FK_HDNH_PRODUCT" FromRole="IMPORTRECEIPT" ToRole="PRODUCT" />
-          <NavigationProperty Name="IMPORTRECEIPTINFOes" Relationship="Self.FK_MACTHDNH_HDNH" FromRole="IMPORTRECEIPT" ToRole="IMPORTRECEIPTINFO" />
+          <NavigationProperty Name="IMPORTRECEIPTINFO" Relationship="Self.FK_MACTHDNH_HDNH" FromRole="IMPORTRECEIPT" ToRole="IMPORTRECEIPTINFO" />
+        </EntityType>
+        <EntityType Name="IMPORTRECEIPTINFO">
+          <Key>
+            <PropertyRef Name="IRECEIPT_ID" />
+          </Key>
+          <Property Name="IRECEIPT_ID" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PRO_ID" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="QUANTITY" Type="Int32" />
+          <Property Name="IMPORT_PRICE" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="IMPORTRECEIPT" Relationship="Self.FK_MACTHDNH_HDNH" FromRole="IMPORTRECEIPTINFO" ToRole="IMPORTRECEIPT" />
+          <NavigationProperty Name="PRODUCT" Relationship="Self.FK_MACTHDNH_PRODUCT" FromRole="IMPORTRECEIPTINFO" ToRole="PRODUCT" />
         </EntityType>
         <EntityType Name="MAINTENANCEBILL">
           <Key>
@@ -598,10 +599,10 @@ warning 6002: The table/view 'CARSALESSYSTEM.dbo.IMPORTRECEIPTINFO' does not hav
           <Property Name="ACCELERATION" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="TRACTION" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="IMPORTRECEIPT" Relationship="Self.FK_HDNH_PRODUCT" FromRole="PRODUCT" ToRole="IMPORTRECEIPT" />
+          <NavigationProperty Name="IMPORTRECEIPTINFOes" Relationship="Self.FK_MACTHDNH_PRODUCT" FromRole="PRODUCT" ToRole="IMPORTRECEIPTINFO" />
           <NavigationProperty Name="MAINTENANCEBILLs" Relationship="Self.FK_MASPBT" FromRole="PRODUCT" ToRole="MAINTENANCEBILL" />
           <NavigationProperty Name="ORDERBILLs" Relationship="Self.FK_MAOB_PRODUCT" FromRole="PRODUCT" ToRole="ORDERBILL" />
           <NavigationProperty Name="PRODUCER" Relationship="Self.FK_MANSXSP_MANSX" FromRole="PRODUCT" ToRole="PRODUCER" />
-          <NavigationProperty Name="IMPORTRECEIPTINFOes" Relationship="Self.FK_MACTHDNH_PRODUCT" FromRole="PRODUCT" ToRole="IMPORTRECEIPTINFO" />
           <NavigationProperty Name="TYPEPRODUCT" Relationship="Self.FK_MALOAISP_MALOAI" FromRole="PRODUCT" ToRole="TYPEPRODUCT" />
           <NavigationProperty Name="SELLBILLs" Relationship="Self.FK_MASPMH" FromRole="PRODUCT" ToRole="SELLBILL" />
         </EntityType>
@@ -640,18 +641,6 @@ warning 6002: The table/view 'CARSALESSYSTEM.dbo.IMPORTRECEIPTINFO' does not hav
           <Property Name="TYPEPRODUCT_ID" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="TYPEPRODUCT_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="PRODUCTs" Relationship="Self.FK_MALOAISP_MALOAI" FromRole="TYPEPRODUCT" ToRole="PRODUCT" />
-        </EntityType>
-        <EntityType Name="IMPORTRECEIPTINFO">
-          <Key>
-            <PropertyRef Name="IRECEIPT_ID" />
-            <PropertyRef Name="PRO_ID" />
-          </Key>
-          <Property Name="IRECEIPT_ID" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="PRO_ID" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="QUANTITY" Type="Int32" />
-          <Property Name="IMPORT_PRICE" Type="Decimal" Precision="19" Scale="4" />
-          <NavigationProperty Name="IMPORTRECEIPT" Relationship="Self.FK_MACTHDNH_HDNH" FromRole="IMPORTRECEIPTINFO" ToRole="IMPORTRECEIPT" />
-          <NavigationProperty Name="PRODUCT" Relationship="Self.FK_MACTHDNH_PRODUCT" FromRole="IMPORTRECEIPTINFO" ToRole="PRODUCT" />
         </EntityType>
         <Association Name="FK_TAIKHOANKH_TAIKHOAN">
           <End Role="ACCOUNT" Type="Self.ACCOUNT" Multiplicity="1" />
@@ -775,13 +764,25 @@ warning 6002: The table/view 'CARSALESSYSTEM.dbo.IMPORTRECEIPTINFO' does not hav
         </Association>
         <Association Name="FK_MACTHDNH_HDNH">
           <End Role="IMPORTRECEIPT" Type="Self.IMPORTRECEIPT" Multiplicity="1" />
-          <End Role="IMPORTRECEIPTINFO" Type="Self.IMPORTRECEIPTINFO" Multiplicity="*" />
+          <End Role="IMPORTRECEIPTINFO" Type="Self.IMPORTRECEIPTINFO" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="IMPORTRECEIPT">
               <PropertyRef Name="IRECEIPT_ID" />
             </Principal>
             <Dependent Role="IMPORTRECEIPTINFO">
               <PropertyRef Name="IRECEIPT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MACTHDNH_PRODUCT">
+          <End Role="PRODUCT" Type="Self.PRODUCT" Multiplicity="1" />
+          <End Role="IMPORTRECEIPTINFO" Type="Self.IMPORTRECEIPTINFO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCT">
+              <PropertyRef Name="PRO_ID" />
+            </Principal>
+            <Dependent Role="IMPORTRECEIPTINFO">
+              <PropertyRef Name="PRO_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -833,18 +834,6 @@ warning 6002: The table/view 'CARSALESSYSTEM.dbo.IMPORTRECEIPTINFO' does not hav
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_MACTHDNH_PRODUCT">
-          <End Role="PRODUCT" Type="Self.PRODUCT" Multiplicity="1" />
-          <End Role="IMPORTRECEIPTINFO" Type="Self.IMPORTRECEIPTINFO" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PRODUCT">
-              <PropertyRef Name="PRO_ID" />
-            </Principal>
-            <Dependent Role="IMPORTRECEIPTINFO">
-              <PropertyRef Name="PRO_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_MALOAISP_MALOAI">
           <End Role="TYPEPRODUCT" Type="Self.TYPEPRODUCT" Multiplicity="0..1" />
           <End Role="PRODUCT" Type="Self.PRODUCT" Multiplicity="*" />
@@ -886,6 +875,7 @@ warning 6002: The table/view 'CARSALESSYSTEM.dbo.IMPORTRECEIPTINFO' does not hav
           <EntitySet Name="CUSTOMERs" EntityType="Self.CUSTOMER" />
           <EntitySet Name="EMPLOYEEs" EntityType="Self.EMPLOYEE" />
           <EntitySet Name="IMPORTRECEIPTs" EntityType="Self.IMPORTRECEIPT" />
+          <EntitySet Name="IMPORTRECEIPTINFOes" EntityType="Self.IMPORTRECEIPTINFO" />
           <EntitySet Name="MAINTENANCEBILLs" EntityType="Self.MAINTENANCEBILL" />
           <EntitySet Name="ORDERBILLs" EntityType="Self.ORDERBILL" />
           <EntitySet Name="PRODUCERs" EntityType="Self.PRODUCER" />
@@ -893,7 +883,6 @@ warning 6002: The table/view 'CARSALESSYSTEM.dbo.IMPORTRECEIPTINFO' does not hav
           <EntitySet Name="RANK_MONEY" EntityType="Self.RANK_MONEY" />
           <EntitySet Name="SELLBILLs" EntityType="Self.SELLBILL" />
           <EntitySet Name="TYPEPRODUCTs" EntityType="Self.TYPEPRODUCT" />
-          <EntitySet Name="IMPORTRECEIPTINFOes" EntityType="Self.IMPORTRECEIPTINFO" />
           <AssociationSet Name="FK_TAIKHOANKH_TAIKHOAN" Association="Self.FK_TAIKHOANKH_TAIKHOAN">
             <End Role="ACCOUNT" EntitySet="ACCOUNTs" />
             <End Role="CUSTOMER" EntitySet="CUSTOMERs" />
@@ -938,6 +927,10 @@ warning 6002: The table/view 'CARSALESSYSTEM.dbo.IMPORTRECEIPTINFO' does not hav
             <End Role="IMPORTRECEIPT" EntitySet="IMPORTRECEIPTs" />
             <End Role="IMPORTRECEIPTINFO" EntitySet="IMPORTRECEIPTINFOes" />
           </AssociationSet>
+          <AssociationSet Name="FK_MACTHDNH_PRODUCT" Association="Self.FK_MACTHDNH_PRODUCT">
+            <End Role="PRODUCT" EntitySet="PRODUCTs" />
+            <End Role="IMPORTRECEIPTINFO" EntitySet="IMPORTRECEIPTINFOes" />
+          </AssociationSet>
           <AssociationSet Name="FK_MASPBT" Association="Self.FK_MASPBT">
             <End Role="PRODUCT" EntitySet="PRODUCTs" />
             <End Role="MAINTENANCEBILL" EntitySet="MAINTENANCEBILLs" />
@@ -953,10 +946,6 @@ warning 6002: The table/view 'CARSALESSYSTEM.dbo.IMPORTRECEIPTINFO' does not hav
           <AssociationSet Name="FK_MANSXSP_MANSX" Association="Self.FK_MANSXSP_MANSX">
             <End Role="PRODUCER" EntitySet="PRODUCERs" />
             <End Role="PRODUCT" EntitySet="PRODUCTs" />
-          </AssociationSet>
-          <AssociationSet Name="FK_MACTHDNH_PRODUCT" Association="Self.FK_MACTHDNH_PRODUCT">
-            <End Role="PRODUCT" EntitySet="PRODUCTs" />
-            <End Role="IMPORTRECEIPTINFO" EntitySet="IMPORTRECEIPTINFOes" />
           </AssociationSet>
           <AssociationSet Name="FK_MALOAISP_MALOAI" Association="Self.FK_MALOAISP_MALOAI">
             <End Role="TYPEPRODUCT" EntitySet="TYPEPRODUCTs" />
@@ -1028,6 +1017,16 @@ warning 6002: The table/view 'CARSALESSYSTEM.dbo.IMPORTRECEIPTINFO' does not hav
                 <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
                 <ScalarProperty Name="DATETIME_IMPORT" ColumnName="DATETIME_IMPORT" />
                 <ScalarProperty Name="TOTAL_PRICE" ColumnName="TOTAL_PRICE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IMPORTRECEIPTINFOes">
+            <EntityTypeMapping TypeName="CARSALESSYSTEMModel.IMPORTRECEIPTINFO">
+              <MappingFragment StoreEntitySet="IMPORTRECEIPTINFO">
+                <ScalarProperty Name="IRECEIPT_ID" ColumnName="IRECEIPT_ID" />
+                <ScalarProperty Name="PRO_ID" ColumnName="PRO_ID" />
+                <ScalarProperty Name="QUANTITY" ColumnName="QUANTITY" />
+                <ScalarProperty Name="IMPORT_PRICE" ColumnName="IMPORT_PRICE" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1114,16 +1113,6 @@ warning 6002: The table/view 'CARSALESSYSTEM.dbo.IMPORTRECEIPTINFO' does not hav
               <MappingFragment StoreEntitySet="TYPEPRODUCT">
                 <ScalarProperty Name="TYPEPRODUCT_ID" ColumnName="TYPEPRODUCT_ID" />
                 <ScalarProperty Name="TYPEPRODUCT_NAME" ColumnName="TYPEPRODUCT_NAME" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="IMPORTRECEIPTINFOes">
-            <EntityTypeMapping TypeName="CARSALESSYSTEMModel.IMPORTRECEIPTINFO">
-              <MappingFragment StoreEntitySet="IMPORTRECEIPTINFO">
-                <ScalarProperty Name="IRECEIPT_ID" ColumnName="IRECEIPT_ID" />
-                <ScalarProperty Name="PRO_ID" ColumnName="PRO_ID" />
-                <ScalarProperty Name="QUANTITY" ColumnName="QUANTITY" />
-                <ScalarProperty Name="IMPORT_PRICE" ColumnName="IMPORT_PRICE" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

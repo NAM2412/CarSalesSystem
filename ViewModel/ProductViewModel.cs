@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data.Entity.Validation;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -39,6 +40,8 @@ namespace CarSalesSystem.ViewModel
         public ICommand ShowLoadImportProductCommand { get; set; }
         public ICommand ClickImportProductCommand { get; set; }
         public ICommand BackImportProductCommand { get; set; }
+        public ICommand  CaculateTotalCommand { get; set; }
+        public ICommand ImportProductSaveCommand { get; set; }
         public ProductViewModel()
         {
             EditProductCommand = new RelayCommand<ProductControl>((parameter) => true, (parameter) => ClickEditProduct(parameter));
@@ -58,6 +61,59 @@ namespace CarSalesSystem.ViewModel
 
             ShowLoadImportProductCommand = new RelayCommand<WarehousePG>((parameter) => true, (parameter) => ShowLoadImportProduct(parameter));
             ClickImportProductCommand = new RelayCommand<ImportControl>((parameter) => true, (parameter) => ShowImportProduct(parameter));
+            CaculateTotalCommand = new RelayCommand<ImportProduct>((parameter) => true, (parameter) => CaculateTotal(parameter));
+            ImportProductSaveCommand = new RelayCommand<ImportProduct>((parameter) => true, (parameter) => ImportProductSave(parameter));
+        }
+
+        private void ImportProductSave(ImportProduct parameter)
+        {
+            IMPORTRECEIPT importreceipt = new IMPORTRECEIPT();
+            IMPORTRECEIPTINFO importreceiptinfo = new IMPORTRECEIPTINFO();
+            var product = DataProvider.Ins.DB.PRODUCTs.Find(parameter.tbIdProduct.Text);
+            product.STORAGE_NUMBER += int.Parse(parameter.tbQuantity.Text);
+            importreceipt.IRECEIPT_ID = parameter.tbIdReceipt.Text;
+            importreceipt.EMPLOYEE_ID = parameter.tbIdEmployee.Text;
+            importreceipt.DATETIME_IMPORT = DateTime.Parse(parameter.pdDateTime.Text);
+            decimal value;
+            decimal.TryParse(parameter.tbTotalPrice.Text, NumberStyles.Currency, CultureInfo.CurrentCulture.NumberFormat, out value);
+            importreceipt.TOTAL_PRICE = value;
+
+            importreceiptinfo.IRECEIPT_ID = parameter.tbIdReceipt.Text;
+            importreceiptinfo.PRO_ID=parameter.tbIdProduct.Text;
+            importreceiptinfo.QUANTITY = int.Parse(parameter.tbQuantity.Text);
+            importreceiptinfo.IMPORT_PRICE = decimal.Parse(parameter.tbImportPrice.Text);
+            try
+            {
+                DataProvider.Ins.DB.IMPORTRECEIPTs.Add(importreceipt);
+                DataProvider.Ins.DB.IMPORTRECEIPTINFOes.Add(importreceiptinfo);
+                DataProvider.Ins.DB.SaveChanges();
+            }
+            catch (DbEntityValidationException e)
+            {
+                foreach (var eve in e.EntityValidationErrors)
+                {
+                    Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
+                        eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                    foreach (var ve in eve.ValidationErrors)
+                    {
+                        Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
+                            ve.PropertyName, ve.ErrorMessage);
+                    }
+                }
+                throw;
+            }
+            ShowLoadImportProduct(warehousePG);
+            parameter.Close();
+        }
+
+        private void CaculateTotal(ImportProduct parameter)
+        {
+            long price=0;
+            int quantity = 0;
+            int.TryParse(parameter.tbImportPrice.Text, out quantity);
+            long.TryParse(parameter.tbQuantity.Text, out price);
+            parameter.tbTotalPrice.Text = (price*quantity).ToString("C", CultureInfo.CurrentCulture);
+            
         }
 
         private void ShowImportProduct(ImportControl parameter)
@@ -91,6 +147,7 @@ namespace CarSalesSystem.ViewModel
                 imageBrush.ImageSource = Converter.Instance.ToImage(productInfo.IMG);
                 importProduct.grdSelectImage.Background = imageBrush;
             }
+            importProduct.tbIdEmployee.Text = AccountInfo.IdAccount;
             importProduct.ShowDialog();
 
         }

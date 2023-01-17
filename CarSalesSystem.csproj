@@ -304,6 +304,7 @@
     <Compile Include="Model\TYPEPRODUCT.cs">
       <DependentUpon>CARSALESSYSTEMEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Viewmodel\AccountInfo.cs" />
     <Compile Include="Viewmodel\BaseViewModel.cs" />
     <Compile Include="Viewmodel\ControlBarViewModel.cs" />
     <Compile Include="Viewmodel\Converter.cs" />

@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CarSalesSystem.Admin.Windows"
         mc:Ignorable="d"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         x:Name="wdImportProduct"
         Title="ImportProduct" 
          WindowStyle="None"
@@ -223,11 +224,12 @@
                                     HorizontalContentAlignment="Left"
                                     VerticalContentAlignment="Bottom" 
                                     FontWeight="SemiBold" >
+                                
                             </TextBox>
                         </StackPanel>
                     </Grid>
                     <Grid 
-                        Grid.Row="5"
+                        Grid.Row="6"
                        VerticalAlignment="Bottom" 
                         Width="600" >
                         <StackPanel Orientation="Horizontal">
@@ -249,14 +251,17 @@
                                 HorizontalContentAlignment="Left"
                                     VerticalContentAlignment="Bottom" 
                                     FontWeight="SemiBold" >
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="KeyUp">
+                                        <i:InvokeCommandAction Command="{Binding CaculateTotalCommand}"
+                                                               CommandParameter="{Binding ElementName=wdImportProduct}"/>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
                             </TextBox>
-
-
-
                         </StackPanel>
                     </Grid>
                     <Grid 
-                        Grid.Row="6"
+                        Grid.Row="5"
                         VerticalAlignment="Bottom"  >
                         <StackPanel Orientation="Horizontal">
                             <Label
@@ -276,6 +281,12 @@
                                     HorizontalContentAlignment="Left"
                                     VerticalContentAlignment="Bottom" 
                                     FontWeight="SemiBold" >
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="KeyUp">
+                                        <i:InvokeCommandAction Command="{Binding CaculateTotalCommand}"
+                                                               CommandParameter="{Binding ElementName=wdImportProduct}"/>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
                             </TextBox>
 
                         </StackPanel>
@@ -340,7 +351,7 @@
                         Background="#FFFFFF"/>
                             <Button
                                 x:Name="btnAdd"
-                            Command="{Binding ImportProductCommand}"
+                            Command="{Binding ImportProductSaveCommand}"
                                 CommandParameter="{Binding ElementName=wdImportProduct}"
                          Content="Import"
                         Height="40"

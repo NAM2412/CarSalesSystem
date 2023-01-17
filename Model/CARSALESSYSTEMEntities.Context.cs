@@ -29,6 +29,7 @@ namespace CarSalesSystem.Model
         public virtual DbSet<CUSTOMER> CUSTOMERs { get; set; }
         public virtual DbSet<EMPLOYEE> EMPLOYEEs { get; set; }
         public virtual DbSet<IMPORTRECEIPT> IMPORTRECEIPTs { get; set; }
+        public virtual DbSet<IMPORTRECEIPTINFO> IMPORTRECEIPTINFOes { get; set; }
         public virtual DbSet<MAINTENANCEBILL> MAINTENANCEBILLs { get; set; }
         public virtual DbSet<ORDERBILL> ORDERBILLs { get; set; }
         public virtual DbSet<PRODUCER> PRODUCERs { get; set; }
@@ -36,6 +37,5 @@ namespace CarSalesSystem.Model
         public virtual DbSet<RANK_MONEY> RANK_MONEY { get; set; }
         public virtual DbSet<SELLBILL> SELLBILLs { get; set; }
         public virtual DbSet<TYPEPRODUCT> TYPEPRODUCTs { get; set; }
-        public virtual DbSet<IMPORTRECEIPTINFO> IMPORTRECEIPTINFOes { get; set; }
     }
 }
