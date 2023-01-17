@@ -22,6 +22,7 @@ using ToastNotifications.Messages;
 using ToastNotifications.Lifetime;
 using ToastNotifications.Position;
 using CarSalesSystem.Model;
+using CarSalesSystem.Viewmodel;
 
 namespace CarSalesSystem.General
 {
@@ -126,7 +127,7 @@ namespace CarSalesSystem.General
             if (!passwordValid)
                 passwordTextBox.BorderBrush = Brushes.Red;
             //retrieve data and compare with data from database
-            SqlConnection connection = new SqlConnection("Data Source=DESKTOP-8RKPG08\\SQLEXPRESS;Initial Catalog=CARSALESSYSTEM;Integrated Security=True");
+            SqlConnection connection = new SqlConnection("Data Source=MSI\\SQLEXPRESS;Initial Catalog=CARSALESSYSTEM;Integrated Security=True");
             try
             {
                 if (connection.State == ConnectionState.Closed)
@@ -143,6 +144,7 @@ namespace CarSalesSystem.General
                 activeWindow.Parameters.AddWithValue("@PASS", passwordTextBox.Password);
 
                 int result = Convert.ToInt32(cmd.ExecuteScalar());
+                AccountInfo.Username = usernameTextBox.Text;
                 if (result == 1)
                  {
                     usernameValid = true;
@@ -152,11 +154,14 @@ namespace CarSalesSystem.General
                         CUSTOMER cus = DataProvider.Ins.DB.CUSTOMERs.Where(x => x.CUS_ACCOUNT == usernameTextBox.Text).FirstOrDefault();
                         CustomerWindow customerWindow = new CustomerWindow(cus);
                         customerWindow.Show();
+                        AccountInfo.IdAccount = cus.CUS_ID;
                     }   
                         
                        
                     else
                         adminWindow.Show();
+                    EMPLOYEE emp = DataProvider.Ins.DB.EMPLOYEEs.Where(x => x.EMP_ACCOUNT == usernameTextBox.Text).FirstOrDefault();
+                    AccountInfo.IdAccount=emp.EMP_ID;
                     if (rememberCheckBox.IsChecked == true)
                     {
                         Properties.Settings.Default.userName = usernameTextBox.Text;

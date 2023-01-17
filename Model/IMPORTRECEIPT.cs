@@ -18,7 +18,6 @@ namespace CarSalesSystem.Model
         public IMPORTRECEIPT()
         {
             this.PRODUCTs = new HashSet<PRODUCT>();
-            this.IMPORTRECEIPTINFOes = new HashSet<IMPORTRECEIPTINFO>();
         }
     
         public string IRECEIPT_ID { get; set; }
@@ -29,7 +28,6 @@ namespace CarSalesSystem.Model
         public virtual EMPLOYEE EMPLOYEE { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PRODUCT> PRODUCTs { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<IMPORTRECEIPTINFO> IMPORTRECEIPTINFOes { get; set; }
+        public virtual IMPORTRECEIPTINFO IMPORTRECEIPTINFO { get; set; }
     }
 }
