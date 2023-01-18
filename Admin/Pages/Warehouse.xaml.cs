@@ -18,9 +18,9 @@ namespace CarSalesSystem.Admin.Pages
     /// <summary>
     /// Interaction logic for Warehouse.xaml
     /// </summary>
-    public partial class Warehouse : Page
+    public partial class WarehousePG : Page
     {
-        public Warehouse()
+        public WarehousePG()
         {
             InitializeComponent();
         }

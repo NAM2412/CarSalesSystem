@@ -22,6 +22,7 @@ using ToastNotifications.Messages;
 using ToastNotifications.Lifetime;
 using ToastNotifications.Position;
 using CarSalesSystem.Model;
+using CarSalesSystem.Viewmodel;
 
 namespace CarSalesSystem.General
 {
@@ -51,6 +52,12 @@ namespace CarSalesSystem.General
         public SignIn()
         {
             InitializeComponent();
+            if (Properties.Settings.Default.userName != string.Empty)
+            {
+                usernameTextBox.Text = Properties.Settings.Default.userName;
+                passwordTextBox.Password= Properties.Settings.Default.passUser;
+            }
+
         }
         void CloseWindow(Type type)
         {
@@ -68,6 +75,8 @@ namespace CarSalesSystem.General
 
         private void usernameTextBox_GotFocus(object sender, RoutedEventArgs e)
         {
+            if (usernameTextBox.Text.Equals(Properties.Settings.Default.userName))
+                return;
             if (usernameTextBox.Text.Equals("Username"))
                 usernameTextBox.Text = "";
             if (usernameTextBox.BorderBrush == Brushes.Red)
@@ -103,6 +112,7 @@ namespace CarSalesSystem.General
                 this.Close();
                 return;
             }
+
             if (usernameValid && passwordValid)
             {
                 CUSTOMER cus = DataProvider.Ins.DB.CUSTOMERs.Where(x => x.CUS_ACCOUNT == usernameTextBox.Text).FirstOrDefault(); 
@@ -111,12 +121,13 @@ namespace CarSalesSystem.General
                 this.Close();
                 return;
             }
+
             if (!usernameValid)
                 usernameTextBox.BorderBrush = Brushes.Red;
             if (!passwordValid)
                 passwordTextBox.BorderBrush = Brushes.Red;
             //retrieve data and compare with data from database
-            SqlConnection connection = new SqlConnection("Data Source=DESKTOP-8RKPG08\\SQLEXPRESS;Initial Catalog=CARSALESSYSTEM;Integrated Security=True");
+            SqlConnection connection = new SqlConnection("Data Source=MSI\\SQLEXPRESS;Initial Catalog=CARSALESSYSTEM;Integrated Security=True");
             try
             {
                 if (connection.State == ConnectionState.Closed)
@@ -133,6 +144,7 @@ namespace CarSalesSystem.General
                 activeWindow.Parameters.AddWithValue("@PASS", passwordTextBox.Password);
 
                 int result = Convert.ToInt32(cmd.ExecuteScalar());
+                AccountInfo.Username = usernameTextBox.Text;
                 if (result == 1)
                  {
                     usernameValid = true;
@@ -142,12 +154,21 @@ namespace CarSalesSystem.General
                         CUSTOMER cus = DataProvider.Ins.DB.CUSTOMERs.Where(x => x.CUS_ACCOUNT == usernameTextBox.Text).FirstOrDefault();
                         CustomerWindow customerWindow = new CustomerWindow(cus);
                         customerWindow.Show();
+                        AccountInfo.IdAccount = cus.CUS_ID;
                     }   
                         
                        
                     else
                         adminWindow.Show();
-                    this.Close();
+                    EMPLOYEE emp = DataProvider.Ins.DB.EMPLOYEEs.Where(x => x.EMP_ACCOUNT == usernameTextBox.Text).FirstOrDefault();
+                    AccountInfo.IdAccount=emp.EMP_ID;
+                    if (rememberCheckBox.IsChecked == true)
+                    {
+                        Properties.Settings.Default.userName = usernameTextBox.Text;
+                        Properties.Settings.Default.passUser = passwordTextBox.Password;
+                        Properties.Settings.Default.Save();
+                    }
+                    this.Hide();
                  }
                  else
                  {
@@ -162,11 +183,24 @@ namespace CarSalesSystem.General
                 notifier.ShowError(ex.Message);
             }
             
-
-            
-            
             connection.Close();
             
+        }
+
+        private void rememberCheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+
+            
+        }
+
+        private void GoogleBtn_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void FacebookBtn_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

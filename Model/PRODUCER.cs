@@ -17,15 +17,12 @@ namespace CarSalesSystem.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public PRODUCER()
         {
-            this.TYPEPRODUCTs = new HashSet<TYPEPRODUCT>();
             this.PRODUCTs = new HashSet<PRODUCT>();
         }
     
         public string PRODUCER_ID { get; set; }
         public string PRODUCER_NAME { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TYPEPRODUCT> TYPEPRODUCTs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PRODUCT> PRODUCTs { get; set; }
     }
