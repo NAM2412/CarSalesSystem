@@ -37,7 +37,7 @@
                            FontFamily="Mitr Medium"/>
                 <TextBox Grid.Row="0"
                              Grid.Column="1"
-                         x:Name="nameTextBox"
+                         x:Name="txbFullName"
                              Margin="20 30 50 290"
                              BorderThickness="0 0 0 2"
                              BorderBrush="Gray"
@@ -55,16 +55,15 @@
                 <ComboBox Grid.Row="0"
                           x:Name="genderBox"
                               Grid.Column="1"
-                              Margin="20 90 340 235"
+                              Margin="20 90 320 235"
                               Padding="5 0 0 0"
                               BorderThickness="2"
                               BorderBrush="Gray"
                               Foreground="Gray"
                               FontSize="18"
                               >
-                    <ComboBoxItem IsSelected="True"
-                                      FontFamily="Mitr Light">Male</ComboBoxItem>
-                    <ComboBoxItem FontFamily="Mitr Light">Female</ComboBoxItem>
+                    <ComboBoxItem FontFamily="Mitr Light">MALE</ComboBoxItem>
+                    <ComboBoxItem IsSelected="True" FontFamily="Mitr Light">FEMALE</ComboBoxItem>
                 </ComboBox>
 
                 <Label Grid.Row="0"
@@ -74,7 +73,7 @@
                            Content="Address:"
                            FontFamily="Mitr Medium"/>
                 <TextBox Grid.Row="0"
-                         x:Name="addressTextBox"
+                         x:Name="txbAddress"
                              Grid.Column="1"
                              Margin="20 145 50 175"
                              BorderThickness="0 0 0 2"
@@ -91,7 +90,7 @@
                            Content="Date of birth:"
                            FontFamily="Mitr Medium"/>
                 <DatePicker Grid.Column="1"
-                            x:Name="birthdayTextBox"
+                            x:Name="dtpDateOfBirth"
                                 Grid.Row="0"
                                 Margin="20 200 300 120"
                                 FontSize="18"
@@ -106,7 +105,7 @@
                            FontFamily="Mitr Medium"/>
                 <TextBox Grid.Row="0"
                          Grid.Column="1"
-                         x:Name="phoneTextBox"
+                         x:Name="txbPhoneNumber"
                          Margin="20 270 50 50"
                          BorderThickness="0 0 0 2"
                          BorderBrush="Gray"
@@ -265,6 +264,7 @@
                        BorderBrush="Gray"
                        Margin="0 0 50 0"
                        VerticalAlignment="Center"
+                       x:Name="lbTotalSpent"
                        ></Label>
                 <Label Grid.Column="1"
                        Grid.Row="1"
@@ -275,6 +275,7 @@
                        BorderBrush="Gray"
                        Margin="0 0 50 0"
                        VerticalAlignment="Center"
+                       x:Name="lbNeedToUpgrade"
                        ></Label>
                 <Label Grid.Column="1"
                        Grid.Row="2"
@@ -285,6 +286,7 @@
                        BorderBrush="Gray"
                        Margin="0 0 50 0"
                        VerticalAlignment="Center"
+                       Name="lbRankName"
                        ></Label>
                 <Label Grid.Column="1"
                        Grid.Row="3"
@@ -295,6 +297,7 @@
                        BorderBrush="Gray"
                        Margin="0 0 50 0"
                        VerticalAlignment="Center"
+                       x:Name="lbDiscount"
                        ></Label>
                 <!--#endregion-->
             </Grid>
@@ -325,17 +328,17 @@
                        VerticalAlignment="Center"
                        Padding="16 0 0 0"
                        ></Label>
-                <PasswordBox Grid.Row="0"
+                <Label Grid.Row="0"
                              Grid.Column="1"
                              x:Name="oldPassBox"
                              BorderBrush="Gray"
                              BorderThickness="0 0 0 2"
-                             PasswordChar="●"
-                             FontSize="30" 
+                             FontSize="24" 
                              FontFamily="Nexa ☞"
                              Margin="20 10 30 10"
                              Foreground="#134B5F"
-                             ></PasswordBox>
+                             IsEnabled="True"
+                             ></Label>
 
                 <Label Grid.Column="0"
                        Grid.Row="1"
@@ -345,17 +348,17 @@
                        VerticalAlignment="Center"
                        Padding="16 0 0 0"
                        ></Label>
-                <PasswordBox Grid.Row="1"
+                <Label Grid.Row="1"
                              Grid.Column="1"
                              x:Name="newPassBox"
                              BorderBrush="Gray"
                              Foreground="#134B5F"
                              BorderThickness="0 0 0 2"
-                             PasswordChar="●"
                              FontSize="30" 
                              FontFamily="Nexa ☞"
                              Margin="20 10 30 10"
-                             ></PasswordBox>
+                             IsEnabled="True"
+                             ></Label>
 
                 <Label Grid.Column="0"
                        Grid.Row="2"
@@ -375,6 +378,7 @@
                              FontSize="30" 
                              FontFamily="Nexa ☞"
                              Margin="20 10 30 10"
+                             IsEnabled="True"
                              ></PasswordBox>
                 <Button Grid.Row="3"
                         Grid.Column="1"

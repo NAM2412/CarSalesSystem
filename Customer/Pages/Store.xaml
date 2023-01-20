@@ -47,7 +47,7 @@
             <Border Grid.Row="1" CornerRadius="5"
                     Background="Transparent" Margin="10">
                 <ListView x:Name="ListProduct" 
-                                ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                                ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                                 Background="Transparent" 
                                 Foreground="{x:Null}"
                                 HorizontalAlignment="Left" VerticalAlignment="Top"

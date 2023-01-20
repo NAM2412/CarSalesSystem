@@ -253,56 +253,59 @@
     <Compile Include="Admin\Windows\ImportProduct.xaml.cs">
       <DependentUpon>ImportProduct.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Customer\Windows\MaintenanceBill.xaml.cs">
+      <DependentUpon>MaintenanceBill.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Model\ACCOUNT.cs">
-      <DependentUpon>CARSALESSYSTEMEntities.tt</DependentUpon>
+      <DependentUpon>CARSALESYSTEM.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\CARSALESSYSTEMEntities.Context.cs">
+    <Compile Include="Model\CARSALESYSTEM.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>CARSALESSYSTEMEntities.Context.tt</DependentUpon>
+      <DependentUpon>CARSALESYSTEM.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\CARSALESSYSTEMEntities.cs">
+    <Compile Include="Model\CARSALESYSTEM.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>CARSALESSYSTEMEntities.tt</DependentUpon>
+      <DependentUpon>CARSALESYSTEM.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\CARSALESSYSTEMEntities.Designer.cs">
+    <Compile Include="Model\CARSALESYSTEM.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>CARSALESSYSTEMEntities.edmx</DependentUpon>
+      <DependentUpon>CARSALESYSTEM.edmx</DependentUpon>
     </Compile>
     <Compile Include="Model\CUSTOMER.cs">
-      <DependentUpon>CARSALESSYSTEMEntities.tt</DependentUpon>
+      <DependentUpon>CARSALESYSTEM.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\EMPLOYEE.cs">
-      <DependentUpon>CARSALESSYSTEMEntities.tt</DependentUpon>
+      <DependentUpon>CARSALESYSTEM.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\IMPORTRECEIPT.cs">
-      <DependentUpon>CARSALESSYSTEMEntities.tt</DependentUpon>
+      <DependentUpon>CARSALESYSTEM.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\IMPORTRECEIPTINFO.cs">
-      <DependentUpon>CARSALESSYSTEMEntities.tt</DependentUpon>
+      <DependentUpon>CARSALESYSTEM.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\MAINTENANCEBILL.cs">
-      <DependentUpon>CARSALESSYSTEMEntities.tt</DependentUpon>
+      <DependentUpon>CARSALESYSTEM.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\ORDERBILL.cs">
-      <DependentUpon>CARSALESSYSTEMEntities.tt</DependentUpon>
+      <DependentUpon>CARSALESYSTEM.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\PRODUCER.cs">
-      <DependentUpon>CARSALESSYSTEMEntities.tt</DependentUpon>
+      <DependentUpon>CARSALESYSTEM.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\PRODUCT.cs">
-      <DependentUpon>CARSALESSYSTEMEntities.tt</DependentUpon>
+      <DependentUpon>CARSALESYSTEM.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\RANK_MONEY.cs">
-      <DependentUpon>CARSALESSYSTEMEntities.tt</DependentUpon>
+      <DependentUpon>CARSALESYSTEM.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\SELLBILL.cs">
-      <DependentUpon>CARSALESSYSTEMEntities.tt</DependentUpon>
+      <DependentUpon>CARSALESYSTEM.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\TYPEPRODUCT.cs">
-      <DependentUpon>CARSALESSYSTEMEntities.tt</DependentUpon>
+      <DependentUpon>CARSALESYSTEM.tt</DependentUpon>
     </Compile>
     <Compile Include="Viewmodel\AccountInfo.cs" />
     <Compile Include="Viewmodel\BaseViewModel.cs" />
@@ -585,12 +588,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="Model\CARSALESSYSTEMEntities.edmx">
+    <EntityDeploy Include="Model\CARSALESYSTEM.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>CARSALESSYSTEMEntities.Designer.cs</LastGenOutput>
+      <LastGenOutput>CARSALESYSTEM.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Model\CARSALESSYSTEMEntities.edmx.diagram">
-      <DependentUpon>CARSALESSYSTEMEntities.edmx</DependentUpon>
+    <None Include="Model\CARSALESYSTEM.edmx.diagram">
+      <DependentUpon>CARSALESYSTEM.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="packages\EntityFramework.6.4.4\.signature.p7s" />
@@ -630,15 +633,15 @@
     <None Include="packages\MaterialDesignThemes.4.6.1\build\MaterialDesignThemes.targets" />
     <Resource Include="Customer\Windows\error.png" />
     <Resource Include="Customer\Windows\sedan.png" />
-    <Content Include="Model\CARSALESSYSTEMEntities.Context.tt">
+    <Content Include="Model\CARSALESYSTEM.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>CARSALESSYSTEMEntities.edmx</DependentUpon>
-      <LastGenOutput>CARSALESSYSTEMEntities.Context.cs</LastGenOutput>
+      <DependentUpon>CARSALESYSTEM.edmx</DependentUpon>
+      <LastGenOutput>CARSALESYSTEM.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Model\CARSALESSYSTEMEntities.tt">
+    <Content Include="Model\CARSALESYSTEM.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>CARSALESSYSTEMEntities.edmx</DependentUpon>
-      <LastGenOutput>CARSALESSYSTEMEntities.cs</LastGenOutput>
+      <DependentUpon>CARSALESYSTEM.edmx</DependentUpon>
+      <LastGenOutput>CARSALESYSTEM.cs</LastGenOutput>
     </Content>
     <Content Include="packages\EntityFramework.6.4.4\build\Microsoft.Data.Entity.Build.Tasks.dll" />
     <Resource Include="packages\EntityFramework.6.4.4\Icon.png" />

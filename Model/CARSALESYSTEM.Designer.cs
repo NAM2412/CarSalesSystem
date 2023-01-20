@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\USER\Documents\GitHub\CarSalesSystem\Model\CARSALESSYSTEMEntities.edmx'. 
+﻿// T4 code generation is enabled for model 'D:\UIT\Tài Liệu Học Tập\Năm 3\Kì 1\OOAD\Project\CarSale\Model\CARSALESYSTEM.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

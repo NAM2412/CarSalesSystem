@@ -64,5 +64,13 @@ namespace CarSalesSystem.Customer.Windows
             orderBill.Show();
             this.Close();
         }
+
+        private void Border_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+            {
+                this.DragMove();
+            }
+        }
     }
 }

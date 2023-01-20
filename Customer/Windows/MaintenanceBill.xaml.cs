@@ -23,5 +23,19 @@ namespace CarSalesSystem.Customer.Windows
         {
             InitializeComponent();
         }
+
+
+        private void btnCloseDetailWD_Click(object sender, RoutedEventArgs e)
+        {
+            this.Hide();
+        }
+
+        private void Border_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+            {
+                this.DragMove();
+            }
+        }
     }
 }
