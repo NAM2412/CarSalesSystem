@@ -98,8 +98,15 @@ namespace CarSalesSystem.General
 
         private void passwordTextBox_LostFocus(object sender, RoutedEventArgs e)
         {
+            if (passwordTextBox.Password.Equals(Properties.Settings.Default.passUser))
+            {
+                phPass.Visibility = Visibility.Hidden;
+                return;
+            }
+            
             if (string.IsNullOrEmpty(passwordTextBox.Password))
                 phPass.Visibility = Visibility.Visible;
+            
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -185,11 +192,6 @@ namespace CarSalesSystem.General
             
         }
 
-        private void rememberCheckBox_Checked(object sender, RoutedEventArgs e)
-        {
-
-            
-        }
 
         private void GoogleBtn_Click(object sender, RoutedEventArgs e)
         {
