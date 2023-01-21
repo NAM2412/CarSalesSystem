@@ -131,11 +131,12 @@
                                Width="400"
                                Text="Password"
                                Padding="10 0 0 0"
-                             VerticalAlignment="Center"
-                             FontSize="20"
-                             Foreground="White"
-                             FontFamily="Nexa ☞"
-                             Background="Transparent"></TextBlock>
+                                VerticalAlignment="Center"
+                                FontSize="20"
+                                Foreground="White"
+                                FontFamily="Nexa ☞"
+                                Background="Transparent"
+                                Visibility="Collapsed"></TextBlock>
                     <PasswordBox Grid.Row="1"
                                  Name="passwordTextBox"
                              Width="400"
@@ -165,7 +166,6 @@
                               Width="24"
                               Height="24"
                               Content="Custom CheckBox [IsChecked = False]"
-                              Checked="rememberCheckBox_Checked"
                               >
                         <CheckBox.Resources>
                             <!--Unchecked state-->
