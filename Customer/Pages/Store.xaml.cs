@@ -205,5 +205,126 @@ namespace CarSalesSystem.Customer.Pages
             }
         }
         #endregion
+
+        private void cbProducer_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            // Tạo mới danh sách sản phẩm có tên chứa loại sản phẩm cần lọc
+            ObservableCollection<PRODUCT> filterProducts = new ObservableCollection<PRODUCT>();
+            if (cbProducer.SelectedIndex == -1)
+            {
+                reset_page(products);
+                listProduct.ItemsSource = products;
+            }
+            else
+            {
+                switch (cbProducer.SelectedIndex)
+                {
+                    case 0:
+                        {
+                            reset_page(products);
+                            listProduct.ItemsSource = products;
+                        }
+                        break;
+                    case 1:
+                        {
+                            for (int i = 0; i < products.Count; i++)
+                            {
+                                if (products[i].PRODUCER.PRODUCER_NAME == "TESLA") // Nếu tìm thấy tên phù hợp
+                                {
+                                    filterProducts.Add(products[i]); // Thì thêm vào danh sách mới
+                                }
+                            }
+                            reset_page(filterProducts);
+
+                            listProduct.ItemsSource = filterProducts;
+                        }
+                        break;
+                    case 2:
+                        {
+                            for (int i = 0; i < products.Count; i++)
+                            {
+                                if (products[i].PRODUCER.PRODUCER_NAME == "TOYOTA") // Nếu tìm thấy tên phù hợp
+                                {
+                                    filterProducts.Add(products[i]); // Thì thêm vào danh sách mới
+                                }
+                            }
+                            reset_page(filterProducts);
+
+                            listProduct.ItemsSource = filterProducts;
+                        }
+                        break;
+                    case 3:
+                        {
+                            for (int i = 0; i < products.Count; i++)
+                            {
+                                if (products[i].PRODUCER.PRODUCER_NAME == "LAMBORGHINI") // Nếu tìm thấy tên phù hợp
+                                {
+                                    filterProducts.Add(products[i]); // Thì thêm vào danh sách mới
+                                }
+                            }
+                            reset_page(filterProducts);
+
+                            listProduct.ItemsSource = filterProducts;
+                        }
+                        break;
+                    case 4:
+                        {
+                            for (int i = 0; i < products.Count; i++)
+                            {
+                                if (products[i].PRODUCER.PRODUCER_NAME == "LEXUS") // Nếu tìm thấy tên phù hợp
+                                {
+                                    filterProducts.Add(products[i]); // Thì thêm vào danh sách mới
+                                }
+                            }
+                            reset_page(filterProducts);
+
+                            listProduct.ItemsSource = filterProducts;
+                        }
+                        break;
+                    case 5:
+                        {
+                            for (int i = 0; i < products.Count; i++)
+                            {
+                                if (products[i].PRODUCER.PRODUCER_NAME == "ROLLS-ROYCE") // Nếu tìm thấy tên phù hợp
+                                {
+                                    filterProducts.Add(products[i]); // Thì thêm vào danh sách mới
+                                }
+                            }
+                            reset_page(filterProducts);
+
+                            listProduct.ItemsSource = filterProducts;
+                        }
+                        break;
+                    case 6:
+                        {
+                            for (int i = 0; i < products.Count; i++)
+                            {
+                                if (products[i].PRODUCER.PRODUCER_NAME == "MASERATI") // Nếu tìm thấy tên phù hợp
+                                {
+                                    filterProducts.Add(products[i]); // Thì thêm vào danh sách mới
+                                }
+                            }
+                            reset_page(filterProducts);
+
+                            listProduct.ItemsSource = filterProducts;
+                        }
+                        break;
+                   case 7:
+                        {
+                            for (int i = 0; i < products.Count; i++)
+                            {
+                                if (products[i].PRODUCER.PRODUCER_NAME == "BUGATTI") // Nếu tìm thấy tên phù hợp
+                                {
+                                    filterProducts.Add(products[i]); // Thì thêm vào danh sách mới
+                                }
+                            }
+                            reset_page(filterProducts);
+
+                            listProduct.ItemsSource = filterProducts;
+                        }
+                        break;
+                }
+            }
+        }
     }
 }
