@@ -94,10 +94,17 @@ namespace CarSalesSystem.ViewModel
             editCustomerwindow.tbExpenditure.Text = (((int)customerInfo.REVENUE.GetValueOrDefault()) + " USD").ToString();
             editCustomerwindow.tbExpenditure.Foreground = System.Windows.Media.Brushes.Green;
             editCustomerwindow.lbRegistDate.Content = customerInfo.REGIST_DATE.GetValueOrDefault();
-            editCustomerwindow.tbProducNumber.Text = customerInfo.PRODUCT_NUMBER.ToString();
-            editCustomerwindow.cbGender.Text = customerInfo.GENDER.ToString();
+
+            if (customerInfo.PRODUCT_NUMBER == null) editCustomerwindow.tbProducNumber.Text = "0";
+            else editCustomerwindow.tbProducNumber.Text = customerInfo.PRODUCT_NUMBER.ToString();
+
+            if (customerInfo.GENDER == null) editCustomerwindow.cbGender.SelectedIndex = 1;
+            else 
+                editCustomerwindow.cbGender.Text = customerInfo.GENDER.ToString();
+
             editCustomerwindow.cbRank.Text = customerInfo.RANK_MONEY.RANK_TYPE.ToString();
-            editCustomerwindow.dpBirth.Text = customerInfo.CUS_DATE_OF_BIRTH.GetValueOrDefault().ToString();
+            if (customerInfo.CUS_DATE_OF_BIRTH.GetValueOrDefault() != null)
+                editCustomerwindow.dpBirth.Text = customerInfo.CUS_DATE_OF_BIRTH.GetValueOrDefault().ToString();
             string s = editCustomerwindow.tbExpenditure.Text;
             s = s.Remove(s.IndexOf(' '));
             if (customerInfo.IMG != null)
