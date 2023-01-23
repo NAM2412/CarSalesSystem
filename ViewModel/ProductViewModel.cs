@@ -6,7 +6,9 @@ using CarSalesSystem.Viewmodel;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data.Entity.Validation;
+using System.Data.SqlClient;
 using System.Globalization;
 using System.Linq;
 using System.Text;
@@ -23,6 +25,7 @@ namespace CarSalesSystem.ViewModel
     {
         private ProductControl productControl;
         private ImportControl importControl;
+        private int checkNewAccount = 0;
         private int numberproduct;
         private ProductPG productPG;
         private WarehousePG warehousePG;
@@ -42,9 +45,14 @@ namespace CarSalesSystem.ViewModel
         public ICommand BackImportProductCommand { get; set; }
         public ICommand  CaculateTotalCommand { get; set; }
         public ICommand ImportProductSaveCommand { get; set; }
+        public ICommand BuyProductCommand { get; set; }
+        public ICommand SearchCustomerInfoCommand { get; set; }
+        public ICommand AddCustomerInfoCommand { get; set; }
+        public ICommand CaculatePriceProductCommand { get; set; }
         public ProductViewModel()
         {
             EditProductCommand = new RelayCommand<ProductControl>((parameter) => true, (parameter) => ClickEditProduct(parameter));
+            BuyProductCommand = new RelayCommand<ProductControl>((parameter) => true, (parameter) => ClickBuyProduct(parameter));
 
             ShowLoadProductCommand = new RelayCommand<ProductPG>((parameter) => true, (parameter) => ShowLoadProduct(parameter));
             ClickAddCommand = new RelayCommand<ProductPG>((parameter) => true, (parameter) => ShowAddProduct(parameter));
@@ -63,6 +71,120 @@ namespace CarSalesSystem.ViewModel
             ClickImportProductCommand = new RelayCommand<ImportControl>((parameter) => true, (parameter) => ShowImportProduct(parameter));
             CaculateTotalCommand = new RelayCommand<ImportProduct>((parameter) => true, (parameter) => CaculateTotal(parameter));
             ImportProductSaveCommand = new RelayCommand<ImportProduct>((parameter) => true, (parameter) => ImportProductSave(parameter));
+
+            SearchCustomerInfoCommand = new RelayCommand<BuyProductEmp>((parameter) => true, (parameter) => SearchCustomerInfo(parameter));
+            AddCustomerInfoCommand = new RelayCommand<BuyProductEmp>((parameter) => true, (parameter) => AddCustomerInfo(parameter));
+            CaculatePriceProductCommand = new RelayCommand<BuyProductEmp>((parameter) => true, (parameter) => CaculatePriceProduct(parameter));
+        }
+
+        private void CaculatePriceProduct(BuyProductEmp parameter)
+        {
+            decimal price;
+            decimal.TryParse(parameter.tbPriceProduct.Text, NumberStyles.Currency, CultureInfo.CurrentCulture.NumberFormat, out price);
+            int percent = int.Parse(parameter.tbDiscount.Text);
+            Console.WriteLine(percent);
+            if (percent != 0)
+            {
+                decimal discount = (decimal)(price * percent) / 100;
+                decimal tong = Math.Truncate(price - discount);
+                parameter.tbTotalBill.Text = (tong).ToString("C", CultureInfo.CurrentCulture);
+                Console.WriteLine(tong);
+            }
+            else parameter.tbTotalBill.Text = (price).ToString("C", CultureInfo.CurrentCulture);
+
+        }
+
+
+        private void AddCustomerInfo(BuyProductEmp parameter)
+        {
+            if (checkNewAccount == 0)
+            {
+                ACCOUNT account = new ACCOUNT();
+                account.USERNAME = parameter.tbPhone.Text;
+                account.PASS = "123";
+                account.TYPE_USER = 2;
+                try
+                {
+                    DataProvider.Ins.DB.ACCOUNTs.Add(account);
+                    DataProvider.Ins.DB.SaveChanges();
+                }
+                catch (DbEntityValidationException e)
+                {
+                    foreach (var eve in e.EntityValidationErrors)
+                    {
+                        Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
+                            eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                        foreach (var ve in eve.ValidationErrors)
+                        {
+                            Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
+                                ve.PropertyName, ve.ErrorMessage);
+                        }
+                    }
+                    throw;
+                }
+                SqlConnection connection = new SqlConnection();
+                connection.ConnectionString = ConfigurationManager.ConnectionStrings["CarSalesSystem.Properties.Settings.CARSALESSYSTEMConnectionString"].ConnectionString;
+                try
+                {
+                    connection.Open();
+                    using (SqlCommand command = connection.CreateCommand())
+                    {
+                        command.CommandText = @"INSERT INTO CUSTOMER(CUS_ACCOUNT,CUS_NAME,PHONE,CUS_ADDRESS,RANK_ID,REGIST_DATE,REVENUE,PRODUCT_NUMBER) 
+                        VALUES(@CUS_ACCOUNT,@CUS_NAME,@PHONE,@CUS_ADDRESS,@RANK_ID,@REGIST_DATE,@REVENUE,@PRODUCT_NUMBER)";
+                        command.Parameters.AddWithValue("@CUS_ACCOUNT", parameter.tbPhone.Text);
+                        command.Parameters.AddWithValue("@CUS_NAME", parameter.tbName.Text);
+                        command.Parameters.AddWithValue("@PHONE", parameter.tbPhone.Text);
+                        command.Parameters.AddWithValue("@CUS_ADDRESS", parameter.tbAddress.Text);
+                        command.Parameters.AddWithValue("@RANK_ID", "R00");
+                        command.Parameters.AddWithValue("@REGIST_DATE",DateTime.UtcNow.ToString());
+                        command.Parameters.AddWithValue("@REVENUE", 0);
+                        command.Parameters.AddWithValue("@PRODUCT_NUMBER", 0);
+                        command.ExecuteNonQuery();
+                    }
+                }
+                finally
+                {
+                    connection.Close();
+                }
+              
+            }
+        }
+
+        private void SearchCustomerInfo(BuyProductEmp parameter)
+        {
+            var cusInfo = DataProvider.Ins.DB.CUSTOMERs.Where(x => x.PHONE == parameter.tbPhone.Text ).FirstOrDefault();
+            if (cusInfo != null)
+            {
+                parameter.tbName.Text = cusInfo.CUS_NAME;
+                parameter.tbAddress.Text = cusInfo.CUS_ADDRESS;
+                parameter.tbDiscount.Text = cusInfo.RANK_MONEY.DISCOUNT.ToString();
+                checkNewAccount = 1;
+            }
+            else
+            {
+                checkNewAccount = 0;
+                parameter.tbDiscount.Text = "0";
+            }
+        }
+
+        private void ClickBuyProduct(ProductControl parameter)
+        {
+            this.productControl = parameter;
+            idProduct = parameter.tbNo.Text;
+            ShowBuyProduct(idProduct);
+        }
+
+        private void ShowBuyProduct(string idProduct)
+        {
+            BuyProductEmp buyProduct = new BuyProductEmp();
+            buyProduct.Title = "Buy Product";
+            var productInfo = DataProvider.Ins.DB.PRODUCTs.Find(idProduct);
+            buyProduct.pdSell.Text = DateTime.UtcNow.Date.ToString();
+            var product = DataProvider.Ins.DB.PRODUCTs.Find(idProduct);
+            buyProduct.tbNameProduct.Text = product.PRO_NAME;
+            buyProduct.tbAmountProduct.Text = "1";
+            buyProduct.tbPriceProduct.Text = product.PRICE.ToString("C", CultureInfo.CurrentCulture);
+            buyProduct.ShowDialog();
         }
 
         private void ImportProductSave(ImportProduct parameter)
