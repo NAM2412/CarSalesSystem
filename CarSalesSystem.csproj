@@ -244,8 +244,14 @@
     <Compile Include="Admin\User Controls\ImportControl.xaml.cs">
       <DependentUpon>ImportControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Admin\User Controls\ListItemBuy.xaml.cs">
+      <DependentUpon>ListItemBuy.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Admin\User Controls\ProductControl.xaml.cs">
       <DependentUpon>ProductControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Windows\BuyProductEmp.xaml.cs">
+      <DependentUpon>BuyProductEmp.xaml</DependentUpon>
     </Compile>
     <Compile Include="Admin\Windows\EditProduct.xaml.cs">
       <DependentUpon>EditProduct.xaml</DependentUpon>
@@ -357,6 +363,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Admin\User Controls\ListItemBuy.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Admin\User Controls\ProductControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -370,6 +380,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Admin\Windows\Addproduct.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Admin\Windows\BuyProductEmp.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
