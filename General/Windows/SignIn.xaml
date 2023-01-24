@@ -145,7 +145,6 @@
                              FontSize="30"
                              Foreground="White"
                              BorderThickness="1"
-                             Padding="10 0 0 0"
                              BorderBrush="White"
                              FontFamily="Nexa ☞"
                              Background="Transparent" 
