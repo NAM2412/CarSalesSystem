@@ -32,14 +32,14 @@ namespace CarSalesSystem.General.Windows
 
         private void usernameTextBox_GotFocus(object sender, RoutedEventArgs e)
         {
-            if (usernameTextBox.Text.Equals(" Enter username"))
+            if (usernameTextBox.Text.Equals("Enter username"))
                 usernameTextBox.Text = "";
         }
 
         private void usernameTextBox_LostFocus(object sender, RoutedEventArgs e)
         {
             if (usernameTextBox.Text.Equals(""))
-                usernameTextBox.Text = " Enter username";
+                usernameTextBox.Text = "Enter username";
         }
         private void passwordTextBox_GotFocus(object sender, RoutedEventArgs e)
         {
@@ -113,6 +113,38 @@ namespace CarSalesSystem.General.Windows
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void addressBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (usernameTextBox.Text.Equals("Full name"))
+                usernameTextBox.Text = "";
+        }
+
+        private void addressBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (usernameTextBox.Text.Equals(""))
+                usernameTextBox.Text = "Full name";
+        }
+
+        private void nameBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void nameBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void phoneBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void phoneBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
