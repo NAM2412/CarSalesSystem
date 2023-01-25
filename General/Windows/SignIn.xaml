@@ -139,18 +139,18 @@
                                 Visibility="Collapsed"></TextBlock>
                     <PasswordBox Grid.Row="1"
                                  Name="passwordTextBox"
-                             Width="400"
-                             Height="65"
-                             VerticalContentAlignment="Center"
-                             FontSize="30"
-                             Foreground="White"
-                             BorderThickness="1"
-                             BorderBrush="White"
-                             FontFamily="Nexa ☞"
-                             Background="Transparent" 
-                            Style="{DynamicResource roundcornerpassword}"
-                            GotFocus="passwordTextBox_GotFocus"
-                            LostFocus="passwordTextBox_LostFocus">
+                                Width="400"
+                                Height="65"
+                                VerticalContentAlignment="Center"
+                                FontSize="30"
+                                Foreground="White"
+                                BorderThickness="1"
+                                BorderBrush="White"
+                                FontFamily="Nexa ☞"
+                                Background="Transparent" 
+                                Style="{DynamicResource roundcornerpassword}"
+                                 GotFocus="passwordTextBox_GotFocus"
+                                LostFocus="passwordTextBox_LostFocus">
                     </PasswordBox>
                 </Grid>
                 <Grid Height="30" Margin="220,530,200,200">
