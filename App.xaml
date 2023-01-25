@@ -84,7 +84,7 @@
             <Style TargetType="{x:Type TextBox}">
                 <Style.Resources>
                     <Style TargetType="{x:Type Border}">
-                        <Setter Property="CornerRadius" Value="10" />
+                        <Setter Property="CornerRadius" Value="{DynamicResource ResourceKey=10}" />
                         <Setter Property="Padding" Value="10 0 0 0"/>
                     </Style>
                     <Style TargetType="{x:Type UserControl}">
@@ -121,7 +121,7 @@
                         <Grid>
                             <AdornerDecorator CacheMode="{Binding (wpf:ShadowAssist.CacheMode), RelativeSource={RelativeSource Self}}">
                                 <Grid>
-                                    <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="20" Effect="{Binding (wpf:ElevationAssist.Elevation), Converter={x:Static converters:ShadowConverter.Instance}, RelativeSource={RelativeSource TemplatedParent}}"/>
+                                    <Border Padding="10 0 0 0" x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="20" Effect="{Binding (wpf:ElevationAssist.Elevation), Converter={x:Static converters:ShadowConverter.Instance}, RelativeSource={RelativeSource TemplatedParent}}"/>
                                     <ProgressBar x:Name="ProgressBar" Background="{Binding (wpf:ButtonProgressAssist.IndicatorBackground), RelativeSource={RelativeSource TemplatedParent}}" BorderBrush="{Binding (wpf:ButtonProgressAssist.IndicatorBackground), RelativeSource={RelativeSource TemplatedParent}}" Foreground="{Binding (wpf:ButtonProgressAssist.IndicatorForeground), RelativeSource={RelativeSource TemplatedParent}}" HorizontalAlignment="Left" Height="{TemplateBinding Height}" IsIndeterminate="{Binding (wpf:ButtonProgressAssist.IsIndeterminate), RelativeSource={RelativeSource TemplatedParent}}" Maximum="{Binding (wpf:ButtonProgressAssist.Maximum), RelativeSource={RelativeSource TemplatedParent}}" Minimum="{Binding (wpf:ButtonProgressAssist.Minimum), RelativeSource={RelativeSource TemplatedParent}}" Opacity="{Binding (wpf:ButtonProgressAssist.Opacity), RelativeSource={RelativeSource TemplatedParent}}" Style="{DynamicResource MaterialDesignLinearProgressBar}" Value="{Binding (wpf:ButtonProgressAssist.Value), RelativeSource={RelativeSource TemplatedParent}}" VerticalAlignment="Center" Visibility="{Binding (wpf:ButtonProgressAssist.IsIndicatorVisible), Converter={StaticResource BooleanToVisibilityConverter}, RelativeSource={RelativeSource TemplatedParent}}" Width="{Binding ActualWidth, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ButtonBase}}}">
                                         <ProgressBar.Clip>
                                             <MultiBinding Converter="{StaticResource BorderClipConverter}">
@@ -173,7 +173,7 @@
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="PasswordBox">
-                            <Border CornerRadius="10" x:Name="Bd" BorderBrush="{TemplateBinding BorderBrush}" Background="{TemplateBinding Background}" BorderThickness="1" OpacityMask="{x:Null}">
+                            <Border x:Name="Bd" BorderBrush="{TemplateBinding BorderBrush}" Background="{TemplateBinding Background}" BorderThickness="1" OpacityMask="{x:Null}">
                                 <ScrollViewer SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" x:Name="PART_ContentHost" Template="{DynamicResource ScrollViewerControlTemplate1}"/>
                             </Border>
                             <ControlTemplate.Triggers>

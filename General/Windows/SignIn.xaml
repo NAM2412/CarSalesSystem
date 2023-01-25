@@ -112,6 +112,7 @@
                         <RowDefinition Height="1*"></RowDefinition>
                         <RowDefinition Height="1*"></RowDefinition>
                     </Grid.RowDefinitions>
+
                     <TextBox x:Name="usernameTextBox"
                              Width="400" Height="65"
                              VerticalContentAlignment="Center"
@@ -139,7 +140,7 @@
                                 Visibility="Collapsed"></TextBlock>
                     <PasswordBox Grid.Row="1"
                                  Name="passwordTextBox"
-                                Width="400"
+                                 Width="400"
                                 Height="65"
                                 VerticalContentAlignment="Center"
                                 FontSize="30"
