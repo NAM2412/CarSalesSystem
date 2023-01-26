@@ -20,6 +20,7 @@ namespace CarSalesSystem.Model
         public string PRO_ID { get; set; }
         public string EMPLOYEE_ID { get; set; }
         public Nullable<decimal> TOTALFEE { get; set; }
+        public string BILL_STATUS { get; set; }
     
         public virtual CUSTOMER CUSTOMER { get; set; }
         public virtual EMPLOYEE EMPLOYEE { get; set; }
