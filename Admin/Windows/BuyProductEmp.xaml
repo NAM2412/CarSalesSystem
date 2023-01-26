@@ -113,7 +113,9 @@
                             Width="100" Content="Search" 
                             Background="Transparent"/>
                             <Button 
-                                Command="{Binding AddCustomerInfoCommand}"
+                                x:Name="btnAddCusToList"
+                             IsEnabled="False"
+                             Command="{Binding AddCustomerInfoCommand}"
                              CommandParameter="{Binding ElementName=wdBuyProduct}"
                             Margin="20,0,0,0"
                             Foreground="#134B5F"
@@ -220,6 +222,10 @@
                         </Grid>
                         <Grid Grid.Row="3">
                             <Button 
+                                x:Name="btnBuyItemBill"
+                                Visibility="Hidden"
+                                Command="{Binding BuyProductWithBillCommand}"
+                                CommandParameter="{Binding ElementName=wdBuyProduct}"
                         Margin="0,20,90,0"
                         HorizontalAlignment="Right"
                         Height="40"
