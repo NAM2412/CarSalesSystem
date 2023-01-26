@@ -48,12 +48,19 @@
                     Width="28"
                     Foreground="#898989"/>
                     <TextBox Height="Auto"
+                             x:Name="searchboxName"
                          BorderThickness="0"
                          VerticalContentAlignment="Center"
                          FontSize="18"
                          FontWeight="Light"
                          HorizontalContentAlignment="Left"
                          Width="603">
+                        <i1:Interaction.Triggers>
+                            <i1:EventTrigger EventName="TextChanged">
+                                <i1:InvokeCommandAction Command="{Binding loadCustomerWithFilterCommand}"
+                                       CommandParameter="{Binding ElementName=pgCustomer}"/>
+                            </i1:EventTrigger>
+                        </i1:Interaction.Triggers>
                     </TextBox>
                 </StackPanel>
             </Border>
@@ -72,20 +79,36 @@
                     Width="28"
                     Foreground="#898989"/>
                     <ComboBox Height="Auto"
+                              x:Name="cbRank"
                          BorderThickness="0"
                          FontSize="18"
                          HorizontalContentAlignment="Center"
                          VerticalContentAlignment="Top"
-                         materialDesign:HintAssist.Hint="A To Z"
+                         materialDesign:HintAssist.Hint="RANK"
                          FontWeight="Light"
                          Width="144">
-                        <ComboBoxItem>
-                            A To Z
+                        <ComboBoxItem Content="ALL">
                         </ComboBoxItem>
-                        <ComboBoxItem>
-                            Z To A
+                        <ComboBoxItem Content="0">
+                            
                         </ComboBoxItem>
+                        <ComboBoxItem Content="1">
+                            
+                        </ComboBoxItem>
+                        <ComboBoxItem Content="2">
+                            
+                        </ComboBoxItem>
+                        <ComboBoxItem Content="3">
+                            
+                        </ComboBoxItem>
+                        <i1:Interaction.Triggers>
+                            <i1:EventTrigger EventName="SelectionChanged">
+                                <i1:InvokeCommandAction Command="{Binding loadCustomerWithFilterCommand}"
+                                       CommandParameter="{Binding ElementName=pgCustomer}"/>
+                            </i1:EventTrigger>
+                        </i1:Interaction.Triggers>
                     </ComboBox>
+         
                 </StackPanel>
             </Border>
         </StackPanel>
@@ -96,40 +119,6 @@
                     HorizontalAlignment="Right"
                     Margin="0,0,35,0"
                     VerticalAlignment="Center">
-            <Button 
-                        Background="#FB6161"
-                         Padding="0,4,0,0"
-                        Foreground="White"
-                        Content="Delete"
-                        ToolTip="Delete" 
-                        Height="45"
-                         FontFamily="Hierarchy"
-                        BorderBrush="#FB6161"
-                        BorderThickness="4"
-                        materialDesign:ButtonAssist.CornerRadius="5"
-                        Margin="0" 
-                        FontSize="18" 
-                        VerticalAlignment="Center" 
-                        Width="130" 
-                        FontWeight="Bold" />
-            <Button 
-                        x:Name="btnImportStock"
-                        Background="#7CC0D8"
-                        BorderBrush="#7CC0D8"
-                        FontFamily="Hierarchy"
-                        BorderThickness="4"
-                        Content="Add"
-                        Height="45"
-                        Foreground= "White"
-                        materialDesign:ButtonAssist.CornerRadius="5"
-                        ToolTip="Add" 
-                        Margin="40,0,0,0" 
-                        FontSize="18" 
-                        VerticalAlignment="Center" 
-                        FocusVisualStyle="{x:Null}"
-                        Width="130" 
-                        Padding="0,4,0,0"
-                        FontWeight="Bold"/>
         </StackPanel>
         <Grid 
                     Grid.Row="1"

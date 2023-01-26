@@ -23,15 +23,20 @@ namespace CarSalesSystem.ViewModel
 {
     public class ProductViewModel : BaseViewModel, INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
         private ProductControl productControl;
         private ImportControl importControl;
+        private CheckOrderUserControl checkOrderUserControl;
         private int checkNewAccount = 0;
         private int numberproduct;
         private ProductPG productPG;
         private WarehousePG warehousePG;
         private Addproduct Addproduct;
+        private ListOfOrder ListOfOrderwd;
+        public ListOfOrder listoforderwd { get =>ListOfOrderwd; set => ListOfOrderwd = value;}
         private String imagefilename;
         private String idProduct;
+        private String idOrderBill;
         public ICommand EditProductCommand { get; set; }
         public ICommand ShowLoadProductCommand { get; set; }
         public ICommand ClickAddCommand { get; set; }
@@ -49,6 +54,12 @@ namespace CarSalesSystem.ViewModel
         public ICommand SearchCustomerInfoCommand { get; set; }
         public ICommand AddCustomerInfoCommand { get; set; }
         public ICommand CaculatePriceProductCommand { get; set; }
+        public ICommand BuyProductWithBillCommand { get; set; }
+        public ICommand LoadFilterProductCommand { get; set; }
+        public ICommand LoadFilterProductWareHouseCommand { get; set; }
+        public ICommand loadOrderBillCommand { get; set; }
+        public ICommand showListOrderBillCommand { get; set; }
+        public ICommand CheckBuyProductEmpCommand { get; set; }
         public ProductViewModel()
         {
             EditProductCommand = new RelayCommand<ProductControl>((parameter) => true, (parameter) => ClickEditProduct(parameter));
@@ -56,9 +67,11 @@ namespace CarSalesSystem.ViewModel
 
             ShowLoadProductCommand = new RelayCommand<ProductPG>((parameter) => true, (parameter) => ShowLoadProduct(parameter));
             ClickAddCommand = new RelayCommand<ProductPG>((parameter) => true, (parameter) => ShowAddProduct(parameter));
+            LoadFilterProductCommand = new RelayCommand<ProductPG>((parameter) => true, (parameter) => LoadFilterProduct(parameter));
 
             BackAddProductCommand = new RelayCommand<Addproduct>((parameter) => true, (parameter) => parameter.Close());
             AddProductCommand = new RelayCommand<Addproduct>((parameter) => true, (parameter) => AddProduct(parameter));
+
 
             BackEditProductCommand = new RelayCommand<EditProduct>((parameter) => true, (parameter) => parameter.Close());
             UpdateProductCommand = new RelayCommand<EditProduct>((parameter) => true, (parameter) => UpdateProduct(parameter));
@@ -68,6 +81,8 @@ namespace CarSalesSystem.ViewModel
             BackImportProductCommand = new RelayCommand<ImportProduct>((parameter) => true, (parameter) => parameter.Close());
 
             ShowLoadImportProductCommand = new RelayCommand<WarehousePG>((parameter) => true, (parameter) => ShowLoadImportProduct(parameter));
+            LoadFilterProductWareHouseCommand = new RelayCommand<WarehousePG>((parameter) => true, (parameter) => LoadFilterProductWareHouse(parameter));
+
             ClickImportProductCommand = new RelayCommand<ImportControl>((parameter) => true, (parameter) => ShowImportProduct(parameter));
             CaculateTotalCommand = new RelayCommand<ImportProduct>((parameter) => true, (parameter) => CaculateTotal(parameter));
             ImportProductSaveCommand = new RelayCommand<ImportProduct>((parameter) => true, (parameter) => ImportProductSave(parameter));
@@ -75,6 +90,240 @@ namespace CarSalesSystem.ViewModel
             SearchCustomerInfoCommand = new RelayCommand<BuyProductEmp>((parameter) => true, (parameter) => SearchCustomerInfo(parameter));
             AddCustomerInfoCommand = new RelayCommand<BuyProductEmp>((parameter) => true, (parameter) => AddCustomerInfo(parameter));
             CaculatePriceProductCommand = new RelayCommand<BuyProductEmp>((parameter) => true, (parameter) => CaculatePriceProduct(parameter));
+            BuyProductWithBillCommand = new RelayCommand<BuyProductEmp>((parameter) => true, (parameter) => BuyProductWithBill(parameter));
+            loadOrderBillCommand = new RelayCommand<ListOfOrder>((parameter) => true, (parameter) => loadOrderBill(parameter));
+            showListOrderBillCommand = new RelayCommand<ProductPG>((parameter) => true, (parameter) => showListOrderBill(parameter));
+            CheckBuyProductEmpCommand = new RelayCommand<CheckOrderUserControl>((parameter) => true, (parameter) => ClickBuyProductEmp(parameter));
+        }
+
+        private void ClickBuyProductEmp(CheckOrderUserControl parameter)
+        {
+            this.checkOrderUserControl = parameter;
+            idOrderBill = parameter.tbNo.Text;
+            CheckBuyProductEmp(idOrderBill);
+            ListOfOrderwd.skpOrderBill.Children.Remove(parameter);
+            
+        }
+
+        private void CheckBuyProductEmp(string idOrderBill)
+        {
+            var item = new SELLBILL();
+            var itemOrder = DataProvider.Ins.DB.ORDERBILLs.Find(idOrderBill);
+            var listSell = DataProvider.Ins.DB.SELLBILLs.ToList();
+            int k = listSell.Count();
+            string id = "";
+            if (k < 10)
+            {
+                id = "BH0" + k.ToString();
+            }
+            else
+            {
+                id = "BH" + k.ToString();
+            }
+            item.SB_ID = id;
+            item.CUSTOMER_ID = itemOrder.CUSTOMER_ID;
+            item.PRO_ID = itemOrder.PRO_ID;
+            item.SB_DATEB = itemOrder.OB_DATEB;
+            item.TOTAL_PRICE = itemOrder.TOTAL_PRICE;
+            item.EMPLOYEE_ID = AccountInfo.IdAccount;
+            DataProvider.Ins.DB.SELLBILLs.Add(item);
+            DataProvider.Ins.DB.ORDERBILLs.Remove(itemOrder);
+            DataProvider.Ins.DB.SaveChanges();
+        }
+
+        private void showListOrderBill(ProductPG parameter)
+        {
+            ListOfOrder lsoforder = new ListOfOrder();
+            lsoforder.cbSellAndOrder.SelectedIndex = 0;
+            lsoforder.ShowDialog();
+
+        }
+
+        private void loadOrderBill(ListOfOrder parameter)
+        {
+            this.listoforderwd = parameter;
+            if (parameter.cbSellAndOrder.SelectedIndex == 0)
+            {
+                parameter.skpOrderBill.Children.Clear();
+                var listOrder = DataProvider.Ins.DB.ORDERBILLs;
+                foreach (var item in listOrder)
+                {
+                    CheckOrderUserControl check = new CheckOrderUserControl();
+                    check.tbNo.Text = item.OB_ID;
+                    check.tbDate.Text = item.OB_DATEB.ToString();
+                    check.tbCustomerID.Text = item.CUSTOMER_ID.ToString();
+                    check.tbProductID.Text = item.PRO_ID.ToString();
+                    double s = (double) item.TOTAL_PRICE;
+                    check.tbTotalPrice.Text =s.ToString("C",CultureInfo.CurrentCulture);
+                    check.btncheckOrderBill.Visibility = System.Windows.Visibility.Visible;
+                    check.tbEmp.Visibility = System.Windows.Visibility.Hidden;
+                    parameter.skpOrderBill.Children.Add(check);
+                }
+            }
+            else
+            {
+                parameter.skpOrderBill.Children.Clear();
+                var listOrder = DataProvider.Ins.DB.SELLBILLs.ToList();
+                foreach (var item in listOrder)
+                {
+                    CheckOrderUserControl check = new CheckOrderUserControl();
+                    check.tbNo.Text = item.SB_ID;
+                    check.tbDate.Text = item.SB_DATEB.ToString();
+                    check.tbCustomerID.Text = item.CUSTOMER_ID.ToString();
+                    check.tbProductID.Text = item.PRO_ID.ToString();
+                    double s = (double)item.TOTAL_PRICE;
+                    check.tbTotalPrice.Text = s.ToString("C", CultureInfo.CurrentCulture);
+                    check.btncheckOrderBill.Visibility = System.Windows.Visibility.Hidden;
+                    check.tbEmp.Text = item.EMPLOYEE_ID;
+                    check.tbEmp.Visibility = System.Windows.Visibility.Visible;
+                    parameter.skpOrderBill.Children.Add(check);
+                }
+            }
+           
+        }
+
+        private void LoadFilterProductWareHouse(WarehousePG parameter)
+        {
+            parameter.skpProduct.Children.Clear();
+            ComboBoxItem s = (ComboBoxItem)parameter.cbNumber.SelectedItem;
+            if (parameter.searchboxAmountProduct.Text.Length != 0)
+            {
+                var listProduct = DataProvider.Ins.DB.PRODUCTs.Where(x => x.PRO_NAME.ToUpper().StartsWith(parameter.searchboxAmountProduct.Text.ToUpper()));
+                if (parameter.cbNumber.SelectedIndex > 0)
+                {
+                    int k = parameter.cbNumber.SelectedIndex;
+                    
+                    if (k == 1)
+                    {
+                        listProduct.Where(x => (x.STORAGE_NUMBER - x.SELL_NUMBER) <= 5).ToList(); 
+                    }
+                    else
+                    if (k == 2)
+                    {
+                        listProduct.Where(x => (x.STORAGE_NUMBER - x.SELL_NUMBER) <= 10).ToList();
+                    }
+                    else
+                    if (k == 3)
+                    {
+                        listProduct.Where(x => (x.STORAGE_NUMBER - x.SELL_NUMBER) > 10).ToList();
+                    }
+
+                }
+                bool flat = false;
+                int i = 0;
+                foreach (var product in listProduct)
+                {
+                    ImportControl productControl = new ImportControl();
+                    flat = !flat;
+                    if (flat)
+                    {
+                        productControl.grMain.Background = (Brush)new BrushConverter().ConvertFrom("#FFFFFF");
+                    }
+                    productControl.tbName.Text = product.PRO_NAME;
+                    productControl.tbNo.Text = product.PRO_ID;
+                    productControl.tbYear.Text = product.PRO_YEAR.ToString();
+                    productControl.tbAmount.Text = (product.STORAGE_NUMBER - product.SELL_NUMBER).ToString();
+                    parameter.skpProduct.Children.Add(productControl);
+                    i++;
+                }
+                numberproduct = i;
+            }
+            else
+            {
+                if (parameter.cbNumber.SelectedIndex > 0)
+                {
+                    int k = parameter.cbNumber.SelectedIndex;
+                    List<PRODUCT> listproduct = new List<PRODUCT>();
+                    if (k == 1)
+                    {
+                        listproduct = DataProvider.Ins.DB.PRODUCTs.Where(x => (x.STORAGE_NUMBER - x.SELL_NUMBER) <= 5).ToList();
+                    }
+                    if (k == 2)
+                    {
+                        listproduct = DataProvider.Ins.DB.PRODUCTs.Where(x => (x.STORAGE_NUMBER - x.SELL_NUMBER) <= 10).ToList();
+                    }
+                    if (k == 3)
+                    {
+                        listproduct = DataProvider.Ins.DB.PRODUCTs.Where(x => (x.STORAGE_NUMBER - x.SELL_NUMBER) > 10).ToList();
+                    }
+                    bool flat = false;
+                    int i = 0;
+                    foreach (var product in listproduct)
+                    {
+                        ImportControl productControl = new ImportControl();
+                        flat = !flat;
+                        if (flat)
+                        {
+                            productControl.grMain.Background = (Brush)new BrushConverter().ConvertFrom("#FFFFFF");
+                        }
+                        productControl.tbName.Text = product.PRO_NAME;
+                        productControl.tbNo.Text = product.PRO_ID;
+                        productControl.tbYear.Text = product.PRO_YEAR.ToString();
+                        productControl.tbAmount.Text = (product.STORAGE_NUMBER - product.SELL_NUMBER).ToString();
+                        parameter.skpProduct.Children.Add(productControl);
+                        i++;
+                    }
+                    numberproduct = i;
+
+                }
+                else ShowLoadImportProduct(warehousePG);
+
+              
+            }
+        }
+
+        private void LoadFilterProduct(ProductPG parameter)
+        {
+            parameter.skpProduct.Children.Clear();
+            if(parameter.searchBoxProduct.Text.Length != 0)
+            {
+                var listProduct = DataProvider.Ins.DB.PRODUCTs.Where(x => x.PRO_NAME.ToUpper().StartsWith(parameter.searchBoxProduct.Text.ToUpper())).ToList();
+
+                bool flat = false;
+                int i = 0;
+                foreach (var product in listProduct)
+                {
+                    ProductControl productControl = new ProductControl();
+                    flat = !flat;
+                    if (flat)
+                    {
+                        productControl.grMain.Background = (Brush)new BrushConverter().ConvertFrom("#FFFFFF");
+                    }
+                    productControl.tbName.Text = product.PRO_NAME;
+                    productControl.tbNo.Text = product.PRO_ID;
+                    productControl.tbType.Text = product.TYPEPRODUCT.TYPEPRODUCT_NAME.ToString();
+                    productControl.tbYear.Text = product.PRO_YEAR.ToString();
+                    parameter.skpProduct.Children.Add(productControl);
+                    i++;
+                }
+                numberproduct = i;
+            }else
+            ShowLoadProduct(productPG);
+        }
+
+        private void BuyProductWithBill(BuyProductEmp parameter)
+        {
+            int count = DataProvider.Ins.DB.SELLBILLs.Count() +1;
+            string id = "";
+            if (count < 10) id = "000" + count.ToString();
+            else  if (count <100) id = "00"+count.ToString();
+            else if (count <1000) id = "0" + count.ToString();
+            else id = count.ToString();
+            var item = new SELLBILL();
+            item.SB_DATEB = DateTime.Parse(parameter.pdSell.Text);
+            item.SB_ID = id;
+            item.PRO_ID = idProduct;
+            decimal value;
+            decimal.TryParse(parameter.tbTotalBill.Text, NumberStyles.Currency, CultureInfo.CurrentCulture.NumberFormat, out value);
+            item.TOTAL_PRICE = value;
+            item.EMPLOYEE_ID = AccountInfo.IdAccount;
+            var cusInfo = DataProvider.Ins.DB.CUSTOMERs.Where(x => x.PHONE == parameter.tbPhone.Text).FirstOrDefault();
+            item.CUSTOMER_ID = cusInfo.CUS_ID;
+            item.RANK_ID= cusInfo.RANK_ID;
+            DataProvider.Ins.DB.SELLBILLs.Add(item);
+            DataProvider.Ins.DB.SaveChanges();
+            parameter.Close();
+
         }
 
         private void CaculatePriceProduct(BuyProductEmp parameter)
@@ -82,15 +331,14 @@ namespace CarSalesSystem.ViewModel
             decimal price;
             decimal.TryParse(parameter.tbPriceProduct.Text, NumberStyles.Currency, CultureInfo.CurrentCulture.NumberFormat, out price);
             int percent = int.Parse(parameter.tbDiscount.Text);
-            Console.WriteLine(percent);
             if (percent != 0)
             {
                 decimal discount = (decimal)(price * percent) / 100;
                 decimal tong = Math.Truncate(price - discount);
                 parameter.tbTotalBill.Text = (tong).ToString("C", CultureInfo.CurrentCulture);
-                Console.WriteLine(tong);
             }
             else parameter.tbTotalBill.Text = (price).ToString("C", CultureInfo.CurrentCulture);
+            parameter.btnBuyItemBill.Visibility=System.Windows.Visibility.Visible;
 
         }
 
@@ -99,6 +347,7 @@ namespace CarSalesSystem.ViewModel
         {
             if (checkNewAccount == 0)
             {
+               
                 ACCOUNT account = new ACCOUNT();
                 account.USERNAME = parameter.tbPhone.Text;
                 account.PASS = "123";
@@ -163,6 +412,7 @@ namespace CarSalesSystem.ViewModel
             else
             {
                 checkNewAccount = 0;
+                parameter.btnAddCusToList.IsEnabled = true;
                 parameter.tbDiscount.Text = "0";
             }
         }

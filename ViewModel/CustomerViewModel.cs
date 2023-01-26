@@ -32,13 +32,79 @@ namespace CarSalesSystem.ViewModel
 
         public ICommand UpdateInforCommand { get; set; }
         public ICommand BackCommand { get; set; }
+        public ICommand loadCustomerWithFilterCommand { get; set; }
         public CustomerViewModel()
         {
             loadCustomerCommand = new RelayCommand<CustomerPG>((parameter) => true, (parameter) => LoadCustomer(parameter));
+            loadCustomerWithFilterCommand = new RelayCommand<CustomerPG>((parameter) => true, (parameter) => loadCustomerWithFilter(parameter));
             EditCusomterCommand = new RelayCommand<CustomerControl>((parameter) => true, (parameter) => ClickEditCusomter(parameter));
             UploadPictureCommand = new RelayCommand<Grid>((parameter) => true, (parameter) => UploadPicture(parameter));
             UpdateInforCommand = new RelayCommand<EditCustomer>((parameter) => true, (parameter) => UpdateInfor(parameter));
             BackCommand = new RelayCommand<EditCustomer>((parameter) => true, (parameter) => parameter.Close());
+        }
+
+        private void loadCustomerWithFilter(CustomerPG parameter)
+        {
+            parameter.skpCustomer.Children.Clear();
+            ComboBoxItem s =(ComboBoxItem) parameter.cbRank.SelectedItem;
+               
+            if (parameter.searchboxName.Text.Length != 0)
+            {
+                 var listcustomerFilter = DataProvider.Ins.DB.CUSTOMERs.Where(x => x.CUS_NAME.ToUpper().StartsWith(parameter.searchboxName.Text.ToUpper()));
+                if (parameter.cbRank.SelectedIndex > 0)
+                {
+                    int type = int.Parse(s.Content.ToString());
+                    listcustomerFilter.Where(x => x.RANK_MONEY.RANK_TYPE == type);
+                }
+                bool flat = false;
+                int i = 1;
+                foreach (var item in listcustomerFilter)
+                {
+                    CustomerControl infCustomer = new CustomerControl();
+                    flat = !flat;
+                    if (flat)
+                    {
+                        infCustomer.grMain.Background = (System.Windows.Media.Brush)new BrushConverter().ConvertFrom("#FFFFFF");
+                    }
+                    infCustomer.tbName.Text = item.CUS_NAME;
+                    infCustomer.tbNo.Text = item.CUS_ID;
+                    infCustomer.tbSex.Text = item.GENDER;
+                    infCustomer.tbRank.Text = item.RANK_MONEY.RANK_TYPE.ToString();
+                    parameter.skpCustomer.Children.Add(infCustomer);
+                    i++;
+                }
+            }
+            else
+            {
+                if (parameter.cbRank.SelectedIndex > 0)
+                {
+                    int type = int.Parse(s.Content.ToString());
+                    var listcustomerFilter = DataProvider.Ins.DB.CUSTOMERs.Where(x => x.RANK_MONEY.RANK_TYPE == type).ToList();
+                    bool flat = false;
+                    int i = 1;
+                    foreach (var item in listcustomerFilter)
+                    {
+                        CustomerControl infCustomer = new CustomerControl();
+                        flat = !flat;
+                        if (flat)
+                        {
+                            infCustomer.grMain.Background = (System.Windows.Media.Brush)new BrushConverter().ConvertFrom("#FFFFFF");
+                        }
+                        infCustomer.tbName.Text = item.CUS_NAME;
+                        infCustomer.tbNo.Text = item.CUS_ID;
+                        infCustomer.tbSex.Text = item.GENDER;
+                        infCustomer.tbRank.Text = item.RANK_MONEY.RANK_TYPE.ToString();
+                        parameter.skpCustomer.Children.Add(infCustomer);
+                        i++;
+                    }
+                }
+                else
+                {
+                    LoadCustomer(customerPG);
+                }
+               
+               
+            }
         }
 
         private void UpdateInfor(EditCustomer parameter)

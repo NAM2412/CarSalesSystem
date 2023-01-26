@@ -48,12 +48,20 @@
                     Width="28"
                     Foreground="#898989"/>
                     <TextBox Height="Auto"
+                             x:Name="searchboxAmountProduct"
                          BorderThickness="0"
                          VerticalContentAlignment="Center"
                          FontSize="18"
                          FontWeight="Light"
                          HorizontalContentAlignment="Left"
                          Width="603">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="TextChanged">
+                                <i:InvokeCommandAction Command="{Binding LoadFilterProductWareHouseCommand}"
+                                                       CommandParameter="{Binding ElementName=wdWareHouse}">
+                                </i:InvokeCommandAction>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
                     </TextBox>
                 </StackPanel>
             </Border>
@@ -73,18 +81,24 @@
                     Foreground="#898989"/>
                     <ComboBox Height="Auto"
                          BorderThickness="0"
+                              x:Name="cbNumber"
                          FontSize="18"
                          HorizontalContentAlignment="Center"
                          VerticalContentAlignment="Top"
-                         materialDesign:HintAssist.Hint="A To Z"
+                         materialDesign:HintAssist.Hint="Number"
                          FontWeight="Light"
                          Width="144">
-                        <ComboBoxItem>
-                            A To Z
-                        </ComboBoxItem>
-                        <ComboBoxItem>
-                            Z To A
-                        </ComboBoxItem>
+                        <ComboBoxItem Content="ALL"/>
+                        <ComboBoxItem Content="&lt;=5"/>
+                        <ComboBoxItem Content="&lt;=10"/>
+                        <ComboBoxItem Content=">10"/>
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="SelectionChanged">
+                                <i:InvokeCommandAction Command="{Binding LoadFilterProductWareHouseCommand}"
+                                                       CommandParameter="{Binding ElementName=wdWareHouse}">
+                                </i:InvokeCommandAction>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
                     </ComboBox>
                 </StackPanel>
             </Border>
@@ -96,22 +110,7 @@
                     HorizontalAlignment="Right"
                     Margin="0,0,35,0"
                     VerticalAlignment="Center">
-            <Button 
-                        Background="#FB6161"
-                         Padding="0,4,0,0"
-                        Foreground="White"
-                        Content="Delete"
-                        ToolTip="Delete" 
-                        Height="45"
-                         FontFamily="Hierarchy"
-                        BorderBrush="#FB6161"
-                        BorderThickness="4"
-                        materialDesign:ButtonAssist.CornerRadius="5"
-                        Margin="0" 
-                        FontSize="18" 
-                        VerticalAlignment="Center" 
-                        Width="130" 
-                        FontWeight="Bold" />
+         
         </StackPanel>
         <Grid 
                     Grid.Row="1"
