@@ -15,12 +15,12 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
                 <RowDefinition/>
+                <RowDefinition/>
             </Grid.RowDefinitions>
 
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
-                    <ColumnDefinition Width="250"/>
                     <ColumnDefinition Width="auto"/>
                 </Grid.ColumnDefinitions>
                 <TextBox HorizontalAlignment="Stretch"
@@ -33,9 +33,6 @@
                         </StackPanel>
                     </materialDesign:HintAssist.Hint>
                 </TextBox>
-                <ComboBox Grid.Column="1"
-                    Style="{StaticResource MaterialDesignOutlinedComboBox}"
-                    materialDesign:HintAssist.Hint="Some item" />
 
                 <Button Grid.Column="2"
                     Style="{StaticResource MaterialDesignIconForegroundButton}"
@@ -61,7 +58,7 @@
                                       SelectionMode="Extended"
                                       SelectionUnit="FullRow"
                                       ItemsSource="{Binding ListOrderBill}" 
-                                      SelectedItem="{Binding SelectedItemOrderBill, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"
+                                      SelectedItem="{Binding SelectedItemOrderBill, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}" MouseDoubleClick="datagridOrderBill_MouseDoubleClick"
                                       >
                         <DataGrid.RowStyle>
                             <Style TargetType="DataGridRow">
@@ -74,20 +71,24 @@
                             </Style>
                         </DataGrid.RowStyle>
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Date"
-                                                        Binding="{Binding OB_DATED}"
-                                                        IsReadOnly="False" Width="*" >
+                            <DataGridTextColumn Header="ID"
+                                                        Binding="{Binding OB_ID}"
+                                                        IsReadOnly="True" Width="*" >
                             </DataGridTextColumn>
-                            <DataGridTextColumn Header="Product"
-                                                        Binding="{Binding PRO_NAME}"
-                                                        IsReadOnly="False" Width="*"/>
-                            <DataGridTextColumn Header="Quantity"
-                                                        Binding="{Binding QUANTITY}"
-                                                        IsReadOnly="False" Width="*"/>
-                            <DataGridTextColumn Header="Total Price"
+                            <DataGridTextColumn Header="DATE"
+                                                        Binding="{Binding OB_DATEB}"
+                                                        IsReadOnly="True" Width="*" >
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="PRODUCT"
+                                                        Binding="{Binding PRODUCT.PRO_NAME}"
+                                                        IsReadOnly="True" Width="*"/>
+                            <DataGridTextColumn Header="DISCOUNT(%)"
+                                                        Binding="{Binding RANK_MONEY.DISCOUNT}"
+                                                        IsReadOnly="True" Width="*"/>
+                            <DataGridTextColumn Header="TOTAL PRICE"
                                                         Binding="{Binding TOTAL_PRICE, StringFormat=N0}"
-                                                        IsReadOnly="False" Width="*"/>
-                            
+                                                        IsReadOnly="True" Width="*"/>
+
                         </DataGrid.Columns>
                     </DataGrid>
                 </ScrollViewer>

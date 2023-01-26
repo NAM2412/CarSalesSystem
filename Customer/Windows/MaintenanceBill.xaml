@@ -11,30 +11,36 @@
         FontSize="14"
         AllowsTransparency="True"
         WindowStartupLocation="CenterScreen"
-        Background="White"
+        Background="Transparent"
         Title="MaintenanceBill">
-    <Border BorderBrush="#1A6985" BorderThickness="0.5" CornerRadius="10" MouseDown="Border_MouseDown">
+    <Border BorderBrush="#1A6985" Background="White" BorderThickness="0.5" CornerRadius="10" MouseDown="Border_MouseDown" 
+            Width="215" 
+            Height="365">
         <Grid>
-
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
-                    <RowDefinition/>
                 </Grid.RowDefinitions>
                 <Grid Grid.Row="0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="AUTO"/>
-                        <ColumnDefinition Width="200"/>
                     </Grid.ColumnDefinitions>
                     <StackPanel Grid.Column="0">
+                        <!---->
+                        <Label HorizontalAlignment="Center" Margin="0 10 0 0" 
+                               FontFamily="Inter" 
+                               FontWeight="Black" 
+                               Foreground="#1A6985"
+                               FontSize="30"
+                               >SGAUTO</Label>
                         <!-- FULL NAME-->
                         <TextBox x:Name="txtTenKH"
                         VerticalAlignment="Top"
-                        Margin="30,30,30,0"
+                        Margin="30,10,30,0"
                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                         materialDesign:HintAssist.Hint="FULL NAME"
                         materialDesign:HintAssist.HintOpacity="1"
-                        Text="{Binding CUSTOMER_NAME, UpdateSourceTrigger=PropertyChanged}">
+                        >
                             <TextBox.Resources>
                                 <Style TargetType="{x:Type materialDesign:SmartHint}">
                                     <Setter Property="FontWeight"
@@ -42,14 +48,7 @@
                                 </Style>
                             </TextBox.Resources>
                         </TextBox>
-                        <Label Name="NameCustomer_label"
-                           Margin="30,0,30,0"
-                           FontSize="10"
-                           Foreground="Red"
-                           FontStyle="Italic"
-                           Content="{Binding lbHOTENKH}">
-                        </Label>
-
+                 
                         <!--Product-->
                         <TextBox x:Name="txtTenSP"
                              VerticalAlignment="Center"
@@ -57,7 +56,7 @@
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                              materialDesign:HintAssist.Hint="PRODUCT"
                              materialDesign:HintAssist.HintOpacity="1"
-                             IsEnabled="False">
+                                 IsReadOnly="True">
                             <TextBox.Resources>
                                 <Style TargetType="{x:Type materialDesign:SmartHint}">
                                     <Setter Property="FontWeight"
@@ -73,24 +72,22 @@
                            Foreground="Black">MAINTENANCE DATE
                         </Label>
                         <DatePicker
-                        x:Name="txtNgayDatHang"
+                        x:Name="txtMaintainDate"
                                 VerticalAlignment="Center"
                                 Margin="30,0,30,0"
                                 materialDesign:HintAssist.Hint="DAY/MONTH/YEAR"
                                 materialDesign:CalendarAssist.IsHeaderVisible="False"
                                 FontStyle="Italic"
                                 IsDropDownOpen="False"
-                                Text="1/1/2001" IsEnabled="False"/>
-                        <!-- XẾP HẠNG-->
-                        <TextBox x:Name="txtBOriginalPrice"
+                                Text="1/1/2001"/>
+                        <!-- MAINTAIN FEE-->
+                        <TextBox x:Name="txtMaintainFee"
                              VerticalAlignment="Center"
                              Margin="30,10,30,30"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                              materialDesign:HintAssist.Hint="PRICE"
                              materialDesign:HintAssist.HintOpacity="1"
-                             Text="{Binding DISCOUNT, UpdateSourceTrigger=PropertyChanged}"
                              IsEnabled="False">
-
                             <TextBox.Resources>
                                 <Style TargetType="{x:Type materialDesign:SmartHint}">
                                     <Setter Property="FontWeight"
@@ -98,36 +95,26 @@
                                 </Style>
                             </TextBox.Resources>
                         </TextBox>
-                    </StackPanel>
-                    <Grid Grid.Column="2">
-                        <Grid.RowDefinitions>
-                            <RowDefinition/>
-                            <RowDefinition Height="auto"/>
-                        </Grid.RowDefinitions>
-                        <Image  Grid.Row="0" x:Name="imgCarOrder" Margin="10 10 10 0" Source="/Customer/Windows/sedan.png"/>
-                        <Button x:Name="btnOrder" 
-                            Grid.Row="3" 
+                        <Button x:Name="btnMaintain" 
+                            Grid.Row="1" 
                             VerticalAlignment="Bottom" 
                             HorizontalAlignment="Right"                             
                             Margin="0 10 10 8"
                             Content="Order"
                             Width="30" Height="30"
                             BorderBrush="#478BA3"
-                            Foreground="White"
+                            Foreground="White" Click="btnMaintain_Click"
                             >
                             <Button.Background >
-                                <ImageBrush x:Name="imgProDuct" ImageSource= "/Resources/Images/Icons/Plus.png"/>
+                                <ImageBrush x:Name="imgProDuct" ImageSource= "/Resources/Images/Icons/maintain.png"/>
                             </Button.Background>
                         </Button>
-                    </Grid>
+                    </StackPanel>
+                   
                 </Grid>
 
             </Grid>
-            <Button x:Name="btnCloseDetailWD" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,5,10,0" Background="#FB6161"  BorderBrush="#FFFAFAFA"
-                        Style="{StaticResource MaterialDesignFlatDarkButton}"
-                        Padding="5 5 5 5" Height="27" Click="btnCloseDetailWD_Click">
-                <materialDesign:PackIcon Kind="Close" Foreground="White" />
-            </Button>
+           
         </Grid>
         
 

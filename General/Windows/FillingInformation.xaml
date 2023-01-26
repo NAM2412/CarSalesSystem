@@ -15,8 +15,8 @@
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*"></RowDefinition>
-                <RowDefinition Height="1*"></RowDefinition>
-                <RowDefinition Height="0.5*"></RowDefinition>
+                <RowDefinition Height="3*"></RowDefinition>
+                <RowDefinition Height="0.4*"></RowDefinition>
             </Grid.RowDefinitions>
             <Button Grid.Row="0"
                     Margin="0 10 10 0"
@@ -32,13 +32,12 @@
             </Button>
             <Image Name="Logo" 
                    HorizontalAlignment="Center" 
-                   Margin="0,25,0,98"
+                   Margin="0,20,0,50"
                    Width="200"
-                   Height="80"
                    Source="/Resources/Images/Icons/Signup_Logo.png" 
                    Stretch="Fill"/>
             <Label HorizontalAlignment="Center"
-                   Margin="0,120,0,0"
+                   Margin="0,90,0,0"
                    Height="68" 
                    FontSize="40" 
                    FontWeight="Regular" 
@@ -49,22 +48,25 @@
                     <RowDefinition Height="1*" />
                     <RowDefinition Height="1*" />
                     <RowDefinition Height="1*" />
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="1*" />
                 </Grid.RowDefinitions>
-                <TextBox Grid.Row="0"
+                <TextBox Grid.Row="3"
                      Name="usernameTextBox" 
                      HorizontalAlignment="Center"
                      VerticalAlignment="top"
                      Width="400" 
-                     Height="65"
+                     Height="60"
                      BorderThickness="2" 
                      VerticalContentAlignment="Center"
                      FontSize="20"
                      Foreground="Gray"
                      FontFamily="Mitr"
-                     Text=" Enter username"
+                     Text="Enter username"
                      GotFocus="usernameTextBox_GotFocus"
                      LostFocus="usernameTextBox_LostFocus"></TextBox>
-                <TextBlock Grid.Row="1"
+                <TextBlock Grid.Row="4"
                            x:Name="phPass"
                            Text="Enter your password"
                             Padding="10,0,0,0"
@@ -74,10 +76,10 @@
                            Width="400" 
                            FontFamily="Mitr" 
                             ></TextBlock>
-                <PasswordBox Grid.Row="1"
+                <PasswordBox Grid.Row="4"
                              Name="passwordTextBox"
                              Width="400"
-                             Height="65"
+                             Height="60"
                              VerticalContentAlignment="Center"
                              FontSize="30"
                              Foreground="Gray"
@@ -89,7 +91,7 @@
                             GotFocus="passwordTextBox_GotFocus"
                             LostFocus="passwordTextBox_LostFocus">
                 </PasswordBox>
-                <TextBlock Grid.Row="2"
+                <TextBlock Grid.Row="5"
                            x:Name="confirmPhPass"
                            Padding="10,0,0,0"
                            Text="Confirm your password"
@@ -99,10 +101,10 @@
                            Width="400" 
                            FontFamily="Mitr" 
                            ></TextBlock>
-                <PasswordBox Grid.Row="2"
+                <PasswordBox Grid.Row="5"
                              Name="confirmTextBox"
                              Width="400"
-                             Height="65"
+                             Height="60"
                              VerticalContentAlignment="Center"
                              FontSize="30"
                              Foreground="Gray"
@@ -114,10 +116,55 @@
                             GotFocus="confirmTextBox_GotFocus"
                             LostFocus="confirmTextBox_LostFocus">
                 </PasswordBox>
+
+                <TextBox Grid.Row="0"
+                         x:Name="nameBox"
+                         HorizontalAlignment="Center"
+                        VerticalAlignment="top"
+                        Width="400" 
+                        Height="60"
+                        BorderThickness="2" 
+                        VerticalContentAlignment="Center"
+                        FontSize="20"
+                        Foreground="Gray"
+                        FontFamily="Mitr"
+                        Text="Full name"
+                        GotFocus="nameBox_GotFocus"
+                        LostFocus="nameBox_LostFocus"></TextBox>
+                <TextBox Grid.Row="1"
+                         x:Name="addressBox"
+                         HorizontalAlignment="Center"
+                         VerticalAlignment="top"
+                         Width="400" 
+                         Height="60"
+                         BorderThickness="2" 
+                         VerticalContentAlignment="Center"
+                         FontSize="20"
+                         Foreground="Gray"
+                         FontFamily="Mitr"
+                         Text="Address"
+                         GotFocus="addressBox_GotFocus"
+                         LostFocus="addressBox_LostFocus"></TextBox>
+                <TextBox Grid.Row="2"
+                         x:Name="phoneBox"
+                         HorizontalAlignment="Center"
+                         VerticalAlignment="top"
+                         Width="400" 
+                         Height="60"
+                         BorderThickness="2" 
+                         VerticalContentAlignment="Center"
+                         FontSize="20"
+                         Foreground="Gray"
+                         FontFamily="Mitr"
+                         Text="Phone number"
+                         GotFocus="phoneBox_GotFocus"
+                         LostFocus="phoneBox_LostFocus"></TextBox>
+
+
             </Grid>
             <Button Name="SignUpBtn"
                         Grid.Row="2"
-                        Width="100px"
+                        Width="120px"
                         Height="40px"
                         Margin="285,0,0,0"
                         BorderThickness="0"

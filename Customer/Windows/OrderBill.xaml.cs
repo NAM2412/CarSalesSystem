@@ -60,7 +60,11 @@ namespace CarSalesSystem.Customer.Windows
                 BitObj.EndInit();
                 imgCarOrder.Source = BitObj;
             }
+           
+            btnOrder.Visibility = Visibility.Visible;
+
         }
+        #region Notifier
         Notifier notifier = new Notifier(cfg =>
         {
             cfg.PositionProvider = new WindowPositionProvider(
@@ -75,7 +79,9 @@ namespace CarSalesSystem.Customer.Windows
 
             cfg.Dispatcher = Application.Current.Dispatcher;
         });
+        #endregion
 
+        #region Calculate
         private decimal CalcualteTotalPrice(CUSTOMER cus, PRODUCT pro)
         {
             return pro.PRICE - decimal.Parse(txtCashSale.Text);
@@ -90,6 +96,9 @@ namespace CarSalesSystem.Customer.Windows
             }
             else return totalPrice;
         }
+        #endregion
+
+        #region Event Handler
         private void btnCloseWD_Click(object sender, RoutedEventArgs e)
         {
             this.Hide();
@@ -112,7 +121,7 @@ namespace CarSalesSystem.Customer.Windows
                 connection.Open();
                 SqlCommand command = new SqlCommand(query, connection);
                 command.Parameters.AddWithValue("@OB_DATED", DateTime.Parse(txtNgayDatHang.Text));
-                command.Parameters.AddWithValue("@CUS_ID", txtTenKH.Text);
+                command.Parameters.AddWithValue("@CUS_ID", customer1.CUS_ID);
                 command.Parameters.AddWithValue("@PRO_ID", product1.PRO_ID);
                 command.Parameters.AddWithValue("@QUANTITY", 1);
                 command.Parameters.AddWithValue("@RANK_ID", customer1.RANK_ID);
@@ -126,5 +135,6 @@ namespace CarSalesSystem.Customer.Windows
             }
             connection.Close();
         }
+        #endregion
     }
 }
