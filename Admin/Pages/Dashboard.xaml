@@ -99,11 +99,11 @@
                             
                             
                             <!--Car Card-->
-                            <uc:CarCard CarCompany="Lamborghini" CarName="Aventador" SaleNumber="57" Profit="100,000" Image="/Resources/Images/Cars/Logos/lambor.png" Loaded="CarCard_Loaded"/>
-                            <uc:CarCard CarCompany="Bugatti" CarName="Chiron" SaleNumber="45" Profit="86,000" Image="/Resources/Images/Cars/Logos/bugatti.png"/>
-                            <uc:CarCard CarCompany="Chevrolet" CarName="Corvette" SaleNumber="50" Profit="90,000" Image="/Resources/Images/Cars/Logos/chevrolet.png"/>
-                            <uc:CarCard CarCompany="Ford" CarName="Mustang" SaleNumber="60" Profit="85,000" Image="/Resources/Images/Cars/Logos/fordMustang.png"/>
-                            <uc:CarCard CarCompany="W Motors" CarName="Fenyr Supersport" SaleNumber="57" Profit="100,000" Image="/Resources/Images/Cars/Logos/w motors.png"/>
+                            <uc:CarCard x:Name="cardBugatti" CarCompany="Bugatti" CarName="Chiron" Image="/Resources/Images/Cars/Logos/bugatti.png"/>
+                            <uc:CarCard x:Name="cardMaserati" CarCompany="Maserati" CarName="MC20" Image="/Resources/Images/Cars/Logos/maserati.png"/>
+                            <uc:CarCard x:Name="cardLexus" CarCompany="Lexus" CarName="LX" Image="/Resources/Images/Cars/Logos/lexus.png"/>
+                            <uc:CarCard x:Name="cardTesla" CarCompany="Tesla" CarName="Model X" Image="/Resources/Images/Cars/Logos/tesla.png"/>
+                            <uc:CarCard x:Name="cardToyota" CarCompany="Toyota" CarName="Vios" Image="/Resources/Images/Cars/Logos/toyota.png"/>
                         </StackPanel>
                     </Border>
                 </Grid>

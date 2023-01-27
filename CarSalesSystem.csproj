@@ -597,6 +597,10 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Resource Include="Resources\Images\Cars\Logos\maserati.png" />
+    <Resource Include="Resources\Images\Cars\Logos\tesla.png" />
+    <Resource Include="Resources\Images\Cars\Logos\toyota.png" />
+    <Resource Include="Resources\Images\Cars\Logos\lexus.png" />
     <Resource Include="Resources\Images\Icons\maintain.png" />
     <Resource Include="Resources\Images\Icons\Plus.png" />
     <Resource Include="Resources\Images\Icons\success.png" />
