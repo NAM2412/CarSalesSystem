@@ -92,16 +92,17 @@
                         VerticalAlignment="Top"   >
                         <StackPanel  Width="600" Orientation="Horizontal" >
                             <Label
-                    Content="Mã nhân viên" 
-                    HorizontalAlignment="Left"
-                    FontSize="18" 
-                    FontWeight="SemiBold" 
-                    Foreground="Black"
-                    Height="32" 
-                   Margin="0,0,20,0"
+                        Content="Mã nhân viên" 
+                        HorizontalAlignment="Left"
+                        FontSize="18" 
+                        FontWeight="SemiBold" 
+                        Foreground="Black"
+                        Height="32" 
+                    Margin="0,0,20,0"
                     Width="140"
                     VerticalAlignment="Center"/>
                             <TextBox
+                                    x:Name="idBox"
                                     Width="400"
                                     Height="50"
                                     FontSize="14" 
@@ -131,6 +132,7 @@
                             Margin="0,0,20,0"
                             VerticalAlignment="Center"/>
                             <ComboBox
+                                    x:Name="genderBox"
                                     Width="400"
                                     Height="50"
                                     FontSize="14" 
@@ -166,6 +168,7 @@
                     Margin="0,0,20,0"
                                 VerticalAlignment="Center"/>
                             <ComboBox
+                                    x:Name="positionBox"
                                     Width="400"
                                     Height="50"
                                     FontSize="14" 
@@ -197,6 +200,7 @@
                     Margin="0,0,20,0"
                     VerticalAlignment="Bottom"/>
                             <TextBox
+                                x:Name="addressBox"
                                     Width="400"
                                     Height="50"
                                     FontSize="14"  
@@ -225,6 +229,7 @@
                     Margin="0,0,20,0"
                     VerticalAlignment="Center"/>
                             <DatePicker
+                                x:Name="dobBox"
                                 Width="400"
                                 Height="50" 
                                 Style="{StaticResource MaterialDesignOutlinedDatePicker}">
@@ -247,6 +252,7 @@
                     Margin="0,0,20,0"
                     VerticalAlignment="Center"/>
                             <DatePicker
+                                x:Name="dowBox"
                                 Width="400"
                                 Height="50" 
                                 Style="{StaticResource MaterialDesignOutlinedDatePicker}">
@@ -270,6 +276,7 @@
                     Margin="0,0,20,0"
                     VerticalAlignment="Bottom"/>
                             <TextBox
+                                    x:Name="phoneBox"
                                     Width="400"
                                     Height="50"
                                     FontSize="14" 
@@ -298,8 +305,8 @@
                         Margin="0,0,30,0"
                         BorderBrush="Black"
                         Background="#FFFFFF"/>
-                            <Button
-                         Content="Add"
+                            <Button x:Name="addButton"
+                        Content="Add"
                         Height="40"
                         FontSize="14"
                         Width="100"
@@ -307,7 +314,7 @@
                         HorizontalAlignment="Right"
                         Foreground="White"
                         BorderBrush="#134B5F"
-                        Background="#134B5F"/>
+                        Background="#134B5F" Click="addButton_Click"/>
                         </StackPanel>
                     
                     </Grid>

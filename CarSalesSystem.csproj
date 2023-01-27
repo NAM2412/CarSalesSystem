@@ -810,8 +810,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Employee\Pages\" />
-    <Folder Include="Employee\Windows\" />
     <Folder Include="Viewmodel\Admin\" />
     <Folder Include="Viewmodel\Customer\" />
     <Folder Include="Viewmodel\Employee\" />
