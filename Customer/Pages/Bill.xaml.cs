@@ -1,6 +1,8 @@
-﻿using CarSalesSystem.Model;
+﻿using CarSalesSystem.Customer.Windows;
+using CarSalesSystem.Model;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,6 +29,16 @@ namespace CarSalesSystem.Customer.Pages
             InitializeComponent();
             cus= _cus;
             datagridOrderBill.ItemsSource = DataProvider.Ins.DB.ORDERBILLs.Where(x=> x.CUSTOMER_ID == cus.CUS_ID).ToList();
+        }
+
+        private void datagridOrderBill_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            ORDERBILL ordBill = datagridOrderBill.SelectedItem as ORDERBILL;
+            if (ordBill != null)
+            {
+                MaintenanceBill maintainBillWindow = new MaintenanceBill(cus,ordBill);
+                maintainBillWindow.Show();
+            }
         }
     }
 }

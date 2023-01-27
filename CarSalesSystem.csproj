@@ -583,6 +583,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Resource Include="Resources\Images\Icons\maintain.png" />
     <Resource Include="Resources\Images\Icons\Plus.png" />
     <Resource Include="Resources\Images\Icons\success.png" />
     <Resource Include="Resources\Images\Icons\error.png" />
