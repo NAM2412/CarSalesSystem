@@ -241,6 +241,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Admin\User Controls\CheckOrderUserControl.xaml.cs">
+      <DependentUpon>CheckOrderUserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Admin\User Controls\ImportControl.xaml.cs">
       <DependentUpon>ImportControl.xaml</DependentUpon>
     </Compile>
@@ -258,6 +261,9 @@
     </Compile>
     <Compile Include="Admin\Windows\ImportProduct.xaml.cs">
       <DependentUpon>ImportProduct.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Windows\ListOfOrder.xaml.cs">
+      <DependentUpon>ListOfOrder.xaml</DependentUpon>
     </Compile>
     <Compile Include="Customer\Windows\MaintenanceBill.xaml.cs">
       <DependentUpon>MaintenanceBill.xaml</DependentUpon>
@@ -347,6 +353,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Admin\User Controls\CheckOrderUserControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Admin\User Controls\ControlBar.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -398,6 +408,10 @@
     <Page Include="Admin\Windows\ImportProduct.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Admin\Windows\ListOfOrder.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Admin\Windows\Updateemp.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -810,8 +824,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Employee\Pages\" />
-    <Folder Include="Employee\Windows\" />
     <Folder Include="Viewmodel\Admin\" />
     <Folder Include="Viewmodel\Customer\" />
     <Folder Include="Viewmodel\Employee\" />
