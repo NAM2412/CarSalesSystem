@@ -23,5 +23,10 @@ namespace CarSalesSystem.Admin.Windows
         {
             InitializeComponent();
         }
+
+        private void updateButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
