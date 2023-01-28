@@ -6,23 +6,37 @@
         xmlns:local="clr-namespace:CarSalesSystem.Admin.Windows"
         mc:Ignorable="d"
         DataContext="{StaticResource ProductVM}"
+         xmlns:uc ="clr-namespace:CarSalesSystem.Admin.User_Controls"
+        AllowsTransparency="True"
+        Background="Transparent"
+        WindowStartupLocation="CenterOwner"
+        WindowStyle="None"
         x:Name="wdListOfMaintaince"
         xmlns:i ="http://schemas.microsoft.com/xaml/behaviors"
          xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         Height="520" Width="900">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="80"/>
-            <RowDefinition Height="60"/>
-            <RowDefinition Height="350"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
-        <i:Interaction.Triggers>
-            <i:EventTrigger EventName="Loaded"  >
-                <i:InvokeCommandAction Command="{Binding loadMaintaineBillCommand}"
+        <Grid>
+            <uc:ControlBar Tag="{Binding Title, ElementName=wdListOfMaintaince}"/>
+        </Grid>
+        <Border Grid.Row="1" Background="White">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="80"/>
+                    <RowDefinition Height="60"/>
+                    <RowDefinition Height="350"/>
+                </Grid.RowDefinitions>
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Loaded"  >
+                        <i:InvokeCommandAction Command="{Binding loadMaintaineBillCommand}"
                                        CommandParameter="{Binding ElementName=wdListOfMaintaince}"/>
-            </i:EventTrigger>
-        </i:Interaction.Triggers>
-        <Border BorderBrush="#898989"
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <Border BorderBrush="#898989"
                 Grid.Row="0"
             BorderThickness="1"
                 Height="40"
@@ -31,13 +45,13 @@
             VerticalAlignment="Center"
             HorizontalAlignment="Right"
             CornerRadius="5">
-            <StackPanel Margin="5"
+                    <StackPanel Margin="5"
                     Orientation="Horizontal">
-                <materialDesign:PackIcon Kind="FormatListBulleted" 
+                        <materialDesign:PackIcon Kind="FormatListBulleted" 
                                              Height="28"
                     Width="28"
                     Foreground="#898989"/>
-                <ComboBox Height="Auto"
+                        <ComboBox Height="Auto"
                          BorderThickness="0"
                          x:Name="cbCompleteOrUn"
                          FontSize="18"
@@ -45,35 +59,35 @@
                          VerticalContentAlignment="Top"
                          FontWeight="Light"
                          Width="144">
-                   
-                    <ComboBoxItem Content="UnComplete"/>
-                    <ComboBoxItem Content="Complete"/>
-                    <i:Interaction.Triggers>
-                        <i:EventTrigger EventName="SelectionChanged">
-                            <i:InvokeCommandAction Command="{Binding loadMaintaineBillCommand}"
+
+                            <ComboBoxItem Content="UnComplete"/>
+                            <ComboBoxItem Content="Complete"/>
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="SelectionChanged">
+                                    <i:InvokeCommandAction Command="{Binding loadMaintaineBillCommand}"
                                                        CommandParameter="{Binding ElementName=wdListOfMaintaince}">
-                            </i:InvokeCommandAction>
-                        </i:EventTrigger>
-                    </i:Interaction.Triggers>
-                </ComboBox>
-            </StackPanel>
-        </Border>
-        <Grid 
+                                    </i:InvokeCommandAction>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </ComboBox>
+                    </StackPanel>
+                </Border>
+                <Grid 
                     Height="Auto"
                     Grid.Row="1"
                     HorizontalAlignment="Left"
                     Margin="50,0,0,0" 
                     Width="800" 
                     Background="#1A6985">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="90"/>
-                <ColumnDefinition Width="200"/>
-                <ColumnDefinition Width="100"/>
-                <ColumnDefinition Width="130"/>
-                <ColumnDefinition Width="220"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <TextBlock 
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="90"/>
+                        <ColumnDefinition Width="200"/>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="130"/>
+                        <ColumnDefinition Width="220"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock 
                         Grid.Column="0"
                         Padding="0,4,0,0"
                         HorizontalAlignment="Center" 
@@ -85,7 +99,7 @@
                         VerticalAlignment="Center" 
                         FontSize="18" 
                         FontWeight="Bold"/>
-            <TextBlock
+                    <TextBlock
                         FontFamily="Hierarchy"
                         Grid.Column="1" 
                          Padding="0,4,0,0"
@@ -97,7 +111,7 @@
                         VerticalAlignment="Center"
                         FontSize="18" 
                         FontWeight="Bold"/>
-            <TextBlock 
+                    <TextBlock 
                          FontFamily="Hierarchy"
                         Grid.Column="2" 
                          Padding="0,4,0,0"
@@ -109,7 +123,7 @@
                         VerticalAlignment="Center" 
                         FontSize="18"
                         FontWeight="Bold"/>
-            <TextBlock 
+                    <TextBlock 
                          Padding="0,4,0,0"
                         FontFamily="Hierarchy"
                         Grid.Column="3" 
@@ -121,7 +135,7 @@
                         VerticalAlignment="Center" 
                         FontSize="18"
                         FontWeight="Bold"/>
-            <TextBlock 
+                    <TextBlock 
                          Padding="0,4,0,0"
                         FontFamily="Hierarchy"
                         Grid.Column="4" 
@@ -133,25 +147,28 @@
                         VerticalAlignment="Center" 
                         FontSize="18"
                         FontWeight="Bold"/>
-        </Grid>
-        <Grid 
+                </Grid>
+                <Grid 
                     Grid.Row="2"
                     HorizontalAlignment="Left" 
                     Margin="50,0,0,0"
                     Width="795" >
-            <ScrollViewer
+                    <ScrollViewer
                          Grid.Row="2"
                         HorizontalScrollBarVisibility="Disabled" 
                         Width="795" 
                         HorizontalAlignment="Left" 
                         VerticalScrollBarVisibility="Auto">
-                <StackPanel 
+                        <StackPanel 
                             x:Name="skpOrderBill" 
                             Width="795" 
                             HorizontalAlignment="Left" 
                             ScrollViewer.VerticalScrollBarVisibility="Auto" 
                             ScrollViewer.HorizontalScrollBarVisibility="Disabled"/>
-            </ScrollViewer>
-        </Grid>
+                    </ScrollViewer>
+                </Grid>
+            </Grid>
+        </Border>
     </Grid>
+ 
 </Window>

@@ -52,10 +52,6 @@ namespace CarSalesSystem.Customer.Windows
 
         }
 
-        private void btnCloseDetailWD_Click(object sender, RoutedEventArgs e)
-        {
-            this.Hide();
-        }
 
         private void btnBooking_Click(object sender, RoutedEventArgs e)
         {

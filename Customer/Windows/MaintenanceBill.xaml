@@ -9,69 +9,73 @@
         ResizeMode="NoResize"
         WindowStyle="None"
         FontSize="14"
+        xmlns:uc ="clr-namespace:CarSalesSystem.Admin.User_Controls"
         AllowsTransparency="True"
         WindowStartupLocation="CenterScreen"
         Background="Transparent"
         Title="MaintenanceBill">
     <Border BorderBrush="#1A6985" Background="White" BorderThickness="0.5" CornerRadius="10" MouseDown="Border_MouseDown" 
             Width="215" 
-            Height="365">
+            Height="395">
         <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
             <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"/>
-                </Grid.RowDefinitions>
-                <Grid Grid.Row="0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="AUTO"/>
-                    </Grid.ColumnDefinitions>
-                    <StackPanel Grid.Column="0">
-                        <!---->
-                        <Label HorizontalAlignment="Center" Margin="0 10 0 0" 
+                <uc:ControlBar/>
+            </Grid>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="AUTO"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0">
+                    <!---->
+                    <Label HorizontalAlignment="Center" Margin="0 10 0 0" 
                                FontFamily="Inter" 
                                FontWeight="Black" 
                                Foreground="#1A6985"
                                FontSize="30"
                                >SGAUTO</Label>
-                        <!-- FULL NAME-->
-                        <TextBox x:Name="txtTenKH"
+                    <!-- FULL NAME-->
+                    <TextBox x:Name="txtTenKH"
                         VerticalAlignment="Top"
                         Margin="30,10,30,0"
                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                         materialDesign:HintAssist.Hint="FULL NAME"
                         materialDesign:HintAssist.HintOpacity="1"
                         >
-                            <TextBox.Resources>
-                                <Style TargetType="{x:Type materialDesign:SmartHint}">
-                                    <Setter Property="FontWeight"
+                        <TextBox.Resources>
+                            <Style TargetType="{x:Type materialDesign:SmartHint}">
+                                <Setter Property="FontWeight"
                                         Value="Bold" />
-                                </Style>
-                            </TextBox.Resources>
-                        </TextBox>
-                 
-                        <!--Product-->
-                        <TextBox x:Name="txtTenSP"
+                            </Style>
+                        </TextBox.Resources>
+                    </TextBox>
+
+                    <!--Product-->
+                    <TextBox x:Name="txtTenSP"
                              VerticalAlignment="Center"
                              Margin="30,10,30,0"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                              materialDesign:HintAssist.Hint="PRODUCT"
                              materialDesign:HintAssist.HintOpacity="1"
                                  IsReadOnly="True">
-                            <TextBox.Resources>
-                                <Style TargetType="{x:Type materialDesign:SmartHint}">
-                                    <Setter Property="FontWeight"
+                        <TextBox.Resources>
+                            <Style TargetType="{x:Type materialDesign:SmartHint}">
+                                <Setter Property="FontWeight"
                                         Value="Bold" />
-                                </Style>
-                            </TextBox.Resources>
-                        </TextBox>
+                            </Style>
+                        </TextBox.Resources>
+                    </TextBox>
 
-                        <!-- ORDER DATE-->
-                        <Label FontWeight="Bold"
+                    <!-- ORDER DATE-->
+                    <Label FontWeight="Bold"
                            VerticalAlignment="Center"
                            Margin="30,20,30,0"
                            Foreground="Black">MAINTENANCE DATE
-                        </Label>
-                        <DatePicker
+                    </Label>
+                    <DatePicker
                         x:Name="txtMaintainDate"
                                 VerticalAlignment="Center"
                                 Margin="30,0,30,0"
@@ -80,22 +84,22 @@
                                 FontStyle="Italic"
                                 IsDropDownOpen="False"
                                 Text="1/1/2001"/>
-                        <!-- MAINTAIN FEE-->
-                        <TextBox x:Name="txtMaintainFee"
+                    <!-- MAINTAIN FEE-->
+                    <TextBox x:Name="txtMaintainFee"
                              VerticalAlignment="Center"
                              Margin="30,10,30,30"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                              materialDesign:HintAssist.Hint="PRICE"
                              materialDesign:HintAssist.HintOpacity="1"
                              IsEnabled="False">
-                            <TextBox.Resources>
-                                <Style TargetType="{x:Type materialDesign:SmartHint}">
-                                    <Setter Property="FontWeight"
+                        <TextBox.Resources>
+                            <Style TargetType="{x:Type materialDesign:SmartHint}">
+                                <Setter Property="FontWeight"
                                         Value="Bold" />
-                                </Style>
-                            </TextBox.Resources>
-                        </TextBox>
-                        <Button x:Name="btnMaintain" 
+                            </Style>
+                        </TextBox.Resources>
+                    </TextBox>
+                    <Button x:Name="btnMaintain" 
                             Grid.Row="1" 
                             VerticalAlignment="Bottom" 
                             HorizontalAlignment="Right"                             
@@ -105,18 +109,13 @@
                             BorderBrush="#478BA3"
                             Foreground="White" Click="btnMaintain_Click"
                             >
-                            <Button.Background >
-                                <ImageBrush x:Name="imgProDuct" ImageSource= "/Resources/Images/Icons/maintain.png"/>
-                            </Button.Background>
-                        </Button>
-                    </StackPanel>
-                   
-                </Grid>
+                        <Button.Background >
+                            <ImageBrush x:Name="imgProDuct" ImageSource= "/Resources/Images/Icons/maintain.png"/>
+                        </Button.Background>
+                    </Button>
+                </StackPanel>
 
             </Grid>
-           
         </Grid>
-        
-
     </Border>
 </Window>

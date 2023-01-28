@@ -6,6 +6,8 @@
         xmlns:local="clr-namespace:CarSalesSystem.Customer.Windows"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
+        x:Name="wdOrderBill"
+        xmlns:uc ="clr-namespace:CarSalesSystem.Admin.User_Controls"
         ResizeMode="NoResize"
         WindowStyle="None"
         FontSize="14"
@@ -17,8 +19,12 @@
     <Border BorderBrush="#1A6985" BorderThickness="0.5" CornerRadius="10" MouseDown="Border_MouseDown">
         <Grid>
             <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="286"/>
             </Grid.RowDefinitions>
+            <Grid>
+                <uc:ControlBar Tag="{Binding Title, ElementName=wdOrderBill}"/>
+            </Grid>
             <Grid Grid.Row="0" Margin="0,0,0,28">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="200"/>
@@ -154,11 +160,6 @@
                 </Grid>
 
             </Grid>
-            <Button x:Name="btnCloseWD" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,6,10,0" Background="#FB6161"  BorderBrush="#FFFAFAFA"
-                        Style="{StaticResource MaterialDesignFlatDarkButton}"
-                        Padding="5 5 5 5" Height="27" Click="btnCloseWD_Click" >
-                <materialDesign:PackIcon Kind="Close" Foreground="White" />
-            </Button>
         </Grid>
 
     </Border>
