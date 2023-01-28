@@ -22,9 +22,9 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <uc:InfoCard Grid.Column="0" Title="Sales" Number="145.567" Icon="Car" Background1="#47B5FF" Background2="#256D85" EllipseBackground1="#98A8F8" EllipseBackground2="#8FE3CF"/>
-            <uc:InfoCard Grid.Column="1" Title="Orders" Number="4.073" Icon="BagShopping" Background1="#069A8E" Background2="#F7FF93" EllipseBackground1="#2FA4FF" EllipseBackground2="#F7E2E2" />
-            <uc:InfoCard Grid.Column="2" Title="Revenue" Number="30.345.202" Icon="MoneyBill" Background1="#344CB7" Background2="#d9b5ff" EllipseBackground1="#EBE645" EllipseBackground2="#6998AB" />
+            <uc:InfoCard x:Name="salesCard" Grid.Column="0" Title="Sales"  Icon="Car" Background1="#47B5FF" Background2="#256D85" EllipseBackground1="#98A8F8" EllipseBackground2="#8FE3CF"/>
+            <uc:InfoCard x:Name="orderCard" Grid.Column="1" Title="Orders" Icon="BagShopping" Background1="#069A8E" Background2="#F7FF93" EllipseBackground1="#2FA4FF" EllipseBackground2="#F7E2E2" />
+            <uc:InfoCard x:Name="revenueCard" Grid.Column="2" Title="Revenue"  Icon="MoneyBill" Background1="#344CB7" Background2="#d9b5ff" EllipseBackground1="#EBE645" EllipseBackground2="#6998AB" />
         </Grid>
         <Grid Grid.Row="1" Margin="0 0 15 0">
             <StackPanel Orientation="Horizontal" Margin="2 0 0 0">
@@ -99,11 +99,11 @@
                             
                             
                             <!--Car Card-->
-                            <uc:CarCard CarCompany="Lamborghini" CarName="Aventador" SaleNumber="57" Profit="100,000" Image="/Resources/Images/Cars/Logos/lambor.png" Loaded="CarCard_Loaded"/>
-                            <uc:CarCard CarCompany="Bugatti" CarName="Chiron" SaleNumber="45" Profit="86,000" Image="/Resources/Images/Cars/Logos/bugatti.png"/>
-                            <uc:CarCard CarCompany="Chevrolet" CarName="Corvette" SaleNumber="50" Profit="90,000" Image="/Resources/Images/Cars/Logos/chevrolet.png"/>
-                            <uc:CarCard CarCompany="Ford" CarName="Mustang" SaleNumber="60" Profit="85,000" Image="/Resources/Images/Cars/Logos/fordMustang.png"/>
-                            <uc:CarCard CarCompany="W Motors" CarName="Fenyr Supersport" SaleNumber="57" Profit="100,000" Image="/Resources/Images/Cars/Logos/w motors.png"/>
+                            <uc:CarCard x:Name="cardBugatti" CarCompany="Bugatti" CarName="Chiron" Image="/Resources/Images/Cars/Logos/bugatti.png"/>
+                            <uc:CarCard x:Name="cardMaserati" CarCompany="Maserati" CarName="MC20" Image="/Resources/Images/Cars/Logos/maserati.png"/>
+                            <uc:CarCard x:Name="cardLexus" CarCompany="Lexus" CarName="LX" Image="/Resources/Images/Cars/Logos/lexus.png"/>
+                            <uc:CarCard x:Name="cardTesla" CarCompany="Tesla" CarName="Model X" Image="/Resources/Images/Cars/Logos/tesla.png"/>
+                            <uc:CarCard x:Name="cardToyota" CarCompany="Toyota" CarName="Vios" Image="/Resources/Images/Cars/Logos/toyota.png"/>
                         </StackPanel>
                     </Border>
                 </Grid>

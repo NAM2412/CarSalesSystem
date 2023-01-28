@@ -3,6 +3,7 @@ using CarSalesSystem.Model;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -77,26 +78,28 @@ namespace CarSalesSystem.Customer.Windows
         }
         private void btnMaintain_Click(object sender, RoutedEventArgs e)
         {
-            SqlConnection connection = new SqlConnection("Data Source=DESKTOP-8RKPG08\\SQLEXPRESS;Initial Catalog=CARSALESSYSTEM;Integrated Security=True");
-            string query = "insert into MAINTENANCEBILL(MB_DATE,CUSTOMER_ID,PRO_ID,TOTALFEE,BILL_STATUS) values (@MB_DATE,@CUSTOMER_ID,@PRO_ID,@TOTALFEE,@BILL_STATUS)";
-            try
-            {
-                connection.Open();
-                SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.AddWithValue("@MB_DATE", DateTime.Parse(txtMaintainDate.Text));
-                command.Parameters.AddWithValue("@CUSTOMER_ID", customer1.CUS_ID);
-                command.Parameters.AddWithValue("@PRO_ID", orderbill1.PRO_ID);
-                command.Parameters.AddWithValue("@TOTALFEE", decimal.Parse(txtMaintainFee.Text));
-                command.Parameters.AddWithValue("@BILL_STATUS", "UNPAID");
-                command.ExecuteNonQuery();
-                notifier.ShowSuccess("Successfully. Please bring your vehicle to our showroom in " + txtMaintainDate.Text);
-                this.Hide();
-            }
-            catch (Exception ex)
-            {
-                notifier.ShowError(ex.Message);
-            }
-            connection.Close();
+                SqlConnection connection = new SqlConnection("Data Source=DESKTOP-8RKPG08\\SQLEXPRESS;Initial Catalog=CARSALESSYSTEM;Integrated Security=True");
+                string query = "insert into MAINTENANCEBILL(MB_DATE,CUSTOMER_ID,PRO_ID,TOTALFEE,BILL_STATUS) values (@MB_DATE,@CUSTOMER_ID,@PRO_ID,@TOTALFEE,@BILL_STATUS)";
+                try
+                {
+                    connection.Open();
+                    SqlCommand command = new SqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@MB_DATE", DateTime.Parse(txtMaintainDate.Text));
+                    command.Parameters.AddWithValue("@CUSTOMER_ID", customer1.CUS_ID);
+                    command.Parameters.AddWithValue("@PRO_ID", orderbill1.PRO_ID);
+                    command.Parameters.AddWithValue("@TOTALFEE", decimal.Parse(txtMaintainFee.Text));
+                    command.Parameters.AddWithValue("@BILL_STATUS", "UNPAID");
+                    command.ExecuteNonQuery();
+                    notifier.ShowSuccess("Successfully. Please bring your vehicle to our showroom in " + txtMaintainDate.Text);
+                    this.Hide();
+                }
+                catch (Exception ex)
+                {
+                    notifier.ShowError(ex.Message);
+                }
+                connection.Close();
+               
+            
         }
 
         private decimal CalculateMaintainFee(ORDERBILL _ord)
@@ -105,5 +108,7 @@ namespace CarSalesSystem.Customer.Windows
             decimal price = _ord.PRODUCT.PRICE - (decimal)ins;
             return price;
         }
+
+      
     }
 }
