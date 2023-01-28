@@ -6,14 +6,14 @@
         xmlns:local="clr-namespace:CarSalesSystem.Admin.Windows"
         mc:Ignorable="d"
         xmlns:uc ="clr-namespace:CarSalesSystem.Admin.User_Controls"
-        x:Name="wdtotalFee"
         AllowsTransparency="True"
         Background="Transparent"
+        x:Name="wdtotalFee"
         WindowStartupLocation="CenterOwner"
-        WindowStyle="None"
         DataContext="{StaticResource ProductVM}"
+        WindowStyle="None"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-         Height="150" Width="250">
+        Title="TotalFeeMaintaine" Height="150" Width="250">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
