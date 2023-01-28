@@ -7,13 +7,13 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         Name="DetailProduct"
-                  
+         xmlns:uc ="clr-namespace:CarSalesSystem.Admin.User_Controls"        
         ResizeMode="NoResize"
         WindowStyle="None"
         FontSize="14"
         AllowsTransparency="True"
         WindowStartupLocation="CenterScreen"
-        Background="Transparent" Width="730" Height="409">
+        Background="Transparent" Width="730" Height="419">
     <Border CornerRadius="10" Background="#FFFFFF" BorderBrush="#165A72" BorderThickness="1" MouseDown="Border_MouseDown">
         <Grid>
             <Grid.RowDefinitions>
@@ -21,11 +21,7 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <Grid Grid.Row="0">
-                <Button x:Name="btnCloseDetailWD" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,10,20,0" Background="#FB6161"  BorderBrush="#FFFAFAFA" Click="btnCloseDetailWD_Click"
-                        Style="{StaticResource MaterialDesignFlatDarkButton}"
-                        Padding="5 5 5 5" Height="27">
-                    <materialDesign:PackIcon Kind="Close" Foreground="White" />
-                </Button>
+                <uc:ControlBar />
             </Grid>
             <Grid Grid.Row="1" >
                 <Grid.ColumnDefinitions>
