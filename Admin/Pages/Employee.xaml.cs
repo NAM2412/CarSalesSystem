@@ -7,6 +7,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Forms.VisualStyles;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -23,6 +24,13 @@ namespace CarSalesSystem.Admin.Pages
         public Employee()
         {
             InitializeComponent();
+        }
+
+        private void btnAddEmployee_Click(object sender, RoutedEventArgs e)
+        {
+            Addemp addemp = new Addemp();
+            addemp.Show();
+            
         }
     }
 }

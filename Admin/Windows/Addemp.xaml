@@ -295,6 +295,7 @@
                     HorizontalAlignment="Right">
                         <StackPanel Orientation="Horizontal">
                             <Button
+                                x:Name="backButton"
                          Content="Back"
                         Height="40"
                         FontSize="14"
@@ -304,7 +305,7 @@
                         Foreground="Black"
                         Margin="0,0,30,0"
                         BorderBrush="Black"
-                        Background="#FFFFFF"/>
+                        Background="#FFFFFF" Click="backButton_Click"/>
                             <Button x:Name="addButton"
                         Content="Add"
                         Height="40"
