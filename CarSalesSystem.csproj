@@ -241,6 +241,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Admin\User Controls\CheckCompleteMaintainceControl.xaml.cs">
+      <DependentUpon>CheckCompleteMaintainceControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Admin\User Controls\CheckOrderUserControl.xaml.cs">
       <DependentUpon>CheckOrderUserControl.xaml</DependentUpon>
     </Compile>
@@ -262,8 +265,14 @@
     <Compile Include="Admin\Windows\ImportProduct.xaml.cs">
       <DependentUpon>ImportProduct.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Admin\Windows\ListOfMaintaince.xaml.cs">
+      <DependentUpon>ListOfMaintaince.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Admin\Windows\ListOfOrder.xaml.cs">
       <DependentUpon>ListOfOrder.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Windows\TotalFeeMaintaine.xaml.cs">
+      <DependentUpon>TotalFeeMaintaine.xaml</DependentUpon>
     </Compile>
     <Compile Include="Customer\Windows\MaintenanceBill.xaml.cs">
       <DependentUpon>MaintenanceBill.xaml</DependentUpon>
@@ -353,6 +362,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Admin\User Controls\CheckCompleteMaintainceControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Admin\User Controls\CheckOrderUserControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -409,7 +422,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Admin\Windows\ListOfMaintaince.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Admin\Windows\ListOfOrder.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Admin\Windows\TotalFeeMaintaine.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

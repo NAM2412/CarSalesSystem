@@ -7,107 +7,118 @@
         Height="780" Width="1280"
         AllowsTransparency="True"
         WindowStyle="None"
+          xmlns:uc ="clr-namespace:CarSalesSystem.Admin.User_Controls"
         WindowStartupLocation="CenterScreen"
         Background="Transparent">
-    <Border CornerRadius="25" Padding="20" Background="GhostWhite" MouseLeftButtonDown="BorderMouseLeftButtonDown">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
         <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="220"></ColumnDefinition>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-
-            </Grid.ColumnDefinitions>
-            <!--Menu-->
-            <Border Grid.RowSpan="3" CornerRadius="25">
-                <Border.Background>
-                    <LinearGradientBrush>
-                        <GradientStop Color="#A8D5E5" Offset="0"></GradientStop>
-                        <GradientStop Color="#1A6985" Offset="0.8"></GradientStop>
-                    </LinearGradientBrush>
-                </Border.Background>
-
-                <StackPanel>
-                    <!--Logo-->
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 30 0 10">
-                        <Grid>
-                            <Border Background="#ffffff" Width="35" Height="35" CornerRadius="50"></Border>
-                            <Border Width="35" Height="35" BorderBrush="#ffffff" BorderThickness="3" CornerRadius="25">
-                                <!--Icon-->
-                                <materialDesign:PackIcon Kind="CarSports" Width="24" Height="24" Foreground="#2596be" VerticalAlignment="Center" HorizontalAlignment="Center"
-                                                       Margin="2 0 0 4">
-                                </materialDesign:PackIcon>
-                            </Border>
-                        </Grid>
-                        <!--Title app-->
-                        <TextBlock Text="SGAUTO" Foreground="#FFFFFF" FontSize="28" FontFamily="Nexa Demo" Margin="10 4 0 3" FontWeight="Bold">
-
-                        </TextBlock>
-                    </StackPanel>
-                    <!--Menu Items-->
-                    <TextBlock Text="Main" Style="{StaticResource menuTitle}"></TextBlock>
-
-                    <!--Home-->
-                    <Button x:Name="homeBtn" Style="{StaticResource menuButton}" Click="homeBtn_Click">
-                        <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="Home" Style="{StaticResource menuButtonIcon}"></materialDesign:PackIcon>
-                            <TextBlock Text="Dashboard" Style="{StaticResource menuButtonText}"></TextBlock>
-                        </StackPanel>
-                    </Button>
-
-                    <!--Employee-->
-                    <Button x:Name="employeeBtn" Style="{StaticResource menuButton}" Click="employeeBtn_Click">
-                        <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="People" Style="{StaticResource menuButtonIcon}"></materialDesign:PackIcon>
-                            <TextBlock Text="Employee" Style="{StaticResource menuButtonText}"></TextBlock>
-                        </StackPanel>
-                    </Button>
-
-                    <!--Customer-->
-                    <Button x:Name="customerBtn" Style="{StaticResource menuButton}" Click="customerBtn_Click">
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,0,-0.4,0" Width="190">
-                            <materialDesign:PackIcon Kind="FaceMale" Style="{StaticResource menuButtonIcon}"></materialDesign:PackIcon>
-                            <TextBlock Text="Customer" Style="{StaticResource menuButtonText}"></TextBlock>
-                        </StackPanel>
-                    </Button>
-
-                    <!--Product-->
-                    <Button x:Name="productBtn" Style="{StaticResource menuButton}" Click="productBtn_Click">
-                        <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="Car" Style="{StaticResource menuButtonIcon}"></materialDesign:PackIcon>
-                            <TextBlock Text="Product" Style="{StaticResource menuButtonText}"></TextBlock>
-                        </StackPanel>
-                    </Button>
-
-                    <!--Warehouse-->
-                    <Button x:Name="warehouseBtn" Style="{StaticResource menuButton}" Click="warehouseBtn_Click">
-                        <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="Warehouse" Style="{StaticResource menuButtonIcon}"></materialDesign:PackIcon>
-                            <TextBlock Text="Warehouse" Style="{StaticResource menuButtonText}"></TextBlock>
-                        </StackPanel>
-                    </Button>
-
-                    <!--Info-->
-                    <Button x:Name="infoBtn" Style="{StaticResource menuButton}" Click="infoBtn_Click">
-                        <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="Information" Style="{StaticResource menuButtonIcon}"></materialDesign:PackIcon>
-                            <TextBlock Text="Info" Style="{StaticResource menuButtonText}"></TextBlock>
-                        </StackPanel>
-                    </Button>
-
-                    <!--Customer-->
-                    <Button x:Name="logoutBtn" Style="{StaticResource menuButton}" Click="logoutBtn_Click">
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,0,-0.4,0" Width="190">
-                            <materialDesign:PackIcon Kind="Logout" Style="{StaticResource menuButtonIcon}"></materialDesign:PackIcon>
-                            <TextBlock Text="Log out" Style="{StaticResource menuButtonText}"></TextBlock>
-                        </StackPanel>
-                    </Button>
-                </StackPanel>
-            </Border>
-            <!--Navigate-->
-            <Border Grid.Column="2" Margin="20 0 0 0">
-                <Frame x:Name="PagesNavigation" NavigationUIVisibility="Hidden">
-                    <!-- Page Content -->
-                </Frame>
-            </Border>
+            <uc:ControlBar/>
         </Grid>
-    </Border>
+        <Border Grid.Row="1" CornerRadius="0,0,20,20" Padding="20" Background="GhostWhite" MouseLeftButtonDown="BorderMouseLeftButtonDown">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="220"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+
+                </Grid.ColumnDefinitions>
+                <!--Menu-->
+                <Border Grid.RowSpan="3" CornerRadius="25">
+                    <Border.Background>
+                        <LinearGradientBrush>
+                            <GradientStop Color="#A8D5E5" Offset="0"></GradientStop>
+                            <GradientStop Color="#1A6985" Offset="0.8"></GradientStop>
+                        </LinearGradientBrush>
+                    </Border.Background>
+
+                    <StackPanel>
+                        <!--Logo-->
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 30 0 10">
+                            <Grid>
+                                <Border Background="#ffffff" Width="35" Height="35" CornerRadius="50"></Border>
+                                <Border Width="35" Height="35" BorderBrush="#ffffff" BorderThickness="3" CornerRadius="25">
+                                    <!--Icon-->
+                                    <materialDesign:PackIcon Kind="CarSports" Width="24" Height="24" Foreground="#2596be" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                                       Margin="2 0 0 4">
+                                    </materialDesign:PackIcon>
+                                </Border>
+                            </Grid>
+                            <!--Title app-->
+                            <TextBlock Text="SGAUTO" Foreground="#FFFFFF" FontSize="28" FontFamily="Nexa Demo" Margin="10 4 0 3" FontWeight="Bold">
+
+                            </TextBlock>
+                        </StackPanel>
+                        <!--Menu Items-->
+                        <TextBlock Text="Main" Style="{StaticResource menuTitle}"></TextBlock>
+
+                        <!--Home-->
+                        <Button x:Name="homeBtn" Style="{StaticResource menuButton}" Click="homeBtn_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="Home" Style="{StaticResource menuButtonIcon}"></materialDesign:PackIcon>
+                                <TextBlock Text="Dashboard" Style="{StaticResource menuButtonText}"></TextBlock>
+                            </StackPanel>
+                        </Button>
+
+                        <!--Employee-->
+                        <Button x:Name="employeeBtn" Style="{StaticResource menuButton}" Click="employeeBtn_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="People" Style="{StaticResource menuButtonIcon}"></materialDesign:PackIcon>
+                                <TextBlock Text="Employee" Style="{StaticResource menuButtonText}"></TextBlock>
+                            </StackPanel>
+                        </Button>
+
+                        <!--Customer-->
+                        <Button x:Name="customerBtn" Style="{StaticResource menuButton}" Click="customerBtn_Click">
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,0,-0.4,0" Width="190">
+                                <materialDesign:PackIcon Kind="FaceMale" Style="{StaticResource menuButtonIcon}"></materialDesign:PackIcon>
+                                <TextBlock Text="Customer" Style="{StaticResource menuButtonText}"></TextBlock>
+                            </StackPanel>
+                        </Button>
+
+                        <!--Product-->
+                        <Button x:Name="productBtn" Style="{StaticResource menuButton}" Click="productBtn_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="Car" Style="{StaticResource menuButtonIcon}"></materialDesign:PackIcon>
+                                <TextBlock Text="Product" Style="{StaticResource menuButtonText}"></TextBlock>
+                            </StackPanel>
+                        </Button>
+
+                        <!--Warehouse-->
+                        <Button x:Name="warehouseBtn" Style="{StaticResource menuButton}" Click="warehouseBtn_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="Warehouse" Style="{StaticResource menuButtonIcon}"></materialDesign:PackIcon>
+                                <TextBlock Text="Warehouse" Style="{StaticResource menuButtonText}"></TextBlock>
+                            </StackPanel>
+                        </Button>
+
+                        <!--Info-->
+                        <Button x:Name="infoBtn" Style="{StaticResource menuButton}" Click="infoBtn_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="Information" Style="{StaticResource menuButtonIcon}"></materialDesign:PackIcon>
+                                <TextBlock Text="Info" Style="{StaticResource menuButtonText}"></TextBlock>
+                            </StackPanel>
+                        </Button>
+
+                        <!--Customer-->
+                        <Button x:Name="logoutBtn" Style="{StaticResource menuButton}" Click="logoutBtn_Click">
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,0,-0.4,0" Width="190">
+                                <materialDesign:PackIcon Kind="Logout" Style="{StaticResource menuButtonIcon}"></materialDesign:PackIcon>
+                                <TextBlock Text="Log out" Style="{StaticResource menuButtonText}"></TextBlock>
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
+                </Border>
+                <!--Navigate-->
+                <Border Grid.Column="2" Margin="20 0 0 0">
+                    <Frame x:Name="PagesNavigation" NavigationUIVisibility="Hidden">
+                        <!-- Page Content -->
+                    </Frame>
+                </Border>
+            </Grid>
+        </Border>
+    </Grid>
+    
 </Window>
