@@ -4,5 +4,5 @@
     <viewmodel:CustomerViewModel x:Key="customerVM"></viewmodel:CustomerViewModel>
     <viewmodel:ProductViewModel x:Key="ProductVM"></viewmodel:ProductViewModel>
     <viewmodel:ControlBarViewModel x:Key="ControlBarVM"></viewmodel:ControlBarViewModel>
-    
+    <viewmodel:EmployeeViewModel x:Key="EmployeeVM"></viewmodel:EmployeeViewModel>
 </ResourceDictionary>

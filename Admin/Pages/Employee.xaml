@@ -7,6 +7,7 @@
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       mc:Ignorable="d" 
       Height="740"
+      DataContext="{StaticResource EmployeeVM}"
       Width="1000"
       Background="White"
       Title="Employee">
@@ -18,6 +19,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="100"/>
         </Grid.RowDefinitions>
+        
         <StackPanel
                     Grid.Row="0"
                     Orientation="Horizontal"
@@ -87,22 +89,6 @@
                     HorizontalAlignment="Right"
                     Margin="0,0,35,0"
                     VerticalAlignment="Center">
-            <Button 
-                        Background="#FB6161"
-                         Padding="0,4,0,0"
-                        Foreground="White"
-                        Content="Delete"
-                        ToolTip="Delete" 
-                        Height="45"
-                         FontFamily="Hierarchy"
-                        BorderBrush="#FB6161"
-                        BorderThickness="4"
-                        materialDesign:ButtonAssist.CornerRadius="5"
-                        Margin="0" 
-                        FontSize="18" 
-                        VerticalAlignment="Center" 
-                        Width="130" 
-                        FontWeight="Bold" />
             <Button 
                         x:Name="btnImportStock"
                         Background="#7CC0D8"
@@ -195,7 +181,7 @@
                         HorizontalAlignment="Left" 
                         VerticalScrollBarVisibility="Auto">
                 <StackPanel 
-                            x:Name="stkGoods" 
+                            x:Name="stkEmployee" 
                             Width="863" 
                             HorizontalAlignment="Left" 
                             ScrollViewer.VerticalScrollBarVisibility="Auto" 
