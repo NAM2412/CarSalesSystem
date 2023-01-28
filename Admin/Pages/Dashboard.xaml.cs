@@ -48,7 +48,7 @@ namespace CarSalesSystem.Admin.Pages
         }
         private int NumberCarSale(string carID)
         {
-            return DataProvider.Ins.DB.ORDERBILLs.Where(x => x.PRO_ID == carID && x.OB_DATEB <= DateTime.Now).Count();
+            return DataProvider.Ins.DB.SELLBILLs.Where(x => x.PRO_ID == carID && x.SB_DATEB <= DateTime.Now).Count();
         }
 
         private decimal Calculateprofit(string carID)
