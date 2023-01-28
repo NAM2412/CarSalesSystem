@@ -27,6 +27,7 @@ namespace CarSalesSystem.ViewModel
         private ProductControl productControl;
         private ImportControl importControl;
         private CheckOrderUserControl checkOrderUserControl;
+        private CheckCompleteMaintainceControl checkCompleteMaintainceControl;
         private int checkNewAccount = 0;
         private int numberproduct;
         private ProductPG productPG;
@@ -34,9 +35,14 @@ namespace CarSalesSystem.ViewModel
         private Addproduct Addproduct;
         private ListOfOrder ListOfOrderwd;
         public ListOfOrder listoforderwd { get =>ListOfOrderwd; set => ListOfOrderwd = value;}
+
+        private ListOfMaintaince listOfmaintaincewd;
+        public ListOfMaintaince ListofMaintaincewd { get => listOfmaintaincewd; set => listOfmaintaincewd = value; }
+
         private String imagefilename;
         private String idProduct;
         private String idOrderBill;
+        private String idMaintaineBill;
         public ICommand EditProductCommand { get; set; }
         public ICommand ShowLoadProductCommand { get; set; }
         public ICommand ClickAddCommand { get; set; }
@@ -60,6 +66,11 @@ namespace CarSalesSystem.ViewModel
         public ICommand loadOrderBillCommand { get; set; }
         public ICommand showListOrderBillCommand { get; set; }
         public ICommand CheckBuyProductEmpCommand { get; set; }
+
+        public ICommand loadMaintaineBillCommand { get; set; }
+        public ICommand ShowListMainTainCommand { get; set; }
+        public ICommand ClickEditMoneyFeeCommand { get; set; }
+        public ICommand ConfirmTotalFeeMaintainBillCommand { get; set; }
         public ProductViewModel()
         {
             EditProductCommand = new RelayCommand<ProductControl>((parameter) => true, (parameter) => ClickEditProduct(parameter));
@@ -68,6 +79,9 @@ namespace CarSalesSystem.ViewModel
             ShowLoadProductCommand = new RelayCommand<ProductPG>((parameter) => true, (parameter) => ShowLoadProduct(parameter));
             ClickAddCommand = new RelayCommand<ProductPG>((parameter) => true, (parameter) => ShowAddProduct(parameter));
             LoadFilterProductCommand = new RelayCommand<ProductPG>((parameter) => true, (parameter) => LoadFilterProduct(parameter));
+            ShowListMainTainCommand = new RelayCommand<ProductPG>((parameter) => true, (parameter) => showListMaintainceBill(parameter));
+            showListOrderBillCommand = new RelayCommand<ProductPG>((parameter) => true, (parameter) => showListOrderBill(parameter));
+
 
             BackAddProductCommand = new RelayCommand<Addproduct>((parameter) => true, (parameter) => parameter.Close());
             AddProductCommand = new RelayCommand<Addproduct>((parameter) => true, (parameter) => AddProduct(parameter));
@@ -92,8 +106,80 @@ namespace CarSalesSystem.ViewModel
             CaculatePriceProductCommand = new RelayCommand<BuyProductEmp>((parameter) => true, (parameter) => CaculatePriceProduct(parameter));
             BuyProductWithBillCommand = new RelayCommand<BuyProductEmp>((parameter) => true, (parameter) => BuyProductWithBill(parameter));
             loadOrderBillCommand = new RelayCommand<ListOfOrder>((parameter) => true, (parameter) => loadOrderBill(parameter));
-            showListOrderBillCommand = new RelayCommand<ProductPG>((parameter) => true, (parameter) => showListOrderBill(parameter));
+            loadMaintaineBillCommand = new RelayCommand<ListOfMaintaince>((parameter) => true, (parameter) => loadMaintainceBill(parameter));
             CheckBuyProductEmpCommand = new RelayCommand<CheckOrderUserControl>((parameter) => true, (parameter) => ClickBuyProductEmp(parameter));
+            ClickEditMoneyFeeCommand = new RelayCommand<CheckCompleteMaintainceControl>((parameter) => true, (parameter) => ClickEditMoneyFee(parameter));
+            ConfirmTotalFeeMaintainBillCommand = new RelayCommand<TotalFeeMaintaine>((parameter) => true, (parameter) => ConfirmTotalFeeMaintainBill(parameter));
+        }
+
+        private void ConfirmTotalFeeMaintainBill(TotalFeeMaintaine parameter)
+        {
+            var item = DataProvider.Ins.DB.MAINTENANCEBILLs.Find(idMaintaineBill);
+            item.TOTALFEE = Decimal.Parse(parameter.tbMoney.Text);
+            item.BILL_STATUS = "DONE";
+            DataProvider.Ins.DB.SaveChanges();
+            loadMaintainceBill(ListofMaintaincewd);
+            parameter.Close();
+            
+        }
+
+        private void ClickEditMoneyFee(CheckCompleteMaintainceControl parameter)
+        {
+            this.checkCompleteMaintainceControl = parameter;
+            idMaintaineBill = parameter.tbNo.Text;
+            TotalFeeMaintaine totalFee = new TotalFeeMaintaine();
+            var item = DataProvider.Ins.DB.MAINTENANCEBILLs.Find(idMaintaineBill);
+            totalFee.tbMoney.Text = item.TOTALFEE.ToString();
+            totalFee.ShowDialog();
+        }
+        private void loadMaintainceBill(ListOfMaintaince parameter)
+        {
+            this.listOfmaintaincewd = parameter;
+            
+            if (parameter.cbCompleteOrUn.SelectedIndex == 0)
+            {
+                parameter.skpOrderBill.Children.Clear();
+                var listMaintaince = DataProvider.Ins.DB.MAINTENANCEBILLs.Where(x => x.BILL_STATUS == "NOT").ToList();
+                foreach (var item in listMaintaince)
+                {
+                    CheckCompleteMaintainceControl check = new CheckCompleteMaintainceControl ();
+                    check.tbNo.Text = item.MB_ID;
+                    check.tbDate.Text = item.MB_DATE.ToString();
+                    check.tbCustomerID.Text = item.CUSTOMER_ID.ToString();
+                    check.tbProductID.Text = item.PRO_ID.ToString();
+                    double s = (double)item.TOTALFEE;
+                    check.tbTotalPrice.Text = s.ToString("C", CultureInfo.CurrentCulture);
+                    check.btncheckcompleteBill.Visibility = System.Windows.Visibility.Visible;
+                    check.tbEmp.Visibility = System.Windows.Visibility.Hidden;
+                    parameter.skpOrderBill.Children.Add(check);
+                }
+            }
+            else
+            {
+                parameter.skpOrderBill.Children.Clear();
+                var listMaintaince = DataProvider.Ins.DB.MAINTENANCEBILLs.Where(x=>x.BILL_STATUS =="DONE").ToList();
+                foreach (var item in listMaintaince)
+                {
+                    CheckCompleteMaintainceControl check = new CheckCompleteMaintainceControl();
+                    check.tbNo.Text = item.MB_ID;
+                    check.tbDate.Text = item.MB_DATE.ToString();
+                    check.tbCustomerID.Text = item.CUSTOMER_ID.ToString();
+                    check.tbProductID.Text = item.PRO_ID.ToString();
+                    double s = (double)item.TOTALFEE;
+                    check.tbTotalPrice.Text = s.ToString("C", CultureInfo.CurrentCulture);
+                    check.btncheckcompleteBill.Visibility = System.Windows.Visibility.Visible;
+                    check.tbEmp.Visibility = System.Windows.Visibility.Hidden;
+                    parameter.skpOrderBill.Children.Add(check);
+                }
+            }
+
+        }
+
+        private void showListMaintainceBill(ProductPG parameter)
+        {
+            ListOfMaintaince listOfMaintaince = new ListOfMaintaince();
+            listOfMaintaince.cbCompleteOrUn.SelectedIndex = 0;
+            listOfMaintaince.ShowDialog();
         }
 
         private void ClickBuyProductEmp(CheckOrderUserControl parameter)
