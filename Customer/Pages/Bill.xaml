@@ -14,8 +14,8 @@
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
-                <RowDefinition/>
-                <RowDefinition/>
+                <RowDefinition Height="auto"/>
+            
             </Grid.RowDefinitions>
 
             <Grid>
@@ -23,9 +23,11 @@
                     <ColumnDefinition/>
                     <ColumnDefinition Width="auto"/>
                 </Grid.ColumnDefinitions>
-                <TextBox HorizontalAlignment="Stretch"
+                <TextBox 
+                    x:Name="txbSearch"
+                    HorizontalAlignment="Stretch"
                          Margin="20 0" Padding="10"
-                    Style="{StaticResource MaterialDesignOutlinedTextBox}">
+                    Style="{StaticResource MaterialDesignOutlinedTextBox}" TextChanged="txtSearch_TextChanged">
                     <materialDesign:HintAssist.Hint>
                         <StackPanel>
                             <materialDesign:PackIcon

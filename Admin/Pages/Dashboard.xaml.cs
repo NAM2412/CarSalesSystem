@@ -41,11 +41,16 @@ namespace CarSalesSystem.Admin.Pages
             cardLexus.SaleNumber = NumberCarSale("P006").ToString();
             cardLexus.Profit = String.Format("{0:0,0}", Calculateprofit("P006"));
 
+            salesCard.Number = DataProvider.Ins.DB.SELLBILLs.Count().ToString();
+            orderCard.Number = DataProvider.Ins.DB.ORDERBILLs.Count().ToString();
+            var revenueInfo  = DataProvider.Ins.DB.SELLBILLs.Sum(x => x.TOTAL_PRICE);
+            revenueCard.Number = String.Format("{0:0,0}", revenueInfo);
         }
         private int NumberCarSale(string carID)
         {
             return DataProvider.Ins.DB.ORDERBILLs.Where(x => x.PRO_ID == carID && x.OB_DATEB <= DateTime.Now).Count();
         }
+
         private decimal Calculateprofit(string carID)
         {
             product = DataProvider.Ins.DB.PRODUCTs.Where(x => x.PRO_ID.Equals(carID)).FirstOrDefault();

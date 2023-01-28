@@ -1,4 +1,5 @@
-﻿using CarSalesSystem.Customer.Windows;
+﻿using CarSalesSystem.Admin.Pages;
+using CarSalesSystem.Customer.Windows;
 using CarSalesSystem.Model;
 using System;
 using System.Collections.Generic;
@@ -23,6 +24,7 @@ namespace CarSalesSystem.Customer.Pages
     /// </summary>
     public partial class Bill : Page
     {
+        ObservableCollection<ORDERBILL> orderBills;
         CUSTOMER cus;
         public Bill(CUSTOMER _cus)
         {
@@ -39,6 +41,22 @@ namespace CarSalesSystem.Customer.Pages
                 MaintenanceBill maintainBillWindow = new MaintenanceBill(cus,ordBill);
                 maintainBillWindow.Show();
             }
+        }
+
+        private void txtSearch_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var txb = sender as TextBox;
+            if (txb.Text != "")
+            {
+                var filterList = DataProvider.Ins.DB.ORDERBILLs.Where(x => x.CUSTOMER.CUS_ID == cus.CUS_ID && x.PRODUCT.PRO_NAME.ToLower().Contains(txb.Text)).ToList();
+                datagridOrderBill.ItemsSource = null;
+                datagridOrderBill.ItemsSource = filterList;
+
+            }
+            else
+            {
+                datagridOrderBill.ItemsSource = DataProvider.Ins.DB.ORDERBILLs.Where( x => x.CUSTOMER_ID == cus.CUS_ID).ToList();
+            }    
         }
     }
 }
