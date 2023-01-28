@@ -92,6 +92,26 @@
                         Width="130" 
                         FontWeight="Bold" />
             <Button 
+                        x:Name="btnMaintain"
+                        Background="#b37700"
+                        BorderBrush="#b37700"
+                        FontFamily="Hierarchy"
+                        BorderThickness="4"
+                        Content="Maintain"
+                        Command="{Binding ShowListMainTainCommand}"
+                        CommandParameter="{Binding ElementName=wdProduct}"
+                        Height="45"
+                        Foreground= "White"
+                        materialDesign:ButtonAssist.CornerRadius="5"
+                        ToolTip="Show Maintaince bill" 
+                        Margin="40,0,0,0" 
+                        FontSize="18" 
+                        VerticalAlignment="Center" 
+                        FocusVisualStyle="{x:Null}"
+                        Width="130" 
+                        Padding="0,4,0,0"
+                        FontWeight="Bold"/>
+            <Button 
                         x:Name="btnAddProduct"
                         Background="#7CC0D8"
                         BorderBrush="#7CC0D8"
@@ -111,6 +131,7 @@
                         Width="130" 
                         Padding="0,4,0,0"
                         FontWeight="Bold"/>
+           
         </StackPanel>
         <Grid 
                     Grid.Row="1"
