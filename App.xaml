@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
 
-             StartupUri="MainWindow.xaml"
+             StartupUri="/Admin/Windows/UpdateRankMoney.xaml"
 
     xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
     xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters;assembly=MaterialDesignThemes.Wpf">
@@ -70,19 +70,19 @@
         </Style>
 
         <!--Menu Button Text-->
-        <!--<Style x:Key="menuButtonText" TargetType="TextBlock">
-            <Setter Property="Margin" Value="16 2 0 0"/>
-            <Setter Property="FontSize" Value="16"/>
-            <Setter Property="FontFamily" Value="Nexa Bold"/>
-            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Style x:Key="menuButtonText" TargetType="TextBlock">
+                <Setter Property="Margin" Value="16 2 0 0"/>
+                <Setter Property="FontSize" Value="16"/>
+                <Setter Property="FontFamily" Value="Nexa Bold"/>
+                <Setter Property="HorizontalAlignment" Value="Center"/>
 
-            <Setter Property="Foreground" Value="{Binding Path=Foreground, 
+                <Setter Property="Foreground" Value="{Binding Path=Foreground, 
                                           RelativeSource={RelativeSource FindAncestor,
                                           AncestorType={x:Type Button}}}">
 
-            </Setter>
-        </Style>-->
-        <!--TextBox border style-->
+                </Setter>
+            </Style>
+            <!--TextBox border style-->
             <Style TargetType="{x:Type TextBox}">
                 <Style.Resources>
                     <Style TargetType="{x:Type Border}">

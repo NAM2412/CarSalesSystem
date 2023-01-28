@@ -274,6 +274,9 @@
     <Compile Include="Admin\Windows\TotalFeeMaintaine.xaml.cs">
       <DependentUpon>TotalFeeMaintaine.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Admin\Windows\UpdateRankMoney.xaml.cs">
+      <DependentUpon>UpdateRankMoney.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Customer\Windows\MaintenanceBill.xaml.cs">
       <DependentUpon>MaintenanceBill.xaml</DependentUpon>
     </Compile>
@@ -437,6 +440,10 @@
     <Page Include="Admin\Windows\Updateemp.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Admin\Windows\UpdateRankMoney.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CustomerWindow.xaml">
       <SubType>Designer</SubType>
