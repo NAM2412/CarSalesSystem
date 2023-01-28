@@ -64,10 +64,6 @@ namespace CarSalesSystem.Customer.Windows
         #endregion
 
         
-        private void btnCloseDetailWD_Click(object sender, RoutedEventArgs e)
-        {
-            this.Hide();
-        }
 
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
         {
