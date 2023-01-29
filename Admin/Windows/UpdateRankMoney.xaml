@@ -95,11 +95,11 @@
                                     FontSize="14" 
                                     Style="{StaticResource MaterialDesignOutlinedTextBox}"
                                     materialDesign:HintAssist.Hint="Limit"
-                                    IsReadOnly="True"
                                     HorizontalContentAlignment="Left"
                                     VerticalContentAlignment="Bottom" 
                                     BorderBrush="Gray"
                                     FontFamily="mitr"
+                                    PreviewTextInput ="PreviewTextInput"
                                      >
                         </TextBox>
 
@@ -125,11 +125,11 @@
                                     FontSize="14" 
                                     Style="{StaticResource MaterialDesignOutlinedTextBox}"
                                     materialDesign:HintAssist.Hint="Discount"
-                                    IsReadOnly="True"
                                     HorizontalContentAlignment="Left"
                                     VerticalContentAlignment="Bottom" 
                                     BorderBrush="Gray"
                                     FontFamily="mitr"
+                                    PreviewTextInput ="PreviewTextInput"
                                      >
                         </TextBox>
                     </StackPanel>
