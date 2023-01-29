@@ -12,15 +12,22 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using ToastNotifications;
+using ToastNotifications.Lifetime;
+using ToastNotifications.Messages;
+using ToastNotifications.Position;
 
 namespace CarSalesSystem.ViewModel
 {
     public class CustomerViewModel : BaseViewModel, INotifyPropertyChanged
     {
+     
+
         private CustomerPG customer;
         private String idCustom;
         private String imagefilename;
@@ -42,7 +49,20 @@ namespace CarSalesSystem.ViewModel
             UpdateInforCommand = new RelayCommand<EditCustomer>((parameter) => true, (parameter) => UpdateInfor(parameter));
             BackCommand = new RelayCommand<EditCustomer>((parameter) => true, (parameter) => parameter.Close());
         }
+        Notifier notifier = new Notifier(cfg =>
+        {
+            cfg.PositionProvider = new WindowPositionProvider(
+                parentWindow: Application.Current.MainWindow,
+                corner: Corner.TopRight,
+                offsetX: 10,
+                offsetY: 10);
 
+            cfg.LifetimeSupervisor = new TimeAndCountBasedLifetimeSupervisor(
+                notificationLifetime: TimeSpan.FromSeconds(3),
+                maximumNotificationCount: MaximumNotificationCount.FromCount(5));
+
+            cfg.Dispatcher = Application.Current.Dispatcher;
+        });
         private void loadCustomerWithFilter(CustomerPG parameter)
         {
             parameter.skpCustomer.Children.Clear();
@@ -116,8 +136,13 @@ namespace CarSalesSystem.ViewModel
             customerInfo.CUS_ADDRESS = parameter.tbAddress.Text;
             customerInfo.GENDER = parameter.cbGender.Text;
             customerInfo.CUS_DATE_OF_BIRTH = DateTime.Parse(parameter.dpBirth.Text);
-            customerInfo.IMG = Converter.Instance.StreamFile(imagefilename);
+            if(imagefilename != null)
+            {
+                customerInfo.IMG = Converter.Instance.StreamFile(imagefilename);
+            }
             DataProvider.Ins.DB.SaveChanges();
+            notifier.ShowSuccess("Update Information Successfully");
+            LoadCustomer(customerPG);
             parameter.Close();
 
         }
