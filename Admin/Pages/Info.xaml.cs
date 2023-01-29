@@ -1,5 +1,7 @@
 ﻿using CarSalesSystem.Admin.Windows;
+using CarSalesSystem.Model;
 using CarSalesSystem.Viewmodel;
+using ControlzEx.Standard;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -28,9 +30,19 @@ namespace CarSalesSystem.Admin.Pages
     /// </summary>
     public partial class Info : Page
     {
-        public Info()
+        EMPLOYEE employee;
+        public Info(EMPLOYEE _employee)
         {
             InitializeComponent();
+            
+            employee = _employee;
+            nameTextBox.Text = employee.EMP_NAME;
+            addressTextBox.Text = employee.EMP_ADDRESS;
+            phoneTextBox.Text = employee.PHONE;
+            genderBox.Text = employee.GENDER;
+            birthdayTextBox.SelectedDate = employee.EMP_DATE_OF_BIRTH;
+            oldPassBox.Password = employee.ACCOUNT.PASS;
+            
         }
         Notifier notifier = new Notifier(cfg =>
         {
@@ -49,6 +61,7 @@ namespace CarSalesSystem.Admin.Pages
 
         private void informationButton_Click(object sender, RoutedEventArgs e)
         {
+            
             SqlConnection connection = new SqlConnection();
             connection.ConnectionString = ConfigurationManager.ConnectionStrings["CarSalesSystem.Properties.Settings.CARSALESSYSTEMConnectionString"].ConnectionString;
             try
@@ -60,7 +73,7 @@ namespace CarSalesSystem.Admin.Pages
                         SET EMP_NAME=@EMP_NAME, GENDER=@GENDER, EMP_ADDRESS=@EMP_ADDRESS, EMP_DATE_OF_BIRTH=@EMP_DATE_OF_BIRTH,
                             PHONE=@PHONE
                         WHERE EMP_ID=@EMP_ID";
-                    command.Parameters.AddWithValue("@EMP_ID", AccountInfo.IdAccount);
+                    command.Parameters.AddWithValue("@EMP_ID", employee.EMP_ID);
                     command.Parameters.AddWithValue("@EMP_NAME", nameTextBox.Text);
                     command.Parameters.AddWithValue("@GENDER", genderBox.Text);
                     command.Parameters.AddWithValue("@EMP_ADDRESS", addressTextBox.Text);
@@ -68,7 +81,7 @@ namespace CarSalesSystem.Admin.Pages
                     command.Parameters.AddWithValue("@PHONE", phoneTextBox.Text);
                     command.ExecuteNonQuery();
                 }
-                notifier.ShowSuccess("Updated successfully");
+                notifier.ShowSuccess("Successfully Updated Information");
             }
             catch (Exception exception)
             {
@@ -78,12 +91,39 @@ namespace CarSalesSystem.Admin.Pages
             {
                 connection.Close();
             }
+            
         }
 
 
         private void passwordButton_Click(object sender, RoutedEventArgs e)
         {
-
+            
+            SqlConnection connection = new SqlConnection();
+            connection.ConnectionString = ConfigurationManager.ConnectionStrings["CarSalesSystem.Properties.Settings.CARSALESSYSTEMConnectionString"].ConnectionString;
+            try
+            {
+                connection.Open();
+                using (SqlCommand command = connection.CreateCommand())
+                {
+                    command.CommandText = @"UPDATE ACCOUNT
+                        SET PASS=@PASS
+                        WHERE USERNAME=@USERNAME";
+                    
+                    command.Parameters.AddWithValue("@PASS", newPassBox.Password);
+                    command.Parameters.AddWithValue("@USERNAME", employee.ACCOUNT);
+                    command.ExecuteNonQuery();
+                }
+                notifier.ShowSuccess("Successfully Updated New Password");
+            }
+            catch (Exception exception)
+            {
+                notifier.ShowError(exception.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+            
         }
 
         private void rankUpdateButton_Click(object sender, RoutedEventArgs e)
