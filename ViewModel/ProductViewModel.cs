@@ -15,9 +15,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Forms;
+using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using ToastNotifications;
+using ToastNotifications.Position;
+using ToastNotifications.Lifetime;
+using ToastNotifications.Messages;
 
 namespace CarSalesSystem.ViewModel
 {
@@ -111,6 +116,20 @@ namespace CarSalesSystem.ViewModel
             ClickEditMoneyFeeCommand = new RelayCommand<CheckCompleteMaintainceControl>((parameter) => true, (parameter) => ClickEditMoneyFee(parameter));
             ConfirmTotalFeeMaintainBillCommand = new RelayCommand<TotalFeeMaintaine>((parameter) => true, (parameter) => ConfirmTotalFeeMaintainBill(parameter));
         }
+        Notifier notifier = new Notifier(cfg =>
+        {
+            cfg.PositionProvider = new WindowPositionProvider(
+                parentWindow: System.Windows.Application.Current.MainWindow,
+                corner: Corner.TopRight,
+                offsetX: 10,
+                offsetY: 10);
+
+            cfg.LifetimeSupervisor = new TimeAndCountBasedLifetimeSupervisor(
+                notificationLifetime: TimeSpan.FromSeconds(3),
+                maximumNotificationCount: MaximumNotificationCount.FromCount(5));
+
+            cfg.Dispatcher = System.Windows.Application.Current.Dispatcher;
+        });
 
         private void ConfirmTotalFeeMaintainBill(TotalFeeMaintaine parameter)
         {
@@ -407,9 +426,30 @@ namespace CarSalesSystem.ViewModel
             item.CUSTOMER_ID = cusInfo.CUS_ID;
             item.RANK_ID= cusInfo.RANK_ID;
             DataProvider.Ins.DB.SELLBILLs.Add(item);
+            item.PRODUCT.SELL_NUMBER += +1;
+            decimal value_priceproduct;
+            decimal.TryParse(parameter.tbPriceProduct.Text, NumberStyles.Currency, CultureInfo.CurrentCulture.NumberFormat, out value_priceproduct);
+            cusInfo.REVENUE += value_priceproduct ;
+            cusInfo.PRODUCT_NUMBER += +1;
             DataProvider.Ins.DB.SaveChanges();
+            UpdateRankForCustomer(cusInfo.CUS_ID);
             parameter.Close();
+            notifier.ShowSuccess("Buy Successfully");
 
+        }
+
+        private void UpdateRankForCustomer(string idcus)
+        {
+            var cus = DataProvider.Ins.DB.CUSTOMERs.Find(idcus);
+            var list = DataProvider.Ins.DB.RANK_MONEY.ToList();
+            foreach(var item in list)
+            {
+                if (cus.REVENUE>= item.CASH_LIMIT)
+                {
+                    cus.RANK_ID = item.RANK_ID;
+                }
+            }
+            DataProvider.Ins.DB.SaveChanges();
         }
 
         private void CaculatePriceProduct(BuyProductEmp parameter)
@@ -475,6 +515,7 @@ namespace CarSalesSystem.ViewModel
                         command.Parameters.AddWithValue("@REVENUE", 0);
                         command.Parameters.AddWithValue("@PRODUCT_NUMBER", 0);
                         command.ExecuteNonQuery();
+                        notifier.ShowSuccess("Add Successfully");
                     }
                 }
                 finally
@@ -507,6 +548,11 @@ namespace CarSalesSystem.ViewModel
         {
             this.productControl = parameter;
             idProduct = parameter.tbNo.Text;
+            var productInfo = DataProvider.Ins.DB.PRODUCTs.Find(idProduct);
+            if(productInfo.STORAGE_NUMBER - productInfo.SELL_NUMBER == 0)
+            {
+                notifier.ShowWarning("Don't enoungh Product to buy");
+            }else
             ShowBuyProduct(idProduct);
         }
 
@@ -561,6 +607,7 @@ namespace CarSalesSystem.ViewModel
                 throw;
             }
             ShowLoadImportProduct(warehousePG);
+            notifier.ShowSuccess("Import Successfully");
             parameter.Close();
         }
 
@@ -692,6 +739,7 @@ namespace CarSalesSystem.ViewModel
                 throw;
             }
             ShowLoadProduct(productPG);
+            notifier.ShowSuccess("Add product Successfully");
             parameter.Close();
         }
 
@@ -733,6 +781,7 @@ namespace CarSalesSystem.ViewModel
                 ProductInfo.IMG = Converter.Instance.StreamFile(imagefilename);
             DataProvider.Ins.DB.SaveChanges();
             ShowLoadProduct(productPG);
+            notifier.ShowSuccess("Update Product Successfully");
             parameter.Close();
 
 

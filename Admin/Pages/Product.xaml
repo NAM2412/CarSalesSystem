@@ -22,8 +22,9 @@
             <RowDefinition Height="100"/>
         </Grid.RowDefinitions>
         <i:Interaction.Triggers>
-            <i:EventTrigger>
-                <i:InvokeCommandAction Command="{Binding ShowLoadProductCommand}" CommandParameter="{Binding ElementName=wdProduct}"/>
+            <i:EventTrigger >
+                <i:InvokeCommandAction Command="{Binding ShowLoadProductCommand}"
+                                       CommandParameter="{Binding ElementName=wdProduct}"/>
             </i:EventTrigger>
         </i:Interaction.Triggers>
         <StackPanel

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CarSalesSystem.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,9 @@ namespace CarSalesSystem.Admin.Pages
     /// <summary>
     /// Interaction logic for Employee.xaml
     /// </summary>
-    public partial class Employee : Page
+    public partial class EmployeePG : Page
     {
-        public Employee()
+        public EmployeePG()
         {
             InitializeComponent();
         }
@@ -29,6 +30,18 @@ namespace CarSalesSystem.Admin.Pages
         private void btnAddEmployee_Click(object sender, RoutedEventArgs e)
         {
             Addemp addemp = new Addemp();
+            int k = DataProvider.Ins.DB.EMPLOYEEs.Count()+1;
+            string s = "";
+            if (k < 10)
+            {
+                s = "EP0" + k.ToString();
+            }
+            else
+            {
+                s = "EP" + k.ToString();
+            }
+            addemp.idBox.Text = s;
+            addemp.dowBox.Text = DateTime.UtcNow.Date.ToString();
             addemp.Show();
             
         }

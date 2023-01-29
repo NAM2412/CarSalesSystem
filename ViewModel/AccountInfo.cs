@@ -13,5 +13,7 @@ namespace CarSalesSystem.Viewmodel
 
         private static string idAccount;
         public static string IdAccount { get { return idAccount; } set { idAccount = value; } }
+        private static int type_user;
+        public static int Type_User { get { return type_user; } set { type_user = value; } }
     }
 }

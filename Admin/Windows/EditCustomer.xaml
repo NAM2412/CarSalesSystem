@@ -166,6 +166,7 @@
                                     Width="120"
                                     Height="50"
                                     FontSize="14" 
+                                IsEnabled="False"
                                     Style="{StaticResource MaterialDesignOutlinedComboBox}"
                                     IsReadOnly="True" 
                                     HorizontalContentAlignment="Left"
@@ -351,7 +352,7 @@
                         Foreground="Black"
                         Margin="0,0,30,0"
                         BorderBrush="Black"
-                        Background="#FFFFFF"/>
+                        Background="#FFFFFF" Click="Button_Click"/>
                             <Button
                          Content="Update"
                         Height="40"
