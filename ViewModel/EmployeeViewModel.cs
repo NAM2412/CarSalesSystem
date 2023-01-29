@@ -166,66 +166,89 @@ namespace CarSalesSystem.ViewModel
 
         private void AddEmployee(Addemp parameter)
         {
-            if(parameter.addressBox.Text == null)
+            if(parameter.addressBox.Text.Length == 0)
             {
                 parameter.addressBox.Focus();
             }
-            if (parameter.dobBox.Text == null)
+            else
+            if (parameter.dobBox.Text.Length == 0)
             {
                 parameter.dobBox.Focus();
             }
-            if (parameter.phoneBox.Text == null)
+            else
+            if (parameter.phoneBox.Text.Length == 0)
             {
                 parameter.phoneBox.Focus();
             }
-            var emp = new ACCOUNT();
-            emp.PASS = "123";
-            emp.USERNAME = parameter.idBox.Text;
-            if(parameter.positionBox.SelectedIndex == 0)
+            else
+            if(parameter.FullName.Text.Length == 0)
             {
-                emp.TYPE_USER = 1;
+                parameter.FullName.Focus();
+            }
+            else
+            if (parameter.positionBox.SelectedIndex == -1)
+            {
+                parameter.positionBox.Focus();
+            }
+            else
+            if (parameter.genderBox.SelectedIndex == -1)
+            {
+                parameter.genderBox.Focus();
             }
             else
             {
-                emp.TYPE_USER = 2;
-            }
-            DataProvider.Ins.DB.ACCOUNTs.Add(emp);
-            DataProvider.Ins.DB.SaveChanges();
-            
-           SqlConnection connection = new SqlConnection();
-            connection.ConnectionString = ConfigurationManager.ConnectionStrings["CarSalesSystem.Properties.Settings.CARSALESSYSTEMConnectionString"].ConnectionString;
-            try
-            {
-                connection.Open();
-                using (SqlCommand command = connection.CreateCommand())
+                var emp = new ACCOUNT();
+                emp.PASS = "123";
+                emp.USERNAME = parameter.idBox.Text;
+                if (parameter.positionBox.SelectedIndex == 0)
                 {
-                    command.CommandText = @"INSERT INTO EMPLOYEE (EMP_ID, EMP_ACCOUNT,EMP_NAME, GENDER, EMP_TYPE, EMP_ADDRESS, EMP_DATE_OF_BIRTH, DATE_OF_WORK,PHONE,IMG) 
-                        VALUES(@EMP_ID, @EMP_ACCOUNT,@EMP_NAME, @GENDER, @EMP_TYPE, @EMP_ADDRESS, @EMP_DATE_OF_BIRTH, @DATE_OF_WORK, @PHONE,@IMG)";
-                    command.Parameters.AddWithValue("@EMP_ID",parameter.idBox.Text);
-                    command.Parameters.AddWithValue("@EMP_NAME", parameter.FullName.Text);
-                    command.Parameters.AddWithValue("@EMP_ACCOUNT", parameter.idBox.Text);
-                    command.Parameters.AddWithValue("@GENDER",parameter. genderBox.Text);
-                    command.Parameters.AddWithValue("@EMP_TYPE",parameter. positionBox.Text);
-                    command.Parameters.AddWithValue("@EMP_ADDRESS",parameter. addressBox.Text);
-                    command.Parameters.AddWithValue("@EMP_DATE_OF_BIRTH",parameter. dobBox.SelectedDate.Value.Date.ToShortDateString());
-                    command.Parameters.AddWithValue("@DATE_OF_WORK",parameter.dowBox.SelectedDate.Value.Date.ToShortDateString());
-                    command.Parameters.AddWithValue("@PHONE",parameter. phoneBox.Text);
-                    command.Parameters.AddWithValue("@IMG", Converter.Instance.StreamFile(imagefilename));
-                    command.ExecuteNonQuery();
-                    notifier.ShowSuccess("Added new employee successfully");
+                    emp.TYPE_USER = 1;
+                }
+                else
+                {
+                    emp.TYPE_USER = 2;
+                }
+                DataProvider.Ins.DB.ACCOUNTs.Add(emp);
+                DataProvider.Ins.DB.SaveChanges();
 
+                SqlConnection connection = new SqlConnection();
+                connection.ConnectionString = ConfigurationManager.ConnectionStrings["CarSalesSystem.Properties.Settings.CARSALESSYSTEMConnectionString"].ConnectionString;
+                try
+                {
+                    connection.Open();
+                    using (SqlCommand command = connection.CreateCommand())
+                    {
+                        command.CommandText = @"INSERT INTO EMPLOYEE (EMP_ID, EMP_ACCOUNT,EMP_NAME, GENDER, EMP_TYPE, EMP_ADDRESS, EMP_DATE_OF_BIRTH, DATE_OF_WORK,PHONE,IMG) 
+                        VALUES(@EMP_ID, @EMP_ACCOUNT,@EMP_NAME, @GENDER, @EMP_TYPE, @EMP_ADDRESS, @EMP_DATE_OF_BIRTH, @DATE_OF_WORK, @PHONE,@IMG)";
+                        command.Parameters.AddWithValue("@EMP_ID", parameter.idBox.Text);
+                        command.Parameters.AddWithValue("@EMP_NAME", parameter.FullName.Text);
+                        command.Parameters.AddWithValue("@EMP_ACCOUNT", parameter.idBox.Text);
+                        command.Parameters.AddWithValue("@GENDER", parameter.genderBox.Text);
+                        command.Parameters.AddWithValue("@EMP_TYPE", parameter.positionBox.Text);
+                        command.Parameters.AddWithValue("@EMP_ADDRESS", parameter.addressBox.Text);
+                        command.Parameters.AddWithValue("@EMP_DATE_OF_BIRTH", parameter.dobBox.SelectedDate.Value.Date.ToShortDateString());
+                        command.Parameters.AddWithValue("@DATE_OF_WORK", parameter.dowBox.SelectedDate.Value.Date.ToShortDateString());
+                        command.Parameters.AddWithValue("@PHONE", parameter.phoneBox.Text);
+                        command.Parameters.AddWithValue("@IMG", Converter.Instance.StreamFile(imagefilename));
+                        command.ExecuteNonQuery();
+                        LoadEmployee(EmPG);
+                        notifier.ShowSuccess("Added new employee successfully");
+
+                    }
+                }
+                catch (Exception exception)
+                {
+                    //noti
+                    notifier.ShowError(exception.Message);
+                    return;
+                }
+                finally
+                {
+                    parameter.Close();
+                    connection.Close();
                 }
             }
-            catch (Exception exception)
-            {
-                //noti
-                notifier.ShowError(exception.Message);
-                return;
-            }
-            finally
-            {
-                connection.Close();
-            }
+         
         }
 
         private void LoadEmployee(EmployeePG parameter)

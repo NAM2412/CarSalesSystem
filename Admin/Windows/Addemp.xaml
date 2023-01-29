@@ -283,6 +283,7 @@
                     VerticalAlignment="Bottom"/>
                             <TextBox
                                     x:Name="phoneBox"
+                                    MaxLength="10"
                                     Width="400"
                                     Height="50"
                                     FontSize="14" 

@@ -497,6 +497,14 @@ namespace CarSalesSystem.ViewModel
                     }
                     throw;
                 }
+                if(parameter.tbName.Text == null)
+                {
+                    parameter.tbName.Focus();
+                }
+                if(parameter.tbAddress.Text== null)
+                {
+                    parameter.tbAddress.Focus();
+                }
                 SqlConnection connection = new SqlConnection();
                 connection.ConnectionString = ConfigurationManager.ConnectionStrings["CarSalesSystem.Properties.Settings.CARSALESSYSTEMConnectionString"].ConnectionString;
                 try
@@ -807,6 +815,11 @@ namespace CarSalesSystem.ViewModel
         private void ShowLoadProduct(ProductPG parameter)
         {
             this.productPG = parameter;
+            if (AccountInfo.Type_User == 0)
+            {
+                parameter.btnAddProduct.Visibility = Visibility.Visible;
+            }
+            else parameter.btnAddProduct.Visibility = Visibility.Collapsed;
             parameter.skpProduct.Children.Clear();
             var listProduct = DataProvider.Ins.DB.PRODUCTs.ToList();
             bool flat = false;

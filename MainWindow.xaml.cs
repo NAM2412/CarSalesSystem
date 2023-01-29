@@ -1,4 +1,5 @@
 ﻿using CarSalesSystem.General;
+using CarSalesSystem.ViewModel;
 using System;
 using System.Windows;
 using System.Windows.Input;
@@ -15,10 +16,12 @@ namespace CarSalesSystem
     public partial class MainWindow : Window
     {
         bool isMaximized = false;
+        public MainWindowViewModel mainwindow;
         public MainWindow()
         {
             InitializeComponent();
             PagesNavigation.Navigate(new System.Uri("Admin/Pages/Dashboard.xaml", UriKind.RelativeOrAbsolute));
+            this.DataContext = mainwindow = new MainWindowViewModel();
 
         }
         Notifier notifier = new Notifier(cfg =>
