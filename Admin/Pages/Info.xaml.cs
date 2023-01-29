@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CarSalesSystem.Admin.Windows;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -57,6 +58,12 @@ namespace CarSalesSystem.Admin.Pages
         private void passwordButton_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void rankUpdateButton_Click(object sender, RoutedEventArgs e)
+        {
+            UpdateRankMoney updateRankMoney = new UpdateRankMoney();
+            updateRankMoney.Show();
         }
     }
 }

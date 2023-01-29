@@ -37,5 +37,6 @@ namespace CarSalesSystem.Model
         public virtual DbSet<SELLBILL> SELLBILLs { get; set; }
         public virtual DbSet<TYPEPRODUCT> TYPEPRODUCTs { get; set; }
         public virtual DbSet<IMPORTRECEIPTINFO> IMPORTRECEIPTINFOes { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
     }
 }

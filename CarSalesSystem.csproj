@@ -274,6 +274,9 @@
     <Compile Include="Admin\Windows\TotalFeeMaintaine.xaml.cs">
       <DependentUpon>TotalFeeMaintaine.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Admin\Windows\UpdateRankMoney.xaml.cs">
+      <DependentUpon>UpdateRankMoney.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Customer\Windows\MaintenanceBill.xaml.cs">
       <DependentUpon>MaintenanceBill.xaml</DependentUpon>
     </Compile>
@@ -323,6 +326,9 @@
       <DependentUpon>CARSALESYSTEM.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\SELLBILL.cs">
+      <DependentUpon>CARSALESYSTEM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\sysdiagram.cs">
       <DependentUpon>CARSALESYSTEM.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\TYPEPRODUCT.cs">
@@ -437,6 +443,10 @@
     <Page Include="Admin\Windows\Updateemp.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Admin\Windows\UpdateRankMoney.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CustomerWindow.xaml">
       <SubType>Designer</SubType>
@@ -687,6 +697,7 @@
     <None Include="packages\MaterialDesignThemes.4.6.1\build\MaterialDesignThemes.targets" />
     <Resource Include="Customer\Windows\error.png" />
     <Resource Include="Customer\Windows\sedan.png" />
+    <Content Include="CarSalesSystem.sql" />
     <Content Include="Model\CARSALESYSTEM.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>CARSALESYSTEM.edmx</DependentUpon>
