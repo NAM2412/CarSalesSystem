@@ -31,18 +31,18 @@ namespace CarSalesSystem.Admin.Pages
     public partial class Info : Page
     {
         EMPLOYEE employee;
-        public Info(EMPLOYEE _employee)
+        public Info(/*EMPLOYEE _employee*/)
         {
             InitializeComponent();
             
-            employee = _employee;
-            nameTextBox.Text = employee.EMP_NAME;
-            addressTextBox.Text = employee.EMP_ADDRESS;
-            phoneTextBox.Text = employee.PHONE;
-            genderBox.Text = employee.GENDER;
-            birthdayTextBox.SelectedDate = employee.EMP_DATE_OF_BIRTH;
-            oldPassBox.Password = employee.ACCOUNT.PASS;
-            
+
+            var empinfo = DataProvider.Ins.DB.EMPLOYEEs.Find(AccountInfo.IdAccount);
+            nameTextBox.Text = empinfo.EMP_NAME;
+            addressTextBox.Text = empinfo.EMP_ADDRESS;
+            phoneTextBox.Text = empinfo.PHONE;
+            genderBox.Text = empinfo.GENDER;
+            birthdayTextBox.SelectedDate = empinfo.EMP_DATE_OF_BIRTH;
+            oldPassBox.Password = empinfo.ACCOUNT.PASS;
         }
         Notifier notifier = new Notifier(cfg =>
         {
