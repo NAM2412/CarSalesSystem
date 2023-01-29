@@ -130,6 +130,7 @@
                                     BorderBrush="Gray"
                                     FontFamily="mitr"
                                     PreviewTextInput ="PreviewTextInput"
+                                    MaxLength="3"
                                      >
                         </TextBox>
                     </StackPanel>
