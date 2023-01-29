@@ -2,6 +2,7 @@
 using CarSalesSystem.ViewModel;
 using System;
 using System.Windows;
+using System.Windows.Forms;
 using System.Windows.Input;
 using ToastNotifications;
 using ToastNotifications.Lifetime;
@@ -27,7 +28,7 @@ namespace CarSalesSystem
         Notifier notifier = new Notifier(cfg =>
         {
             cfg.PositionProvider = new WindowPositionProvider(
-                parentWindow: Application.Current.MainWindow,
+                parentWindow: System.Windows.Application.Current.MainWindow,
                 corner: Corner.TopRight,
                 offsetX: 10,
                 offsetY: 10);
@@ -36,7 +37,7 @@ namespace CarSalesSystem
                 notificationLifetime: TimeSpan.FromSeconds(3),
                 maximumNotificationCount: MaximumNotificationCount.FromCount(5));
 
-            cfg.Dispatcher = Application.Current.Dispatcher;
+            cfg.Dispatcher = System.Windows.Application.Current.Dispatcher;
         });
 
         private void BorderMouseDown(object sender, MouseButtonEventArgs e)
@@ -102,8 +103,13 @@ namespace CarSalesSystem
 
         private void logoutBtn_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
-            new SignIn().ShowDialog();
+            DialogResult d = (DialogResult)System.Windows.MessageBox.Show("Do you want to sign out?", "Warning", MessageBoxButton.YesNo, MessageBoxImage.Information);
+            if (d == System.Windows.Forms.DialogResult.Yes)
+            {
+                this.Close();
+                new SignIn().ShowDialog();
+            }
+            else return; ;
 
         }
     }
