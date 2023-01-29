@@ -83,7 +83,7 @@
                 </Setter>
             </Style>
             <!--TextBox border style-->
-            <Style TargetType="{x:Type TextBox}">
+            <!--<Style TargetType="{x:Type TextBox}">
                 <Style.Resources>
                     <Style TargetType="{x:Type Border}">
                         <Setter Property="CornerRadius" Value="{DynamicResource ResourceKey=10}" />
@@ -93,7 +93,7 @@
                         <Setter Property="FontSize" Value="40"></Setter>
                     </Style>
                 </Style.Resources>
-            </Style>
+            </Style>-->
 
 
             <!--Rounded button style-->
