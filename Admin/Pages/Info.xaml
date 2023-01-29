@@ -119,19 +119,6 @@
                              Style="{DynamicResource MaterialDesignTextBox}"
                              ></TextBox>
 
-                <Label Grid.Row="0"
-                           Grid.Column="0"
-                           Margin="10 330 0 0"
-                           FontSize="16"
-                           Content="Position:"
-                           FontFamily="Mitr Medium"/>
-                <Label Grid.Row="0"
-                           x:Name="positionLabel"
-                           Grid.Column="1"
-                           Margin="20 330 350 0"
-                           FontSize="16"
-                           FontFamily="Mitr Medium"/>
-
                 <Button Grid.Row="1"
                         Grid.Column="1"
                         x:Name="informationButton"
