@@ -328,7 +328,7 @@
                        VerticalAlignment="Center"
                        Padding="16 0 0 0"
                        ></Label>
-                <Label Grid.Row="0"
+                <PasswordBox Grid.Row="0"
                              Grid.Column="1"
                              x:Name="oldPassBox"
                              BorderBrush="Gray"
@@ -338,7 +338,7 @@
                              Margin="20 10 30 10"
                              Foreground="#134B5F"
                              IsEnabled="True"
-                             ></Label>
+                             ></PasswordBox>
 
                 <Label Grid.Column="0"
                        Grid.Row="1"
@@ -348,7 +348,7 @@
                        VerticalAlignment="Center"
                        Padding="16 0 0 0"
                        ></Label>
-                <Label Grid.Row="1"
+                <PasswordBox Grid.Row="1"
                              Grid.Column="1"
                              x:Name="newPassBox"
                              BorderBrush="Gray"
@@ -358,7 +358,7 @@
                              FontFamily="Nexa ☞"
                              Margin="20 10 30 10"
                              IsEnabled="True"
-                             ></Label>
+                             ></PasswordBox>
 
                 <Label Grid.Column="0"
                        Grid.Row="2"

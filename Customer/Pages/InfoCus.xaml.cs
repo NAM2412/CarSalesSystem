@@ -62,7 +62,7 @@ namespace CarSalesSystem.Customer.Pages
             lbTotalSpent.Content = String.Format("{0:0,0}", totaSpent);
             lbRankName.Content = RenameRankType(cus);
             lbDiscount.Content = cus.RANK_MONEY.DISCOUNT;
-            oldPassBox.Content = cus.ACCOUNT.PASS;
+            oldPassBox.Password = cus.ACCOUNT.PASS;
         }
 
         private string RenameRankType(CUSTOMER _cus)
@@ -113,7 +113,7 @@ namespace CarSalesSystem.Customer.Pages
             {
                 connection.Open();
                 SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.AddWithValue("@PASS", newPassBox.Content);
+                command.Parameters.AddWithValue("@PASS", newPassBox.Password);
                 command.Parameters.AddWithValue("@USERNAME", cus.ACCOUNT);
                 command.ExecuteNonQuery();
                 notifier.ShowSuccess("Successfully Updated New Password");
