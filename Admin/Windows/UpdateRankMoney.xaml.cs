@@ -33,6 +33,12 @@ namespace CarSalesSystem.Admin.Windows
         public UpdateRankMoney()
         {
             InitializeComponent();
+            if (Properties.Settings.Default.userName != string.Empty)
+            {
+                typeComboBox.Text = Properties.Settings.Default.rankType;
+                limitBox.Text = Properties.Settings.Default.cashLimit;
+                discountBox.Text = Properties.Settings.Default.discount;
+            }
         }
         private static readonly Regex _regex = new Regex("[^0-9.-]+"); //regex that matches disallowed text
         private static bool IsTextAllowed(string text)
@@ -73,6 +79,10 @@ namespace CarSalesSystem.Admin.Windows
                     command.ExecuteNonQuery();
                 }
                 notifier.ShowSuccess("Updated successfully");
+                Properties.Settings.Default.rankType = typeComboBox.Text;
+                Properties.Settings.Default.cashLimit = limitBox.Text;
+                Properties.Settings.Default.discount = discountBox.Text;
+                Properties.Settings.Default.Save();
             }
             catch (Exception exception)
             {
