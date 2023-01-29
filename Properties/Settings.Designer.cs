@@ -23,17 +23,6 @@ namespace CarSalesSystem.Properties {
             }
         }
         
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DESKTOP-8RKPG08\\SQLEXPRESS;Initial Catalog=CARSALESSYSTEM;Integrated " +
-            "Security=True")]
-        public string CARSALESSYSTEMConnectionString {
-            get {
-                return ((string)(this["CARSALESSYSTEMConnectionString"]));
-            }
-        }
-        
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
@@ -91,6 +80,17 @@ namespace CarSalesSystem.Properties {
             }
             set {
                 this["discount"] = value;
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DESKTOP-8RKPG08\\\\SQLEXPRESS;Initial Catalog=CARSALESSYSTEM;Integrated" +
+            " Security=True")]
+        public string CARSALESSYSTEMConnectionString {
+            get {
+                return ((string)(this["CARSALESSYSTEMConnectionString"]));
             }
         }
     }
