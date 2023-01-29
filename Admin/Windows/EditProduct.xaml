@@ -64,7 +64,7 @@
                 FontSize="16">
                     </Button>
                 </Grid>
-                <Grid 
+                <!--<Grid 
                     Grid.Row="1"
                     Grid.Column="1"
                     HorizontalAlignment="Left"
@@ -131,9 +131,8 @@
                             Height="32"
                             Width="142"
                             VerticalAlignment="Bottom"/>
-                            <TextBox
-                                
-                                x:Name="tbProducer"
+                            <ComboBox
+                                x:Name="cbProducer"
                                     Width="130"
                                     Margin="0,0,10,0"
                                     Height="40"
@@ -141,7 +140,7 @@
                                     HorizontalContentAlignment="Left"
                                     VerticalContentAlignment="Bottom" 
                                     FontWeight="SemiBold" >
-                            </TextBox>
+                            </ComboBox>
                             <Label
                             Content="Engine Layout" 
                             HorizontalAlignment="Left"
@@ -407,8 +406,371 @@
                         </StackPanel>
 
                     </Grid>
-                </Grid>
+                </Grid>-->
+                <Grid 
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    HorizontalAlignment="Left"
+                    Height="Auto"
+                    Margin="20,20,0,0"
+                    VerticalAlignment="Top" 
+                    Width="Auto">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid 
+                        Grid.Row="0"
+                        VerticalAlignment="Top"   >
+                        <StackPanel  Width="600" Orientation="Horizontal" >
+                            <Label
+                    Content="Name" 
+                    HorizontalAlignment="Left"
+                    FontSize="18" 
+                    FontWeight="Light" 
+                    Foreground="Black"
+                    Height="32" 
+                    Width="140"
+                    VerticalContentAlignment="Bottom"
+                    VerticalAlignment="Bottom"/>
+                            <TextBox
+                                x:Name="tbName"
+                                    Width="200"
+                                    Height="40"
+                                Margin="0,0,10,0"
+                                    FontSize="14" 
+                                    HorizontalContentAlignment="Left"
+                                    VerticalContentAlignment="Bottom" 
+                                    FontWeight="SemiBold" >
+                            </TextBox>
+                            <ComboBox
+                                x:Name="cbYear"
+                                Height="40"
+                                FontSize="18"
+                                VerticalContentAlignment="Bottom"
+                                HorizontalContentAlignment="Center"
+                                materialDesign:HintAssist.Hint="Year"
+                                Width="110"/>
 
+                        </StackPanel>
+                    </Grid>
+                    <Grid 
+                        Grid.Row="1"
+                        VerticalAlignment="Bottom"   >
+                        <StackPanel Orientation="Horizontal">
+                            <Label
+                            Content="Producer" 
+                            HorizontalAlignment="Left"
+                            FontSize="18" 
+                            FontWeight="Light" 
+                            Foreground="Black"
+                            Height="32"
+                            Width="142"
+                            VerticalAlignment="Bottom"/>
+                            <ComboBox
+                                x:Name="cbProducer"
+                                    Width="200"
+                                    Margin="0,0,10,0"
+                                    Height="40"
+                                    FontSize="14" 
+                                    HorizontalContentAlignment="Left"
+                                    VerticalContentAlignment="Bottom" 
+                                    FontWeight="SemiBold" >
+                            </ComboBox>
+                            <ComboBox
+                                x:Name="cbType"
+                                Height="40"
+                                FontSize="18"
+                                VerticalContentAlignment="Bottom"
+                                HorizontalContentAlignment="Center"
+                                materialDesign:HintAssist.Hint="Type"
+                                Width="110"/>
+
+
+                        </StackPanel>
+                    </Grid>
+                    <Grid 
+                        Grid.Row="2"
+                        VerticalAlignment="Bottom"  >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="325*"/>
+                            <ColumnDefinition Width="173*"/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Orientation="Horizontal" Grid.ColumnSpan="2">
+                            <Label
+                                Content="Displacement" 
+                                HorizontalAlignment="Left"
+                                FontSize="18" 
+                                FontWeight="Light" 
+                                Foreground="Black"
+                                Height="32" 
+                                  Width="142"
+                                VerticalAlignment="Bottom"/>
+                            <TextBox
+                                x:Name="tbDispla"
+                                    Width="200"
+                                    Height="40"
+                                Margin="0,0,10,0"
+                                    FontSize="14" 
+                                    HorizontalContentAlignment="Left"
+                                    VerticalContentAlignment="Bottom" 
+                                    FontWeight="SemiBold" >
+                            </TextBox>
+                            <Label
+                                Content="cc" 
+                                HorizontalAlignment="Left"
+                                FontSize="18" 
+                                FontWeight="Light" 
+                                Foreground="Black"
+                                Height="32" 
+
+                                Padding="0,10,0,0"
+                                VerticalAlignment="Bottom"/>
+
+
+                        </StackPanel>
+                    </Grid>
+                    <Grid 
+                        Grid.Row="3"
+                        VerticalAlignment="Bottom"   >
+                        <StackPanel Orientation="Horizontal">
+                            <Label
+                    Content="Max Speed" 
+                    HorizontalAlignment="Left"
+                    FontSize="18" 
+                    FontWeight="Light" 
+                    Foreground="Black"
+                    Height="32" 
+                    Width="142"
+                    VerticalAlignment="Bottom"/>
+                            <TextBox
+                                x:Name="tbMaxSpeed"
+                                    Width="200"
+                                Margin="0,0,10,0"
+                                    Height="40"
+                                    FontSize="14" 
+                                    HorizontalContentAlignment="Left"
+                                    VerticalContentAlignment="Bottom" 
+                                    FontWeight="SemiBold" >
+                            </TextBox>
+                            <Label
+                                Content="km/h" 
+                                HorizontalAlignment="Left"
+                                FontSize="18" 
+                                FontWeight="Light" 
+                                Foreground="Black"
+                                Height="32" 
+                                  Width="142"
+                                Padding="0,10,0,0"
+                                VerticalAlignment="Bottom"/>
+
+                        </StackPanel>
+                    </Grid>
+                    <Grid 
+                        Grid.Row="4"
+                        VerticalAlignment="Bottom"  >
+                        <StackPanel Orientation="Horizontal">
+                            <Label
+                    Content="Max Power" 
+                    HorizontalAlignment="Left"
+                    FontSize="18" 
+                    FontWeight="Light" 
+                    Foreground="Black"
+                    Height="32" 
+                    Width="142"
+                    VerticalAlignment="Bottom"/>
+                            <TextBox
+                                x:Name="tbMaxPower"
+                                    Width="200"
+                                    Height="40"
+                                Margin="0,0,10,0"
+                                    FontSize="14" 
+                                    HorizontalContentAlignment="Left"
+                                    VerticalContentAlignment="Bottom" 
+                                    FontWeight="SemiBold" >
+                            </TextBox>
+                            <Label
+                    Content="HP" 
+                    HorizontalAlignment="Left"
+                    FontSize="18" 
+                    FontWeight="Light" 
+                                Padding="0,10,0,0"
+                    Foreground="Black"
+                    Height="32" 
+                    Width="142"
+                    VerticalAlignment="Bottom"/>
+                        </StackPanel>
+                    </Grid>
+                    <Grid 
+                        Grid.Row="5"
+                       VerticalAlignment="Bottom" 
+                        Width="600" >
+                        <StackPanel Orientation="Horizontal">
+                            <Label
+                    Content="Acceleration" 
+                    HorizontalAlignment="Left"
+                    FontSize="18" 
+                    FontWeight="Light" 
+                    Foreground="Black"
+                    Height="32"
+                        Width="140"
+                    VerticalAlignment="Center"/>
+                            <TextBox
+                                x:Name="tbAcce"
+                                    Width="200"
+                                    Height="40"
+                                    FontSize="14" 
+                                Margin="0,0,10,0"
+                                HorizontalContentAlignment="Left"
+                                    VerticalContentAlignment="Bottom" 
+                                    FontWeight="SemiBold" >
+                            </TextBox>
+                            <Label
+                                Content="sec" 
+                                HorizontalAlignment="Left"
+                                FontSize="18" 
+                                FontWeight="Light" 
+                                Foreground="Black"
+                                Height="32" 
+                                  Width="142"
+                                Padding="0,10,0,0"
+                                VerticalAlignment="Bottom"/>
+
+
+                        </StackPanel>
+                    </Grid>
+                    <Grid 
+                        Grid.Row="6"
+                        VerticalAlignment="Bottom"  >
+                        <StackPanel Orientation="Horizontal">
+                            <Label
+                    Content="Traction" 
+                    HorizontalAlignment="Left"
+                    FontSize="18" 
+                    FontWeight="Light"  
+                    Foreground="Black"
+                    Height="32" 
+                        Width="140"
+                    VerticalAlignment="Bottom"/>
+                            <TextBox
+                                x:Name="tbTraction"
+                                    Width="200"
+                                    Height="40"
+                                    FontSize="14" 
+                                    HorizontalContentAlignment="Left"
+                                    VerticalContentAlignment="Bottom" 
+                                    FontWeight="SemiBold" >
+                            </TextBox>
+
+                        </StackPanel>
+                    </Grid>
+                    <Grid 
+                        Grid.Row="7"
+                        VerticalAlignment="Bottom" 
+                        Width="600" >
+                        <StackPanel Orientation="Horizontal">
+                            <Label
+                            Content="Engine Layout" 
+                           HorizontalAlignment="Left"
+                    FontSize="18" 
+                    FontWeight="Light"  
+                    Foreground="Black"
+                    Height="32" 
+                       Width="140"
+                    VerticalAlignment="Bottom"/>
+                            <TextBox
+                                x:Name="tbEngine"
+                                    Width="200"
+                                    Height="40"
+                                    FontSize="14" 
+                                    HorizontalAlignment="Left"
+                                    VerticalContentAlignment="Bottom" 
+                                    FontWeight="SemiBold" >
+                            </TextBox>
+                        </StackPanel>
+                    </Grid>
+                    <Grid 
+                        Grid.Row="8"
+                        VerticalAlignment="Bottom" 
+                        Width="600" >
+                        <StackPanel Orientation="Horizontal">
+                            <Label
+                    Content="Price" 
+                    HorizontalAlignment="Left"
+                    FontSize="18" 
+                    FontWeight="Light"  
+                    Foreground="Black"
+                    Height="32" 
+                       Width="140"
+                    VerticalAlignment="Bottom"/>
+                            <TextBox
+                                x:Name="tbPrice"
+                                    Width="200"
+                                    Height="40"
+                                Margin="0,0,10,0"
+                                    FontSize="14" 
+                                    HorizontalContentAlignment="Left"
+                                    VerticalContentAlignment="Bottom" 
+                                    FontWeight="SemiBold" >
+                            </TextBox>
+                            <Label
+                                Content="$" 
+                                HorizontalAlignment="Left"
+                                FontSize="18" 
+                                FontWeight="Light" 
+                                Foreground="Black"
+                                Height="32" 
+                                  Width="142"
+                                Padding="0,10,0,0"
+                                VerticalAlignment="Bottom"/>
+                        </StackPanel>
+                    </Grid>
+                    <Grid 
+                        Margin="0,15,0,0"
+                    Grid.Row="9"
+                    Height="40" 
+                    VerticalAlignment="Bottom" 
+                    HorizontalAlignment="Right">
+                        <StackPanel Orientation="Horizontal" Margin="0,0,20,0">
+                            <Button
+                                x:Name="btnBack"
+                         Content="Back"
+                        Height="40"
+                        FontSize="14"
+                         Command="{Binding  BackEditProductCommand}"
+                        CommandParameter="{Binding ElementName=wdEditProduct}"
+                        Width="100"
+                        ToolTip="Back Front Screen" 
+                        HorizontalAlignment="Right"
+                        Foreground="Black"
+                        Margin="0,0,30,0"
+                        BorderBrush="Black"
+                        Background="#FFFFFF"/>
+                            <Button
+                             x:Name="btnUpdate"
+                         Content="Update"
+                        Height="40"
+                        FontSize="14"
+                         Command="{Binding UpdateProductCommand}"
+                         CommandParameter="{Binding ElementName=wdEditProduct}"
+                        Width="100"
+                        ToolTip="Add the information of employee" 
+                        HorizontalAlignment="Right"
+                        Foreground="White"
+                        BorderBrush="#134B5F"
+                        Background="#134B5F"/>
+                        </StackPanel>
+
+                    </Grid>
+                </Grid>
             </Grid>
         </Border>
     </Grid>
