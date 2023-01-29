@@ -58,7 +58,23 @@ namespace CarSalesSystem.Customer.Pages
             txbPhoneNumber.Text = cus.PHONE;
             genderBox.Text = cus.GENDER;
             dtpDateOfBirth.SelectedDate = cus.CUS_DATE_OF_BIRTH;
-            decimal totaSpent = (decimal)DataProvider.Ins.DB.ORDERBILLs.Where(x => x.CUSTOMER_ID == cus.CUS_ID).Sum(x => x.TOTAL_PRICE);
+            decimal totaSpent;
+            if (DataProvider.Ins.DB.ORDERBILLs.Where(x => x.CUSTOMER_ID == cus.CUS_ID).Sum(x => x.TOTAL_PRICE) == null)
+            {
+                totaSpent = 0;
+            }
+            else
+            {
+                totaSpent = (decimal)DataProvider.Ins.DB.ORDERBILLs.Where(x => x.CUSTOMER_ID == cus.CUS_ID).Sum(x => x.TOTAL_PRICE);
+            }
+            if (totaSpent == 0)
+            {
+                lbTotalSpent.Content = "0";
+            }
+            else
+            {
+                lbTotalSpent.Content = String.Format("{0:0,0}", totaSpent);
+            }
             lbTotalSpent.Content = String.Format("{0:0,0}", totaSpent);
             lbRankName.Content = RenameRankType(cus);
             lbDiscount.Content = cus.RANK_MONEY.DISCOUNT;

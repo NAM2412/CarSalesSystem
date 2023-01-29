@@ -866,6 +866,14 @@ namespace CarSalesSystem.ViewModel
             editProduct.tbMaxPower.Text = productInfo.MAXPOWER.ToString();
             editProduct.tbAcce.Text = productInfo.ACCELERATION;
             editProduct.tbTraction.Text = productInfo.TRACTION;
+            if(AccountInfo.Type_User == 0)
+            {
+                editProduct.tbPrice.IsEnabled = true;
+            }
+            else
+            {
+                editProduct.tbPrice.IsEnabled = false;
+            }
             editProduct.tbPrice.Text = ((int)productInfo.PRICE).ToString();
             if (productInfo.IMG != null)
             {
