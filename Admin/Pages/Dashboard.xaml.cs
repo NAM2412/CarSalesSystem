@@ -1,9 +1,17 @@
 ﻿using CarSalesSystem.Model;
+using LiveCharts;
+using LiveCharts.Wpf;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Data.Entity;
 using System.Linq;
+using System.Runtime.CompilerServices;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.UI.WebControls;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -19,13 +27,48 @@ namespace CarSalesSystem.Admin.Pages
     /// <summary>
     /// Interaction logic for Dashboard.xaml
     /// </summary>
-    public partial class Dashboard : Page
+    public partial class Dashboard : Page, INotifyPropertyChanged
     {
         PRODUCT product;
+        
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        public SeriesCollection seriesCollection { get; set; }
+        public string[] labels { get; set; }
+        public Func<string, string> formatter { get; set; }
+        SELLBILL[] sellBills = DataProvider.Ins.DB.SELLBILLs.ToArray();
+       
         public Dashboard()
         {
             InitializeComponent();
-            
+            #region Revenue Chart
+            ChartValues<decimal> values = new ChartValues<decimal>();
+            foreach (var price in sellBills)
+            {
+                values.Add((decimal)price.TOTAL_PRICE);
+            }    
+             
+            seriesCollection = new SeriesCollection()
+            {
+                new LineSeries
+                {
+                    Title = "Revenue",
+                    PointGeometrySize = 10,
+                    StrokeThickness = 2,
+                    Values = values
+                }
+            };
+            DataContext = this;
+            labels = new[] { "1","2","3","4","5","6","7","8","9","10","11","12" };
+            #endregion
+
+            #region Information Of CarCard
             cardBugatti.SaleNumber = NumberCarSale("P001").ToString();
             cardBugatti.Profit = String.Format("{0:0,0}", Calculateprofit("P001"));
 
@@ -40,11 +83,21 @@ namespace CarSalesSystem.Admin.Pages
 
             cardLexus.SaleNumber = NumberCarSale("P006").ToString();
             cardLexus.Profit = String.Format("{0:0,0}", Calculateprofit("P006"));
+            #endregion
 
+            #region Information Of InfoCard
             salesCard.Number = DataProvider.Ins.DB.SELLBILLs.Count().ToString();
             orderCard.Number = DataProvider.Ins.DB.ORDERBILLs.Count().ToString();
             var revenueInfo  = DataProvider.Ins.DB.SELLBILLs.Sum(x => x.TOTAL_PRICE);
             revenueCard.Number = String.Format("{0:0,0}", revenueInfo);
+            #endregion
+        }
+
+        private void swap(SELLBILL a, SELLBILL b)
+        {
+            SELLBILL temp = a;
+            a = b;
+            b = temp;
         }
         private int NumberCarSale(string carID)
         {

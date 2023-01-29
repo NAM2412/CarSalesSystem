@@ -697,6 +697,7 @@
     <None Include="packages\MaterialDesignThemes.4.6.1\build\MaterialDesignThemes.targets" />
     <Resource Include="Customer\Windows\error.png" />
     <Resource Include="Customer\Windows\sedan.png" />
+    <Content Include="CarSalesSystem.sql" />
     <Content Include="Model\CARSALESYSTEM.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>CARSALESYSTEM.edmx</DependentUpon>
