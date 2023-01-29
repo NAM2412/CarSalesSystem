@@ -175,10 +175,17 @@ namespace CarSalesSystem.General
                     }
                     else
                     {
-                        adminWindow.Show();
+                        
+                        
                         EMPLOYEE emp = DataProvider.Ins.DB.EMPLOYEEs.Where(x => x.EMP_ACCOUNT == usernameTextBox.Text).FirstOrDefault();
                         AccountInfo.Type_User=emp.ACCOUNT.TYPE_USER;
                         AccountInfo.IdAccount = emp.EMP_ID;
+                        if (emp.ACCOUNT.TYPE_USER == 1)
+                        {
+                            adminWindow.employeeBtn.Visibility = Visibility.Collapsed;
+                        }
+                        else adminWindow.employeeBtn.Visibility = Visibility.Visible;
+                        adminWindow.Show();
                     }
                        
                     if (rememberCheckBox.IsChecked == true)
