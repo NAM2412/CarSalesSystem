@@ -162,11 +162,13 @@ namespace CarSalesSystem.General
                         CustomerWindow customerWindow = new CustomerWindow(cus);
                         customerWindow.Show();
                         AccountInfo.IdAccount = cus.CUS_ID;
+                        AccountInfo.Type_User = 2;
                     }
                     else
                     {
                         adminWindow.Show();
                         EMPLOYEE emp = DataProvider.Ins.DB.EMPLOYEEs.Where(x => x.EMP_ACCOUNT == usernameTextBox.Text).FirstOrDefault();
+                        AccountInfo.Type_User=emp.ACCOUNT.TYPE_USER;
                         AccountInfo.IdAccount = emp.EMP_ID;
                     }
                        

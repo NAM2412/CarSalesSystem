@@ -15,16 +15,16 @@ using System.Windows.Shapes;
 namespace CarSalesSystem.Admin.Windows
 {
     /// <summary>
-    /// Interaction logic for EditCustomer.xaml
+    /// Interaction logic for Editemp.xaml
     /// </summary>
-    public partial class EditCustomer : Window
+    public partial class Editemp : Window
     {
-        public EditCustomer()
+        public Editemp()
         {
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void backButton_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }

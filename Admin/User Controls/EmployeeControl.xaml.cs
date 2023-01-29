@@ -10,23 +10,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace CarSalesSystem.Admin.Windows
+namespace CarSalesSystem.Admin.User_Controls
 {
     /// <summary>
-    /// Interaction logic for EditCustomer.xaml
+    /// Interaction logic for EmployeeControl.xaml
     /// </summary>
-    public partial class EditCustomer : Window
+    public partial class EmployeeControl : UserControl
     {
-        public EditCustomer()
+        public EmployeeControl()
         {
             InitializeComponent();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
         }
     }
 }
