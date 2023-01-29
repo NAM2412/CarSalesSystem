@@ -76,6 +76,7 @@ namespace CarSalesSystem.ViewModel
         public ICommand ShowListMainTainCommand { get; set; }
         public ICommand ClickEditMoneyFeeCommand { get; set; }
         public ICommand ConfirmTotalFeeMaintainBillCommand { get; set; }
+        public ICommand ShowUpdateAndAddProducerCommand { get; set; }
         public ProductViewModel()
         {
             EditProductCommand = new RelayCommand<ProductControl>((parameter) => true, (parameter) => ClickEditProduct(parameter));
@@ -115,7 +116,21 @@ namespace CarSalesSystem.ViewModel
             CheckBuyProductEmpCommand = new RelayCommand<CheckOrderUserControl>((parameter) => true, (parameter) => ClickBuyProductEmp(parameter));
             ClickEditMoneyFeeCommand = new RelayCommand<CheckCompleteMaintainceControl>((parameter) => true, (parameter) => ClickEditMoneyFee(parameter));
             ConfirmTotalFeeMaintainBillCommand = new RelayCommand<TotalFeeMaintaine>((parameter) => true, (parameter) => ConfirmTotalFeeMaintainBill(parameter));
+            ShowUpdateAndAddProducerCommand = new RelayCommand<ProductPG>((parameter) => true, (parameter) => ShowUpdateAndAddProducer(parameter));
         }
+
+        private void ShowUpdateAndAddProducer(ProductPG parameter)
+        {
+            AddAndUpdateProducer addAndUpdateProducer = new AddAndUpdateProducer();
+            var listid = DataProvider.Ins.DB.PRODUCERs.ToList();
+            addAndUpdateProducer.cbIdProducer.Items.Add("NEW");
+            foreach (var item in listid)
+            {
+                addAndUpdateProducer.cbIdProducer.Items.Add(item.PRODUCER_ID);
+            }
+            addAndUpdateProducer.ShowDialog();
+        }
+
         Notifier notifier = new Notifier(cfg =>
         {
             cfg.PositionProvider = new WindowPositionProvider(
@@ -781,7 +796,10 @@ namespace CarSalesSystem.ViewModel
             ProductInfo.ACCELERATION = parameter.tbAcce.Text;
             ProductInfo.TRACTION = parameter.tbTraction.Text;
             ProductInfo.PRICE = decimal.Parse(parameter.tbPrice.Text);
-            ProductInfo.PRODUCER.PRODUCER_NAME = parameter.tbProducer.Text;
+            var id = DataProvider.Ins.DB.PRODUCERs.Where(x => x.PRODUCER_NAME == parameter.cbProducer.Text).FirstOrDefault();
+            ProductInfo.PRODUCER_ID = id.PRODUCER_ID;
+            var idtype = DataProvider.Ins.DB.TYPEPRODUCTs.Where(x => x.TYPEPRODUCT_NAME == parameter.cbType.Text).FirstOrDefault();
+            ProductInfo.TYPEPRODUCT = idtype;
             ProductInfo.ENGINELAYOUT = parameter.tbEngine.Text;
             ProductInfo.PRO_NAME = parameter.tbName.Text;
             ProductInfo.PRO_YEAR = int.Parse(parameter.cbYear.Text);
@@ -859,7 +877,18 @@ namespace CarSalesSystem.ViewModel
                 editProduct.cbYear.Items.Add(i);
             editProduct.cbYear.Text = productInfo.PRO_YEAR.ToString();
             editProduct.tbName.Text = productInfo.PRO_NAME;
-            editProduct.tbProducer.Text = productInfo.PRODUCER.PRODUCER_NAME;
+            var listproducer = DataProvider.Ins.DB.PRODUCERs.ToList();
+            foreach(var producer in listproducer)
+            {
+                editProduct.cbProducer.Items.Add(producer.PRODUCER_NAME);
+            }
+            var listproducttype = DataProvider.Ins.DB.TYPEPRODUCTs.ToList();
+            foreach(var type in listproducttype)
+            {
+                editProduct.cbType.Items.Add(type.TYPEPRODUCT_NAME);
+            }
+            editProduct.cbType.SelectedIndex = editProduct.cbType.Items.IndexOf(productInfo.TYPEPRODUCT.TYPEPRODUCT_NAME);
+            editProduct.cbProducer.SelectedIndex =  editProduct.cbProducer.Items.IndexOf(productInfo.PRODUCER.PRODUCER_NAME);
             editProduct.tbEngine.Text = productInfo.ENGINELAYOUT;
             editProduct.tbDispla.Text = productInfo.DISPLACEMENT.ToString();
             editProduct.tbMaxSpeed.Text = productInfo.MAXSPEED.ToString();

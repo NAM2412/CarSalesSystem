@@ -262,6 +262,9 @@
     <Compile Include="Admin\User Controls\ProductControl.xaml.cs">
       <DependentUpon>ProductControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Admin\Windows\AddAndUpdateProducer.xaml.cs">
+      <DependentUpon>AddAndUpdateProducer.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Admin\Windows\BuyProductEmp.xaml.cs">
       <DependentUpon>BuyProductEmp.xaml</DependentUpon>
     </Compile>
@@ -416,6 +419,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Admin\User Controls\UnitChart.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Admin\Windows\AddAndUpdateProducer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

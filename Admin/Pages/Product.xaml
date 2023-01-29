@@ -75,7 +75,27 @@
                     Margin="0,0,35,0"
                     VerticalAlignment="Center">
             <Button 
-                        Background="#4d4dff"
+                        x:Name="btnListProducer"
+                        Background="#7CC0D8"
+                        BorderBrush="#7CC0D8"
+                        FontFamily="Hierarchy"
+                        BorderThickness="4"
+                        Content="Update Producer"
+                        Command="{Binding ShowUpdateAndAddProducerCommand}"
+                        CommandParameter ="{Binding ElementName=wdProduct}"
+                        Height="45"
+                        Foreground= "White"
+                        materialDesign:ButtonAssist.CornerRadius="5"
+                        ToolTip="Add" 
+                        Margin="0,0,40,0" 
+                        FontSize="18" 
+                        VerticalAlignment="Center" 
+                        FocusVisualStyle="{x:Null}"
+                        Width="150" 
+                        Padding="0,4,0,0"
+                        FontWeight="Bold"/>
+            <Button 
+                        Background="#A7C7E7"
                          Padding="0,4,0,0"
                         Foreground="White"
                         Content="List Of Order"
@@ -84,7 +104,7 @@
                         ToolTip="Show List Order" 
                         Height="45"
                          FontFamily="Hierarchy"
-                        BorderBrush="#4d4dff"
+                        BorderBrush="#A7C7E7"
                         BorderThickness="4"
                         materialDesign:ButtonAssist.CornerRadius="5"
                         Margin="0" 
@@ -132,7 +152,8 @@
                         Width="130" 
                         Padding="0,4,0,0"
                         FontWeight="Bold"/>
-           
+            
+
         </StackPanel>
         <Grid 
                     Grid.Row="1"
