@@ -49,7 +49,7 @@ namespace CarSalesSystem.Admin.Windows
 
             cfg.LifetimeSupervisor = new TimeAndCountBasedLifetimeSupervisor(
                 notificationLifetime: TimeSpan.FromSeconds(3),
-                maximumNotificationCount: MaximumNotificationCount.FromCount(5));
+                maximumNotificationCount: MaximumNotificationCount.FromCount(3));
 
             cfg.Dispatcher = Application.Current.Dispatcher;
         });
@@ -91,6 +91,8 @@ namespace CarSalesSystem.Admin.Windows
         private void PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             e.Handled = !IsTextAllowed(e.Text);
+            if (e.Text.StartsWith("-"))
+                notifier.ShowWarning("Negative value is not allowed!");
         }
     }
 }
