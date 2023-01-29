@@ -247,6 +247,9 @@
     <Compile Include="Admin\User Controls\CheckOrderUserControl.xaml.cs">
       <DependentUpon>CheckOrderUserControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Admin\User Controls\EmployeeControl.xaml.cs">
+      <DependentUpon>EmployeeControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Admin\User Controls\ImportControl.xaml.cs">
       <DependentUpon>ImportControl.xaml</DependentUpon>
     </Compile>
@@ -258,6 +261,9 @@
     </Compile>
     <Compile Include="Admin\Windows\BuyProductEmp.xaml.cs">
       <DependentUpon>BuyProductEmp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Windows\Editemp.xaml.cs">
+      <DependentUpon>Editemp.xaml</DependentUpon>
     </Compile>
     <Compile Include="Admin\Windows\EditProduct.xaml.cs">
       <DependentUpon>EditProduct.xaml</DependentUpon>
@@ -339,6 +345,8 @@
     <Compile Include="Viewmodel\ControlBarViewModel.cs" />
     <Compile Include="Viewmodel\Converter.cs" />
     <Compile Include="Viewmodel\CustomerViewModel.cs" />
+    <Compile Include="Viewmodel\EmployeeViewModel.cs" />
+    <Compile Include="Viewmodel\MainWindowViewModel.cs" />
     <Compile Include="Viewmodel\ProductViewModel.cs" />
     <Page Include="Admin\Pages\Customer.xaml">
       <SubType>Designer</SubType>
@@ -384,6 +392,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Admin\User Controls\EmployeeControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Admin\User Controls\ImportControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -417,6 +429,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Admin\Windows\EditCustomer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Admin\Windows\Editemp.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
