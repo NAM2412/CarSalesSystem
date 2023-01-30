@@ -13,6 +13,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -46,13 +47,12 @@ namespace CarSalesSystem.Admin.Pages
             if (empinfo.GENDER != null)
                 genderBox.Text = empinfo.GENDER;
             if (empinfo.EMP_DATE_OF_BIRTH != null)
-                birthdayTextBox.SelectedDate = empinfo.EMP_DATE_OF_BIRTH;
-            oldPassBox.Password = empinfo.ACCOUNT.PASS;
+                birthdayTextBox.SelectedDate = empinfo.EMP_DATE_OF_BIRTH;                
         }
         Notifier notifier = new Notifier(cfg =>
         {
             cfg.PositionProvider = new WindowPositionProvider(
-                parentWindow: Application.Current.MainWindow,
+                parentWindow: System.Windows.Application.Current.MainWindow,
                 corner: Corner.TopRight,
                 offsetX: 10,
                 offsetY: 10);
@@ -61,7 +61,7 @@ namespace CarSalesSystem.Admin.Pages
                 notificationLifetime: TimeSpan.FromSeconds(3),
                 maximumNotificationCount: MaximumNotificationCount.FromCount(3));
 
-            cfg.Dispatcher = Application.Current.Dispatcher;
+            cfg.Dispatcher = System.Windows.Application.Current.Dispatcher;
         });
 
         private void informationButton_Click(object sender, RoutedEventArgs e)
@@ -103,7 +103,16 @@ namespace CarSalesSystem.Admin.Pages
 
         private void passwordButton_Click(object sender, RoutedEventArgs e)
         {
-            
+            if (newPassBox.SecurePassword.Length == 0)
+            {
+                notifier.ShowWarning("You must type in your new password.");
+                return;
+            }
+            if (verifyPassBox.SecurePassword.Length == 0)
+            {
+                notifier.ShowWarning("Please check your verify password again.");
+                return;
+            }
             SqlConnection connection = new SqlConnection();
             connection.ConnectionString = ConfigurationManager.ConnectionStrings["CarSalesSystem.Properties.Settings.CARSALESSYSTEMConnectionString"].ConnectionString;
             try
@@ -111,6 +120,16 @@ namespace CarSalesSystem.Admin.Pages
                 connection.Open();
                 using (SqlCommand command = connection.CreateCommand())
                 {
+                    command.CommandText = @"SELECT PASS
+                        FROM ACCOUNT
+                        WHERE USERNAME=@USERNAME";
+                    command.Parameters.AddWithValue("@USERNAME", AccountInfo.Username);
+                    String password = command.ExecuteScalar().ToString();
+                    if(oldPassBox.Password != password)
+                    {
+                        notifier.ShowWarning("Your old password is incorrect, please try again!");
+                        return;
+                    }
                     command.CommandText = @"UPDATE ACCOUNT
                         SET PASS=@PASS
                         WHERE USERNAME=@USERNAME";
@@ -136,6 +155,12 @@ namespace CarSalesSystem.Admin.Pages
         {
             UpdateRankMoney updateRankMoney = new UpdateRankMoney();
             updateRankMoney.Show();
+        }
+
+        private void btnSelectImage_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.ShowDialog();
         }
     }
 }
