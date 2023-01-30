@@ -241,6 +241,17 @@
                 HorizontalAlignment="Center"
                 
                 />
+        
+        <materialDesign:PackIcon 
+                Grid.Column="1"
+                x:Name="iconImage" 
+                Kind="FileImageOutline" 
+                Foreground="DarkGray"
+                Width="200" 
+                Height="200"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"  
+                Margin="0 -380 0 0"/>
         <Button Grid.Column="1"
                 x:Name="btnSelectImage"
                 Width="200"
@@ -253,19 +264,9 @@
                 HorizontalAlignment="Center" 
                 VerticalAlignment="Center"
                 FocusVisualStyle="{x:Null}"
-                FontSize="16">
+                FontSize="16" Click="btnSelectImage_Click"
+                >
         </Button>
-        
-        <materialDesign:PackIcon 
-                Grid.Column="1"
-                x:Name="iconImage" 
-                Kind="FileImageOutline" 
-                Foreground="DarkGray"
-                Width="200" 
-                Height="200"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Center"  
-                Margin="0 -380 0 0"/>
                 
         <!--#endregion-->
 
