@@ -54,7 +54,9 @@
                     Style="{StaticResource MaterialDesignOutlinedComboBox}"
                     ToolTip="MaterialDesignFloatingActionDarkButton"
                     Margin="10 0 0 0"
-                    Width="100">
+                    Width="auto" SelectionChanged="cbSort_SelectionChanged">
+                    <ComboBoxItem>Ascending</ComboBoxItem>
+                    <ComboBoxItem>Descending</ComboBoxItem>
                 </ComboBox>
                 
                 <ComboBox Grid.Column="3" 
