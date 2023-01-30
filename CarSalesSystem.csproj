@@ -292,6 +292,7 @@
     <Compile Include="Customer\Windows\MaintenanceBill.xaml.cs">
       <DependentUpon>MaintenanceBill.xaml</DependentUpon>
     </Compile>
+    <Compile Include="FutureDay.cs" />
     <Compile Include="Model\ACCOUNT.cs">
       <DependentUpon>CARSALESYSTEM.tt</DependentUpon>
     </Compile>
