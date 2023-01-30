@@ -31,18 +31,23 @@ namespace CarSalesSystem.Admin.Pages
     public partial class Info : Page
     {
         EMPLOYEE employee;
-        public Info(EMPLOYEE _employee)
+        public Info(/*EMPLOYEE _employee*/)
         {
             InitializeComponent();
             
-            employee = _employee;
-            nameTextBox.Text = employee.EMP_NAME;
-            addressTextBox.Text = employee.EMP_ADDRESS;
-            phoneTextBox.Text = employee.PHONE;
-            genderBox.Text = employee.GENDER;
-            birthdayTextBox.SelectedDate = employee.EMP_DATE_OF_BIRTH;
-            oldPassBox.Password = employee.ACCOUNT.PASS;
-            
+
+            var empinfo = DataProvider.Ins.DB.EMPLOYEEs.Find(AccountInfo.IdAccount);
+            if (empinfo.EMP_NAME != null)
+                nameTextBox.Text = empinfo.EMP_NAME;
+            if (empinfo.EMP_ADDRESS != null)
+                addressTextBox.Text = empinfo.EMP_ADDRESS;
+            if (empinfo.PHONE != null)
+                phoneTextBox.Text = empinfo.PHONE;
+            if (empinfo.GENDER != null)
+                genderBox.Text = empinfo.GENDER;
+            if (empinfo.EMP_DATE_OF_BIRTH != null)
+                birthdayTextBox.SelectedDate = empinfo.EMP_DATE_OF_BIRTH;
+            oldPassBox.Password = empinfo.ACCOUNT.PASS;
         }
         Notifier notifier = new Notifier(cfg =>
         {
@@ -69,11 +74,12 @@ namespace CarSalesSystem.Admin.Pages
                 connection.Open();
                 using (SqlCommand command = connection.CreateCommand())
                 {
+                    
                     command.CommandText = @"UPDATE EMPLOYEE
                         SET EMP_NAME=@EMP_NAME, GENDER=@GENDER, EMP_ADDRESS=@EMP_ADDRESS, EMP_DATE_OF_BIRTH=@EMP_DATE_OF_BIRTH,
                             PHONE=@PHONE
                         WHERE EMP_ID=@EMP_ID";
-                    command.Parameters.AddWithValue("@EMP_ID", employee.EMP_ID);
+                    command.Parameters.AddWithValue("@EMP_ID", AccountInfo.IdAccount);
                     command.Parameters.AddWithValue("@EMP_NAME", nameTextBox.Text);
                     command.Parameters.AddWithValue("@GENDER", genderBox.Text);
                     command.Parameters.AddWithValue("@EMP_ADDRESS", addressTextBox.Text);
@@ -110,7 +116,7 @@ namespace CarSalesSystem.Admin.Pages
                         WHERE USERNAME=@USERNAME";
                     
                     command.Parameters.AddWithValue("@PASS", newPassBox.Password);
-                    command.Parameters.AddWithValue("@USERNAME", employee.ACCOUNT);
+                    command.Parameters.AddWithValue("@USERNAME", AccountInfo.Username);
                     command.ExecuteNonQuery();
                 }
                 notifier.ShowSuccess("Successfully Updated New Password");
