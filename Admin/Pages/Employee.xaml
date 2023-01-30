@@ -47,13 +47,21 @@
                     Height="28"
                     Width="28"
                     Foreground="#898989"/>
-                    <TextBox Height="Auto"
+                    <TextBox
+                        x:Name="tbFindEmployee"
+                        Height="Auto"
                          BorderThickness="0"
                          VerticalContentAlignment="Center"
                          FontSize="18"
                          FontWeight="Light"
                          HorizontalContentAlignment="Left"
                          Width="603">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="TextChanged">
+                                <i:InvokeCommandAction Command="{Binding LoadFilterEmployeeCommand}"
+                                                       CommandParameter="{Binding ElementName=wdEmployee}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
                     </TextBox>
                 </StackPanel>
             </Border>

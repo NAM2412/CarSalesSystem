@@ -39,6 +39,7 @@ namespace CarSalesSystem.ViewModel
         public ICommand DeleteEmployeeCommand { get; set; }
         public ICommand EditEmployeeCommand { get; set; }
         public ICommand UpdateInfoEmpCommand { get; set; }
+        public ICommand LoadFilterEmployeeCommand { get; set; }
         public EmployeeViewModel()
         {
             LoadEmployeeCommand = new RelayCommand<EmployeePG>((parameter) => true, (parameter) => LoadEmployee(parameter));
@@ -47,6 +48,24 @@ namespace CarSalesSystem.ViewModel
             DeleteEmployeeCommand = new RelayCommand<EmployeeControl>((parameter) => true, (parameter) => DeleteEmployee(parameter));
             EditEmployeeCommand = new RelayCommand<EmployeeControl>((parameter) => true, (parameter) => ClickEditEmployee(parameter));
             UpdateInfoEmpCommand = new RelayCommand<Editemp>((parameter) => true, (parameter) => UpdateInfoEmp(parameter));
+            LoadFilterEmployeeCommand = new RelayCommand<EmployeePG>((parameter) => true, (parameter) => LoadFilterEmployee(parameter));
+        }
+
+        private void LoadFilterEmployee(EmployeePG parameter)
+        {
+            this.empPG = parameter;
+            parameter.stkEmployee.Children.Clear();
+            if (parameter.tbFindEmployee.Text.Trim().Length == 0) LoadEmployee(EmPG);
+            var listemp = DataProvider.Ins.DB.EMPLOYEEs.Where(x => x.EMP_NAME.ToUpper().StartsWith( parameter.tbFindEmployee.Text.ToUpper())).ToList();
+            foreach (var item in listemp)
+            {
+                EmployeeControl empcontrol = new EmployeeControl();
+                empcontrol.tbNo.Text = item.EMP_ID;
+                empcontrol.tbName.Text = item.EMP_NAME;
+                empcontrol.tbSex.Text = item.GENDER.ToString();
+                empcontrol.tbPosition.Text = item.EMP_TYPE;
+                parameter.stkEmployee.Children.Add(empcontrol);
+            }
         }
 
         private void UpdateInfoEmp(Editemp parameter)
