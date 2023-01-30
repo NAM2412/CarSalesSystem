@@ -326,5 +326,27 @@ namespace CarSalesSystem.Customer.Pages
                 }
             }
         }
+
+        private void cbSort_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (products != null)
+            {
+                // Sắp xếp lại
+                for (int i = 0; i < products.Count; i++)
+                {
+                    for (int j = i; j < products.Count; j++)
+                    {
+                        if (compare_sort(products[i], products[j]))
+                        {
+                            PRODUCT temp = products[i];
+                            products[i] = products[j];
+                            products[j] = temp;
+                        }
+                    }
+                }
+
+                listProduct.ItemsSource = products.Skip(cbPage.SelectedIndex * 10).Take(10);
+            }
+        }
     }
 }

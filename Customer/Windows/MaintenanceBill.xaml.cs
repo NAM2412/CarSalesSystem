@@ -60,6 +60,8 @@ namespace CarSalesSystem.Customer.Windows
             decimal maintainPrice = CalculateMaintainFee(orderbill1);
             txtMaintainFee.Text = String.Format("{0:0,0}", maintainPrice);
             txtTenSP.Text = orderbill1.PRODUCT.PRO_NAME;
+            txtMaintainDate.BlackoutDates.AddDatesInPast();
+        
         }
         #endregion
 
@@ -104,7 +106,5 @@ namespace CarSalesSystem.Customer.Windows
             decimal price = _ord.PRODUCT.PRICE - (decimal)ins;
             return price;
         }
-
-      
     }
 }

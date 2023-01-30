@@ -7,7 +7,7 @@
         xmlns:local="clr-namespace:CarSalesSystem.Customer.Windows"
         mc:Ignorable="d"
         ResizeMode="NoResize"
-         xmlns:uc ="clr-namespace:CarSalesSystem.Admin.User_Controls"
+         xmlns:uc ="clr-namespace:CarSalesSystem.Admin.User_Controls" xmlns:domain="clr-namespace:CarSalesSystem"
         WindowStyle="None"
         FontSize="14"
         AllowsTransparency="True"
@@ -79,23 +79,12 @@
                         <DatePicker
                         x:Name="txtMaintainDate"
                                 VerticalAlignment="Center"
-                                Margin="30,0,30,0"
-                                materialDesign:HintAssist.Hint="DAY/MONTH/YEAR"
-                                materialDesign:CalendarAssist.IsHeaderVisible="False"
+                                Margin="30,0,30,0" 
                                 FontStyle="Italic"
                                 IsDropDownOpen="False"
-                                Text="1/1/2001"/>
-                        
-                        <Label 
-                           x:Name="lbcheckdate"
-                           FontWeight="Regular"
-                           VerticalAlignment="Center"
-                           Margin="30,0,30,0"
-                           FontSize="8"
-                           Foreground="Red"
-                           Visibility="Collapsed">*Invalid Date, please pick again
-                           
-                        </Label>
+                                materialDesign:HintAssist.Hint="Future Date"
+                                materialDesign:CalendarAssist.IsHeaderVisible="False">
+                        </DatePicker>
                         <!-- MAINTAIN FEE-->
                         <TextBox x:Name="txtMaintainFee"
                              VerticalAlignment="Center"
