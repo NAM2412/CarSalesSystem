@@ -173,7 +173,7 @@ namespace CarSalesSystem.ViewModel
             if (parameter.cbCompleteOrUn.SelectedIndex == 0)
             {
                 parameter.skpOrderBill.Children.Clear();
-                var listMaintaince = DataProvider.Ins.DB.MAINTENANCEBILLs.Where(x => x.BILL_STATUS == "NOT").ToList();
+                var listMaintaince = DataProvider.Ins.DB.MAINTENANCEBILLs.Where(x => x.BILL_STATUS != "DONE").ToList();
                 foreach (var item in listMaintaince)
                 {
                     CheckCompleteMaintainceControl check = new CheckCompleteMaintainceControl ();
@@ -201,8 +201,8 @@ namespace CarSalesSystem.ViewModel
                     check.tbProductID.Text = item.PRO_ID.ToString();
                     double s = (double)item.TOTALFEE;
                     check.tbTotalPrice.Text = s.ToString("C", CultureInfo.CurrentCulture);
-                    check.btncheckcompleteBill.Visibility = System.Windows.Visibility.Visible;
-                    check.tbEmp.Visibility = System.Windows.Visibility.Hidden;
+                    check.btncheckcompleteBill.Visibility = System.Windows.Visibility.Hidden;
+                    check.tbEmp.Visibility = System.Windows.Visibility.Visible;
                     parameter.skpOrderBill.Children.Add(check);
                 }
             }

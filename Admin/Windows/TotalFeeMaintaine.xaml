@@ -9,7 +9,7 @@
         AllowsTransparency="True"
         Background="Transparent"
         x:Name="wdtotalFee"
-        WindowStartupLocation="CenterOwner"
+        WindowStartupLocation="CenterScreen"
         DataContext="{StaticResource ProductVM}"
         WindowStyle="None"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
