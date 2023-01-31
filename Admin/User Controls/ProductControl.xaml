@@ -76,6 +76,7 @@
                         FontWeight="Light"/>
         <StackPanel Grid.Column="4" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
             <Button 
+                x:Name="btneditinfoproduct"
                          Padding="0,4,0,0"
                         FontFamily="Hierarchy"
                         Margin="0,0,20,0"

@@ -833,11 +833,16 @@ namespace CarSalesSystem.ViewModel
         private void ShowLoadProduct(ProductPG parameter)
         {
             this.productPG = parameter;
-            if (AccountInfo.Type_User == 0)
+            if (AccountInfo.Type_User == 1)
             {
-                parameter.btnAddProduct.Visibility = Visibility.Visible;
+                parameter.btnAddProduct.Visibility = Visibility.Collapsed;
+                parameter.btnListProducer.Visibility = Visibility.Collapsed;
             }
-            else parameter.btnAddProduct.Visibility = Visibility.Collapsed;
+            else
+            { 
+                parameter.btnAddProduct.Visibility = Visibility.Visible;
+                parameter.btnListProducer.Visibility = Visibility.Visible;
+                    }
             parameter.skpProduct.Children.Clear();
             var listProduct = DataProvider.Ins.DB.PRODUCTs.ToList();
             bool flat = false;
@@ -846,9 +851,13 @@ namespace CarSalesSystem.ViewModel
             {
                 ProductControl productControl = new ProductControl();
                 flat = !flat;
-                if (flat)
+                if (AccountInfo.Type_User == 1)
                 {
-                    productControl.grMain.Background = (Brush)new BrushConverter().ConvertFrom("#FFFFFF");
+                    productControl.btneditinfoproduct.Visibility = Visibility.Collapsed;
+                }
+                else
+                {
+                    productControl.btneditinfoproduct.Visibility = Visibility.Visible;
                 }
                 productControl.tbName.Text = product.PRO_NAME;
                 productControl.tbNo.Text = product.PRO_ID;
@@ -895,13 +904,13 @@ namespace CarSalesSystem.ViewModel
             editProduct.tbMaxPower.Text = productInfo.MAXPOWER.ToString();
             editProduct.tbAcce.Text = productInfo.ACCELERATION;
             editProduct.tbTraction.Text = productInfo.TRACTION;
-            if(AccountInfo.Type_User == 0)
+            if(AccountInfo.Type_User == 1)
             {
-                editProduct.tbPrice.IsEnabled = true;
+                editProduct.tbPrice.IsEnabled = false;
             }
             else
             {
-                editProduct.tbPrice.IsEnabled = false;
+                editProduct.tbPrice.IsEnabled = true;
             }
             editProduct.tbPrice.Text = ((int)productInfo.PRICE).ToString();
             if (productInfo.IMG != null)
