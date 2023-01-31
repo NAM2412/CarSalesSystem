@@ -4,19 +4,20 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="8d6fcc875e6b49f79b8ffdb240c785cf" Name="Diagram1" ZoomLevel="106">
-        <EntityTypeShape EntityType="CARSALESSYSTEMModel.ACCOUNT" Width="1.5" PointX="0.75" PointY="9" />
-        <EntityTypeShape EntityType="CARSALESSYSTEMModel.CUSTOMER" Width="1.5" PointX="3" PointY="7.875" />
-        <EntityTypeShape EntityType="CARSALESSYSTEMModel.EMPLOYEE" Width="1.5" PointX="3" PointY="13.125" />
-        <EntityTypeShape EntityType="CARSALESSYSTEMModel.IMPORTRECEIPT" Width="1.5" PointX="5.25" PointY="13.875" />
-        <EntityTypeShape EntityType="CARSALESSYSTEMModel.MAINTENANCEBILL" Width="1.5" PointX="9.75" PointY="15.375" />
-        <EntityTypeShape EntityType="CARSALESSYSTEMModel.ORDERBILL" Width="1.5" PointX="9.75" PointY="11.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="CARSALESSYSTEMModel.PRODUCER" Width="1.5" PointX="5.25" PointY="11.125" />
-        <EntityTypeShape EntityType="CARSALESSYSTEMModel.PRODUCT" Width="1.5" PointX="7.5" PointY="12.375" />
-        <EntityTypeShape EntityType="CARSALESSYSTEMModel.RANK_MONEY" Width="1.5" PointX="0.75" PointY="5.875" />
-        <EntityTypeShape EntityType="CARSALESSYSTEMModel.SELLBILL" Width="1.5" PointX="12.75" PointY="11.25" />
-        <EntityTypeShape EntityType="CARSALESSYSTEMModel.TYPEPRODUCT" Width="1.5" PointX="5.25" PointY="17.375" />
-        <EntityTypeShape EntityType="CARSALESSYSTEMModel.IMPORTRECEIPTINFO" Width="1.5" PointX="12.75" PointY="16" />
+      <Diagram DiagramId="8d6fcc875e6b49f79b8ffdb240c785cf" Name="Diagram1" ZoomLevel="90">
+        <EntityTypeShape EntityType="CARSALESSYSTEMModel.sysdiagram" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="CARSALESSYSTEMModel.ACCOUNT" Width="1.5" PointX="3.375" PointY="9" />
+        <EntityTypeShape EntityType="CARSALESSYSTEMModel.CUSTOMER" Width="1.5" PointX="5.625" PointY="7.875" />
+        <EntityTypeShape EntityType="CARSALESSYSTEMModel.EMPLOYEE" Width="1.5" PointX="5.625" PointY="13" />
+        <EntityTypeShape EntityType="CARSALESSYSTEMModel.IMPORTRECEIPT" Width="1.5" PointX="7.875" PointY="13.875" />
+        <EntityTypeShape EntityType="CARSALESSYSTEMModel.IMPORTRECEIPTINFO" Width="1.5" PointX="15.375" PointY="16" />
+        <EntityTypeShape EntityType="CARSALESSYSTEMModel.MAINTENANCEBILL" Width="1.5" PointX="12.375" PointY="15.375" />
+        <EntityTypeShape EntityType="CARSALESSYSTEMModel.ORDERBILL" Width="1.5" PointX="15.375" PointY="11.375" />
+        <EntityTypeShape EntityType="CARSALESSYSTEMModel.PRODUCER" Width="1.5" PointX="7.875" PointY="11.125" />
+        <EntityTypeShape EntityType="CARSALESSYSTEMModel.PRODUCT" Width="1.5" PointX="10.125" PointY="12.375" />
+        <EntityTypeShape EntityType="CARSALESSYSTEMModel.RANK_MONEY" Width="1.5" PointX="3.375" PointY="5.875" />
+        <EntityTypeShape EntityType="CARSALESSYSTEMModel.SELLBILL" Width="1.5" PointX="12.375" PointY="11.25" />
+        <EntityTypeShape EntityType="CARSALESSYSTEMModel.TYPEPRODUCT" Width="1.5" PointX="7.875" PointY="17.375" />
         <AssociationConnector Association="CARSALESSYSTEMModel.FK_TAIKHOANKH_TAIKHOAN" />
         <AssociationConnector Association="CARSALESSYSTEMModel.FK_TAIKHOANNV_TAIKHOAN" />
         <AssociationConnector Association="CARSALESSYSTEMModel.FK_MAKHBT" />
@@ -28,15 +29,14 @@
         <AssociationConnector Association="CARSALESSYSTEMModel.FK_MANVMH" />
         <AssociationConnector Association="CARSALESSYSTEMModel.FK_HDNH_PRODUCT" />
         <AssociationConnector Association="CARSALESSYSTEMModel.FK_MACTHDNH_HDNH" />
+        <AssociationConnector Association="CARSALESSYSTEMModel.FK_MACTHDNH_PRODUCT" />
         <AssociationConnector Association="CARSALESSYSTEMModel.FK_MASPBT" />
         <AssociationConnector Association="CARSALESSYSTEMModel.FK_MAOB_PRODUCT" />
         <AssociationConnector Association="CARSALESSYSTEMModel.FK_MAOB_RANK" />
         <AssociationConnector Association="CARSALESSYSTEMModel.FK_MANSXSP_MANSX" />
-        <AssociationConnector Association="CARSALESSYSTEMModel.FK_MACTHDNH_PRODUCT" />
         <AssociationConnector Association="CARSALESSYSTEMModel.FK_MALOAISP_MALOAI" />
         <AssociationConnector Association="CARSALESSYSTEMModel.FK_MASPMH" />
         <AssociationConnector Association="CARSALESSYSTEMModel.FK_MARANKMH" />
-        <EntityTypeShape EntityType="CARSALESSYSTEMModel.sysdiagram" Width="1.5" PointX="0.75" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

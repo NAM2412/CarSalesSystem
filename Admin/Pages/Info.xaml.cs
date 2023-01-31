@@ -34,8 +34,7 @@ namespace CarSalesSystem.Admin.Pages
         EMPLOYEE employee;
         public Info(/*EMPLOYEE _employee*/)
         {
-            InitializeComponent();
-            
+            InitializeComponent();          
 
             var empinfo = DataProvider.Ins.DB.EMPLOYEEs.Find(AccountInfo.IdAccount);
             if (empinfo.EMP_NAME != null)
