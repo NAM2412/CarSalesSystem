@@ -43,7 +43,7 @@
                          x:Name="nameTextBox"
                              Margin="20 30 50 290"
                              BorderThickness="0 0 0 2"
-                             BorderBrush="Gray"
+                             BorderBrush="Black"
                              Foreground="Gray"
                              FontSize="18"
                              Style="{DynamicResource MaterialDesignTextBox}"
@@ -62,7 +62,7 @@
                               Padding="5 0 0 0"
                               BorderThickness="2"
                               BorderBrush="Gray"
-                              Foreground="Gray"
+                              Foreground="Black"
                               FontSize="18"
                               >
                     <ComboBoxItem IsSelected="True"
@@ -82,7 +82,7 @@
                              Margin="20 145 50 175"
                              BorderThickness="0 0 0 2"
                              BorderBrush="Gray"
-                             Foreground="Gray"
+                             Foreground="Black"
                              FontSize="18"
                              Style="{DynamicResource MaterialDesignTextBox}"
                              ></TextBox>
@@ -113,7 +113,7 @@
                              Margin="20 270 50 50"
                              BorderThickness="0 0 0 2"
                              BorderBrush="Gray"
-                             Foreground="Gray"
+                             Foreground="Black"
                              FontSize="18"
                              FontFamily="Mitr Light"
                              Style="{DynamicResource MaterialDesignTextBox}"
@@ -276,7 +276,7 @@
                 Background="#134B5F"
                 Margin="50 640 50 0"
                 Click="rankUpdateButton_Click">
-            <Label Content="Check rank money"
+            <Label Content="Update rank money"
                                Foreground="White" FontFamily="Nexa ☞"
                                ></Label>
         </Button>

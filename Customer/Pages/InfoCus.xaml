@@ -41,7 +41,7 @@
                              Margin="20 30 50 290"
                              BorderThickness="0 0 0 2"
                              BorderBrush="Gray"
-                             Foreground="Gray"
+                             Foreground="Black"
                              FontSize="18"
                              Style="{DynamicResource MaterialDesignTextBox}"
                              ></TextBox>
@@ -59,7 +59,7 @@
                               Padding="5 0 0 0"
                               BorderThickness="2"
                               BorderBrush="Gray"
-                              Foreground="Gray"
+                              Foreground="Black"
                               FontSize="18"
                               >
                     <ComboBoxItem FontFamily="Mitr Light">MALE</ComboBoxItem>
@@ -78,7 +78,7 @@
                              Margin="20 145 50 175"
                              BorderThickness="0 0 0 2"
                              BorderBrush="Gray"
-                             Foreground="Gray"
+                             Foreground="Black"
                              FontSize="18"
                              Style="{DynamicResource MaterialDesignTextBox}"
                              ></TextBox>
@@ -109,7 +109,7 @@
                          Margin="20 270 50 50"
                          BorderThickness="0 0 0 2"
                          BorderBrush="Gray"
-                         Foreground="Gray"
+                         Foreground="Black"
                          FontSize="18"
                          FontFamily="Mitr Light"
                          Style="{DynamicResource MaterialDesignTextBox}"
@@ -354,7 +354,7 @@
                              BorderBrush="Gray"
                              Foreground="#134B5F"
                              BorderThickness="0 0 0 2"
-                             FontSize="30" 
+                             FontSize="24" 
                              FontFamily="Nexa ☞"
                              Margin="20 10 30 10"
                              IsEnabled="True"
@@ -375,7 +375,7 @@
                              Foreground="#134B5F"
                              BorderThickness="0 0 0 2"
                              PasswordChar="●"
-                             FontSize="30" 
+                             FontSize="24" 
                              FontFamily="Nexa ☞"
                              Margin="20 10 30 10"
                              IsEnabled="True"

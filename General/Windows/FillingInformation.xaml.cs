@@ -23,6 +23,7 @@ using ToastNotifications.Lifetime;
 using ToastNotifications.Messages;
 using System.Configuration;
 using System.Text.RegularExpressions;
+using CarSalesSystem.Viewmodel;
 
 namespace CarSalesSystem.General.Windows
 {
@@ -128,6 +129,44 @@ namespace CarSalesSystem.General.Windows
                 connection.Open();
                 using (SqlCommand command = connection.CreateCommand())
                 {
+                    command.CommandText = @"SELECT *
+                        FROM ACCOUNT
+                        WHERE USERNAME=@USERNAME";
+                    command.Parameters.AddWithValue("@USERNAME", usernameTextBox.Text);
+                    var result = command.ExecuteScalar();
+                    if (result != null)
+                    {
+                        notifier.ShowWarning("This username is already taken, please try something else.");
+                        return;
+                    }
+
+                }
+            }
+            catch (Exception exception)
+            {
+                notifier.ShowError(exception.Message);
+                return;
+            }
+            finally
+            {
+                connection.Close();
+            }
+            try
+                {
+                connection.Open();
+                using (SqlCommand command = connection.CreateCommand())
+                {
+                    /*command.CommandText = @"SELECT *
+                        FROM ACCOUNT
+                        WHERE USERNAME=@USERNAME";
+                    command.Parameters.AddWithValue("@USERNAME", usernameTextBox.Text);
+                    var result = command.ExecuteScalar();
+                    if (result != null)
+                    {
+                        notifier.ShowWarning("This username is already taken, please try something else.");
+                        return;
+                    }*/
+                    
                     command.CommandText = @"INSERT INTO ACCOUNT(USERNAME,PASS,TYPE_USER)
                         VALUES (@USERNAME, @PASS, @TYPE_USER)";
                     command.Parameters.AddWithValue("@USERNAME", usernameTextBox.Text);
