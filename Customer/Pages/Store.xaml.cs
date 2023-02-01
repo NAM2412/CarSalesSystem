@@ -4,8 +4,10 @@ using CarSalesSystem.Model;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Net.NetworkInformation;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -24,11 +26,20 @@ namespace CarSalesSystem.Customer.Pages
     /// <summary>
     /// Interaction logic for Store.xaml
     /// </summary>
-    public partial class Store : Page
+    public partial class Store : Page, INotifyPropertyChanged
     {
         ObservableCollection<PRODUCT> products;
         CUSTOMER customer;
-    
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        public void NotifyPropertyChanged([CallerMemberName] string propertyName = "")
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }    
+        }
+
         public Store(CUSTOMER cus)
         {
             InitializeComponent();
@@ -81,8 +92,8 @@ namespace CarSalesSystem.Customer.Pages
             Dispatcher.Invoke(() => { sortType = cbSort.SelectedIndex; });
             switch (sortType)
             {
-                case 2: return pRODUCT1.PRICE > pRODUCT2.PRICE; // Tăng dần giá cả
-                case 3: return pRODUCT1.PRICE < pRODUCT2.PRICE; // Giảm dần giá cả
+                case 1: return pRODUCT1.PRICE < pRODUCT2.PRICE; // Tăng dần giá cả
+                case 2: return pRODUCT1.PRICE > pRODUCT2.PRICE; // Giảm dần giá cả
                 default: return true;
             }
         }
