@@ -38,7 +38,14 @@
                     x:Name="cbProducer"
                     Grid.Column="1"
                     Style="{StaticResource MaterialDesignOutlinedComboBox}"
-                    materialDesign:HintAssist.Hint="ALL" DropDownClosed="cbProducer_DropDownClosed" DropDownOpened="cbProducer_DropDownOpened" SelectionChanged="cbProducer_SelectionChanged" >
+                    materialDesign:HintAssist.Hint="ALL" 
+                    DropDownClosed="cbProducer_DropDownClosed" 
+                    DropDownOpened="cbProducer_DropDownOpened" 
+                    
+                    DisplayMemberPath="{Binding ProducerName}"
+                    SelectedValuePath="{Binding ProducerID}">
+                    <!--
+                    SelectionChanged="cbProducer_SelectionChanged"
                     <ComboBoxItem Content="ALL" />
                     <ComboBoxItem Content="TESLA" />
                     <ComboBoxItem Content="TOYOTA" />
@@ -46,7 +53,7 @@
                     <ComboBoxItem Content="LEXUS" />
                     <ComboBoxItem Content="ROLLS-ROYCE" />
                     <ComboBoxItem Content="MASERATI" />
-                    <ComboBoxItem Content="BUGATTI" />
+                    <ComboBoxItem Content="BUGATTI" /> -->
                 </ComboBox>
 
                 <ComboBox Grid.Column="2" 

@@ -5,6 +5,9 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Net.NetworkInformation;
 using System.Runtime.CompilerServices;
@@ -20,6 +23,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ToastNotifications;
+using ToastNotifications.Lifetime;
+using ToastNotifications.Messages;
+using ToastNotifications.Position;
 
 namespace CarSalesSystem.Customer.Pages
 {
@@ -39,11 +46,28 @@ namespace CarSalesSystem.Customer.Pages
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }    
         }
+        #region Notifier
+        Notifier notifier = new Notifier(cfg =>
+        {
+            cfg.PositionProvider = new WindowPositionProvider(
+                parentWindow: Application.Current.MainWindow,
+                corner: Corner.TopRight,
+                offsetX: 10,
+                offsetY: 10);
+
+            cfg.LifetimeSupervisor = new TimeAndCountBasedLifetimeSupervisor(
+                notificationLifetime: TimeSpan.FromSeconds(3),
+                maximumNotificationCount: MaximumNotificationCount.FromCount(5));
+
+            cfg.Dispatcher = Application.Current.Dispatcher;
+        });
+        #endregion
 
         public Store(CUSTOMER cus)
         {
             InitializeComponent();
             customer = cus;
+            LoadDataIntoCombobox(cbProducer);
             Thread thread = new Thread(delegate ()
             {
                 // Get và xác định số trang
@@ -228,114 +252,54 @@ namespace CarSalesSystem.Customer.Pages
             }
             else
             {
-                switch (cbProducer.SelectedIndex)
+                if (cbProducer.SelectedIndex == 0)
                 {
-                    case 0:
-                        {
-                            reset_page(products);
-                            listProduct.ItemsSource = products;
-                        }
-                        break;
-                    case 1:
-                        {
-                            for (int i = 0; i < products.Count; i++)
-                            {
-                                if (products[i].PRODUCER.PRODUCER_NAME == "TESLA") // Nếu tìm thấy tên phù hợp
-                                {
-                                    filterProducts.Add(products[i]); // Thì thêm vào danh sách mới
-                                }
-                            }
-                            reset_page(filterProducts);
-
-                            listProduct.ItemsSource = filterProducts;
-                        }
-                        break;
-                    case 2:
-                        {
-                            for (int i = 0; i < products.Count; i++)
-                            {
-                                if (products[i].PRODUCER.PRODUCER_NAME == "TOYOTA") // Nếu tìm thấy tên phù hợp
-                                {
-                                    filterProducts.Add(products[i]); // Thì thêm vào danh sách mới
-                                }
-                            }
-                            reset_page(filterProducts);
-
-                            listProduct.ItemsSource = filterProducts;
-                        }
-                        break;
-                    case 3:
-                        {
-                            for (int i = 0; i < products.Count; i++)
-                            {
-                                if (products[i].PRODUCER.PRODUCER_NAME == "LAMBORGHINI") // Nếu tìm thấy tên phù hợp
-                                {
-                                    filterProducts.Add(products[i]); // Thì thêm vào danh sách mới
-                                }
-                            }
-                            reset_page(filterProducts);
-
-                            listProduct.ItemsSource = filterProducts;
-                        }
-                        break;
-                    case 4:
-                        {
-                            for (int i = 0; i < products.Count; i++)
-                            {
-                                if (products[i].PRODUCER.PRODUCER_NAME == "LEXUS") // Nếu tìm thấy tên phù hợp
-                                {
-                                    filterProducts.Add(products[i]); // Thì thêm vào danh sách mới
-                                }
-                            }
-                            reset_page(filterProducts);
-
-                            listProduct.ItemsSource = filterProducts;
-                        }
-                        break;
-                    case 5:
-                        {
-                            for (int i = 0; i < products.Count; i++)
-                            {
-                                if (products[i].PRODUCER.PRODUCER_NAME == "ROLLS-ROYCE") // Nếu tìm thấy tên phù hợp
-                                {
-                                    filterProducts.Add(products[i]); // Thì thêm vào danh sách mới
-                                }
-                            }
-                            reset_page(filterProducts);
-
-                            listProduct.ItemsSource = filterProducts;
-                        }
-                        break;
-                    case 6:
-                        {
-                            for (int i = 0; i < products.Count; i++)
-                            {
-                                if (products[i].PRODUCER.PRODUCER_NAME == "MASERATI") // Nếu tìm thấy tên phù hợp
-                                {
-                                    filterProducts.Add(products[i]); // Thì thêm vào danh sách mới
-                                }
-                            }
-                            reset_page(filterProducts);
-
-                            listProduct.ItemsSource = filterProducts;
-                        }
-                        break;
-                   case 7:
-                        {
-                            for (int i = 0; i < products.Count; i++)
-                            {
-                                if (products[i].PRODUCER.PRODUCER_NAME == "BUGATTI") // Nếu tìm thấy tên phù hợp
-                                {
-                                    filterProducts.Add(products[i]); // Thì thêm vào danh sách mới
-                                }
-                            }
-                            reset_page(filterProducts);
-
-                            listProduct.ItemsSource = filterProducts;
-                        }
-                        break;
+                    reset_page(products);
+                    listProduct.ItemsSource = products;
                 }
+                else
+                {
+                    for (int i = 0; i < products.Count; i++)
+                    {
+                        if (products[i].PRODUCER.PRODUCER_ID == cbProducer.SelectedItem.ToString()) // Nếu tìm thấy tên phù hợp
+                        {
+                            filterProducts.Add(products[i]); // Thì thêm vào danh sách mới
+                        }
+                    }
+                    reset_page(filterProducts);
+                    listProduct.ItemsSource = filterProducts;
+                }     
             }
+        }
+        private void LoadDataIntoCombobox(ComboBox comboBox)
+        {
+            SqlConnection connection = new SqlConnection();
+            connection.ConnectionString = ConfigurationManager.ConnectionStrings["NamConnection"].ConnectionString;
+            string query = "select PRODUCER.PRODUCER_ID, PRODUCER.PRODUCER_NAME from PRODUCER";
+            try
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand(query, connection);
+                SqlDataAdapter da = new SqlDataAdapter();
+                da.SelectCommand = command;
+                DataTable table1 = new DataTable();
+                da.Fill(table1);
+
+                DataRow itemRow = table1.NewRow();
+                itemRow[1] = "ALL";
+                table1.Rows.InsertAt(itemRow, 0);
+
+                comboBox.ItemsSource = table1.AsDataView();
+                comboBox.DisplayMemberPath = "PRODUCER_NAME";
+                comboBox.SelectedValuePath = "PRODUCER_ID";
+
+
+            }
+            catch (Exception ex)
+            {
+                notifier.ShowError(ex.Message);
+            }
+            connection.Close();
         }
 
         private void cbSort_SelectionChanged(object sender, SelectionChangedEventArgs e)
