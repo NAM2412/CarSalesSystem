@@ -144,7 +144,8 @@
                          FontFamily="Mitr"
                          Text="Address"
                          GotFocus="addressBox_GotFocus"
-                         LostFocus="addressBox_LostFocus"></TextBox>
+                         LostFocus="addressBox_LostFocus"
+                         ></TextBox>
                 <TextBox Grid.Row="2"
                          x:Name="phoneBox"
                          HorizontalAlignment="Center"
@@ -158,7 +159,8 @@
                          FontFamily="Mitr"
                          Text="Phone number"
                          GotFocus="phoneBox_GotFocus"
-                         LostFocus="phoneBox_LostFocus"></TextBox>
+                         LostFocus="phoneBox_LostFocus"
+                         PreviewTextInput="PreviewTextInput"></TextBox>
 
 
             </Grid>
