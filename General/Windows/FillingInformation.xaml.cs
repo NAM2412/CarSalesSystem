@@ -21,6 +21,8 @@ using ToastNotifications;
 using ToastNotifications.Position;
 using ToastNotifications.Lifetime;
 using ToastNotifications.Messages;
+using System.Configuration;
+using System.Text.RegularExpressions;
 
 namespace CarSalesSystem.General.Windows
 {
@@ -33,6 +35,12 @@ namespace CarSalesSystem.General.Windows
         {
             InitializeComponent();
         }
+        private static readonly Regex _regex = new Regex("[^0-9.-]+"); //regex that matches disallowed text
+        private static bool IsTextAllowed(string text)
+        {
+            return !_regex.IsMatch(text);
+        }
+
 
         Notifier notifier = new Notifier(cfg =>
         {
@@ -111,13 +119,53 @@ namespace CarSalesSystem.General.Windows
                 passwordTextBox.Focus();
                 return;
             }
-            
-            
-            SqlConnection connection = new SqlConnection("Data Source=MSI\\SQLEXPRESS;Initial Catalog=CARSALESSYSTEM;Integrated Security=True;");
+
+
+            SqlConnection connection = new SqlConnection();
+            connection.ConnectionString = ConfigurationManager.ConnectionStrings["CarSalesSystem.Properties.Settings.CARSALESSYSTEMConnectionString"].ConnectionString;
             try
             {
                 connection.Open();
-                SqlCommand cmd = new SqlCommand("Insert into ACCOUNT(USERNAME,PASS,TYPE_USER) values('" + usernameTextBox.Text + "','" + passwordTextBox.Password + "','" + "1')", connection);
+                using (SqlCommand command = connection.CreateCommand())
+                {
+                    command.CommandText = @"INSERT INTO ACCOUNT(USERNAME,PASS,TYPE_USER)
+                        VALUES (@USERNAME, @PASS, @TYPE_USER)";
+                    command.Parameters.AddWithValue("@USERNAME", usernameTextBox.Text);
+                    command.Parameters.AddWithValue("@PASS", passwordTextBox.Password);
+                    command.Parameters.AddWithValue("@TYPE_USER", 2);
+                    command.ExecuteNonQuery();
+                    
+                    command.CommandText = @"INSERT INTO CUSTOMER (CUS_NAME, CUS_ACCOUNT, PHONE, CUS_ADDRESS, REGIST_DATE, RANK_ID)
+                        VALUES (@CUS_NAME, @CUS_ACCOUNT, @PHONE, @CUS_ADDRESS, @REGIST_DATE, @RANK_ID )";
+                    command.Parameters.AddWithValue("@CUS_NAME", nameBox.Text);
+                    command.Parameters.AddWithValue("@CUS_ACCOUNT", usernameTextBox.Text);
+                    command.Parameters.AddWithValue("@PHONE", phoneBox.Text);
+                    command.Parameters.AddWithValue("@CUS_ADDRESS", addressBox.Text);
+                    command.Parameters.AddWithValue("@REGIST_DATE", DateTime.Now.ToShortDateString());
+                    command.Parameters.AddWithValue("@RANK_ID", "R00");
+                    command.ExecuteNonQuery();
+                    
+
+                }
+                SuccessfulMessage message = new SuccessfulMessage();
+                message.Show();
+                this.Close();
+
+            }
+            catch (Exception exception)
+            {
+                notifier.ShowError(exception.Message);
+                return;
+            }
+            finally
+            {
+                connection.Close();
+            }
+            /*
+            try
+            {
+                connection.Open();
+                SqlCommand cmd = new SqlCommand("Insert into ACCOUNT(USERNAME,PASS,TYPE_USER) values('" + usernameTextBox.Text + "','" + passwordTextBox.Password + "','" + "2')", connection);
                 cmd.CommandType = CommandType.Text;
                 cmd.ExecuteNonQuery();
 
@@ -136,11 +184,12 @@ namespace CarSalesSystem.General.Windows
                 notifier.ShowError(exception.Message);
                 return;
             }
-            connection.Close();
-            SuccessfulMessage message= new SuccessfulMessage();
-            message.Show();
-            this.Close();
+            connection.Close();*/
             
+        }
+        private void PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = !IsTextAllowed(e.Text);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
