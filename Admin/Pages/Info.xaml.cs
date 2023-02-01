@@ -110,6 +110,11 @@ namespace CarSalesSystem.Admin.Pages
             }
             if (verifyPassBox.SecurePassword.Length == 0)
             {
+                notifier.ShowWarning("You must verify your password.");
+                return;
+            }
+            if (verifyPassBox.Password != newPassBox.Password)
+            {
                 notifier.ShowWarning("Please check your verify password again.");
                 return;
             }
@@ -125,11 +130,24 @@ namespace CarSalesSystem.Admin.Pages
                         WHERE USERNAME=@USERNAME";
                     command.Parameters.AddWithValue("@USERNAME", AccountInfo.Username);
                     String password = command.ExecuteScalar().ToString();
-                    if(oldPassBox.Password != password)
+                    if (!oldPassBox.Password.Equals(password))
                     {
                         notifier.ShowWarning("Your old password is incorrect, please try again!");
                         return;
                     }
+                }
+            }
+            catch (Exception exception)
+            {
+                notifier.ShowError(exception.Message);
+            }
+            finally { connection.Close(); }
+
+            try
+            {
+                connection.Open();
+                using (SqlCommand command = connection.CreateCommand())
+                {
                     command.CommandText = @"UPDATE ACCOUNT
                         SET PASS=@PASS
                         WHERE USERNAME=@USERNAME";
