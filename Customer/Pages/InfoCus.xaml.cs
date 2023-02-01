@@ -2,6 +2,7 @@
 using CarSalesSystem.Model;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -98,7 +99,8 @@ namespace CarSalesSystem.Customer.Pages
         }
         private void informationButton_Click(object sender, RoutedEventArgs e)
         {
-            SqlConnection connection = new SqlConnection("Data Source=DESKTOP-8RKPG08\\SQLEXPRESS;Initial Catalog=CARSALESSYSTEM;Integrated Security=True");
+            SqlConnection connection = new SqlConnection();
+            connection.ConnectionString = ConfigurationManager.ConnectionStrings["NamConnection"].ConnectionString;
             string query = "update CUSTOMER set CUS_NAME=@CUS_NAME, CUS_DATE_OF_BIRTH=@CUS_DATE_OF_BIRTH, GENDER=@GENDER, PHONE=@PHONE, CUS_ADDRESS=@CUS_ADDRESS where CUS_ID=@CUS_ID";
                 try
                 {
@@ -123,7 +125,8 @@ namespace CarSalesSystem.Customer.Pages
 
         private void passwordButton_Click(object sender, RoutedEventArgs e)
         {
-            SqlConnection connection = new SqlConnection("Data Source=DESKTOP-8RKPG08\\SQLEXPRESS;Initial Catalog=CARSALESSYSTEM;Integrated Security=True");
+            SqlConnection connection = new SqlConnection();
+            connection.ConnectionString = ConfigurationManager.ConnectionStrings["NamConnection"].ConnectionString;
             string query = "update ACCOUNT set PASS=@PASS where USERNAME=@USERNAME";
             try
             {

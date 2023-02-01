@@ -28,6 +28,7 @@ using System.Net;
 using System.IO;
 using System.Security.Cryptography;
 using Newtonsoft.Json;
+using System.Configuration;
 
 namespace CarSalesSystem.General
 {
@@ -143,7 +144,8 @@ namespace CarSalesSystem.General
             if (!passwordValid)
                 passwordTextBox.BorderBrush = Brushes.Red;
             //retrieve data and compare with data from database
-            SqlConnection connection = new SqlConnection("Data Source=MSI\\SQLEXPRESS;Initial Catalog=CARSALESSYSTEM;Integrated Security=True");
+            SqlConnection connection = new SqlConnection();
+            connection.ConnectionString = ConfigurationManager.ConnectionStrings["NamConnection"].ConnectionString;
             try
             {
                 if (connection.State == ConnectionState.Closed)

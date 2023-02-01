@@ -25,7 +25,6 @@ namespace CarSalesSystem.Model
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<ACCOUNT> ACCOUNTs { get; set; }
         public virtual DbSet<CUSTOMER> CUSTOMERs { get; set; }
         public virtual DbSet<EMPLOYEE> EMPLOYEEs { get; set; }
@@ -38,5 +37,6 @@ namespace CarSalesSystem.Model
         public virtual DbSet<RANK_MONEY> RANK_MONEY { get; set; }
         public virtual DbSet<SELLBILL> SELLBILLs { get; set; }
         public virtual DbSet<TYPEPRODUCT> TYPEPRODUCTs { get; set; }
+        public virtual DbSet<sysdiagram1> sysdiagram1 { get; set; }
     }
 }

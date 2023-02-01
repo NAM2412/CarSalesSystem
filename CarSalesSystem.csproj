@@ -341,7 +341,7 @@
     <Compile Include="Model\SELLBILL.cs">
       <DependentUpon>CARSALESYSTEM.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\sysdiagram.cs">
+    <Compile Include="Model\sysdiagram1.cs">
       <DependentUpon>CARSALESYSTEM.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\TYPEPRODUCT.cs">

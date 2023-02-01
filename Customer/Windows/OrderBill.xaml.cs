@@ -22,6 +22,7 @@ using System.Drawing;
 using ToastNotifications.Lifetime;
 using ToastNotifications.Position;
 using ToastNotifications.Messages;
+using System.Configuration;
 
 namespace CarSalesSystem.Customer.Windows
 {
@@ -110,7 +111,8 @@ namespace CarSalesSystem.Customer.Windows
 
         private void btnOrder_Click(object sender, RoutedEventArgs e)
         {
-            SqlConnection connection = new SqlConnection("Data Source=DESKTOP-8RKPG08\\SQLEXPRESS;Initial Catalog=CARSALESSYSTEM;Integrated Security=True");
+            SqlConnection connection = new SqlConnection();
+            connection.ConnectionString = ConfigurationManager.ConnectionStrings["NamConnection"].ConnectionString;
             string query = "insert into ORDERBILL(OB_DATEB,CUSTOMER_ID,PRO_ID,QUANTITY,RANK_ID,TOTAL_PRICE) values (@OB_DATED,@CUS_ID,@PRO_ID,@QUANTITY,@RANK_ID,@TOTAL_PRICE)";
             try
             {

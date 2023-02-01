@@ -2,6 +2,7 @@
 using CarSalesSystem.Model;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.SqlClient;
 using System.Globalization;
 using System.Linq;
@@ -76,8 +77,9 @@ namespace CarSalesSystem.Customer.Windows
         }
         private void btnMaintain_Click(object sender, RoutedEventArgs e)
         {
-                SqlConnection connection = new SqlConnection("Data Source=DESKTOP-8RKPG08\\SQLEXPRESS;Initial Catalog=CARSALESSYSTEM;Integrated Security=True");
-                string query = "insert into MAINTENANCEBILL(MB_DATE,CUSTOMER_ID,PRO_ID,TOTALFEE,BILL_STATUS) values (@MB_DATE,@CUSTOMER_ID,@PRO_ID,@TOTALFEE,@BILL_STATUS)";
+            SqlConnection connection = new SqlConnection();
+            connection.ConnectionString = ConfigurationManager.ConnectionStrings["NamConnection"].ConnectionString;
+            string query = "insert into MAINTENANCEBILL(MB_DATE,CUSTOMER_ID,PRO_ID,TOTALFEE,BILL_STATUS) values (@MB_DATE,@CUSTOMER_ID,@PRO_ID,@TOTALFEE,@BILL_STATUS)";
                 try
                 {
                     connection.Open();
@@ -93,7 +95,7 @@ namespace CarSalesSystem.Customer.Windows
                 }
                 catch (Exception ex)
                 {
-                    notifier.ShowError(ex.Message);
+                    notifier.ShowError("PLease choose a proper date");
                 }
                 connection.Close();
                
