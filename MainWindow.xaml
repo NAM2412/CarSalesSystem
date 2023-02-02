@@ -40,7 +40,18 @@
                             </Border>
                         </Grid>
                         <!--Title app-->
-                        <TextBlock Text="SGAUTO" Foreground="#FFFFFF" FontSize="28" FontFamily="Nexa Demo" Margin="10 4 0 3" FontWeight="Bold">
+
+                        <TextBlock Text="SGAUTO"
+                                   Foreground="#FFFFFF"
+                                   FontSize="18"
+                                   FontFamily="Porsche"
+                                   Margin="10 4 0 3"
+                                   FontWeight="Bold"
+                                   VerticalAlignment="Center">
+
+
+                        
+
                         </TextBlock>
                     </StackPanel>
                     <!--Menu Items-->

@@ -349,6 +349,7 @@
     </Compile>
     <Compile Include="Viewmodel\AccountInfo.cs" />
     <Compile Include="Viewmodel\BaseViewModel.cs" />
+    <Compile Include="Viewmodel\RankInfo.cs" />
     <Compile Include="Viewmodel\ControlBarViewModel.cs" />
     <Compile Include="Viewmodel\Converter.cs" />
     <Compile Include="Viewmodel\CustomerViewModel.cs" />
