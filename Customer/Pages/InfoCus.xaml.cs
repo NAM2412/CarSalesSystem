@@ -1,5 +1,6 @@
 ﻿using CarSalesSystem.Admin.Pages;
 using CarSalesSystem.Model;
+using CarSalesSystem.Viewmodel;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -125,23 +126,69 @@ namespace CarSalesSystem.Customer.Pages
 
         private void passwordButton_Click(object sender, RoutedEventArgs e)
         {
+            if (newPassBox.SecurePassword.Length == 0)
+            {
+                notifier.ShowWarning("You must type in your new password.");
+                return;
+            }
+            if (verifyPassBox.SecurePassword.Length == 0)
+            {
+                notifier.ShowWarning("You must verify your password.");
+                return;
+            }
+            if (verifyPassBox.Password != newPassBox.Password)
+            {
+                notifier.ShowWarning("Please check your verify password again.");
+                return;
+            }
             SqlConnection connection = new SqlConnection();
             connection.ConnectionString = ConfigurationManager.ConnectionStrings["NamConnection"].ConnectionString;
-            string query = "update ACCOUNT set PASS=@PASS where USERNAME=@USERNAME";
             try
             {
                 connection.Open();
-                SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.AddWithValue("@PASS", newPassBox.Password);
-                command.Parameters.AddWithValue("@USERNAME", cus.ACCOUNT);
-                command.ExecuteNonQuery();
+                using (SqlCommand command = connection.CreateCommand())
+                {
+                    command.CommandText = @"SELECT PASS
+                        FROM ACCOUNT
+                        WHERE USERNAME=@USERNAME";
+                    command.Parameters.AddWithValue("@USERNAME", AccountInfo.Username);
+                    String password = command.ExecuteScalar().ToString();
+                    if (!oldPassBox.Password.Equals(password))
+                    {
+                        notifier.ShowWarning("Your old password is incorrect, please try again!");
+                        return;
+                    }
+                }
+            }
+            catch (Exception exception)
+            {
+                notifier.ShowError(exception.Message);
+            }
+            finally { connection.Close(); }
+
+            try
+            {
+                connection.Open();
+                using (SqlCommand command = connection.CreateCommand())
+                {
+                    command.CommandText = @"UPDATE ACCOUNT
+                        SET PASS=@PASS
+                        WHERE USERNAME=@USERNAME";
+
+                    command.Parameters.AddWithValue("@PASS", newPassBox.Password);
+                    command.Parameters.AddWithValue("@USERNAME", AccountInfo.Username);
+                    command.ExecuteNonQuery();
+                }
                 notifier.ShowSuccess("Successfully Updated New Password");
             }
-            catch (Exception ex)
+            catch (Exception exception)
             {
-                notifier.ShowError(ex.Message);
+                notifier.ShowError(exception.Message);
             }
-            connection.Close();
+            finally
+            {
+                connection.Close();
+            }
         }
 
         private void phoneTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)

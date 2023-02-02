@@ -261,7 +261,7 @@ namespace CarSalesSystem.Customer.Pages
                 {
                     for (int i = 0; i < products.Count; i++)
                     {
-                        if (products[i].PRODUCER.PRODUCER_ID == cbProducer.SelectedItem.ToString()) // Nếu tìm thấy tên phù hợp
+                        if (products[i].PRODUCER.PRODUCER_ID == cbProducer.Text) // Nếu tìm thấy tên phù hợp
                         {
                             filterProducts.Add(products[i]); // Thì thêm vào danh sách mới
                         }
