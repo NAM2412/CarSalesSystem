@@ -30,18 +30,15 @@
                 <StackPanel>
                     <!--Logo-->
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 30 0 10">
-                        <Grid>
-                            <Border Background="#ffffff" Width="35" Height="35" CornerRadius="50"></Border>
-                            <Border Width="35" Height="35" BorderBrush="#ffffff" BorderThickness="3" CornerRadius="25">
-                                <!--Icon-->
-                                <materialDesign:PackIcon Kind="CarSports" Width="24" Height="24" Foreground="#2596be" VerticalAlignment="Center" HorizontalAlignment="Center"
-                                                       Margin="2 0 0 4">
-                                </materialDesign:PackIcon>
+                        <Grid Margin="50 0 0 0">
+                            <Border Width="50" Height="25" BorderBrush="Transparent" BorderThickness="3"  Margin="-50,0,0,0">
+                                <Border.Background>
+                                    <ImageBrush ImageSource="/SignupLogoRemoveBG.png"/>
+                                </Border.Background>
                             </Border>
                         </Grid>
                         <!--Title app-->
                         <TextBlock Text="SGAUTO" Foreground="#FFFFFF" FontSize="28" FontFamily="Nexa Demo" Margin="10 4 0 3" FontWeight="Bold">
-
                         </TextBlock>
                     </StackPanel>
                     <!--Menu Items-->
