@@ -649,6 +649,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Resource Include="Resources\Images\Icons\x.png" />
+    <Resource Include="Resources\Images\Icons\Logo-removebg.png" />
     <Resource Include="Resources\Images\Icons\SignupLogoRemoveBG.png" />
     <Resource Include="SignupLogoRemoveBG.png" />
     <Resource Include="Signup_Logo.png" />

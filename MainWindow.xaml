@@ -32,20 +32,22 @@
                 <StackPanel>
                     <!--Logo-->
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 30 0 10">
+                        <!--
                         <Grid Margin="50 0 0 0">
                             <Border Width="50" Height="25" BorderBrush="Transparent" BorderThickness="3"  Margin="-50,0,0,0">
                                 <Border.Background>
-                                    <ImageBrush ImageSource="/SignupLogoRemoveBG.png"/>
+                                    <ImageBrush ImageSource="/Resources/Images/Icons/Logo-removebg.png"/>
                                 </Border.Background>
                             </Border>
                         </Grid>
+                        -->
+                        
                         <!--Title app-->
 
                         <TextBlock Text="SGAUTO"
                                    Foreground="#FFFFFF"
-                                   FontSize="18"
+                                   FontSize="24"
                                    FontFamily="Porsche"
-                                   Margin="10 4 0 3"
                                    FontWeight="Bold"
                                    VerticalAlignment="Center">
 

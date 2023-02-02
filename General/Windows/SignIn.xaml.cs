@@ -418,5 +418,10 @@ namespace CarSalesSystem.General
         {
 
         }
+
+        private void quitButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }
