@@ -59,7 +59,7 @@
                             VerticalContentAlignment="Center"
                             BorderBrush="Gray"
                             FontFamily="Mitr"
-                            SelectionChanged="typeComboBox_SelectionChanged"    >
+                            LostFocus="typeComboBox_LostFocus">
                             <ComboBoxItem>
                                 0
                             </ComboBoxItem>

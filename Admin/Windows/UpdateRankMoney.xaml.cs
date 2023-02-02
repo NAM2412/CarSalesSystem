@@ -57,6 +57,21 @@ namespace CarSalesSystem.Admin.Windows
 
         private void UpdateButton_Click(object sender, RoutedEventArgs e)
         {
+            if (typeComboBox.Text.Length == 0)
+            {
+                notifier.ShowWarning("Rank type is required.");
+                return;
+            }
+            if(limitBox.Text.Length == 0)
+            {
+                notifier.ShowWarning("Cash limit is required.");
+                return;
+            }
+            if(discountBox.Text.Length == 0)
+            {
+                notifier.ShowWarning("Discount is required.");
+                return;
+            }
             SqlConnection connection = new SqlConnection();
             connection.ConnectionString = ConfigurationManager.ConnectionStrings["CarSalesSystem.Properties.Settings.CARSALESSYSTEMConnectionString"].ConnectionString;
             try
@@ -96,7 +111,7 @@ namespace CarSalesSystem.Admin.Windows
                 notifier.ShowWarning("Negative value is not allowed!");
         }
 
-        private void typeComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void typeComboBox_LostFocus(object sender, RoutedEventArgs e)
         {
             SqlConnection connection = new SqlConnection();
             connection.ConnectionString = ConfigurationManager.ConnectionStrings["CarSalesSystem.Properties.Settings.CARSALESSYSTEMConnectionString"].ConnectionString;
@@ -106,12 +121,20 @@ namespace CarSalesSystem.Admin.Windows
                 using (SqlCommand command = connection.CreateCommand())
                 {
                     command.CommandText = @"SELECT *
-                        FROM RANK_MONEY
-                        WHERE RANK_ID=@RANK_ID";
-                    command.Parameters.AddWithValue("@RANK_ID", "R0" + typeComboBox.Text);
-                    command.ExecuteNonQuery();
+                                FROM RANK_MONEY
+                                WHERE RANK_TYPE=@RANK_TYPE";
+                    command.Parameters.AddWithValue("@RANK_TYPE", typeComboBox.Text);
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            //Console.WriteLine(String.Format("{0}", reader[0]));
+                            limitBox.Text = reader[2].ToString();
+                            discountBox.Text = reader[3].ToString();
+
+                        }
+                    }
                 }
-                notifier.ShowSuccess("Updated successfully");
             }
             catch (Exception exception)
             {
@@ -122,5 +145,6 @@ namespace CarSalesSystem.Admin.Windows
                 connection.Close();
             }
         }
+
     }
 }
