@@ -32,6 +32,7 @@ namespace CarSalesSystem.General.Windows
     /// </summary>
     public partial class FillingInformation : Window
     {
+        public String verifiedEmail = "";
         public FillingInformation()
         {
             InitializeComponent();
@@ -174,14 +175,15 @@ namespace CarSalesSystem.General.Windows
                     command.Parameters.AddWithValue("@TYPE_USER", 2);
                     command.ExecuteNonQuery();
                     
-                    command.CommandText = @"INSERT INTO CUSTOMER (CUS_NAME, CUS_ACCOUNT, PHONE, CUS_ADDRESS, REGIST_DATE, RANK_ID)
-                        VALUES (@CUS_NAME, @CUS_ACCOUNT, @PHONE, @CUS_ADDRESS, @REGIST_DATE, @RANK_ID )";
+                    command.CommandText = @"INSERT INTO CUSTOMER (CUS_NAME, CUS_ACCOUNT, PHONE, CUS_ADDRESS, REGIST_DATE, RANK_ID, CUS_EMAIL)
+                        VALUES (@CUS_NAME, @CUS_ACCOUNT, @PHONE, @CUS_ADDRESS, @REGIST_DATE, @RANK_ID, @CUS_EMAIL)";
                     command.Parameters.AddWithValue("@CUS_NAME", nameBox.Text);
                     command.Parameters.AddWithValue("@CUS_ACCOUNT", usernameTextBox.Text);
                     command.Parameters.AddWithValue("@PHONE", phoneBox.Text);
                     command.Parameters.AddWithValue("@CUS_ADDRESS", addressBox.Text);
                     command.Parameters.AddWithValue("@REGIST_DATE", DateTime.Now.ToShortDateString());
                     command.Parameters.AddWithValue("@RANK_ID", "R00");
+                    command.Parameters.AddWithValue("@CUS_EMAIL", verifiedEmail);
                     command.ExecuteNonQuery();
                     
 
