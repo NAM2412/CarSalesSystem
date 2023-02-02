@@ -34,12 +34,6 @@ namespace CarSalesSystem.Admin.Windows
         public UpdateRankMoney()
         {
             InitializeComponent();
-            if (Properties.Settings.Default.userName != string.Empty)
-            {
-                typeComboBox.Text = Properties.Settings.Default.rankType;
-                limitBox.Text = Properties.Settings.Default.cashLimit;
-                discountBox.Text = Properties.Settings.Default.discount;
-            }
         }
         private static readonly Regex _regex = new Regex("[^0-9.-]+"); //regex that matches disallowed text
         private static bool IsTextAllowed(string text)
@@ -80,10 +74,6 @@ namespace CarSalesSystem.Admin.Windows
                     command.ExecuteNonQuery();
                 }
                 notifier.ShowSuccess("Updated successfully");
-                Properties.Settings.Default.rankType = typeComboBox.Text;
-                Properties.Settings.Default.cashLimit = limitBox.Text;
-                Properties.Settings.Default.discount = discountBox.Text;
-                Properties.Settings.Default.Save();
             }
             catch (Exception exception)
             {
@@ -104,6 +94,33 @@ namespace CarSalesSystem.Admin.Windows
             e.Handled = !IsTextAllowed(e.Text);
             if (e.Text.StartsWith("-"))
                 notifier.ShowWarning("Negative value is not allowed!");
+        }
+
+        private void typeComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            SqlConnection connection = new SqlConnection();
+            connection.ConnectionString = ConfigurationManager.ConnectionStrings["CarSalesSystem.Properties.Settings.CARSALESSYSTEMConnectionString"].ConnectionString;
+            try
+            {
+                connection.Open();
+                using (SqlCommand command = connection.CreateCommand())
+                {
+                    command.CommandText = @"SELECT *
+                        FROM RANK_MONEY
+                        WHERE RANK_ID=@RANK_ID";
+                    command.Parameters.AddWithValue("@RANK_ID", "R0" + typeComboBox.Text);
+                    command.ExecuteNonQuery();
+                }
+                notifier.ShowSuccess("Updated successfully");
+            }
+            catch (Exception exception)
+            {
+                notifier.ShowError(exception.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
         }
     }
 }

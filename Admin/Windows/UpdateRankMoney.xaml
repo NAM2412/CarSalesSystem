@@ -47,18 +47,19 @@
                             Width="140"
                             Margin="10,0,20,0"
                             VerticalAlignment="Center"/>
-                        <ComboBox
-                                    x:Name="typeComboBox"
-                                    Width="auto"
-                                    Height="auto"
-                                    FontSize="14" 
-                                    Style="{StaticResource MaterialDesignOutlinedComboBox}"
-                                    materialDesign:HintAssist.Hint="Type"
-                                    IsReadOnly="True" 
-                                    HorizontalContentAlignment="Left"
-                                    VerticalContentAlignment="Center"
-                                    BorderBrush="Gray"
-                                    FontFamily="Mitr" >
+                        <ComboBox   
+                            x:Name="typeComboBox"
+                            Width="auto"
+                            Height="auto"
+                            FontSize="14" 
+                            Style="{StaticResource MaterialDesignOutlinedComboBox}"
+                            materialDesign:HintAssist.Hint="Type"
+                            IsReadOnly="True" 
+                            HorizontalContentAlignment="Left"
+                            VerticalContentAlignment="Center"
+                            BorderBrush="Gray"
+                            FontFamily="Mitr"
+                            SelectionChanged="typeComboBox_SelectionChanged"    >
                             <ComboBoxItem>
                                 0
                             </ComboBoxItem>
