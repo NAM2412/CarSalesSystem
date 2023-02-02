@@ -15,10 +15,10 @@
      ShowInTaskbar="False" ResizeMode="NoResize" 
      WindowStyle="None" Topmost="True">
     <Border
-        BorderThickness="0"
+        BorderThickness="3"
         BorderBrush="LightGray"
         CornerRadius="10"
-        Background="White"
+        Background="Transparent"
         >
         <Grid>
             <Grid.RowDefinitions>
