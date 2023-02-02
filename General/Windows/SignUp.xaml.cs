@@ -1,6 +1,9 @@
 ﻿using CarSalesSystem.General.Windows;
+using CarSalesSystem.Viewmodel;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -86,6 +89,36 @@ namespace CarSalesSystem.General
                 emailTextBox.Select(0, emailTextBox.Text.Length);
                 
                 return;
+            }
+
+            SqlConnection connection = new SqlConnection();
+            connection.ConnectionString = ConfigurationManager.ConnectionStrings["CarSalesSystem.Properties.Settings.CARSALESSYSTEMConnectionString"].ConnectionString;
+            try
+            {
+                connection.Open();
+                using (SqlCommand command = connection.CreateCommand())
+                {
+                    command.CommandText = @"SELECT *
+                        FROM CUSTOMER
+                        WHERE CUS_EMAIL=@CUS_EMAIL";
+                    command.Parameters.AddWithValue("@CUS_EMAIL", emailTextBox.Text);
+                    var result = command.ExecuteScalar();
+                    if (result != null)
+                    {
+                        notifier.ShowWarning("This email has already been registered.");
+                        return;
+                    }
+
+                }
+            }
+            catch (Exception exception)
+            {
+                notifier.ShowError(exception.Message);
+                return;
+            }
+            finally
+            {
+                connection.Close();
             }
             email = emailTextBox.Text.ToString();
             WpfMessageBox wpfMessageBox = new WpfMessageBox();

@@ -37,6 +37,7 @@ namespace CarSalesSystem.General.Windows
         private DispatcherTimer Timer;
         private int retryTimes = 3;
         public string storedCode;
+        public String storedEmail ="";
         //Notification box
         Notifier notifier = new Notifier(cfg =>
         {
@@ -109,6 +110,7 @@ namespace CarSalesSystem.General.Windows
                 return;
             }
             FillingInformation fillingInformation = new FillingInformation();
+            fillingInformation.verifiedEmail = this.storedEmail;
             fillingInformation.Show();
             this.Close();
         }

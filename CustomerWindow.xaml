@@ -30,25 +30,36 @@
                 <StackPanel>
                     <!--Logo-->
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 30 0 10">
+                        <!--
                         <Grid Margin="50 0 0 0">
-                            <Border Width="50" Height="25" BorderBrush="Transparent" BorderThickness="3"  Margin="-50,0,0,0">
+                            <Border Width="50" Height="25" BorderBrush="Transparent" BorderThickness="0"  Margin="-50,0,0,0">
                                 <Border.Background>
-                                    <ImageBrush ImageSource="/SignupLogoRemoveBG.png"/>
+                                    <ImageBrush ImageSource="/Resources/Images/Icons/Logo-removebg.png"/>
                                 </Border.Background>
                             </Border>
                         </Grid>
+                        
+                        -->
                         <!--Title app-->
-                        <TextBlock Text="SGAUTO" Foreground="#FFFFFF" FontSize="28" FontFamily="Nexa Demo" Margin="10 4 0 3" FontWeight="Bold">
+                        <TextBlock Text="SGAUTO"
+                                   Foreground="#FFFFFF"
+                                   FontSize="24"
+                                   FontFamily="Porsche"
+                                   FontWeight="Bold">
                         </TextBlock>
                     </StackPanel>
                     <!--Menu Items-->
-                    <TextBlock Text="Main" Style="{StaticResource menuTitle}"></TextBlock>
+                    <TextBlock Text="Main"  
+                               Style="{StaticResource menuTitle}"
+                               FontFamily="Nexa ☞"
+                               FontSize="24"
+                               FontWeight="Light"></TextBlock>
 
                     <!--Home-->
                     <Button x:Name="StoreBtn" Style="{StaticResource menuButton}" Click="StoreBtn_Click">
                         <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="Wheel" Style="{StaticResource menuButtonIcon}"></materialDesign:PackIcon>
-                                <TextBlock Text="Store" Style="{StaticResource menuButtonText}"></TextBlock>
+                            <materialDesign:PackIcon Kind="Car" Style="{StaticResource menuButtonIcon}"></materialDesign:PackIcon>
+                                <TextBlock Text="Vehicles" Style="{StaticResource menuButtonText}"></TextBlock>
                         </StackPanel>
                     </Button>
 

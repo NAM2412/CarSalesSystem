@@ -50,8 +50,8 @@ namespace CarSalesSystem.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DESKTOP-8RKPG08\\\\SQLEXPRESS;Initial Catalog=CARSALESSYSTEM;Integrated" +
-            " Security=True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=MSI\\SQLEXPRESS;Initial Catalog=CARSALESSYSTEM;Integrated Security=Tru" +
+            "e")]
         public string CARSALESSYSTEMConnectionString {
             get {
                 return ((string)(this["CARSALESSYSTEMConnectionString"]));

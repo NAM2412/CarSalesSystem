@@ -96,6 +96,7 @@ namespace CarSalesSystem.General
                     smtp.Send(message);
                     //noti
                     confirmation.storedCode= randomCode;
+                    confirmation.storedEmail = this.storedEmail;
                     confirmation.Show();
                     confirmation.showMessage();
                     HideWindow(typeof(SignUp));

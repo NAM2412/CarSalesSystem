@@ -87,14 +87,28 @@
                 </Button>
             </Grid >
             <Grid HorizontalAlignment="Left" Width="645" Margin="635,0,0,0">
+                <Button Grid.Row="0"
+                        x:Name="quitButton"
+                    Margin="0 20 20 0"
+                    Width="25"
+                    Height="25"
+                    VerticalAlignment="Top"
+                    HorizontalAlignment="Right"
+                    Style="{DynamicResource RoundedButtonStyle}" Click="quitButton_Click">
+                    <Button.Background>
+                        <ImageBrush ImageSource="/Resources/Images/Icons/x.png" />
+                    </Button.Background>
+
+                </Button>
+
                 <Image Name="Logo"
-                       Margin="150,100,0,500"
+                       Margin="200,125,0,0"
                        VerticalAlignment="Top"
-                       Width="360"
-                       Height="125"
+                       Width="300"
+                       Height="100"
                        Source="/Resources/Images/Icons/Logo.png" Stretch="Fill">
                 </Image>
-                <Label Margin="190,230,0,450"
+                <Label Margin="210,230,0,450"
                        Height="70"
                        Width="360" 
                        FontSize="40"
@@ -181,7 +195,7 @@
                            FontFamily="Nexa ☞"
                            Foreground="White">Remember me</Label>
                 </Grid>
-                <Button Style="{DynamicResource RoundedButtonStyle}" Margin="200,617,10,59"
+                <Button Style="{DynamicResource RoundedButtonStyle}" Margin="220,617,10,59"
                         Width="200"
                         Height="50"
                         BorderThickness="0"
