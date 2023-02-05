@@ -110,7 +110,36 @@
                     HorizontalAlignment="Right"
                     Margin="0,0,35,0"
                     VerticalAlignment="Center">
-         
+
+            <StackPanel
+                    Grid.Row="3"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Right"
+                    Margin="0,0,35,0"
+                    VerticalAlignment="Center">
+                <Button 
+                        x:Name="btnHistoryImport"
+                        Background="#996600"
+                    Command="{Binding ShowHistoryImportCommand}"
+                    CommandParameter="{Binding ElementName=wdWareHouse}"
+                        BorderBrush="#996600"
+                        FontFamily="Hierarchy"
+                        BorderThickness="4"
+                        Content="History Import"
+                        Height="45"
+                        Foreground= "White"
+                        materialDesign:ButtonAssist.CornerRadius="5"
+                        ToolTip="Add" 
+                        Margin="40,0,0,0" 
+                        FontSize="18" 
+                        VerticalAlignment="Center" 
+                        FocusVisualStyle="{x:Null}"
+                        Width="190" 
+                        Padding="0,4,0,0"
+                        FontWeight="Bold" />
+
+            </StackPanel>
+
         </StackPanel>
         <Grid 
                     Grid.Row="1"

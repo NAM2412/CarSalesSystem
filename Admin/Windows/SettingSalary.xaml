@@ -33,7 +33,9 @@
                 </StackPanel>
                 <StackPanel Grid.Row="1" Orientation="Horizontal">
                     <Label Content="Salary" Width="70" FontSize="14" VerticalContentAlignment="Bottom" VerticalAlignment="Bottom"/>
-                    <TextBox x:Name="tbProducer" Grid.Row="1" Width="170" FontSize="14" Text=""/>
+                    <TextBox x:Name="tbProducer" Grid.Row="1"
+                             PreviewTextInput="PreviewTextInput"
+                             Width="170" FontSize="14" Text=""/>
                 </StackPanel>
 
                 <Button x:Name="btnUpdate" 

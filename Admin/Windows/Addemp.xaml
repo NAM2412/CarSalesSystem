@@ -129,6 +129,7 @@
                     Margin="0,0,20,0"
                     VerticalAlignment="Bottom"/>
                             <TextBox
+                                PreviewTextInput="PreviewCharInput"
                                 x:Name="FullName"
                                     Width="280"
                                     Height="50"
@@ -285,6 +286,7 @@
                                     x:Name="phoneBox"
                                     MaxLength="10"
                                     Width="200"
+                                PreviewTextInput="PreviewTextInput"
                                     Height="50"
                                     FontSize="14" 
                                     materialDesign:HintAssist.Hint="Your Phone To Contact"
@@ -294,6 +296,7 @@
                             </TextBox>
                             <TextBox
                                     x:Name="tbSalary"
+                                 PreviewTextInput="PreviewTextInput"
                                     Width="200"
                                     Height="50"
                                     FontSize="14" 

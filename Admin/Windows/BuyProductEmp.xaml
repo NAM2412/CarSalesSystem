@@ -46,6 +46,7 @@
                         Kind="Account" 
                         Height="24" Width="24" />
                             <TextBox
+                                PreviewTextInput="PreviewCharInput"
                         x:Name="tbName"
                         FontSize="14"
                         Width="180"
@@ -57,6 +58,7 @@
                         Kind="Phone" 
                         Height="24" Width="24" />
                             <TextBox
+                                PreviewTextInput="PreviewTextInput"
                         MaxLength="10"
                         x:Name="tbPhone"
                         FontSize="14"
@@ -64,6 +66,7 @@
                         materialDesign:HintAssist.Hint="Telephone">
                             </TextBox>
                             <DatePicker
+                                IsEnabled="False"
                         Margin="40,0,0,0"
                         x:Name="pdSell"
                         FontSize="14"
@@ -78,6 +81,7 @@
                         Padding="14,0,0,0"
                         FontSize="14" />
                             <TextBox
+                                IsEnabled="False"
                         Margin="4,0,0,0"
                         Padding="0,0,0,0"
                         VerticalContentAlignment="Bottom"

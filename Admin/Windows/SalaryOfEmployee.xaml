@@ -81,6 +81,7 @@
                         <TextBox
                                     x:Name="SalaryBox"
                                     Width="300"
+                            PreviewTextInput="PreviewTextInput"
                                     Height="auto"
                                     FontSize="14" 
                                     Style="{StaticResource MaterialDesignOutlinedTextBox}"
@@ -117,6 +118,7 @@
                                     Width="300"
                                     Height="auto"
                                     FontSize="14" 
+                              PreviewTextInput="PreviewTextInput"
                                     Style="{StaticResource MaterialDesignOutlinedTextBox}"
                                     materialDesign:HintAssist.Hint="Number of days"
                                     HorizontalContentAlignment="Left"
@@ -151,6 +153,7 @@
                                     Width="300"
                                     Height="auto"
                                     FontSize="14" 
+                              PreviewTextInput="PreviewTextInput"
                                     Style="{StaticResource MaterialDesignOutlinedTextBox}"
                                     materialDesign:HintAssist.Hint="Number of days"
                                     HorizontalContentAlignment="Left"
