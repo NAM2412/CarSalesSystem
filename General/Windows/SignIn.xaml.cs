@@ -145,7 +145,7 @@ namespace CarSalesSystem.General
                 passwordTextBox.BorderBrush = Brushes.Red;
             //retrieve data and compare with data from database
             SqlConnection connection = new SqlConnection();
-            connection.ConnectionString = ConfigurationManager.ConnectionStrings["NamConnection"].ConnectionString;
+            connection.ConnectionString = ConfigurationManager.ConnectionStrings["CarSalesSystem.Properties.Settings.CARSALESSYSTEMConnectionString"].ConnectionString;
             try
             {
                 if (connection.State == ConnectionState.Closed)
@@ -160,7 +160,6 @@ namespace CarSalesSystem.General
                 int type = Convert.ToInt32(activeWindow.ExecuteScalar());
                 activeWindow.Parameters.AddWithValue("@USERNAME", usernameTextBox.Text);
                 activeWindow.Parameters.AddWithValue("@PASS", passwordTextBox.Password);
-
                 int result = Convert.ToInt32(cmd.ExecuteScalar());
                 AccountInfo.Username = usernameTextBox.Text;
                 if (result == 1)
@@ -176,17 +175,20 @@ namespace CarSalesSystem.General
                         AccountInfo.Type_User = 2;
                     }
                     else
-                    {
-                        
-                        
+                    {   
                         EMPLOYEE emp = DataProvider.Ins.DB.EMPLOYEEs.Where(x => x.EMP_ACCOUNT == usernameTextBox.Text).FirstOrDefault();
+                        if ((emp.ACCOUNT.LOGIN_RECENT != DateTime.Today) || (emp.ACCOUNT.LOGIN_RECENT==null))
+                            emp.DateOfWork++;
+                            emp.ACCOUNT.LOGIN_RECENT = DateTime.Today;
                         AccountInfo.Type_User=emp.ACCOUNT.TYPE_USER;
                         AccountInfo.IdAccount = emp.EMP_ID;
+
                         if (emp.ACCOUNT.TYPE_USER == 1)
                         {
                             adminWindow.employeeBtn.Visibility = Visibility.Collapsed;
                         }
                         else adminWindow.employeeBtn.Visibility = Visibility.Visible;
+                        DataProvider.Ins.DB.SaveChanges();
                         adminWindow.Show();
                     }
                        
