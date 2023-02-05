@@ -493,8 +493,6 @@
                                 HorizontalContentAlignment="Center"
                                 materialDesign:HintAssist.Hint="Type"
                                 Width="110"/>
-
-
                         </StackPanel>
                     </Grid>
                     <Grid 
