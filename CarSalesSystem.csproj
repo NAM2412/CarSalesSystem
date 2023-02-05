@@ -283,6 +283,12 @@
     <Compile Include="Admin\Windows\ListOfOrder.xaml.cs">
       <DependentUpon>ListOfOrder.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Admin\Windows\SalaryOfEmployee.xaml.cs">
+      <DependentUpon>SalaryOfEmployee.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Windows\SettingSalary.xaml.cs">
+      <DependentUpon>SettingSalary.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Admin\Windows\TotalFeeMaintaine.xaml.cs">
       <DependentUpon>TotalFeeMaintaine.xaml</DependentUpon>
     </Compile>
@@ -461,6 +467,14 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Admin\Windows\ListOfOrder.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Admin\Windows\SalaryOfEmployee.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Admin\Windows\SettingSalary.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
