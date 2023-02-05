@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:CarSalesSystem.Admin.User_Controls"
              mc:Ignorable="d" 
+             xmlns:f="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
              x:Name="ucEmployeeControl"
              DataContext="{StaticResource EmployeeVm}"
               xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
@@ -14,7 +15,7 @@
                     Background="#FFFFFF" Width="900">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="90"/>
-            <ColumnDefinition Width="450"/>
+            <ColumnDefinition Width="420"/>
             <ColumnDefinition Width="90"/>
             <ColumnDefinition Width="150"/>
             <ColumnDefinition Width="*"/>
@@ -74,6 +75,26 @@
                         FontSize="14"
                         FontWeight="Light"/>
         <StackPanel Grid.Column="4" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Button 
+                x:Name="btnpayment"
+                         Padding="0,4,0,0"
+                        FontFamily="Hierarchy"
+                Command="{Binding clickshowPaymentCommand }"
+                CommandParameter="{Binding ElementName=ucEmployeeControl}"
+                        Margin="0,0,20,0"
+                        HorizontalAlignment="Center"
+                        Background="Transparent"
+                        Foreground="#1A6985"
+                        VerticalAlignment="Center" 
+                        FontSize="18"
+                        BorderThickness="0"
+                        FontWeight="Bold">
+                <f:IconImage x:Name="iconbtnpayment" Icon="MoneyBill"
+                             Foreground="LightGray"
+                                         Width="24" Height="24" 
+                                         />
+
+            </Button>
             <Button 
                          Padding="0,4,0,0"
                         FontFamily="Hierarchy"

@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -33,6 +34,9 @@ namespace CarSalesSystem.ViewModel
         private EmployeeControl employeeControl;
         private EmployeePG empPG;
         public EmployeePG EmPG { get => empPG; set => empPG = value; }
+
+        private SalaryOfEmployee wdsalaryOfEmp;
+        public SalaryOfEmployee wdSalaryOfEmp { get => wdsalaryOfEmp; set => wdsalaryOfEmp = value; }
         public ICommand LoadEmployeeCommand { get; set; }
         public ICommand AddEmployeeCommand { get; set; }
         public ICommand UploadImageCommand { get; set; }
@@ -40,6 +44,9 @@ namespace CarSalesSystem.ViewModel
         public ICommand EditEmployeeCommand { get; set; }
         public ICommand UpdateInfoEmpCommand { get; set; }
         public ICommand LoadFilterEmployeeCommand { get; set; }
+        public ICommand  clickshowPaymentCommand { get; set; }
+        public ICommand PaySalaryCompleteCommand { get; set; }
+        public ICommand calculatePayCommand { get; set; }
         public EmployeeViewModel()
         {
             LoadEmployeeCommand = new RelayCommand<EmployeePG>((parameter) => true, (parameter) => LoadEmployee(parameter));
@@ -49,6 +56,80 @@ namespace CarSalesSystem.ViewModel
             EditEmployeeCommand = new RelayCommand<EmployeeControl>((parameter) => true, (parameter) => ClickEditEmployee(parameter));
             UpdateInfoEmpCommand = new RelayCommand<Editemp>((parameter) => true, (parameter) => UpdateInfoEmp(parameter));
             LoadFilterEmployeeCommand = new RelayCommand<EmployeePG>((parameter) => true, (parameter) => LoadFilterEmployee(parameter));
+            clickshowPaymentCommand = new RelayCommand<EmployeeControl>((parameter) => true, (parameter) => clickshowPayment(parameter));
+            PaySalaryCompleteCommand = new RelayCommand<SalaryOfEmployee>((parameter) => true, (parameter) => PaySalaryComplete(parameter));
+            calculatePayCommand = new RelayCommand<SalaryOfEmployee>((parameter) => true, (parameter) => calculatePay(parameter));
+        }
+
+        private void calculatePay(SalaryOfEmployee parameter)
+        {
+            var emp = DataProvider.Ins.DB.EMPLOYEEs.Find(idEmp);
+            decimal sa = 0;
+            if (wdsalaryOfEmp.SalaryBox.Text == "")
+            {
+                sa = 0;
+            }
+            else
+             sa = Decimal.Parse(wdsalaryOfEmp.SalaryBox.Text);
+            int dateofW = 0;
+            if (wdsalaryOfEmp.NumofdayBox.Text == "")
+            {
+                 dateofW = 0;
+            }
+            else
+            dateofW = int.Parse(wdsalaryOfEmp.NumofdayBox.Text);
+            decimal total = (decimal)(sa / 26 * dateofW);
+            wdsalaryOfEmp.TotalSalaryBox.Text = total.ToString("C", CultureInfo.CurrentCulture);
+        }
+
+        private void PaySalaryComplete(SalaryOfEmployee parameter)
+        {
+            var emp = DataProvider.Ins.DB.EMPLOYEEs.Find(idEmp);
+            emp.DateOfWork = 0;
+            emp.SALARY = Decimal.Parse(parameter.SalaryBox.Text);
+            DataProvider.Ins.DB.SaveChanges();
+            LoadEmployee(EmPG);
+            parameter.Close();
+            notifier.ShowInformation("Pay Salary Successfully");
+            
+        }
+
+        private void clickshowPayment(EmployeeControl parameter)
+        {
+            this.employeeControl = parameter;
+            idEmp = parameter.tbNo.Text;
+            showPaymentWindow(idEmp);
+
+        }
+
+        private void showPaymentWindow(string idEmp)
+        {
+            SalaryOfEmployee salary = new SalaryOfEmployee();
+            this.wdsalaryOfEmp = salary;
+            var emp = DataProvider.Ins.DB.EMPLOYEEs.Find(idEmp);
+            int countproductsell = DataProvider.Ins.DB.SELLBILLs.Where(x => x.EMPLOYEE_ID == idEmp).Count();
+            if (emp.EMP_TYPE.ToUpper() == "SALES")
+            {
+                salary.typeComboBox.SelectedIndex = 0;
+            }
+            else
+            {
+                salary.typeComboBox.SelectedIndex = 1;
+            }
+            if (emp.SALARY != null)
+            {
+                salary.SalaryBox.Text = emp.SALARY.ToString();
+            }
+            else
+            {
+                salary.SalaryBox.Text = 0.ToString();
+            }
+            salary.NumofdayBox.Text = emp.DateOfWork.ToString();
+            int dateofW = int.Parse(salary.NumofdayBox.Text);
+            decimal sa = Decimal.Parse(salary.SalaryBox.Text);
+            decimal total = (decimal)(sa / 26 * dateofW);
+            salary.TotalSalaryBox.Text = total.ToString("C", CultureInfo.CurrentCulture);
+            salary.ShowDialog();
         }
 
         private void LoadFilterEmployee(EmployeePG parameter)
@@ -64,6 +145,15 @@ namespace CarSalesSystem.ViewModel
                 empcontrol.tbName.Text = item.EMP_NAME;
                 empcontrol.tbSex.Text = item.GENDER.ToString();
                 empcontrol.tbPosition.Text = item.EMP_TYPE;
+                if (AccountInfo.Type_User == -1)
+                {
+                    empcontrol.btnpayment.Visibility = Visibility.Visible;
+                }
+                else empcontrol.btnpayment.Visibility = Visibility.Collapsed;
+                if (item.DateOfWork == 26)
+                {
+                    empcontrol.iconbtnpayment.Foreground = Brushes.Green;
+                }
                 parameter.stkEmployee.Children.Add(empcontrol);
             }
         }
@@ -85,6 +175,7 @@ namespace CarSalesSystem.ViewModel
             empinfo.EMP_ADDRESS = parameter.addressBox.Text;
             empinfo.EMP_DATE_OF_BIRTH = DateTime.Parse(parameter.dobBox.Text);
             empinfo.PHONE = parameter.phoneBox.Text;
+            empinfo.SALARY = Decimal.Parse(parameter.tbSalary.Text);
             if(imagefilename != null)
             {
                 empinfo.IMG = Converter.Instance.StreamFile(imagefilename);
@@ -129,6 +220,12 @@ namespace CarSalesSystem.ViewModel
             {
                 editemp.positionBox.SelectedIndex = 1;
             }
+            if (item.SALARY != null)
+            {
+                editemp.tbSalary.Text = item.SALARY.ToString();
+            }
+            else
+                editemp.tbSalary.Text = "0";
             if (item.IMG != null)
             {
                 ImageBrush imageBrush = new ImageBrush();
@@ -215,6 +312,11 @@ namespace CarSalesSystem.ViewModel
                 parameter.genderBox.Focus();
             }
             else
+            if (parameter.tbSalary.Text.Length ==0)
+            {
+                parameter.tbSalary.Focus();
+            }
+            else
             {
                 var emp = new ACCOUNT();
                 emp.PASS = "123";
@@ -237,8 +339,8 @@ namespace CarSalesSystem.ViewModel
                     connection.Open();
                     using (SqlCommand command = connection.CreateCommand())
                     {
-                        command.CommandText = @"INSERT INTO EMPLOYEE (EMP_ID, EMP_ACCOUNT,EMP_NAME, GENDER, EMP_TYPE, EMP_ADDRESS, EMP_DATE_OF_BIRTH, DATE_OF_WORK,PHONE,IMG) 
-                        VALUES(@EMP_ID, @EMP_ACCOUNT,@EMP_NAME, @GENDER, @EMP_TYPE, @EMP_ADDRESS, @EMP_DATE_OF_BIRTH, @DATE_OF_WORK, @PHONE,@IMG)";
+                        command.CommandText = @"INSERT INTO EMPLOYEE (EMP_ID, EMP_ACCOUNT,EMP_NAME, GENDER, EMP_TYPE, EMP_ADDRESS, EMP_DATE_OF_BIRTH, DATE_OF_WORK,PHONE,IMG,DateOfWork,SALARY) 
+                        VALUES(@EMP_ID, @EMP_ACCOUNT,@EMP_NAME, @GENDER, @EMP_TYPE, @EMP_ADDRESS, @EMP_DATE_OF_BIRTH, @DATE_OF_WORK, @PHONE,@IMG,@DateOfWork,@SALARY)";
                         command.Parameters.AddWithValue("@EMP_ID", parameter.idBox.Text);
                         command.Parameters.AddWithValue("@EMP_NAME", parameter.FullName.Text);
                         command.Parameters.AddWithValue("@EMP_ACCOUNT", parameter.idBox.Text);
@@ -249,6 +351,8 @@ namespace CarSalesSystem.ViewModel
                         command.Parameters.AddWithValue("@DATE_OF_WORK", parameter.dowBox.SelectedDate.Value.Date.ToShortDateString());
                         command.Parameters.AddWithValue("@PHONE", parameter.phoneBox.Text);
                         command.Parameters.AddWithValue("@IMG", Converter.Instance.StreamFile(imagefilename));
+                        command.Parameters.AddWithValue("@DateOfWork", 0);
+                        command.Parameters.AddWithValue("@SALARY",Decimal.Parse(parameter.tbSalary.Text));
                         command.ExecuteNonQuery();
                         LoadEmployee(EmPG);
                         notifier.ShowSuccess("Added new employee successfully");
@@ -274,7 +378,7 @@ namespace CarSalesSystem.ViewModel
         {
             this.empPG = parameter;
             parameter.stkEmployee.Children.Clear();
-            var listemp = DataProvider.Ins.DB.EMPLOYEEs.Where(x => x.IsDeleted != 1).ToList();
+            var listemp = DataProvider.Ins.DB.EMPLOYEEs.Where(x => x.IsDeleted != 1 && x.ACCOUNT.TYPE_USER!= -1).ToList();
             foreach(var item in listemp)
             {
                 EmployeeControl  empcontrol = new EmployeeControl();
@@ -282,6 +386,15 @@ namespace CarSalesSystem.ViewModel
                 empcontrol.tbName.Text = item.EMP_NAME;
                 empcontrol.tbSex.Text = item.GENDER.ToString();
                 empcontrol.tbPosition.Text = item.EMP_TYPE;
+                if (item.DateOfWork == 26)
+                {
+                    empcontrol.iconbtnpayment.Foreground = Brushes.Green;
+                }
+                if (AccountInfo.Type_User == -1)
+                {
+                    empcontrol.btnpayment.Visibility = Visibility.Visible;
+                }
+                else empcontrol.btnpayment.Visibility = Visibility.Collapsed;
                 parameter.stkEmployee.Children.Add(empcontrol);
             }
         }

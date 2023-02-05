@@ -184,10 +184,10 @@
                                     HorizontalContentAlignment="Left"
                                     VerticalContentAlignment="Top" 
                                     FontWeight="SemiBold" >
-                                <ComboBoxItem Content="Sales"/>
-                                <ComboBoxItem Content="Manager"/>
+                                <ComboBoxItem Content="SALES"/>
+                                <ComboBoxItem Content="MANAGER"/>
                             </ComboBox>
-
+                            
                         </StackPanel>
                     </Grid>
                     <Grid 
@@ -284,10 +284,21 @@
                             <TextBox
                                     x:Name="phoneBox"
                                     MaxLength="10"
-                                    Width="400"
+                                    Width="200"
                                     Height="50"
                                     FontSize="14" 
                                     materialDesign:HintAssist.Hint="Your Phone To Contact"
+                                    HorizontalContentAlignment="Left"
+                                    VerticalContentAlignment="Bottom" 
+                                    FontWeight="SemiBold" >
+                            </TextBox>
+                            <TextBox
+                                    x:Name="tbSalary"
+                                    Width="200"
+                                    Height="50"
+                                    FontSize="14" 
+                                    materialDesign:HintAssist.Hint="Salary"
+                                    Style="{StaticResource MaterialDesignOutlinedTextBox}" 
                                     HorizontalContentAlignment="Left"
                                     VerticalContentAlignment="Bottom" 
                                     FontWeight="SemiBold" >
