@@ -62,7 +62,6 @@ namespace CarSalesSystem.Customer.Windows
             txtMaintainFee.Text = String.Format("{0:0,0}", maintainPrice);
             txtTenSP.Text = orderbill1.PRODUCT.PRO_NAME;
             txtMaintainDate.BlackoutDates.AddDatesInPast();
-        
         }
         #endregion
 

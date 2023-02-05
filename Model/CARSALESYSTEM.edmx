@@ -12,6 +12,7 @@
           <Property Name="USERNAME" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="PASS" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="TYPE_USER" Type="int" Nullable="false" />
+          <Property Name="LOGIN_RECENT" Type="date" />
         </EntityType>
         <EntityType Name="CUSTOMER">
           <Key>
@@ -29,6 +30,7 @@
           <Property Name="PRODUCT_NUMBER" Type="int" />
           <Property Name="IMG" Type="varbinary(max)" />
           <Property Name="RANK_ID" Type="varchar" MaxLength="4" />
+          <Property Name="CUS_EMAIL" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="EMPLOYEE">
           <Key>
@@ -46,6 +48,7 @@
           <Property Name="IMG" Type="varbinary(max)" />
           <Property Name="EMP_TYPE" Type="varchar" MaxLength="20" />
           <Property Name="IsDeleted" Type="int" />
+          <Property Name="DateOfWork" Type="int" />
         </EntityType>
         <EntityType Name="IMPORTRECEIPT">
           <Key>
@@ -490,6 +493,7 @@
           <EntitySet Name="PRODUCTs" EntityType="CARSALESSYSTEMModel.PRODUCT" />
           <EntitySet Name="RANK_MONEY" EntityType="CARSALESSYSTEMModel.RANK_MONEY" />
           <EntitySet Name="SELLBILLs" EntityType="CARSALESSYSTEMModel.SELLBILL" />
+          <EntitySet Name="sysdiagrams" EntityType="CARSALESSYSTEMModel.sysdiagram" />
           <EntitySet Name="TYPEPRODUCTs" EntityType="CARSALESSYSTEMModel.TYPEPRODUCT" />
           <AssociationSet Name="FK_TAIKHOANKH_TAIKHOAN" Association="CARSALESSYSTEMModel.FK_TAIKHOANKH_TAIKHOAN">
             <End Role="ACCOUNT" EntitySet="ACCOUNTs" />
@@ -567,8 +571,7 @@
             <End Role="RANK_MONEY" EntitySet="RANK_MONEY" />
             <End Role="SELLBILL" EntitySet="SELLBILLs" />
           </AssociationSet>
-          <EntitySet Name="sysdiagram1" EntityType="CARSALESSYSTEMModel.sysdiagram1" />
-          </EntityContainer>
+        </EntityContainer>
         <EntityType Name="ACCOUNT">
           <Key>
             <PropertyRef Name="USERNAME" />
@@ -578,6 +581,7 @@
           <Property Name="TYPE_USER" Type="Int32" Nullable="false" />
           <NavigationProperty Name="CUSTOMERs" Relationship="CARSALESSYSTEMModel.FK_TAIKHOANKH_TAIKHOAN" FromRole="ACCOUNT" ToRole="CUSTOMER" />
           <NavigationProperty Name="EMPLOYEEs" Relationship="CARSALESSYSTEMModel.FK_TAIKHOANNV_TAIKHOAN" FromRole="ACCOUNT" ToRole="EMPLOYEE" />
+          <Property Name="LOGIN_RECENT" Type="DateTime" Precision="0" />
         </EntityType>
         <EntityType Name="CUSTOMER">
           <Key>
@@ -600,6 +604,7 @@
           <NavigationProperty Name="SELLBILLs" Relationship="CARSALESSYSTEMModel.FK_MAKHMH" FromRole="CUSTOMER" ToRole="SELLBILL" />
           <NavigationProperty Name="ORDERBILLs" Relationship="CARSALESSYSTEMModel.FK_MAOB_CUSTOMER" FromRole="CUSTOMER" ToRole="ORDERBILL" />
           <NavigationProperty Name="RANK_MONEY" Relationship="CARSALESSYSTEMModel.FK_RANKKH_RANK" FromRole="CUSTOMER" ToRole="RANK_MONEY" />
+          <Property Name="CUS_EMAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="EMPLOYEE">
           <Key>
@@ -621,6 +626,7 @@
           <NavigationProperty Name="IMPORTRECEIPTs" Relationship="CARSALESSYSTEMModel.FK_MAHDNH_NV" FromRole="EMPLOYEE" ToRole="IMPORTRECEIPT" />
           <NavigationProperty Name="MAINTENANCEBILLs" Relationship="CARSALESSYSTEMModel.FK_MANVBT" FromRole="EMPLOYEE" ToRole="MAINTENANCEBILL" />
           <NavigationProperty Name="SELLBILLs" Relationship="CARSALESSYSTEMModel.FK_MANVMH" FromRole="EMPLOYEE" ToRole="SELLBILL" />
+          <Property Name="DateOfWork" Type="Int32" />
         </EntityType>
         <EntityType Name="IMPORTRECEIPT">
           <Key>
@@ -738,6 +744,16 @@
           <NavigationProperty Name="EMPLOYEE" Relationship="CARSALESSYSTEMModel.FK_MANVMH" FromRole="SELLBILL" ToRole="EMPLOYEE" />
           <NavigationProperty Name="PRODUCT" Relationship="CARSALESSYSTEMModel.FK_MASPMH" FromRole="SELLBILL" ToRole="PRODUCT" />
           <NavigationProperty Name="RANK_MONEY" Relationship="CARSALESSYSTEMModel.FK_MARANKMH" FromRole="SELLBILL" ToRole="RANK_MONEY" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="TYPEPRODUCT">
           <Key>
@@ -975,16 +991,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="sysdiagram1">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
-        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -994,6 +1000,7 @@
           <EntitySetMapping Name="ACCOUNTs">
             <EntityTypeMapping TypeName="CARSALESSYSTEMModel.ACCOUNT">
               <MappingFragment StoreEntitySet="ACCOUNT">
+                <ScalarProperty Name="LOGIN_RECENT" ColumnName="LOGIN_RECENT" />
                 <ScalarProperty Name="TYPE_USER" ColumnName="TYPE_USER" />
                 <ScalarProperty Name="PASS" ColumnName="PASS" />
                 <ScalarProperty Name="USERNAME" ColumnName="USERNAME" />
@@ -1003,6 +1010,7 @@
           <EntitySetMapping Name="CUSTOMERs">
             <EntityTypeMapping TypeName="CARSALESSYSTEMModel.CUSTOMER">
               <MappingFragment StoreEntitySet="CUSTOMER">
+                <ScalarProperty Name="CUS_EMAIL" ColumnName="CUS_EMAIL" />
                 <ScalarProperty Name="RANK_ID" ColumnName="RANK_ID" />
                 <ScalarProperty Name="IMG" ColumnName="IMG" />
                 <ScalarProperty Name="PRODUCT_NUMBER" ColumnName="PRODUCT_NUMBER" />
@@ -1021,6 +1029,7 @@
           <EntitySetMapping Name="EMPLOYEEs">
             <EntityTypeMapping TypeName="CARSALESSYSTEMModel.EMPLOYEE">
               <MappingFragment StoreEntitySet="EMPLOYEE">
+                <ScalarProperty Name="DateOfWork" ColumnName="DateOfWork" />
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
                 <ScalarProperty Name="EMP_TYPE" ColumnName="EMP_TYPE" />
                 <ScalarProperty Name="IMG" ColumnName="IMG" />
@@ -1135,22 +1144,22 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="TYPEPRODUCTs">
-            <EntityTypeMapping TypeName="CARSALESSYSTEMModel.TYPEPRODUCT">
-              <MappingFragment StoreEntitySet="TYPEPRODUCT">
-                <ScalarProperty Name="TYPEPRODUCT_NAME" ColumnName="TYPEPRODUCT_NAME" />
-                <ScalarProperty Name="TYPEPRODUCT_ID" ColumnName="TYPEPRODUCT_ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="sysdiagram1">
-            <EntityTypeMapping TypeName="CARSALESSYSTEMModel.sysdiagram1">
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="CARSALESSYSTEMModel.sysdiagram">
               <MappingFragment StoreEntitySet="sysdiagrams">
                 <ScalarProperty Name="definition" ColumnName="definition" />
                 <ScalarProperty Name="version" ColumnName="version" />
                 <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
                 <ScalarProperty Name="principal_id" ColumnName="principal_id" />
                 <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TYPEPRODUCTs">
+            <EntityTypeMapping TypeName="CARSALESSYSTEMModel.TYPEPRODUCT">
+              <MappingFragment StoreEntitySet="TYPEPRODUCT">
+                <ScalarProperty Name="TYPEPRODUCT_NAME" ColumnName="TYPEPRODUCT_NAME" />
+                <ScalarProperty Name="TYPEPRODUCT_ID" ColumnName="TYPEPRODUCT_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

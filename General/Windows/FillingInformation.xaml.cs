@@ -124,7 +124,7 @@ namespace CarSalesSystem.General.Windows
 
 
             SqlConnection connection = new SqlConnection();
-            connection.ConnectionString = ConfigurationManager.ConnectionStrings["CarSalesSystem.Properties.Settings.CARSALESSYSTEMConnectionString"].ConnectionString;
+            connection.ConnectionString = ConfigurationManager.ConnectionStrings["NamConnection"].ConnectionString;
             try
             {
                 connection.Open();

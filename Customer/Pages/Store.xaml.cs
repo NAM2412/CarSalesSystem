@@ -241,36 +241,6 @@ namespace CarSalesSystem.Customer.Pages
         }
         #endregion
 
-        private void cbProducer_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            // Tạo mới danh sách sản phẩm có tên chứa loại sản phẩm cần lọc
-            ObservableCollection<PRODUCT> filterProducts = new ObservableCollection<PRODUCT>();
-            if (cbProducer.SelectedIndex == -1)
-            {
-                reset_page(products);
-                listProduct.ItemsSource = products;
-            }
-            else
-            {
-                if (cbProducer.SelectedIndex == 0)
-                {
-                    reset_page(products);
-                    listProduct.ItemsSource = products;
-                }
-                else
-                {
-                    for (int i = 0; i < products.Count; i++)
-                    {
-                        if (products[i].PRODUCER.PRODUCER_ID == cbProducer.SelectionBoxItem.ToString()) // Nếu tìm thấy tên phù hợp
-                        {
-                            filterProducts.Add(products[i]); // Thì thêm vào danh sách mới
-                        }
-                    }
-                    reset_page(filterProducts);
-                    listProduct.ItemsSource = filterProducts;
-                }     
-            }
-        }
         private void LoadDataIntoCombobox(ComboBox comboBox)
         {
             SqlConnection connection = new SqlConnection();
@@ -292,7 +262,6 @@ namespace CarSalesSystem.Customer.Pages
                 comboBox.ItemsSource = table1.AsDataView();
                 comboBox.DisplayMemberPath = "PRODUCER_NAME";
                 comboBox.SelectedValuePath = "PRODUCER_ID";
-
 
             }
             catch (Exception ex)
@@ -321,6 +290,39 @@ namespace CarSalesSystem.Customer.Pages
                 }
 
                 listProduct.ItemsSource = products.Skip(cbPage.SelectedIndex * 10).Take(10);
+            }
+        }
+
+        private void cbProducer_LostFocus(object sender, RoutedEventArgs e)
+        {
+            // Tạo mới danh sách sản phẩm có tên chứa loại sản phẩm cần lọc
+            ObservableCollection<PRODUCT> filterProducts = new ObservableCollection<PRODUCT>();
+            if (cbProducer.SelectedIndex == -1)
+            {
+                reset_page(products);
+                listProduct.ItemsSource = products;
+            }
+            else
+            {
+                if (cbProducer.SelectedIndex == 0)
+                {
+                    reset_page(products);
+                    listProduct.ItemsSource = products;
+                }
+                else
+                {
+                    
+                    for (int i = 0; i < products.Count; i++)
+                    {
+                        if (products[i].PRODUCER.PRODUCER_NAME == cbProducer.Text.ToString()) // Nếu tìm thấy tên phù hợp
+                        {
+                            filterProducts.Add(products[i]); // Thì thêm vào danh sách mới
+
+                        }
+                    }
+                    reset_page(filterProducts);
+                    listProduct.ItemsSource = filterProducts;
+                }
             }
         }
     }

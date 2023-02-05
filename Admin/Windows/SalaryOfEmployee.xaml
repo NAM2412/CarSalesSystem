@@ -58,7 +58,8 @@
                             HorizontalContentAlignment="Left"
                             VerticalContentAlignment="Center"
                             BorderBrush="Gray"
-                            FontFamily="Mitr">
+                            FontFamily="Mitr"
+                            IsEnabled="False">
                             <ComboBoxItem Content="SALES"/>
                             <ComboBoxItem Content="MANAGER"/>
                         </ComboBox>

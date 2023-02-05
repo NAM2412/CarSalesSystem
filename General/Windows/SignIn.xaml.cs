@@ -145,7 +145,7 @@ namespace CarSalesSystem.General
                 passwordTextBox.BorderBrush = Brushes.Red;
             //retrieve data and compare with data from database
             SqlConnection connection = new SqlConnection();
-            connection.ConnectionString = ConfigurationManager.ConnectionStrings["CarSalesSystem.Properties.Settings.CARSALESSYSTEMConnectionString"].ConnectionString;
+            connection.ConnectionString = ConfigurationManager.ConnectionStrings["NamConnection"].ConnectionString;
             try
             {
                 if (connection.State == ConnectionState.Closed)

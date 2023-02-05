@@ -512,39 +512,48 @@ namespace CarSalesSystem.ViewModel
                     }
                     throw;
                 }
-                if(parameter.tbName.Text == null)
+                if(parameter.tbName.Text.Length == 0)
                 {
                     parameter.tbName.Focus();
                 }
-                if(parameter.tbAddress.Text== null)
+                else 
+                if(parameter.tbAddress.Text.Length == 0)
                 {
                     parameter.tbAddress.Focus();
                 }
-                SqlConnection connection = new SqlConnection();
-                connection.ConnectionString = ConfigurationManager.ConnectionStrings["CarSalesSystem.Properties.Settings.CARSALESSYSTEMConnectionString"].ConnectionString;
-                try
+                else if (parameter.tbPhone.Text.Length == 0)
                 {
-                    connection.Open();
-                    using (SqlCommand command = connection.CreateCommand())
+                    parameter.tbPhone.Focus();
+                }
+                else
+                {
+                    SqlConnection connection = new SqlConnection();
+                    connection.ConnectionString = ConfigurationManager.ConnectionStrings["NamConnection"].ConnectionString;
+                    try
                     {
-                        command.CommandText = @"INSERT INTO CUSTOMER(CUS_ACCOUNT,CUS_NAME,PHONE,CUS_ADDRESS,RANK_ID,REGIST_DATE,REVENUE,PRODUCT_NUMBER) 
+                        connection.Open();
+                        using (SqlCommand command = connection.CreateCommand())
+                        {
+                            command.CommandText = @"INSERT INTO CUSTOMER(CUS_ACCOUNT,CUS_NAME,PHONE,CUS_ADDRESS,RANK_ID,REGIST_DATE,REVENUE,PRODUCT_NUMBER) 
                         VALUES(@CUS_ACCOUNT,@CUS_NAME,@PHONE,@CUS_ADDRESS,@RANK_ID,@REGIST_DATE,@REVENUE,@PRODUCT_NUMBER)";
-                        command.Parameters.AddWithValue("@CUS_ACCOUNT", parameter.tbPhone.Text);
-                        command.Parameters.AddWithValue("@CUS_NAME", parameter.tbName.Text);
-                        command.Parameters.AddWithValue("@PHONE", parameter.tbPhone.Text);
-                        command.Parameters.AddWithValue("@CUS_ADDRESS", parameter.tbAddress.Text);
-                        command.Parameters.AddWithValue("@RANK_ID", "R00");
-                        command.Parameters.AddWithValue("@REGIST_DATE",DateTime.UtcNow.ToString());
-                        command.Parameters.AddWithValue("@REVENUE", 0);
-                        command.Parameters.AddWithValue("@PRODUCT_NUMBER", 0);
-                        command.ExecuteNonQuery();
-                        notifier.ShowSuccess("Add Successfully");
+                            command.Parameters.AddWithValue("@CUS_ACCOUNT", parameter.tbPhone.Text);
+                            command.Parameters.AddWithValue("@CUS_NAME", parameter.tbName.Text);
+                            command.Parameters.AddWithValue("@PHONE", parameter.tbPhone.Text);
+                            command.Parameters.AddWithValue("@CUS_ADDRESS", parameter.tbAddress.Text);
+                            command.Parameters.AddWithValue("@RANK_ID", "R00");
+                            command.Parameters.AddWithValue("@REGIST_DATE", DateTime.UtcNow.ToString());
+                            command.Parameters.AddWithValue("@REVENUE", 0);
+                            command.Parameters.AddWithValue("@PRODUCT_NUMBER", 0);
+                            command.ExecuteNonQuery();
+                            notifier.ShowSuccess("Add Successfully");
+                        }
+                    }
+                    finally
+                    {
+                        connection.Close();
                     }
                 }
-                finally
-                {
-                    connection.Close();
-                }
+                
               
             }
         }

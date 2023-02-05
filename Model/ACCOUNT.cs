@@ -24,6 +24,7 @@ namespace CarSalesSystem.Model
         public string USERNAME { get; set; }
         public string PASS { get; set; }
         public int TYPE_USER { get; set; }
+        public Nullable<System.DateTime> LOGIN_RECENT { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CUSTOMER> CUSTOMERs { get; set; }

@@ -36,7 +36,7 @@ namespace CarSalesSystem.Model
         public virtual DbSet<PRODUCT> PRODUCTs { get; set; }
         public virtual DbSet<RANK_MONEY> RANK_MONEY { get; set; }
         public virtual DbSet<SELLBILL> SELLBILLs { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<TYPEPRODUCT> TYPEPRODUCTs { get; set; }
-        public virtual DbSet<sysdiagram1> sysdiagram1 { get; set; }
     }
 }

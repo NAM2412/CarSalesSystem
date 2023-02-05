@@ -73,7 +73,7 @@ namespace CarSalesSystem.Admin.Windows
                 return;
             }
             SqlConnection connection = new SqlConnection();
-            connection.ConnectionString = ConfigurationManager.ConnectionStrings["CarSalesSystem.Properties.Settings.CARSALESSYSTEMConnectionString"].ConnectionString;
+            connection.ConnectionString = ConfigurationManager.ConnectionStrings["NamConnection"].ConnectionString;
             try
             {
                 connection.Open();
@@ -114,7 +114,7 @@ namespace CarSalesSystem.Admin.Windows
         private void typeComboBox_LostFocus(object sender, RoutedEventArgs e)
         {
             SqlConnection connection = new SqlConnection();
-            connection.ConnectionString = ConfigurationManager.ConnectionStrings["CarSalesSystem.Properties.Settings.CARSALESSYSTEMConnectionString"].ConnectionString;
+            connection.ConnectionString = ConfigurationManager.ConnectionStrings["NamConnection"].ConnectionString;
             try
             {
                 connection.Open();
