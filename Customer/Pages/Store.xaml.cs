@@ -244,7 +244,7 @@ namespace CarSalesSystem.Customer.Pages
         private void LoadDataIntoCombobox(ComboBox comboBox)
         {
             SqlConnection connection = new SqlConnection();
-            connection.ConnectionString = ConfigurationManager.ConnectionStrings["NamConnection"].ConnectionString;
+            connection.ConnectionString = ConfigurationManager.ConnectionStrings["CarSalesSystem.Properties.Settings.CARSALESSYSTEMConnectionString"].ConnectionString;
             string query = "select PRODUCER.PRODUCER_ID, PRODUCER.PRODUCER_NAME from PRODUCER";
             try
             {

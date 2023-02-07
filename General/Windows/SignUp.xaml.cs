@@ -92,7 +92,7 @@ namespace CarSalesSystem.General
             }
 
             SqlConnection connection = new SqlConnection();
-            connection.ConnectionString = ConfigurationManager.ConnectionStrings["NamConnection"].ConnectionString;
+            connection.ConnectionString = ConfigurationManager.ConnectionStrings["CarSalesSystem.Properties.Settings.CARSALESSYSTEMConnectionString"].ConnectionString;
             try
             {
                 connection.Open();
