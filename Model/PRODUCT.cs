@@ -17,9 +17,9 @@ namespace CarSalesSystem.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public PRODUCT()
         {
-            this.IMPORTRECEIPTINFOes = new HashSet<IMPORTRECEIPTINFO>();
             this.MAINTENANCEBILLs = new HashSet<MAINTENANCEBILL>();
             this.ORDERBILLs = new HashSet<ORDERBILL>();
+            this.IMPORTRECEIPTINFOes = new HashSet<IMPORTRECEIPTINFO>();
             this.SELLBILLs = new HashSet<SELLBILL>();
         }
     
@@ -42,12 +42,12 @@ namespace CarSalesSystem.Model
     
         public virtual IMPORTRECEIPT IMPORTRECEIPT { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<IMPORTRECEIPTINFO> IMPORTRECEIPTINFOes { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MAINTENANCEBILL> MAINTENANCEBILLs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ORDERBILL> ORDERBILLs { get; set; }
         public virtual PRODUCER PRODUCER { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<IMPORTRECEIPTINFO> IMPORTRECEIPTINFOes { get; set; }
         public virtual TYPEPRODUCT TYPEPRODUCT { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SELLBILL> SELLBILLs { get; set; }

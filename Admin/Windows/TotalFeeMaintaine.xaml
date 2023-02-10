@@ -30,7 +30,9 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <Label Grid.Row="0" Height="30" Content="Confirm Total Fee?" HorizontalAlignment="Center" FontSize="18"/>
-                <TextBox x:Name="tbMoney" Grid.Row="1" Width="180" FontSize="14" Text=""/>
+                <TextBox x:Name="tbMoney" Grid.Row="1" Width="180"
+                         PreviewTextInput="PreviewTextInput"
+                         FontSize="14" Text=""/>
                 <Button x:Name="btncheckOk" 
                         Command="{Binding ConfirmTotalFeeMaintainBillCommand}"
                         CommandParameter="{Binding ElementName=wdtotalFee}"

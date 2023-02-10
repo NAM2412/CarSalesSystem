@@ -1,5 +1,4 @@
-﻿using CarSalesSystem.Viewmodel;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,21 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace CarSalesSystem.Admin.Pages
+namespace CarSalesSystem.Admin.User_Controls
 {
     /// <summary>
-    /// Interaction logic for Warehouse.xaml
+    /// Interaction logic for ImportReceiptControl.xaml
     /// </summary>
-    public partial class WarehousePG : Page
+    public partial class ImportReceiptControl : UserControl
     {
-        public WarehousePG()
+        public ImportReceiptControl()
         {
             InitializeComponent();
-            if(AccountInfo.Type_User == 1)
-            {
-                btnHistoryImport.Visibility = Visibility.Hidden;
-            }
-            else btnHistoryImport.Visibility = Visibility.Visible;
         }
     }
 }

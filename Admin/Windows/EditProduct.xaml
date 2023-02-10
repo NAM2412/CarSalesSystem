@@ -442,6 +442,7 @@
                     VerticalContentAlignment="Bottom"
                     VerticalAlignment="Bottom"/>
                             <TextBox
+                                PreviewTextInput="PreviewCharInput"
                                 x:Name="tbName"
                                     Width="200"
                                     Height="40"
@@ -513,6 +514,7 @@
                                   Width="142"
                                 VerticalAlignment="Bottom"/>
                             <TextBox
+                                PreviewTextInput="PreviewTextInput"
                                 x:Name="tbDispla"
                                     Width="200"
                                     Height="40"
@@ -551,6 +553,7 @@
                     VerticalAlignment="Bottom"/>
                             <TextBox
                                 x:Name="tbMaxSpeed"
+                                PreviewTextInput="PreviewTextInput"
                                     Width="200"
                                 Margin="0,0,10,0"
                                     Height="40"
@@ -589,6 +592,7 @@
                                 x:Name="tbMaxPower"
                                     Width="200"
                                     Height="40"
+                                PreviewTextInput="PreviewTextInput"
                                 Margin="0,0,10,0"
                                     FontSize="14" 
                                     HorizontalContentAlignment="Left"
@@ -626,6 +630,7 @@
                                     Width="200"
                                     Height="40"
                                     FontSize="14" 
+                                PreviewTextInput="PreviewTextInput"
                                 Margin="0,0,10,0"
                                 HorizontalContentAlignment="Left"
                                     VerticalContentAlignment="Bottom" 
@@ -712,6 +717,7 @@
                             <TextBox
                                 x:Name="tbPrice"
                                     Width="200"
+                                PreviewTextInput="PreviewTextInput"
                                     Height="40"
                                 Margin="0,0,10,0"
                                     FontSize="14" 

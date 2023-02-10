@@ -40,10 +40,9 @@
                     Style="{StaticResource MaterialDesignOutlinedComboBox}"
                     materialDesign:HintAssist.Hint="ALL" 
                     DropDownClosed="cbProducer_DropDownClosed" 
-                    DropDownOpened="cbProducer_DropDownOpened" 
-                    
+                    DropDownOpened="cbProducer_DropDownOpened"                    
                     DisplayMemberPath="{Binding ProducerName}"
-                    SelectedValuePath="{Binding ProducerID}">
+                    SelectedValuePath="{Binding ProducerID}" LostFocus="cbProducer_LostFocus">
                     <!--
                     SelectionChanged="cbProducer_SelectionChanged"
                     <ComboBoxItem Content="ALL" />

@@ -48,6 +48,7 @@ namespace CarSalesSystem.ViewModel
         private String idProduct;
         private String idOrderBill;
         private String idMaintaineBill;
+        private String idimportreceipt;
         public ICommand EditProductCommand { get; set; }
         public ICommand ShowLoadProductCommand { get; set; }
         public ICommand ClickAddCommand { get; set; }
@@ -77,6 +78,8 @@ namespace CarSalesSystem.ViewModel
         public ICommand ClickEditMoneyFeeCommand { get; set; }
         public ICommand ConfirmTotalFeeMaintainBillCommand { get; set; }
         public ICommand ShowUpdateAndAddProducerCommand { get; set; }
+        public ICommand ShowHistoryImportCommand { get; set; }
+        public ICommand ShowImportReceiptInfoCommand { get; set; }
         public ProductViewModel()
         {
             EditProductCommand = new RelayCommand<ProductControl>((parameter) => true, (parameter) => ClickEditProduct(parameter));
@@ -87,7 +90,7 @@ namespace CarSalesSystem.ViewModel
             LoadFilterProductCommand = new RelayCommand<ProductPG>((parameter) => true, (parameter) => LoadFilterProduct(parameter));
             ShowListMainTainCommand = new RelayCommand<ProductPG>((parameter) => true, (parameter) => showListMaintainceBill(parameter));
             showListOrderBillCommand = new RelayCommand<ProductPG>((parameter) => true, (parameter) => showListOrderBill(parameter));
-
+      
 
             BackAddProductCommand = new RelayCommand<Addproduct>((parameter) => true, (parameter) => parameter.Close());
             AddProductCommand = new RelayCommand<Addproduct>((parameter) => true, (parameter) => AddProduct(parameter));
@@ -100,6 +103,7 @@ namespace CarSalesSystem.ViewModel
 
             BackImportProductCommand = new RelayCommand<ImportProduct>((parameter) => true, (parameter) => parameter.Close());
 
+            ShowHistoryImportCommand = new RelayCommand<WarehousePG>((parameter) => true, (parameter) => ShowHistoryImport(parameter));
             ShowLoadImportProductCommand = new RelayCommand<WarehousePG>((parameter) => true, (parameter) => ShowLoadImportProduct(parameter));
             LoadFilterProductWareHouseCommand = new RelayCommand<WarehousePG>((parameter) => true, (parameter) => LoadFilterProductWareHouse(parameter));
 
@@ -117,6 +121,38 @@ namespace CarSalesSystem.ViewModel
             ClickEditMoneyFeeCommand = new RelayCommand<CheckCompleteMaintainceControl>((parameter) => true, (parameter) => ClickEditMoneyFee(parameter));
             ConfirmTotalFeeMaintainBillCommand = new RelayCommand<TotalFeeMaintaine>((parameter) => true, (parameter) => ConfirmTotalFeeMaintainBill(parameter));
             ShowUpdateAndAddProducerCommand = new RelayCommand<ProductPG>((parameter) => true, (parameter) => ShowUpdateAndAddProducer(parameter));
+            ShowImportReceiptInfoCommand = new RelayCommand<ImportReceiptControl>((parameter) => true, (parameter) => ClickShowImportReceiptInfo(parameter));
+        }
+
+        private void ClickShowImportReceiptInfo(ImportReceiptControl parameter)
+        {
+            var item = DataProvider.Ins.DB.IMPORTRECEIPTINFOes.Find(parameter.tbNo.Text);
+            InfoImportWindow i = new InfoImportWindow();
+            i.txbIdStock.Text = item.IRECEIPT_ID;
+            i.txbIdGood.Text = item.PRO_ID;
+            i.txbQuantity.Text = item.QUANTITY.ToString();
+            double k = (double)item.IMPORT_PRICE;
+            i.txbImportPrice.Text = k.ToString("C", CultureInfo.CurrentCulture);
+            i.ShowDialog();
+        }
+
+        private void ShowHistoryImport(WarehousePG parameter)
+        {
+            var listimport = DataProvider.Ins.DB.IMPORTRECEIPTs.ToList();
+            ListImportWindow lis = new ListImportWindow();
+            lis.skpImportBill.Children.Clear();
+            foreach(var item in listimport)
+            {
+                ImportReceiptControl i = new ImportReceiptControl();
+                i.tbNo.Text = item.IRECEIPT_ID.ToString();
+                i.tbEmpId.Text = item.EMPLOYEE_ID.ToString();
+                i.tbDate.Text = item.DATETIME_IMPORT.ToString();
+                double k  =(double) item.TOTAL_PRICE;
+                i.TotalPrice.Text= k.ToString("C",CultureInfo.CurrentCulture);
+                lis.skpImportBill.Children.Add(i);
+            }
+            lis.ShowDialog();
+            
         }
 
         private void ShowUpdateAndAddProducer(ProductPG parameter)
@@ -512,39 +548,48 @@ namespace CarSalesSystem.ViewModel
                     }
                     throw;
                 }
-                if(parameter.tbName.Text == null)
+                if(parameter.tbName.Text.Length == 0)
                 {
                     parameter.tbName.Focus();
                 }
-                if(parameter.tbAddress.Text== null)
+                else 
+                if(parameter.tbAddress.Text.Length == 0)
                 {
                     parameter.tbAddress.Focus();
                 }
-                SqlConnection connection = new SqlConnection();
-                connection.ConnectionString = ConfigurationManager.ConnectionStrings["CarSalesSystem.Properties.Settings.CARSALESSYSTEMConnectionString"].ConnectionString;
-                try
+                else if (parameter.tbPhone.Text.Length == 0)
                 {
-                    connection.Open();
-                    using (SqlCommand command = connection.CreateCommand())
+                    parameter.tbPhone.Focus();
+                }
+                else
+                {
+                    SqlConnection connection = new SqlConnection();
+                    connection.ConnectionString = ConfigurationManager.ConnectionStrings["NamConnection"].ConnectionString;
+                    try
                     {
-                        command.CommandText = @"INSERT INTO CUSTOMER(CUS_ACCOUNT,CUS_NAME,PHONE,CUS_ADDRESS,RANK_ID,REGIST_DATE,REVENUE,PRODUCT_NUMBER) 
+                        connection.Open();
+                        using (SqlCommand command = connection.CreateCommand())
+                        {
+                            command.CommandText = @"INSERT INTO CUSTOMER(CUS_ACCOUNT,CUS_NAME,PHONE,CUS_ADDRESS,RANK_ID,REGIST_DATE,REVENUE,PRODUCT_NUMBER) 
                         VALUES(@CUS_ACCOUNT,@CUS_NAME,@PHONE,@CUS_ADDRESS,@RANK_ID,@REGIST_DATE,@REVENUE,@PRODUCT_NUMBER)";
-                        command.Parameters.AddWithValue("@CUS_ACCOUNT", parameter.tbPhone.Text);
-                        command.Parameters.AddWithValue("@CUS_NAME", parameter.tbName.Text);
-                        command.Parameters.AddWithValue("@PHONE", parameter.tbPhone.Text);
-                        command.Parameters.AddWithValue("@CUS_ADDRESS", parameter.tbAddress.Text);
-                        command.Parameters.AddWithValue("@RANK_ID", "R00");
-                        command.Parameters.AddWithValue("@REGIST_DATE",DateTime.UtcNow.ToString());
-                        command.Parameters.AddWithValue("@REVENUE", 0);
-                        command.Parameters.AddWithValue("@PRODUCT_NUMBER", 0);
-                        command.ExecuteNonQuery();
-                        notifier.ShowSuccess("Add Successfully");
+                            command.Parameters.AddWithValue("@CUS_ACCOUNT", parameter.tbPhone.Text);
+                            command.Parameters.AddWithValue("@CUS_NAME", parameter.tbName.Text);
+                            command.Parameters.AddWithValue("@PHONE", parameter.tbPhone.Text);
+                            command.Parameters.AddWithValue("@CUS_ADDRESS", parameter.tbAddress.Text);
+                            command.Parameters.AddWithValue("@RANK_ID", "R00");
+                            command.Parameters.AddWithValue("@REGIST_DATE", DateTime.UtcNow.ToString());
+                            command.Parameters.AddWithValue("@REVENUE", 0);
+                            command.Parameters.AddWithValue("@PRODUCT_NUMBER", 0);
+                            command.ExecuteNonQuery();
+                            notifier.ShowSuccess("Add Successfully");
+                        }
+                    }
+                    finally
+                    {
+                        connection.Close();
                     }
                 }
-                finally
-                {
-                    connection.Close();
-                }
+                
               
             }
         }

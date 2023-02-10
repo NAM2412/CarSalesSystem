@@ -9,7 +9,7 @@
            AllowsTransparency="True"
         Background="Transparent"
         WindowStyle="None"
-        WindowStartupLocation="CenterOwner"
+        WindowStartupLocation="CenterScreen"
         xmlns:uc="clr-namespace:CarSalesSystem.Admin.User_Controls"
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         Height="150" Width="250">

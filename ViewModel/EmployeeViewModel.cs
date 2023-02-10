@@ -333,7 +333,7 @@ namespace CarSalesSystem.ViewModel
                 DataProvider.Ins.DB.SaveChanges();
 
                 SqlConnection connection = new SqlConnection();
-                connection.ConnectionString = ConfigurationManager.ConnectionStrings["CarSalesSystem.Properties.Settings.CARSALESSYSTEMConnectionString"].ConnectionString;
+                connection.ConnectionString = ConfigurationManager.ConnectionStrings["NamConnection"].ConnectionString;
                 try
                 {
                     connection.Open();

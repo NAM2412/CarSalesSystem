@@ -101,7 +101,7 @@ namespace CarSalesSystem.Customer.Pages
         private void informationButton_Click(object sender, RoutedEventArgs e)
         {
             SqlConnection connection = new SqlConnection();
-            connection.ConnectionString = ConfigurationManager.ConnectionStrings["NamConnection"].ConnectionString;
+            connection.ConnectionString = ConfigurationManager.ConnectionStrings["CarSalesSystem.Properties.Settings.CARSALESSYSTEMConnectionString"].ConnectionString;
             string query = "update CUSTOMER set CUS_NAME=@CUS_NAME, CUS_DATE_OF_BIRTH=@CUS_DATE_OF_BIRTH, GENDER=@GENDER, PHONE=@PHONE, CUS_ADDRESS=@CUS_ADDRESS where CUS_ID=@CUS_ID";
                 try
                 {
@@ -142,7 +142,7 @@ namespace CarSalesSystem.Customer.Pages
                 return;
             }
             SqlConnection connection = new SqlConnection();
-            connection.ConnectionString = ConfigurationManager.ConnectionStrings["NamConnection"].ConnectionString;
+            connection.ConnectionString = ConfigurationManager.ConnectionStrings["CarSalesSystem.Properties.Settings.CARSALESSYSTEMConnectionString"].ConnectionString;
             try
             {
                 connection.Open();

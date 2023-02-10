@@ -34,6 +34,7 @@ namespace CarSalesSystem.Model
         public byte[] IMG { get; set; }
         public string EMP_TYPE { get; set; }
         public Nullable<int> IsDeleted { get; set; }
+        public Nullable<int> DateOfWork { get; set; }
     
         public virtual ACCOUNT ACCOUNT { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
