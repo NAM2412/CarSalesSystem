@@ -80,7 +80,7 @@ namespace CarSalesSystem.General
                 MailMessage message = new MailMessage();
                 String to = storedEmail.ToString();
                 String from = "20520215@gm.uit.edu.vn";
-                String password = "tirlehholexszpyd";
+                String password = "kbagdlagxhmoevvl";
                 String messageBody = "Your OTP code is: " + randomCode;
                 message.To.Add(new MailAddress(to));
                 message.From = new MailAddress(from);
